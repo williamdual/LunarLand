@@ -1,0 +1,3 @@
+C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build/CMakeFiles/godot-cpp.dir
+C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build/CMakeFiles/ZERO_CHECK.dir
