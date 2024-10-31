@@ -7,6 +7,8 @@
 #include "example_abstract_class.h"
 #include "example_derived_class.h"
 
+#include "PlayerCamera.h"
+
 #include "game_object.h"
 #include "beacon.h"
 #include "enemy.h"
@@ -28,6 +30,7 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 	}
 	// register classes you made
 	ClassDB::register_class<QuatCamera>();
+	ClassDB::register_class<PlayerCamera>();
 	ClassDB::register_class<CustomScene3501>();
 	ClassDB::register_abstract_class<ExampleAbstractClass>();
 	ClassDB::register_class<ExampleDerivedClass>();
