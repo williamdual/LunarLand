@@ -25,7 +25,27 @@ void CustomScene3501::_enter_tree()
 	if (DEBUG)
 		UtilityFunctions::print("Enter Tree - CustomScene3501.");
 
-	create_and_add_as_child<QuatCamera>(main_camera, "QuatCamera", true);
+	create_and_add_as_child<PlayerCamera>(main_camera, "QuatCamera", true);
+
+	bool is_new = create_and_add_as_child<MeshInstance3D>(playerTestObject_ptr, "PlayerTestObject", true);
+	if(is_new == true)
+	{
+		//make new mesh
+		CylinderMesh* newPlayerTestObjectMesh_ptr = memnew(CylinderMesh);
+		newPlayerTestObjectMesh_ptr->set_height(2);
+		newPlayerTestObjectMesh_ptr->set_top_radius(1);
+		newPlayerTestObjectMesh_ptr->set_bottom_radius(1);
+		
+		//set the new meshes color
+		StandardMaterial3D*  newPlayerTestObjectMaterial_ptr = memnew(StandardMaterial3D);
+		newPlayerTestObjectMaterial_ptr->set_albedo(Color(1.0f, 1.0f, 0.0f, 1.0f));
+		newPlayerTestObjectMesh_ptr->surface_set_material(0, newPlayerTestObjectMaterial_ptr);
+
+		//set testMesh's mesh to the new mesh
+		playerTestObject_ptr->set_mesh(newPlayerTestObjectMesh_ptr);
+	}
+	
+
 	// The vectors are brand new every time you run the simulation or reload the project.
 	// setup_reference_boxes();
 }
@@ -35,12 +55,21 @@ void CustomScene3501::_ready()
 	if (DEBUG)
 		UtilityFunctions::print("Ready - CustomScene3501.");
 
+
+
 	// set the player's position (the camera)
-	main_camera->set_global_position(Vector3(5.0, 5.0, 25.0f));
-	main_camera->look_at(Vector3(0, 0, 0)); // there are some bugs with this function if the up vector is parallel to the look-at position; check the manual for a link to more info
+	main_camera->set_global_position(Vector3(0.0, 0.0, 0.0f));
 
 	// now that we have set the camera's starting state, let's reinitialize its variables
 	main_camera->_ready();
+
+	main_camera->SetTarget(playerTestObject_ptr);
+	
+	playerTestObject_ptr->set_global_position(Vector3(10.0, 0.0, 0.0f));
+
+
+
+	/*
 	if (!Engine::get_singleton()->is_editor_hint()) // because im lazy
 	{
 		create_and_add_as_child<Node>(bulletGroup, "Bullets Group", true);
@@ -48,6 +77,7 @@ void CustomScene3501::_ready()
 		setup_enemys();
 		setup_powerups();
 	}
+	*/
 }
 
 // called every frame (as often as possible)
@@ -59,6 +89,7 @@ void CustomScene3501::_process(double delta)
 
 	if (gameState == GameState::ongoing)
 	{
+		/*
 		//  beacons
 		if (beacons[0]->isColliding(main_camera))
 		{
@@ -79,9 +110,12 @@ void CustomScene3501::_process(double delta)
 				get_tree()->set_pause(true);
 			}
 		}
+		*/ 
+
 		// Enemys and enemys getting shot
 		for (int i = enemys.size() - 1; i >= 0; i--)
 		{
+			/*
 			if (enemys[i]->isColliding(main_camera))
 			{
 				overscreen = memnew(ColorRect);
@@ -104,10 +138,12 @@ void CustomScene3501::_process(double delta)
 					tempEnemy->queue_free();
 				}
 			}
+			*/
 		}
 		// power ups
 		for (int i = power_ups.size() - 1; i >= 0; i--)
 		{
+			/*
 			if (power_ups[i]->isColliding(main_camera))
 			{
 				PowerUpSpeed *tempPower = power_ups[i];
@@ -115,6 +151,7 @@ void CustomScene3501::_process(double delta)
 				tempPower->queue_free();
 				main_camera->addSpeed(0.5f);
 			}
+			*/
 		}
 		// Bullet creation
 		Input *_input = Input::get_singleton();
@@ -174,6 +211,7 @@ void CustomScene3501::setup_beacons()
 }
 void CustomScene3501::setup_enemys()
 {
+	/*
 	Node *ref_group;
 	bool is_new = create_and_add_as_child<Node>(ref_group, "Enemys Group", true);
 	if (is_new)
@@ -190,6 +228,7 @@ void CustomScene3501::setup_enemys()
 			enemys.push_back(enemy);
 		}
 	}
+	*/
 }
 void CustomScene3501::setup_powerups()
 {

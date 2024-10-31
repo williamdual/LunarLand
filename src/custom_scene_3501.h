@@ -26,8 +26,11 @@
 #include <godot_cpp/classes/control.hpp>	 // for the anchors preset
 #include <godot_cpp/classes/color_rect.hpp>
 
+#include <godot_cpp/classes/cylinder_mesh.hpp>
+
 #include "defs.h"
 #include "quat_camera.h"
+#include "PlayerCamera.h"
 #include "beacon.h"
 #include "enemy.h"
 #include "power_up_speed.h"
@@ -47,7 +50,8 @@ namespace godot
 	private:
 		double time_passed;
 		ColorRect *overscreen;
-		QuatCamera *main_camera;
+		PlayerCamera *main_camera;
+		MeshInstance3D* playerTestObject_ptr; 
 		Vector<ExampleDerivedClass *> reference_instances;
 		Vector<Beacon *> beacons;
 		Vector<Enemy *> enemys;
