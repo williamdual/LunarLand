@@ -65,7 +65,7 @@ void CustomScene3501::_ready()
 
 	main_camera->SetTarget(playerTestObject_ptr);
 	
-	playerTestObject_ptr->set_global_position(Vector3(10.0, 0.0, 0.0f));
+	playerTestObject_ptr->set_global_position(Vector3(0.0, -10.0, -10.0f));
 
 
 

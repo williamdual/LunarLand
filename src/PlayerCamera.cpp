@@ -62,19 +62,19 @@ void PlayerCamera::_process(double delta)
 
 		if (_input->is_action_pressed("pitch_increase"))
 		{
-			target_ptr->set_global_position(target_ptr->get_global_position() + GetForward() * delta * moveSpeed);
+			target_ptr->set_global_position(target_ptr->get_global_position() + GetMovementPlaneForward() * delta * moveSpeed);
 		}
 		if (_input->is_action_pressed("pitch_decrease"))
 		{
-			target_ptr->set_global_position(target_ptr->get_global_position() - GetForward() * delta * moveSpeed);
+			target_ptr->set_global_position(target_ptr->get_global_position() - GetMovementPlaneForward() * delta * moveSpeed);
 		}
 		if (_input->is_action_pressed("roll_increase"))
 		{
-			target_ptr->set_global_position(target_ptr->get_global_position() + GetSide() * delta * moveSpeed);
+			target_ptr->set_global_position(target_ptr->get_global_position() + GetMovementPlaneSide() * delta * moveSpeed);
 		}
 		if (_input->is_action_pressed("roll_decrease"))
 		{
-			target_ptr->set_global_position(target_ptr->get_global_position() - GetSide() * delta * moveSpeed);
+			target_ptr->set_global_position(target_ptr->get_global_position() - GetMovementPlaneSide() * delta * moveSpeed);
 		}
 	}
 
@@ -83,21 +83,39 @@ void PlayerCamera::_process(double delta)
 
 Vector3 PlayerCamera::GetForward(void) const
 {
-	Vector3 current_forward = (our_quaternion.xform(forward_));
+	Vector3 current_forward = (get_quaternion().xform(forward_));
 	return -current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
 }
 
 Vector3 PlayerCamera::GetSide(void) const
 {
-	Vector3 current_side = (our_quaternion.xform(side_));
+	Vector3 current_side = (get_quaternion().xform(side_));
 	return current_side;
 }
+
 
 Vector3 PlayerCamera::GetUp(void) const
 {
 	// how do you get the up vector?
 	Vector3 current_up = vec3_cross(GetSide(), GetForward());
 	return current_up;
+}
+
+Vector3 godot::PlayerCamera::GetMovementPlaneForward()
+{
+	Vector3 movementPlaneForwardVector = GetForward();
+	movementPlaneForwardVector.y = 0;//the player moves on the X,Z plane, thefore we can flatten the forward vector to this plane
+	movementPlaneForwardVector.normalize();
+    return movementPlaneForwardVector;
+}
+
+
+Vector3 godot::PlayerCamera::GetMovementPlaneSide()
+{
+	Vector3 movementPlaneSideVector = GetSide();
+	movementPlaneSideVector.y = 0;//the player moves on the X,Z plane, thefore we can flatten the forward vector to this plane
+	movementPlaneSideVector.normalize();
+    return movementPlaneSideVector;
 }
 
 void godot::PlayerCamera::SetTarget(Node3D *newTarget_ptr)

@@ -28,18 +28,6 @@ bottom_radius = 1.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sgphw")
 
-[node name="CustomScene3501" type="CustomScene3501" parent="."]
-
-[node name="QuatCamera" type="PlayerCamera" parent="CustomScene3501"]
-
-[node name="PlayerTestObject" type="MeshInstance3D" parent="CustomScene3501"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
-mesh = SubResource("CylinderMesh_di7ud")
-
-[node name="BasicTestLevelOpenTop" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.68521, 0, 0, 0, 2.68521, 0, 0, 0, 2.68521, -1.9791, -9.4002, -2.60361)
-mesh = ExtResource("1_75udx")
-
 [node name="Node" type="Node" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node"]
@@ -47,3 +35,15 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="Node"]
 transform = Transform3D(-0.5, -0.75, 0.433013, 0, 0.5, 0.866025, -0.866025, 0.433013, -0.25, 0, 0, 0)
+
+[node name="CustomScene3501" type="CustomScene3501" parent="."]
+
+[node name="QuatCamera" type="PlayerCamera" parent="CustomScene3501"]
+
+[node name="PlayerTestObject" type="MeshInstance3D" parent="CustomScene3501"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -10)
+mesh = SubResource("CylinderMesh_di7ud")
+
+[node name="BasicTestLevelOpenTop" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.68521, 0, 0, 0, 2.68521, 0, 0, 0, 2.68521, 0, -6.112, -6.086)
+mesh = ExtResource("1_75udx")

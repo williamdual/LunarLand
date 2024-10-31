@@ -45,6 +45,8 @@ namespace godot
 		Vector3 GetForward() const;
 		Vector3 GetUp() const;
 		Vector3 GetSide() const;
+		Vector3 GetMovementPlaneForward();
+		Vector3 GetMovementPlaneSide();
 		void SetTarget(Node3D* newTarget_ptr);
 
 	};
