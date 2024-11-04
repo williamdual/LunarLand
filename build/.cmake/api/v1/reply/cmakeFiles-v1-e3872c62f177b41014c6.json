@@ -6,7 +6,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build/CMakeFiles/3.25.1/CMakeSystem.cmake"
+			"path" : "C:/Users/willi/OneDrive - Carleton University/GitHub/LunarLand/build/CMakeFiles/3.25.1/CMakeSystem.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -15,7 +15,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build/CMakeFiles/3.25.1/CMakeCXXCompiler.cmake"
+			"path" : "C:/Users/willi/OneDrive - Carleton University/GitHub/LunarLand/build/CMakeFiles/3.25.1/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -79,7 +79,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build/CMakeFiles/3.25.1/CMakeRCCompiler.cmake"
+			"path" : "C:/Users/willi/OneDrive - Carleton University/GitHub/LunarLand/build/CMakeFiles/3.25.1/CMakeRCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -118,7 +118,7 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build",
+		"build" : "C:/Users/willi/OneDrive - Carleton University/GitHub/LunarLand/build",
 		"source" : "C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/godot-cpp"
 	},
 	"version" : 

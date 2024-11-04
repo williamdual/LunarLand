@@ -27,7 +27,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build"
+			"value" : "c:/Users/willi/OneDrive - Carleton University/GitHub/LunarLand/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -335,7 +335,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/willi/OneDrive - Carleton University/GitHub/LunarLand/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -1111,7 +1111,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/willi/OneDrive - Carleton University/GitHub/Class-Work/COMP3501/Assignment2/build"
+			"value" : "C:/Users/willi/OneDrive - Carleton University/GitHub/LunarLand/build"
 		},
 		{
 			"name" : "godot-cpp_IS_TOP_LEVEL",

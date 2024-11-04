@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="quat"
+config/name="LunarLand"
 run/main_scene="res://quat.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
