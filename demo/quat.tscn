@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp1hkrg2i3h82"]
+[gd_scene load_steps=8 format=3 uid="uid://bp1hkrg2i3h82"]
 
 [ext_resource type="ArrayMesh" uid="uid://k0ag2sduflc0" path="res://BasicTestLevelOpenTop.obj" id="1_75udx"]
+[ext_resource type="PackedScene" uid="uid://wdgjlalfup4v" path="res://FileCabinet_Prefab.tscn" id="2_b70xw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q6xi"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -37,8 +38,24 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
 transform = Transform3D(-0.5, -0.75, 0.433013, 0, 0.5, 0.866025, -0.866025, 0.433013, -0.25, 0, 0, 0)
 
 [node name="CustomScene3501" type="CustomScene3501" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+script = null
 
 [node name="QuatCamera" type="PlayerCamera" parent="CustomScene3501"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+script = null
 
 [node name="PlayerTestObject" type="MeshInstance3D" parent="CustomScene3501"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -10)
@@ -47,3 +64,6 @@ mesh = SubResource("CylinderMesh_di7ud")
 [node name="BasicTestLevelOpenTop" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.68521, 0, 0, 0, 2.68521, 0, 0, 0, 2.68521, 0, -6.112, -6.086)
 mesh = ExtResource("1_75udx")
+
+[node name="FileCabinet" parent="." instance=ExtResource("2_b70xw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.35282, -12.8637, -24.3684)
