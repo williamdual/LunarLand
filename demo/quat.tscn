@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp1hkrg2i3h82"]
+[gd_scene load_steps=8 format=3 uid="uid://bp1hkrg2i3h82"]
 
 [ext_resource type="ArrayMesh" uid="uid://k0ag2sduflc0" path="res://BasicTestLevelOpenTop.obj" id="1_75udx"]
+[ext_resource type="PackedScene" uid="uid://wdgjlalfup4v" path="res://FileCabinet_Prefab.tscn" id="2_b70xw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q6xi"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
