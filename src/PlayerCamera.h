@@ -28,8 +28,7 @@ namespace godot
 		Quaternion our_quaternion;
 		Vector3 forward_;
 		Vector3 side_;
-		Node3D* target_ptr;
-
+		Node3D *target_ptr;
 
 	protected:
 		// a static function that Godot will call to find out which methods can be called and which properties it exposes
@@ -47,8 +46,7 @@ namespace godot
 		Vector3 GetSide() const;
 		Vector3 GetMovementPlaneForward();
 		Vector3 GetMovementPlaneSide();
-		void SetTarget(Node3D* newTarget_ptr);
-
+		void SetTarget(Node3D *newTarget_ptr);
 	};
 }
 
