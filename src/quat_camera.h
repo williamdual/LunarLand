@@ -1,5 +1,5 @@
-#ifndef PLAYERCAMERA_H
-#define PLAYERCAMERA_H
+#ifndef QUATCAMERA_H
+#define QUATCAMERA_H
 
 // parent class
 #include <godot_cpp/classes/camera3d.hpp>
@@ -17,38 +17,41 @@
 // everything in gdextension is defined in this namespace
 namespace godot
 {
-	class PlayerCamera : public Camera3D
+	class QuatCamera : public Camera3D
 	{
 		// this macro sets up a few internal things
-		GDCLASS(PlayerCamera, Camera3D);
+		GDCLASS(QuatCamera, Camera3D);
 
 	private:
 		// this one is the one we will use to transform our side, up and forward vectors for the GetX functions.
 		// why would it be a bad idea to transform by the built-in quaternion?
 		Quaternion our_quaternion;
+
 		Vector3 forward_;
 		Vector3 side_;
-		Node3D* target_ptr;
+		float speed;
 
+		Vector3 GetUp() const;
+		Vector3 GetSide() const;
+
+		void Pitch(float angle);
+		void Roll(float angle);
+		void Yaw(float angle);
 
 	protected:
 		// a static function that Godot will call to find out which methods can be called and which properties it exposes
 		static void _bind_methods();
 
 	public:
-		PlayerCamera(float = 1.0f);
-		~PlayerCamera();
+		QuatCamera(float = 1.0f);
+		~QuatCamera();
 		float radius;
 		void _enter_tree() override;
 		void _ready() override;
 		void _process(double delta) override;
+		void collide(EntityType);
+		void addSpeed(float);
 		Vector3 GetForward() const;
-		Vector3 GetUp() const;
-		Vector3 GetSide() const;
-		Vector3 GetMovementPlaneForward();
-		Vector3 GetMovementPlaneSide();
-		void SetTarget(Node3D* newTarget_ptr);
-
 	};
 }
 

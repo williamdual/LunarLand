@@ -1,11 +1,19 @@
 #include "register_types.h"
 
 // include the headers from your classes
+#include "quat_camera.h"
 #include "custom_scene_3501.h"
 
+#include "example_abstract_class.h"
+#include "example_derived_class.h"
+
 #include "PlayerCamera.h"
-#include "CameraTrigger.h"
-#include "Player.h"
+
+#include "game_object.h"
+#include "beacon.h"
+#include "enemy.h"
+#include "power_up_speed.h"
+#include "bullet.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -21,10 +29,16 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 		return;
 	}
 	// register classes you made
+	ClassDB::register_class<QuatCamera>();
 	ClassDB::register_class<PlayerCamera>();
-	ClassDB::register_class<CameraTrigger>();
 	ClassDB::register_class<CustomScene3501>();
-	ClassDB::register_class<Player>();
+	ClassDB::register_abstract_class<ExampleAbstractClass>();
+	ClassDB::register_class<ExampleDerivedClass>();
+	ClassDB::register_abstract_class<GameObject>();
+	ClassDB::register_class<Beacon>();
+	ClassDB::register_class<Enemy>();
+	ClassDB::register_class<PowerUpSpeed>();
+	ClassDB::register_class<Bullet>();
 }
 
 // gets called when godot unloads our plugin

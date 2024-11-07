@@ -6,5 +6,6 @@
 demo/bin/lib*
 demo/bin/~lib*
 
+demo/
 demo/bin/lib*.obj
 demo/bin/~lib*.obj
