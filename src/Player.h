@@ -20,6 +20,8 @@
 #include <godot_cpp/classes/cylinder_shape3d.hpp>
 #include <godot_cpp/classes/standard_material3d.hpp>
 
+#include "PlayerCamera.h"
+
 #include "defs.h"
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -34,7 +36,7 @@ namespace godot
         Area3D *area;
         CollisionShape3D *collider;
         CylinderShape3D *cylinder_shape;
-
+        PlayerCamera *camera;
 
     protected:
         // a static function that Godot will call to find out which methods can be called and which properties it exposes
@@ -46,7 +48,8 @@ namespace godot
         void _enter_tree() override;
         void _ready() override;
         void _process(double delta) override;
-
+        PlayerCamera *GetCamera();
+        void SetCamera(PlayerCamera *);
     };
 }
 

@@ -58,4 +58,33 @@ void Player::_process(double delta)
     if (Engine::get_singleton()->is_editor_hint())
         return; // Early return if we are in editor
                 // Game loop stuff HERE
+
+    Input *_input = Input::get_singleton();
+    float moveSpeed = 10;
+
+    if (_input->is_action_pressed("move_forward"))
+    {
+        this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
+    }
+    if (_input->is_action_pressed("move_backward"))
+    {
+        this->set_global_position(this->get_global_position() - camera->GetMovementPlaneForward() * delta * moveSpeed);
+    }
+    if (_input->is_action_pressed("move_right"))
+    {
+        this->set_global_position(this->get_global_position() + camera->GetMovementPlaneSide() * delta * moveSpeed);
+    }
+    if (_input->is_action_pressed("move_left"))
+    {
+        this->set_global_position(this->get_global_position() - camera->GetMovementPlaneSide() * delta * moveSpeed);
+    }
+}
+
+PlayerCamera *Player::GetCamera()
+{
+    return camera;
+}
+void Player::SetCamera(PlayerCamera *cam)
+{
+    camera = cam;
 }

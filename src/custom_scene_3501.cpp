@@ -58,7 +58,7 @@ void CustomScene3501::create_cameras()
 
 	PlayerCamera *cam_2;
 	create_and_add_as_child<PlayerCamera>(cam_2, "Pans Camera", true);
-	cam_2->set_global_position(Vector3(7.2f, -9.7, -24.5f));
+	cam_2->set_global_position(Vector3(7.2f, -10.6, -24.5f));
 	cam_2->set_rotation_degrees(Vector3(-0.0f, 180.0f, 0.0f));
 	cam_2->SetTarget(player);
 
@@ -78,33 +78,36 @@ void CustomScene3501::create_cameras()
 }
 void CustomScene3501::setup_cameras()
 {
-	Node *ref_group;
-	bool is_new = create_and_add_as_child<Node>(ref_group, "Cameras", true);
-	if (is_new)
+	Node *cam_ref_group;
+	bool is_new = create_and_add_as_child<Node>(cam_ref_group, "Cameras", true);
+	Node *trigg_ref_group;
+	create_and_add_as_child<Node>(trigg_ref_group, "Triggers", true);
+	if (true)
 	{
 		for (int i = 0; i < cameras.size(); i++)
 		{
-			re_parent<Node, PlayerCamera>(ref_group, cameras[i]);
+			re_parent<Node, PlayerCamera>(cam_ref_group, cameras[i]);
 			cameras[i]->_ready();
 			if (i == 0)
+			{
 				cameras[i]->set_current(true);
+				player->SetCamera(cameras[i]);
+			}
 		}
 		for (int i = 0; i < cam_triggs.size(); i++)
 		{
+			re_parent<Node, CameraTrigger>(trigg_ref_group, cam_triggs[i]);
 			cam_triggs[i]->_ready();
 			cam_triggs[i]->SetPlayer(player);
-			cam_triggs[i]->set_as_top_level(true); // if you remove this the game breaks into tiny little pieces PLEASE do not remove without substituting it with an equivalent
 			if (i == 0)
 			{
 				cam_triggs[i]->set_global_position(Vector3(5.0f, -12.0f, -6.0f));
-				re_parent<PlayerCamera, CameraTrigger>(cameras[0], cam_triggs[i]);
 				cam_triggs[i]->SetCamera(cameras[0]);
 				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f));
 			}
 			else if (i == 1) // TODO change to approprite number later
 			{
-				cam_triggs[i]->set_global_position(Vector3(-3.3f, -6.0f, -16.5f));
-				re_parent<PlayerCamera, CameraTrigger>(cameras[2], cam_triggs[i]);
+				cam_triggs[i]->set_global_position(Vector3(8.5f, -11.11f, -5.5f));
 				cam_triggs[i]->SetCamera(cameras[2]);
 				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f));
 			}

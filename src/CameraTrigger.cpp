@@ -44,9 +44,13 @@ void CameraTrigger::Collision(Area3D *area_that_entered)
     UtilityFunctions::print("HELLOOOO");
     UtilityFunctions::print(this->get_name());
     UtilityFunctions::print(area_that_entered->get_parent()->get_name());
+    UtilityFunctions::print(player == nullptr);
+    UtilityFunctions::print(target_cam == nullptr);
     if (area_that_entered->get_parent()->get_name() == player->get_name() && target_cam->is_current() == false)
     {
+        UtilityFunctions::print(target_cam->get_name());
         target_cam->make_current();
+        player->SetCamera(target_cam);
     }
 }
 
@@ -59,7 +63,6 @@ void CameraTrigger::_process(double delta)
 {
     if (Engine::get_singleton()->is_editor_hint())
         return; // Early return if we are in editor
-    // TODO FIX THIS AND REMOVE IT
 }
 
 void CameraTrigger::SetTrigger()
@@ -73,7 +76,7 @@ void CameraTrigger::SetCamera(PlayerCamera *cam)
     this->target_cam = cam;
 }
 
-void CameraTrigger::SetPlayer(Node3D *p)
+void CameraTrigger::SetPlayer(Player *p)
 {
     this->player = p;
 }

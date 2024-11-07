@@ -51,28 +51,9 @@ void PlayerCamera::_process(double delta)
 		this->look_at(target_ptr->get_global_position());
 	}
 
-	if (target_ptr != nullptr && is_current())
-	{
-		Input *_input = Input::get_singleton();
-		float moveSpeed = 10;
-
-		if (_input->is_action_pressed("pitch_increase"))
-		{
-			target_ptr->set_global_position(target_ptr->get_global_position() + GetMovementPlaneForward() * delta * moveSpeed);
-		}
-		if (_input->is_action_pressed("pitch_decrease"))
-		{
-			target_ptr->set_global_position(target_ptr->get_global_position() - GetMovementPlaneForward() * delta * moveSpeed);
-		}
-		if (_input->is_action_pressed("roll_increase"))
-		{
-			target_ptr->set_global_position(target_ptr->get_global_position() + GetMovementPlaneSide() * delta * moveSpeed);
-		}
-		if (_input->is_action_pressed("roll_decrease"))
-		{
-			target_ptr->set_global_position(target_ptr->get_global_position() - GetMovementPlaneSide() * delta * moveSpeed);
-		}
-	}
+	// if (target_ptr != nullptr && is_current())
+	// {
+	// }
 }
 
 Vector3 PlayerCamera::GetForward(void) const

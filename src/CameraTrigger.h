@@ -10,6 +10,7 @@
 #include <godot_cpp/classes/collision_shape3d.hpp>
 #include <godot_cpp/classes/box_shape3d.hpp>
 #include "PlayerCamera.h"
+#include "Player.h"
 
 #include <godot_cpp/classes/input.hpp>
 
@@ -34,7 +35,7 @@ namespace godot
         PlayerCamera *target_cam;
         CollisionShape3D *collider;
         BoxShape3D *box_shape;
-        Node3D *player;
+        Player *player;
 
         void SetTrigger();
 
@@ -50,7 +51,7 @@ namespace godot
         void _process(double delta) override;
         void setColliderTransformation(Vector3 size);
         void SetCamera(PlayerCamera *cam);
-        void SetPlayer(Node3D *p);
+        void SetPlayer(Player *p);
 
         void Collision(Area3D *);
     };
