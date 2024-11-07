@@ -18,7 +18,6 @@ PlayerCamera::PlayerCamera(float r) : Camera3D()
 
 void PlayerCamera::_enter_tree()
 {
-
 }
 
 void PlayerCamera::_ready()
@@ -43,19 +42,16 @@ void PlayerCamera::_process(double delta)
 	if (Engine::get_singleton()->is_editor_hint())
 		return; // Early return if we are in editor
 
-	//if we have a target, point at it
-	if(target_ptr == nullptr)
+	// if we have a target, point at it
+	if (target_ptr == nullptr)
 	{
-		UtilityFunctions::print("ERROR - PlayerCamera is without target");
 	}
-	else
+	else if (is_current())
 	{
 		this->look_at(target_ptr->get_global_position());
 	}
 
-
-	//TEMP TEMP TEMP
-	if(target_ptr != nullptr)
+	if (target_ptr != nullptr && is_current())
 	{
 		Input *_input = Input::get_singleton();
 		float moveSpeed = 10;
@@ -77,8 +73,6 @@ void PlayerCamera::_process(double delta)
 			target_ptr->set_global_position(target_ptr->get_global_position() - GetMovementPlaneSide() * delta * moveSpeed);
 		}
 	}
-
-	
 }
 
 Vector3 PlayerCamera::GetForward(void) const
@@ -93,7 +87,6 @@ Vector3 PlayerCamera::GetSide(void) const
 	return current_side;
 }
 
-
 Vector3 PlayerCamera::GetUp(void) const
 {
 	// how do you get the up vector?
@@ -104,18 +97,17 @@ Vector3 PlayerCamera::GetUp(void) const
 Vector3 godot::PlayerCamera::GetMovementPlaneForward()
 {
 	Vector3 movementPlaneForwardVector = GetForward();
-	movementPlaneForwardVector.y = 0;//the player moves on the X,Z plane, thefore we can flatten the forward vector to this plane
+	movementPlaneForwardVector.y = 0; // the player moves on the X,Z plane, thefore we can flatten the forward vector to this plane
 	movementPlaneForwardVector.normalize();
-    return movementPlaneForwardVector;
+	return movementPlaneForwardVector;
 }
-
 
 Vector3 godot::PlayerCamera::GetMovementPlaneSide()
 {
 	Vector3 movementPlaneSideVector = GetSide();
-	movementPlaneSideVector.y = 0;//the player moves on the X,Z plane, thefore we can flatten the forward vector to this plane
+	movementPlaneSideVector.y = 0; // the player moves on the X,Z plane, thefore we can flatten the forward vector to this plane
 	movementPlaneSideVector.normalize();
-    return movementPlaneSideVector;
+	return movementPlaneSideVector;
 }
 
 void godot::PlayerCamera::SetTarget(Node3D *newTarget_ptr)
