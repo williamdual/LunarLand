@@ -9,6 +9,7 @@
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/classes/area3d.hpp>
 
 #include <godot_cpp/variant/quaternion.hpp>
 #include <godot_cpp/variant/vector3.hpp>
@@ -32,6 +33,7 @@
 #include "defs.h"
 #include "PlayerCamera.h"
 #include "CameraTrigger.h"
+#include "Player.h"
 
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -47,6 +49,7 @@ namespace godot
 		Vector<PlayerCamera *> cameras;
 		Vector<CameraTrigger *> cam_triggs;
 		MeshInstance3D *playerTestObject_ptr;
+		Player* player;
 		GameState gameState;
 
 		// create and setup the boxes; for this one they don't need to have separate create and setup functions.

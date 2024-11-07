@@ -36,6 +36,8 @@ namespace godot
         BoxShape3D *box_shape;
         Node3D *player;
 
+        void SetTrigger();
+
     protected:
         // a static function that Godot will call to find out which methods can be called and which properties it exposes
         static void _bind_methods();
@@ -49,6 +51,8 @@ namespace godot
         void setColliderTransformation(Vector3 size);
         void SetCamera(PlayerCamera *cam);
         void SetPlayer(Node3D *p);
+
+        void Collision(Area3D*);
     };
 }
 

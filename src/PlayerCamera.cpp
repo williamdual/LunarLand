@@ -46,13 +46,12 @@ void PlayerCamera::_process(double delta)
 	if (target_ptr == nullptr)
 	{
 	}
-	else
+	else if (is_current())
 	{
 		this->look_at(target_ptr->get_global_position());
 	}
 
-	// TEMP TEMP TEMP
-	if (target_ptr != nullptr)
+	if (target_ptr != nullptr && is_current())
 	{
 		Input *_input = Input::get_singleton();
 		float moveSpeed = 10;

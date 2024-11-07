@@ -7,11 +7,14 @@
 
 using namespace godot;
 
-void CameraTrigger::_bind_methods() {}
+void CameraTrigger::_bind_methods() {
+    ClassDB::bind_method(D_METHOD("Collision"), &CameraTrigger::Collision);
+}
 
 CameraTrigger::CameraTrigger() : Area3D()
 {
     target_cam = nullptr;
+    player = nullptr;
 }
 
 CameraTrigger::~CameraTrigger()
@@ -20,10 +23,6 @@ CameraTrigger::~CameraTrigger()
 }
 
 void CameraTrigger::_enter_tree()
-{
-}
-
-void CameraTrigger::_ready()
 {
     collider = memnew(CollisionShape3D);
     collider->set_name("Coll");
@@ -34,7 +33,20 @@ void CameraTrigger::_ready()
     box_shape = memnew(BoxShape3D);
     box_shape->set_name("box_shape");
     collider->set_shape(box_shape);
-    box_shape->set_size(Vector3(1, 1, 1));
+    box_shape->set_size(Vector3(1, 5, 3));
+
+    connect("area_entered", Callable(this, "Collision"));
+}
+
+void CameraTrigger::Collision(Area3D* area_that_entered){
+    UtilityFunctions::print("HELLOOOO");
+    UtilityFunctions::print(this->get_name());
+    UtilityFunctions::print(area_that_entered->get_parent()->get_name());
+}
+
+void CameraTrigger::_ready()
+{
+    // UtilityFunctions::print("ready");
 }
 
 void CameraTrigger::_process(double delta)
@@ -43,9 +55,16 @@ void CameraTrigger::_process(double delta)
         return; // Early return if we are in editor
 }
 
+void CameraTrigger::SetTrigger()
+{
+    //get_overlapping_bodies() //<- gets the list of things overlapping with it, can iterate to find player and check name
+    //this->area
+}
+
 void CameraTrigger::SetCamera(PlayerCamera *cam)
 {
     this->target_cam = cam;
+
 }
 
 void CameraTrigger::SetPlayer(Node3D *p)

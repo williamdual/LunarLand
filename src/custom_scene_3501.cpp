@@ -22,22 +22,9 @@ void CustomScene3501::_enter_tree()
 	if (DEBUG)
 		UtilityFunctions::print("Enter Tree - CustomScene3501.");
 
-	bool is_new = create_and_add_as_child<MeshInstance3D>(playerTestObject_ptr, "PlayerTestObject", true);
+	bool is_new = create_and_add_as_child<Player>(player, "PlayerTestObject", true);
 	if (is_new == true)
 	{
-		// make new mesh
-		CylinderMesh *newPlayerTestObjectMesh_ptr = memnew(CylinderMesh);
-		newPlayerTestObjectMesh_ptr->set_height(2);
-		newPlayerTestObjectMesh_ptr->set_top_radius(1);
-		newPlayerTestObjectMesh_ptr->set_bottom_radius(1);
-
-		// set the new meshes color
-		StandardMaterial3D *newPlayerTestObjectMaterial_ptr = memnew(StandardMaterial3D);
-		newPlayerTestObjectMaterial_ptr->set_albedo(Color(1.0f, 1.0f, 0.0f, 1.0f));
-		newPlayerTestObjectMesh_ptr->surface_set_material(0, newPlayerTestObjectMaterial_ptr);
-
-		// set testMesh's mesh to the new mesh
-		playerTestObject_ptr->set_mesh(newPlayerTestObjectMesh_ptr);
 	}
 	create_cameras();
 }
@@ -48,7 +35,7 @@ void CustomScene3501::_ready()
 		UtilityFunctions::print("Ready - CustomScene3501.");
 
 	// set the player's position (the camera)
-	playerTestObject_ptr->set_global_position(Vector3(0.0, -10.0, -10.0f));
+	player->set_global_position(Vector3(0.0, -11.5, -10.0f));
 	setup_cameras();
 }
 
@@ -65,7 +52,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_1;
 	create_and_add_as_child<PlayerCamera>(cam_1, "Absalute Camera", true);
 	cam_1->set_global_position(Vector3(0.0, 0.0, 0.0f));
-	cam_1->SetTarget(playerTestObject_ptr);
+	cam_1->SetTarget(player);
 	CameraTrigger *trigg_1;
 	create_and_add_as_child<CameraTrigger>(trigg_1, "cam_1_trigg_1", true);
 
@@ -73,11 +60,13 @@ void CustomScene3501::create_cameras()
 	create_and_add_as_child<PlayerCamera>(cam_2, "Pans Camera", true);
 	cam_2->set_global_position(Vector3(7.2f, -9.7, -24.5f));
 	cam_2->set_rotation_degrees(Vector3(-0.0f, 180.0f, 0.0f));
+	cam_2->SetTarget(player);
 
 	PlayerCamera *cam_3;
 	create_and_add_as_child<PlayerCamera>(cam_3, "Stiff Camera", true);
 	cam_3->set_global_position(Vector3(20.5f, 0.0, 0.0f));
 	cam_3->set_rotation_degrees(Vector3(-23.0f, 46.0f, 0.0f));
+	cam_3->SetTarget(player);
 	CameraTrigger *trigg_3;
 	create_and_add_as_child<CameraTrigger>(trigg_3, "cam_3_trigg_1", true);
 
@@ -97,23 +86,30 @@ void CustomScene3501::setup_cameras()
 		{
 			re_parent<Node, PlayerCamera>(ref_group, cameras[i]);
 			cameras[i]->_ready();
+			if(i == 0)
+			cameras[i]->set_current(true);
 		}
 		for(int i = 0; i < cam_triggs.size(); i++)
 		{
 			cam_triggs[i]->_ready();
+			cam_triggs[i]->SetPlayer(player);
 			if(i == 0)
 			{
 				cam_triggs[i]->set_global_position(Vector3(5.0f, -12.0f, -6.0f));
 				re_parent<PlayerCamera, CameraTrigger>(cameras[0], cam_triggs[i]);
-	 			cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 0.5f, 1.5f));
+				cam_triggs[i]->SetCamera(cameras[0]);
+	 			cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f));
 			}
 			else if (i == 1) //TODO change to approprite number later
 			{
-				cam_triggs[i]->set_global_position(Vector3(-3.3f, -6.0f, -17.5f));
+				cam_triggs[i]->set_global_position(Vector3(-3.3f, -6.0f, -16.5f));
 				re_parent<PlayerCamera, CameraTrigger>(cameras[2], cam_triggs[i]);
-				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 0.5f, 1.5f));
+				cam_triggs[i]->SetCamera(cameras[2]);
+				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f));
 			}
+			cam_triggs[i]->set_global_rotation_degrees(Vector3(0,0,0));
 		}
+		
 	}
 }
 
