@@ -9,6 +9,7 @@
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/classes/area3d.hpp>
 
 #include <godot_cpp/variant/quaternion.hpp>
 #include <godot_cpp/variant/vector3.hpp>
@@ -17,6 +18,7 @@
 
 #include <godot_cpp/templates/vector.hpp> // GODOT EQUIVALENT TO std::vector !!!!
 
+#include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/classes/sphere_mesh.hpp>
 #include <godot_cpp/classes/box_mesh.hpp>
 #include <godot_cpp/classes/standard_material3d.hpp>
@@ -29,15 +31,9 @@
 #include <godot_cpp/classes/cylinder_mesh.hpp>
 
 #include "defs.h"
-#include "quat_camera.h"
 #include "PlayerCamera.h"
-#include "beacon.h"
-#include "enemy.h"
-#include "power_up_speed.h"
-#include "bullet.h"
-#include "game_object.h"
-
-#include "example_derived_class.h"
+#include "CameraTrigger.h"
+#include "Player.h"
 
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -50,25 +46,19 @@ namespace godot
 	private:
 		double time_passed;
 		ColorRect *overscreen;
-		PlayerCamera *main_camera;
-		MeshInstance3D* playerTestObject_ptr; 
-		Vector<ExampleDerivedClass *> reference_instances;
-		Vector<Beacon *> beacons;
-		Vector<Enemy *> enemys;
-		Vector<PowerUpSpeed *> power_ups;
-		Vector<Bullet *> bullets;
-		Vector3 max_field;
-		Vector3 min_feild;
+		Vector<PlayerCamera *> cameras;
+		Vector<CameraTrigger *> cam_triggs;
+		MeshInstance3D *playerTestObject_ptr;
+		Player* player;
 		GameState gameState;
-		Node *bulletGroup;
 
 		// create and setup the boxes; for this one they don't need to have separate create and setup functions.
 		// This shouldn't be called in the assignment that you hand in. You can choose to delete the code if you want to.
-		void setup_beacons();
-		void setup_enemys();
-		void setup_powerups();
-		void setup_reference_boxes();
-		int num_beacons;
+		void setup_cameras();
+		void create_cameras();
+
+		template <class T, class U>
+		void re_parent(T *parent, U *child);
 
 	protected:
 		// a static function that Godot will call to find out which methods can be called and which properties it exposes
