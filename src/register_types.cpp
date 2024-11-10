@@ -6,6 +6,11 @@
 #include "PlayerCamera.h"
 #include "CameraTrigger.h"
 #include "Player.h"
+#include "Inventory.h"
+#include "Interactable.h"
+#include "CounterInteractable.h"
+#include "AudioInteractable.h"
+#include "ItemInteractable.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -25,6 +30,11 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 	ClassDB::register_class<CameraTrigger>();
 	ClassDB::register_class<CustomScene3501>();
 	ClassDB::register_class<Player>();
+	ClassDB::register_class<Inventory>();
+	ClassDB::register_class<Interactable>();
+	ClassDB::register_class<CounterInteractable>();
+	ClassDB::register_class<AudioInteractable>();
+	ClassDB::register_class<ItemInteractable>();
 }
 
 // gets called when godot unloads our plugin

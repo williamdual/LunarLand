@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bp1hkrg2i3h82"]
+[gd_scene load_steps=5 format=3 uid="uid://bp1hkrg2i3h82"]
 
 [ext_resource type="ArrayMesh" uid="uid://d1l548dmx3b5o" path="res://BasicTestLevelOpenTop_reexport.obj" id="1_qyvmj"]
 
@@ -14,22 +14,6 @@ background_mode = 2
 sky = SubResource("Sky_opf1y")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kt1ov"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_8gloa"]
-material = SubResource("StandardMaterial3D_kt1ov")
-top_radius = 1.0
-bottom_radius = 1.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ff6c8"]
-resource_name = "box_shape"
-size = Vector3(1.1, 5, 3.3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ckxnw"]
-resource_name = "box_shape"
-size = Vector3(1.1, 5, 3.3)
 
 [node name="Node3D" type="Node3D"]
 
@@ -50,34 +34,3 @@ transform = Transform3D(-0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, 0.25,
 [node name="BasicTestLevelOpenTopReexport" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.023295, -12.9195, -5.63523)
 mesh = ExtResource("1_qyvmj")
-
-[node name="CustomScene3501" type="CustomScene3501" parent="."]
-
-[node name="PlayerTestObject" type="Player" parent="CustomScene3501"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.5, -10)
-mesh = SubResource("CylinderMesh_8gloa")
-
-[node name="Cameras" type="Node" parent="CustomScene3501"]
-
-[node name="Absalute Camera" type="PlayerCamera" parent="CustomScene3501/Cameras"]
-current = true
-
-[node name="Pans Camera" type="PlayerCamera" parent="CustomScene3501/Cameras"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.2, -10.6, -24.5)
-
-[node name="Stiff Camera" type="PlayerCamera" parent="CustomScene3501/Cameras"]
-transform = Transform3D(0.694658, -0.281068, 0.662156, 0, 0.920505, 0.390731, -0.71934, -0.271425, 0.639436, 20.5, 0, 0)
-
-[node name="Triggers" type="Node" parent="CustomScene3501"]
-
-[node name="cam_1_trigg_1" type="CameraTrigger" parent="CustomScene3501/Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -12, -6)
-
-[node name="@CollisionShape3D@17485" type="CollisionShape3D" parent="CustomScene3501/Triggers/cam_1_trigg_1"]
-shape = SubResource("BoxShape3D_ff6c8")
-
-[node name="cam_3_trigg_1" type="CameraTrigger" parent="CustomScene3501/Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -11.11, -5.5)
-
-[node name="@CollisionShape3D@17486" type="CollisionShape3D" parent="CustomScene3501/Triggers/cam_3_trigg_1"]
-shape = SubResource("BoxShape3D_ckxnw")
