@@ -34,6 +34,10 @@
 #include "PlayerCamera.h"
 #include "CameraTrigger.h"
 #include "Player.h"
+#include "Interactable.h"
+#include "CounterInteractable.h"
+#include "AudioInteractable.h"
+#include "ItemInteractable.h"
 
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -56,6 +60,8 @@ namespace godot
 		// This shouldn't be called in the assignment that you hand in. You can choose to delete the code if you want to.
 		void setup_cameras();
 		void create_cameras();
+		void setup_interactables();
+		void create_interactables();
 
 		template <class T, class U>
 		void re_parent(T *parent, U *child);

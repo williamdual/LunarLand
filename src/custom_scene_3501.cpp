@@ -27,6 +27,7 @@ void CustomScene3501::_enter_tree()
 	{
 	}
 	create_cameras();
+	create_interactables();
 }
 
 void CustomScene3501::_ready()
@@ -114,6 +115,11 @@ void CustomScene3501::setup_cameras()
 			cam_triggs[i]->set_global_rotation_degrees(Vector3(0, 0, 0));
 		}
 	}
+}
+
+// Member function to create interactables
+void CustomScene3501::create_interactables() {
+	// To be set when more of the environment is ready
 }
 
 template <class T>

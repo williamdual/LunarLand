@@ -46,6 +46,14 @@ void Player::_enter_tree()
     collider->set_shape(cylinder_shape);
     cylinder_shape->set_height(2);
     cylinder_shape->set_radius(1);
+
+    // Setting the listener
+    create_and_add_as_child<AudioListener3D>(listener, "Listener", true);
+    listener->make_current();
+
+    // Creating the inventory
+    create_and_add_as_child<Inventory>(inventory, "Inventory", true);
+    inventory->SetupInventory();
 }
 
 void Player::_ready()
@@ -84,7 +92,41 @@ PlayerCamera *Player::GetCamera()
 {
     return camera;
 }
+
 void Player::SetCamera(PlayerCamera *cam)
 {
     camera = cam;
+}
+
+template <class T>
+// returns true if pointer is brand-new; false if retrieved from SceneTree
+bool Player::create_and_add_as_child(T *&pointer, String name, bool search)
+{
+	// this is the default behaviour
+	// added the search parameter so that we can skip the slow "find_child" call during runtime (not applicable to this demo, you should always use search = true until next assignment)
+	if (search == false)
+	{
+		pointer = memnew(T);
+		pointer->set_name(name);
+		add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+
+	// always only have to search once if we save it here
+	Node *child = find_child(name);
+
+	if (child == nullptr)
+	{
+		pointer = memnew(T);
+		pointer->set_name(name);
+		add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+	else
+	{
+		pointer = dynamic_cast<T *>(child);
+		return false;
+	}
 }
