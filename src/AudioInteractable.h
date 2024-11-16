@@ -55,7 +55,7 @@ protected:
 
 public:
     AudioInteractable();
-    AudioInteractable(Player* p, int type, bool glow, double rad, int file);
+    AudioInteractable(Player* p, int type, int col_type, bool glow, double rad, int file);
     
     void _enter_tree ( ) override;
     void _ready ( ) override;

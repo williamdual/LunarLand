@@ -35,7 +35,7 @@ protected:
 
 public:
     CounterInteractable();
-    CounterInteractable(Player* p, int type, bool glow, double rad, int c, int t);
+    CounterInteractable(Player* p, int type, int col_type, bool glow, double rad, int c, int t);
     
     void _enter_tree ( ) override;
     void _ready ( ) override;

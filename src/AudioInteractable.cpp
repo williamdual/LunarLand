@@ -11,8 +11,8 @@ void AudioInteractable::_bind_methods() {}
 
 AudioInteractable::AudioInteractable() {}
 
-AudioInteractable::AudioInteractable(Player* p, int type, bool glow, double rad, int file)
-    : Interactable(p, type, glow, rad) {
+AudioInteractable::AudioInteractable(Player* p, int type, int col_type, bool glow, double rad, int file)
+    : Interactable(p, type, col_type, glow, rad) {
 
     SetAudio(file);
 

@@ -11,13 +11,14 @@ void Interactable::_bind_methods() {}
 
 Interactable::Interactable() {}
 
-Interactable::Interactable(Player* p, int type, bool glow, double rad) : Node3D() {
+Interactable::Interactable(Player* p, int type, int col_type, bool glow, double rad) : StaticBody3D() {
     time_passed = 0.0;
     radius = rad;
     player = p;
     interactable_type = type;
     in_range = false;
     glow_in_range = glow;
+    has_col_shape = false;
 }
 
 void Interactable::_enter_tree ( ){
@@ -50,7 +51,7 @@ void Interactable::_process(double delta) {
 void Interactable::Interact() {}
 
 // Member function that acts as a contructor in the event the default contructor is used
-void Interactable::SetValues(Player* p, int type, bool glow, double rad) {
+void Interactable::SetValues(Player* p, int type, int col_type, bool glow, double rad) {
     time_passed = 0.0;
     radius = rad;
     player = p;
@@ -60,7 +61,7 @@ void Interactable::SetValues(Player* p, int type, bool glow, double rad) {
 
     // Setting up shader
     mat = memnew(ShaderMaterial);
-    Ref<Shader> shader = ResourceLoader::get_singleton()->load(vformat("%s%s.gdshader", "Shaders/", shader_names[interactable_type]), "Shader");
+    Ref<Shader> shader = ResourceLoader::get_singleton()->load(vformat("%s%s.gdshader", "Shaders/", shader_names[0]), "Shader");
     mat->set_shader(shader);
 
     // Setting the mesh
@@ -71,8 +72,44 @@ void Interactable::SetValues(Player* p, int type, bool glow, double rad) {
     mesh->set_position(mesh_offsets[interactable_type]);
 
     // Setting the texture
-    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s.png", "Textures/", texture_names[interactable_type]), "CompressedTexture2D");
+    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s%s", "Textures/", texture_names[interactable_type], texture_formats[interactable_type]), "CompressedTexture2D");
     mat->set_shader_parameter("sampler", texture);
+
+    // Seeing if the object already has a collision shape
+    if (find_child("CollisionShape") == NULL) {
+        has_col_shape = false;
+    } else {
+        return;
+    }
+
+    // Seeing what type of collision to make
+    switch(col_type) {
+        case SHAPE_NONE:
+            break;
+        case SHAPE_BOX:
+            SetHitBox();
+            break;
+        default:
+            break;
+    }
+}
+
+// This member function creates a hitbox
+void Interactable::SetHitBox() {
+
+    // If the object already has a collision shape then return
+    if (has_col_shape) {
+        return;
+    } else {
+        has_col_shape = true;
+    }
+
+    // Adding a collision shape as a child
+    hit_shape = memnew(CollisionShape3D);
+    create_and_add_as_child<CollisionShape3D>(hit_shape, "CollisionShape", false);
+    BoxShape3D* box_shape = memnew(BoxShape3D);
+    box_shape->set_size(mesh->get_mesh()->get_aabb().size);
+    hit_shape->set_shape(box_shape);
 }
 
 // This member function determines if the player is in range

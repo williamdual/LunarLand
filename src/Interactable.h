@@ -7,6 +7,9 @@
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/classes/node3d.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
+#include <godot_cpp/classes/collision_shape3d.hpp>
+#include <godot_cpp/classes/static_body3d.hpp>
+#include <godot_cpp/classes/box_shape3d.hpp>
 
 #include <godot_cpp/classes/shader_material.hpp>
 #include <godot_cpp/classes/shader.hpp>
@@ -24,11 +27,20 @@ namespace godot {
 // Enum for better control over what interactable is created
 enum InteractableType {
     OBJECT_COMPUTER_SCREEN,
+    FILE_CABINET,
     INTERACTABLE_AMOUNT
 };
 
-class Interactable : public Node3D {
-    GDCLASS(Interactable, Node3D);
+// Enum for hit box type
+enum CollisionShapeType {
+    SHAPE_NONE,
+    SHAPE_BOX,
+    SHAPE_CYLINDER,
+    SHAPE_AMOUNT
+};
+
+class Interactable : public StaticBody3D {
+    GDCLASS(Interactable, StaticBody3D);
 
 private:
     double time_passed; // maybe you don't need this, just an example
@@ -40,6 +52,10 @@ private:
     ShaderMaterial* mat;
     Texture2D* tex;
     MeshInstance3D* mesh;
+
+    // Collision values for the interactable
+    bool has_col_shape;
+    CollisionShape3D* hit_shape;
 
     // A pointer to the player
     Player* player;
@@ -54,32 +70,43 @@ private:
 
     // Array of model names
     char* model_names[INTERACTABLE_AMOUNT] = {
-		"ComputerTerminalSceen"
+		"ComputerTerminalSceen",
+        "FileCabinet"
 	};
 
     // Array of texture names
     char* texture_names[INTERACTABLE_AMOUNT] = {
-		"ComputerTerminalSceen_Texture"
+		"ComputerTerminalSceen_Texture",
+        "FileCabinet_Texture"
+	};
+
+    char* texture_formats[INTERACTABLE_AMOUNT] = {
+		".png",
+        ".png"
 	};
 
     // Array of mesh offsets
     Vector3 mesh_offsets[INTERACTABLE_AMOUNT] = {
-		Vector3(-6, -0.5, 0)
+		Vector3(-6, -0.5, 0),
+        Vector3(0, -1.5, 0)
 	};
+
+    // This member function creates a hitbox
+    void SetHitBox(void);
     
 protected:
     static void _bind_methods();
 
 public:
     Interactable();
-    Interactable(Player* p, int type, bool glow, double rad);
+    Interactable(Player* p, int type, int col_type, bool glow, double rad);
     
     void _enter_tree ( ) override;
     void _ready ( ) override;
     void _process(double delta);
 
     // Member function that acts as a contructor in the event the default contructor is used
-    void SetValues(Player* p, int type, bool glow, double rad);
+    void SetValues(Player* p, int type, int col_type, bool glow, double rad);
 
     // Member function that determines if the player is in range of the interactable
     bool IsInRange(void);

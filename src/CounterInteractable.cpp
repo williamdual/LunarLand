@@ -11,8 +11,8 @@ void CounterInteractable::_bind_methods() {}
 
 CounterInteractable::CounterInteractable() {}
 
-CounterInteractable::CounterInteractable(Player* p, int type, bool glow, double rad, int c, int t)
-    : Interactable(p, type, glow, rad) {
+CounterInteractable::CounterInteractable(Player* p, int type, int col_type, bool glow, double rad, int c, int t)
+    : Interactable(p, type, col_type, glow, rad) {
 
     counter = c;
     trigger = t;

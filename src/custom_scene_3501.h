@@ -56,6 +56,8 @@ namespace godot
 		Player* player;
 		GameState gameState;
 
+		AudioInteractable* testInt;
+
 		// create and setup the boxes; for this one they don't need to have separate create and setup functions.
 		// This shouldn't be called in the assignment that you hand in. You can choose to delete the code if you want to.
 		void setup_cameras();

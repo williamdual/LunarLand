@@ -38,6 +38,9 @@ void CustomScene3501::_ready()
 	// set the player's position (the camera)
 	player->set_global_position(Vector3(0.0, -11.5, -10.0f));
 	setup_cameras();
+
+
+	testInt->set_global_position(Vector3(0.0, -10.0, -20.0f));
 }
 
 // called every frame (as often as possible)
@@ -120,6 +123,10 @@ void CustomScene3501::setup_cameras()
 // Member function to create interactables
 void CustomScene3501::create_interactables() {
 	// To be set when more of the environment is ready
+	testInt = memnew(AudioInteractable);
+	create_and_add_as_child(testInt, "Test Interactable", true);
+	testInt->SetValues(player, FILE_CABINET, SHAPE_BOX, true, 3.0);
+	testInt->SetAudio(AUDIO_SUSIE_OPENING);
 }
 
 template <class T>
