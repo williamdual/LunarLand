@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxca70dki2jm0"
-path="res://.godot/imported/ComputerTerminalSceen_Texture.png-c8bd653fe0fc955127bda61a52161b52.ctex"
+uid="uid://qjwxe6jvpob7"
+path="res://.godot/imported/Alian_Texture.jpg-8e5099b2623b227071cbcb86deb99df2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/ComputerTerminalSceen_Texture.png"
-dest_files=["res://.godot/imported/ComputerTerminalSceen_Texture.png-c8bd653fe0fc955127bda61a52161b52.ctex"]
+source_file="res://Textures/Alian_Texture.jpg"
+dest_files=["res://.godot/imported/Alian_Texture.jpg-8e5099b2623b227071cbcb86deb99df2.ctex"]
 
 [params]
 

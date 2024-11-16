@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxca70dki2jm0"
-path="res://.godot/imported/ComputerTerminalSceen_Texture.png-c8bd653fe0fc955127bda61a52161b52.ctex"
+uid="uid://qo2xfdnqxlad"
+path="res://.godot/imported/CafeteriaTable_Texture.png-6b22b5bbf0b01ded02f9c500450399ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/ComputerTerminalSceen_Texture.png"
-dest_files=["res://.godot/imported/ComputerTerminalSceen_Texture.png-c8bd653fe0fc955127bda61a52161b52.ctex"]
+source_file="res://Textures/CafeteriaTable_Texture.png"
+dest_files=["res://.godot/imported/CafeteriaTable_Texture.png-6b22b5bbf0b01ded02f9c500450399ac.ctex"]
 
 [params]
 

@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp1hkrg2i3h82"]
+[gd_scene load_steps=13 format=3 uid="uid://bp1hkrg2i3h82"]
 
 [ext_resource type="ArrayMesh" uid="uid://d1l548dmx3b5o" path="res://BasicTestLevelOpenTop_reexport.obj" id="1_qyvmj"]
+[ext_resource type="Texture2D" uid="uid://bahpw54bvebd1" path="res://InventorySprites/inventorybar.png" id="2_lew3e"]
+[ext_resource type="Texture2D" uid="uid://csouq4o6whc4s" path="res://InventorySprites/sodachip.png" id="3_1jy6n"]
+[ext_resource type="Texture2D" uid="uid://cjalnixjulfjm" path="res://InventorySprites/healthpapers.png" id="4_6yj1n"]
+[ext_resource type="Texture2D" uid="uid://cgtmetsm7dw2f" path="res://InventorySprites/lunarlint.png" id="5_ooc2e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q6xi"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -14,6 +18,22 @@ background_mode = 2
 sky = SubResource("Sky_opf1y")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a35sm"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jynq1"]
+material = SubResource("StandardMaterial3D_a35sm")
+top_radius = 1.0
+bottom_radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tdimi"]
+resource_name = "box_shape"
+size = Vector3(1.1, 5, 3.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x4q1c"]
+resource_name = "box_shape"
+size = Vector3(1.1, 5, 3.3)
 
 [node name="Node3D" type="Node3D"]
 
@@ -34,3 +54,54 @@ transform = Transform3D(-0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.866025, 0.25,
 [node name="BasicTestLevelOpenTopReexport" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.023295, -12.9195, -5.63523)
 mesh = ExtResource("1_qyvmj")
+
+[node name="CustomScene3501" type="CustomScene3501" parent="."]
+
+[node name="PlayerTestObject" type="Player" parent="CustomScene3501"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.5, -10)
+mesh = SubResource("CylinderMesh_jynq1")
+
+[node name="Listener" type="AudioListener3D" parent="CustomScene3501/PlayerTestObject"]
+current = true
+
+[node name="Inventory" type="Inventory" parent="CustomScene3501/PlayerTestObject"]
+
+[node name="Inventory Space" type="Sprite2D" parent="CustomScene3501/PlayerTestObject/Inventory"]
+texture = ExtResource("2_lew3e")
+
+[node name="Computer Chip" type="Sprite2D" parent="CustomScene3501/PlayerTestObject/Inventory"]
+position = Vector2(-100, -100)
+texture = ExtResource("3_1jy6n")
+
+[node name="Health Papers" type="Sprite2D" parent="CustomScene3501/PlayerTestObject/Inventory"]
+position = Vector2(-100, -100)
+texture = ExtResource("4_6yj1n")
+
+[node name="Lunar Lint" type="Sprite2D" parent="CustomScene3501/PlayerTestObject/Inventory"]
+position = Vector2(-100, -100)
+texture = ExtResource("5_ooc2e")
+
+[node name="Cameras" type="Node" parent="CustomScene3501"]
+
+[node name="Absalute Camera" type="PlayerCamera" parent="CustomScene3501/Cameras"]
+current = true
+
+[node name="Pans Camera" type="PlayerCamera" parent="CustomScene3501/Cameras"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 7.2, -10.6, -24.5)
+
+[node name="Stiff Camera" type="PlayerCamera" parent="CustomScene3501/Cameras"]
+transform = Transform3D(0.694658, -0.281068, 0.662156, 0, 0.920505, 0.390731, -0.71934, -0.271425, 0.639436, 20.5, 0, 0)
+
+[node name="Triggers" type="Node" parent="CustomScene3501"]
+
+[node name="cam_1_trigg_1" type="CameraTrigger" parent="CustomScene3501/Triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -12, -6)
+
+[node name="@CollisionShape3D@17474" type="CollisionShape3D" parent="CustomScene3501/Triggers/cam_1_trigg_1"]
+shape = SubResource("BoxShape3D_tdimi")
+
+[node name="cam_3_trigg_1" type="CameraTrigger" parent="CustomScene3501/Triggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -11.11, -5.5)
+
+[node name="@CollisionShape3D@17475" type="CollisionShape3D" parent="CustomScene3501/Triggers/cam_3_trigg_1"]
+shape = SubResource("BoxShape3D_x4q1c")

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dt3pku57nynxe"
+path="res://.godot/imported/CafeteriaTable.obj-fca4f47da1649a41f6a7b9b10725fa98.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CafeteriaTable.obj-fca4f47da1649a41f6a7b9b10725fa98.mesh"]
+
+source_file="res://Models/CafeteriaTable.obj"
+dest_files=["res://.godot/imported/CafeteriaTable.obj-fca4f47da1649a41f6a7b9b10725fa98.mesh", "res://.godot/imported/CafeteriaTable.obj-fca4f47da1649a41f6a7b9b10725fa98.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxca70dki2jm0"
-path="res://.godot/imported/ComputerTerminalSceen_Texture.png-c8bd653fe0fc955127bda61a52161b52.ctex"
+uid="uid://bwfoqglxlfjol"
+path="res://.godot/imported/PortableComputerTerminal_Texture.png-3345952cb5970c474258aec8520aed2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/ComputerTerminalSceen_Texture.png"
-dest_files=["res://.godot/imported/ComputerTerminalSceen_Texture.png-c8bd653fe0fc955127bda61a52161b52.ctex"]
+source_file="res://Textures/PortableComputerTerminal_Texture.png"
+dest_files=["res://.godot/imported/PortableComputerTerminal_Texture.png-3345952cb5970c474258aec8520aed2a.ctex"]
 
 [params]
 

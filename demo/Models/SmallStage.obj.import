@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dtyjltf8a5ipd"
+path="res://.godot/imported/SmallStage.obj-f3e53b12b0696f875f3d4aeaf74fcf75.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SmallStage.obj-f3e53b12b0696f875f3d4aeaf74fcf75.mesh"]
+
+source_file="res://Models/SmallStage.obj"
+dest_files=["res://.godot/imported/SmallStage.obj-f3e53b12b0696f875f3d4aeaf74fcf75.mesh", "res://.godot/imported/SmallStage.obj-f3e53b12b0696f875f3d4aeaf74fcf75.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

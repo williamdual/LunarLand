@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dee41aomi2rlu"
+path="res://.godot/imported/ComputerTerminal.obj-2cf97abf6c1f732955efd91ad49eb0fa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ComputerTerminal.obj-2cf97abf6c1f732955efd91ad49eb0fa.mesh"]
+
+source_file="res://Models/ComputerTerminal.obj"
+dest_files=["res://.godot/imported/ComputerTerminal.obj-2cf97abf6c1f732955efd91ad49eb0fa.mesh", "res://.godot/imported/ComputerTerminal.obj-2cf97abf6c1f732955efd91ad49eb0fa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

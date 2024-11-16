@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://iusdnqnrfev8"
+path="res://.godot/imported/Microphone.obj-b6749a09fd57cc39f97559cca54c3e5e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Microphone.obj-b6749a09fd57cc39f97559cca54c3e5e.mesh"]
+
+source_file="res://Models/Microphone.obj"
+dest_files=["res://.godot/imported/Microphone.obj-b6749a09fd57cc39f97559cca54c3e5e.mesh", "res://.godot/imported/Microphone.obj-b6749a09fd57cc39f97559cca54c3e5e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

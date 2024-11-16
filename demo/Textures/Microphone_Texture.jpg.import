@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxca70dki2jm0"
-path="res://.godot/imported/ComputerTerminalSceen_Texture.png-c8bd653fe0fc955127bda61a52161b52.ctex"
+uid="uid://03eh7wchu74s"
+path="res://.godot/imported/Microphone_Texture.jpg-88f12847460f0e82f23590fafdd29ba2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/ComputerTerminalSceen_Texture.png"
-dest_files=["res://.godot/imported/ComputerTerminalSceen_Texture.png-c8bd653fe0fc955127bda61a52161b52.ctex"]
+source_file="res://Textures/Microphone_Texture.jpg"
+dest_files=["res://.godot/imported/Microphone_Texture.jpg-88f12847460f0e82f23590fafdd29ba2.ctex"]
 
 [params]
 
