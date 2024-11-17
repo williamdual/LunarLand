@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://csouq4o6whc4s" path="res://InventorySprites/sodachip.png" id="3_1nnat"]
 [ext_resource type="Texture2D" uid="uid://cjalnixjulfjm" path="res://InventorySprites/healthpapers.png" id="4_yvnwh"]
 [ext_resource type="Texture2D" uid="uid://cgtmetsm7dw2f" path="res://InventorySprites/lunarlint.png" id="5_3gv34"]
-[ext_resource type="ArrayMesh" uid="uid://4ac7shrffasr" path="res://Models/FileCabinet.obj" id="6_8jsum"]
+[ext_resource type="ArrayMesh" uid="uid://caygxsdngt0o" path="res://Models/Alian.obj" id="6_i4ivc"]
 [ext_resource type="AudioStream" uid="uid://csywbgfnec2rj" path="res://SoundFiles/susie1.ogg" id="7_rnd24"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7q6xi"]
@@ -21,25 +21,25 @@ sky = SubResource("Sky_opf1y")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27lt5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggq1t"]
 albedo_color = Color(1, 1, 0, 1)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_hbdx1"]
-material = SubResource("StandardMaterial3D_27lt5")
+[sub_resource type="CylinderMesh" id="CylinderMesh_vew74"]
+material = SubResource("StandardMaterial3D_ggq1t")
 top_radius = 1.0
 bottom_radius = 1.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_j5yhf"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1ikap"]
 radius = 1.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_uqhjm"]
-size = Vector3(1.00001, 3.01373, 1.00001)
+[sub_resource type="BoxShape3D" id="BoxShape3D_nygsi"]
+size = Vector3(1.12482, 0.441633, 1.27669)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0dsw8"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pb7f2"]
 resource_name = "box_shape"
 size = Vector3(1.1, 5, 3.3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7fp6c"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_kxmkt"]
 resource_name = "box_shape"
 size = Vector3(1.1, 5, 3.3)
 
@@ -69,10 +69,10 @@ mesh = ExtResource("1_qyvmj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.5, -10)
 
 [node name="PlayerMesh" type="MeshInstance3D" parent="CustomScene3501/PlayerTestObject"]
-mesh = SubResource("CylinderMesh_hbdx1")
+mesh = SubResource("CylinderMesh_vew74")
 
 [node name="SurfaceCollider" type="CollisionShape3D" parent="CustomScene3501/PlayerTestObject"]
-shape = SubResource("CylinderShape3D_j5yhf")
+shape = SubResource("CylinderShape3D_1ikap")
 
 [node name="Listener" type="AudioListener3D" parent="CustomScene3501/PlayerTestObject"]
 current = true
@@ -95,14 +95,14 @@ position = Vector2(-100, -100)
 texture = ExtResource("5_3gv34")
 
 [node name="Test Interactable" type="AudioInteractable" parent="CustomScene3501"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -20)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 3, -11.5, -7)
 
 [node name="InterMesh" type="MeshInstance3D" parent="CustomScene3501/Test Interactable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
-mesh = ExtResource("6_8jsum")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = ExtResource("6_i4ivc")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="CustomScene3501/Test Interactable"]
-shape = SubResource("BoxShape3D_uqhjm")
+shape = SubResource("BoxShape3D_nygsi")
 
 [node name="StreamPlayer" type="AudioStreamPlayer3D" parent="CustomScene3501/Test Interactable"]
 stream = ExtResource("7_rnd24")
@@ -124,11 +124,11 @@ transform = Transform3D(0.694658, -0.281068, 0.662156, 0, 0.920505, 0.390731, -0
 [node name="cam_1_trigg_1" type="CameraTrigger" parent="CustomScene3501/Triggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -12, -6)
 
-[node name="@CollisionShape3D@17715" type="CollisionShape3D" parent="CustomScene3501/Triggers/cam_1_trigg_1"]
-shape = SubResource("BoxShape3D_0dsw8")
+[node name="@CollisionShape3D@17474" type="CollisionShape3D" parent="CustomScene3501/Triggers/cam_1_trigg_1"]
+shape = SubResource("BoxShape3D_pb7f2")
 
 [node name="cam_3_trigg_1" type="CameraTrigger" parent="CustomScene3501/Triggers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -11.11, -5.5)
 
-[node name="@CollisionShape3D@17716" type="CollisionShape3D" parent="CustomScene3501/Triggers/cam_3_trigg_1"]
-shape = SubResource("BoxShape3D_7fp6c")
+[node name="@CollisionShape3D@17475" type="CollisionShape3D" parent="CustomScene3501/Triggers/cam_3_trigg_1"]
+shape = SubResource("BoxShape3D_kxmkt")

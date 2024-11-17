@@ -41,6 +41,9 @@ void CustomScene3501::_ready()
 
 
 	testInt->set_global_position(Vector3(0.0, -10.0, -20.0f));
+	//testInt->RegisterCameraTrigs(cam_triggs);
+	//testInt->SetCameraPosition(cameras[2]->get_global_position());
+	//testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 }
 
 // called every frame (as often as possible)
@@ -125,7 +128,7 @@ void CustomScene3501::create_interactables() {
 	// To be set when more of the environment is ready
 	testInt = memnew(AudioInteractable);
 	create_and_add_as_child(testInt, "Test Interactable", true);
-	testInt->SetValues(player, FILE_CABINET, SHAPE_BOX, true, 3.0);
+	testInt->SetValues(player, ALIEN, SHAPE_BOX, true, 3.0);
 	testInt->SetAudio(AUDIO_SUSIE_OPENING);
 }
 

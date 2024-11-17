@@ -1,5 +1,6 @@
 #include "defs.h"
 #include "Interactable.h"
+#include "CameraTrigger.h"
 
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/variant/utility_functions.hpp> // for the debug statements
@@ -7,7 +8,9 @@
 
 using namespace godot;
 
-void Interactable::_bind_methods() {}
+void Interactable::_bind_methods() {
+    ClassDB::bind_method(D_METHOD("SetCameraPosition"), &Interactable::SetCameraPosition);
+}
 
 Interactable::Interactable() {}
 
@@ -19,6 +22,10 @@ Interactable::Interactable(Player* p, int type, int col_type, bool glow, double 
     in_range = false;
     glow_in_range = glow;
     has_col_shape = false;
+    num_lights = 0;
+    light_positions.resize(32);
+    light_colours.resize(32);
+    specular_power.resize(32);
 }
 
 void Interactable::_enter_tree ( ){
@@ -38,12 +45,27 @@ void Interactable::_process(double delta) {
     // Sending the necessary values to the shader
     mat->set_shader_parameter("in_range", in_range);
     mat->set_shader_parameter("glows", glow_in_range);
+    mat->set_shader_parameter("init_light_positions", light_positions);
+    mat->set_shader_parameter("light_colours", light_colours);
+    mat->set_shader_parameter("view_pos", camera_position);
+    mat->set_shader_parameter("spec_power", specular_power);
+    mat->set_shader_parameter("num_lights", num_lights);
+    mat->set_shader_parameter("test_col", light_colours[0]);
 
     // Getting input and determining if the interactable should trigger
     Input *_input = Input::get_singleton();
     if (_input->is_action_just_pressed("interact") && in_range) {
         UtilityFunctions::print("Interacted");
         Interact();
+    }
+}
+
+// Member function that registers camera triggers for signal purposes
+void Interactable::RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs) {
+
+    // Connecting each camera trigger
+    for (int i = 0; i < cam_trigs.size(); i++) {
+        cam_trigs[i]->connect("NewCamPos", Callable(this, "SetCameraPosition"));
     }
 }
 
@@ -58,6 +80,13 @@ void Interactable::SetValues(Player* p, int type, int col_type, bool glow, doubl
     interactable_type = type;
     in_range = false;
     glow_in_range = glow;
+    num_lights = 0;
+    camera_position = Vector3(0, 0, 0);
+
+    // Setting proper array sizes
+    light_positions.resize(32);
+    light_colours.resize(32);
+    specular_power.resize(32);
 
     // Setting up shader
     mat = memnew(ShaderMaterial);
@@ -110,6 +139,21 @@ void Interactable::SetHitBox() {
     BoxShape3D* box_shape = memnew(BoxShape3D);
     box_shape->set_size(mesh->get_mesh()->get_aabb().size);
     hit_shape->set_shape(box_shape);
+}
+
+// Member function that sets a camera position
+void Interactable::SetCameraPosition(Vector3 camera_pos) {
+    camera_position = camera_pos;
+}
+
+// Member function that adds a light position and colour to the interactable
+void Interactable::AddLight(Vector3 light_pos, Vector3 light_col, int spec_power) {
+
+    // Adding light position and colour to the necessary arrays
+    light_positions[num_lights] = light_pos;
+    light_colours[num_lights] = light_col;
+    specular_power[num_lights] = spec_power;
+    num_lights++;
 }
 
 // This member function determines if the player is in range
