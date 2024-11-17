@@ -10,6 +10,7 @@
 #include <godot_cpp/classes/collision_shape3d.hpp>
 #include <godot_cpp/classes/static_body3d.hpp>
 #include <godot_cpp/classes/box_shape3d.hpp>
+#include <godot_cpp/classes/cylinder_shape3d.hpp>
 
 #include <godot_cpp/classes/shader_material.hpp>
 #include <godot_cpp/classes/shader.hpp>
@@ -28,8 +29,8 @@ namespace godot {
 
 // Enum for better control over what interactable is created
 enum InteractableType {
-    OBJECT_COMPUTER_SCREEN,
-    ALIEN,
+    INTER_OBJECT_COMPUTER_SCREEN,
+    INTER_FILE_CABINET,
     INTERACTABLE_AMOUNT
 };
 
@@ -80,29 +81,32 @@ private:
     // Array of model names
     char* model_names[INTERACTABLE_AMOUNT] = {
 		"ComputerTerminalSceen",
-        "Alian"
+        "FileCabinet"
 	};
 
     // Array of texture names
     char* texture_names[INTERACTABLE_AMOUNT] = {
 		"ComputerTerminalSceen_Texture",
-        "Alian_Texture"
+        "FileCabinet_Texture"
 	};
 
     char* texture_formats[INTERACTABLE_AMOUNT] = {
 		".png",
-        ".jpg"
+        ".png"
 	};
 
     // Array of mesh offsets
     Vector3 mesh_offsets[INTERACTABLE_AMOUNT] = {
 		Vector3(-6, -0.5, 0),
-        Vector3(0, -0.25, 0)
-        //Vector3(0, -1.5, 0)
+        //Vector3(0, -0.25, 0)
+        Vector3(0, -1.5, 0)
 	};
 
     // This member function creates a hitbox
     void SetHitBox(void);
+
+    // This member function creates a hit cylinder
+    void SetHitCylinder(void);
     
 protected:
     static void _bind_methods();

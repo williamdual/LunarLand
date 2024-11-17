@@ -128,7 +128,7 @@ void CustomScene3501::create_interactables() {
 	// To be set when more of the environment is ready
 	testInt = memnew(AudioInteractable);
 	create_and_add_as_child(testInt, "Test Interactable", true);
-	testInt->SetValues(player, ALIEN, SHAPE_BOX, true, 3.0);
+	testInt->SetValues(player, INTER_FILE_CABINET, SHAPE_CYLINDER, true, 3.0);
 	testInt->SetAudio(AUDIO_SUSIE_OPENING);
 }
 

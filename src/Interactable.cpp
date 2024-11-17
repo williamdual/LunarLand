@@ -118,6 +118,9 @@ void Interactable::SetValues(Player* p, int type, int col_type, bool glow, doubl
         case SHAPE_BOX:
             SetHitBox();
             break;
+        case SHAPE_CYLINDER:
+            SetHitCylinder();
+            break;
         default:
             break;
     }
@@ -139,6 +142,38 @@ void Interactable::SetHitBox() {
     BoxShape3D* box_shape = memnew(BoxShape3D);
     box_shape->set_size(mesh->get_mesh()->get_aabb().size);
     hit_shape->set_shape(box_shape);
+}
+
+// This member function creates a hit cylinder
+void Interactable::SetHitCylinder() {
+
+    // If the object already has a collision shape then return
+    if (has_col_shape) {
+        return;
+    } else {
+        has_col_shape = true;
+    }
+
+    // Adding a collision shape as a child
+    hit_shape = memnew(CollisionShape3D);
+    create_and_add_as_child<CollisionShape3D>(hit_shape, "CollisionShape", false);
+
+    // Determining widest part of scale
+    CylinderShape3D* cyl_shape = memnew(CylinderShape3D);
+    Vector3 obj_size = mesh->get_mesh()->get_aabb().size;
+    float diameter = 1.0;
+    if (obj_size.x > obj_size.z) {
+        diameter = obj_size.x;
+    } else {
+        diameter = obj_size.z;
+    }
+
+    // Setting the height and radius of the shape
+    cyl_shape->set_height(obj_size.y);
+    cyl_shape->set_radius(diameter / 2.0);
+
+    // Setting the collision shape
+    hit_shape->set_shape(cyl_shape);
 }
 
 // Member function that sets a camera position
