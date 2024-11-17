@@ -33,6 +33,7 @@ enum EnvObjectType {
     ENV_OBJECT_CAFETERIA_TABLE,
     ENV_OBJECT_COMPUTER_TERMINAL,
     ENV_OBJECT_FILE_CABINET,
+    ENV_OBJECT_MECHANICAL_BULL,
     ENV_OBJECT_MICROPHONE,
     ENV_OBJECT_SMALL_STAGE,
     ENV_OBJECT_AMOUNT
@@ -71,6 +72,7 @@ private:
         "CafeteriaTable",
         "ComputerTerminal",
 		"FileCabinet",
+        "MechanicalBull",
         "Microphone",
         "SmallStage"
 	};
@@ -81,38 +83,42 @@ private:
         "CafeteriaTable_Texture",
         "ComputerTerminal_Texture",
 		"FileCabinet_Texture",
+        "MechanicalBull_Texture",
         "Microphone_Texture",
         "SmallStage_Texture"
 	};
 
     // Array of texture formats for each texture file
     char* texture_formats[ENV_OBJECT_AMOUNT] = {
-		".jpg",
-        ".png",
-        ".png",
-        ".png",
-        ".jpg",
-        ".png"
+		".jpg", // Alien
+        ".png", // Caf Table
+        ".png", // Computer Terminal
+        ".png", // File Cabinet
+        ".png", // Mechanical Bull
+        ".jpg", // Microphone
+        ".png"  // Small Stage
 	};
 
     // Array of mesh offsets
     Vector3 mesh_offsets[ENV_OBJECT_AMOUNT] = {
-		Vector3(0.0, -0.25, 0.2),
-        Vector3(0.0, -1.0, 0.0),
-        Vector3(-6.0, -0.4, 0.0),
-        Vector3(0.0, -1.5, 0.0),
-        Vector3(0.0, -1.3, 0.0),
-        Vector3(0.0, -0.75, 0.0)
+		Vector3(0.0, -0.25, 0.2), // Alien
+        Vector3(0.0, -1.0, 0.0), // Caf Table
+        Vector3(-6.0, -0.4, 0.0), // Computer Terminal
+        Vector3(0.0, -1.5, 0.0), // File Cabinet
+        Vector3(0.0, -2.3, -1.0), // Mechanical Bull
+        Vector3(0.0, -1.3, 0.0), // Microphone
+        Vector3(0.0, -0.75, 0.0) // Small Stage
 	};
 
     // Values that darken the texture since the loaded texture can often appear faded
     float tex_darken_values[ENV_OBJECT_AMOUNT] = {
-        0.8,
-        0.7,
-        0.7,
-        0.5,
-        0.2,
-        0.2
+        0.8, // Alien
+        0.7, // Caf Table
+        0.7, // Computer Terminal
+        0.7, // File Cabinet
+        0.8, // Mechanical Bull
+        0.2, // Microphone
+        0.2 // Small Stage
     };
 
     // This member function creates a hitbox
