@@ -53,8 +53,8 @@ void CustomScene3501::_ready()
 	// testEnvObj->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
 	// testEnvObj->RegisterCameraTrigs(cam_triggs);
 	// testEnvObj->SetCameraPosition(cameras[2]->get_global_position());
-	// testEnvObj->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// testEnvObj->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// testEnvObj->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 40.0);
+	// testEnvObj->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 40.0);
 }
 
 // called every frame (as often as possible)
@@ -152,7 +152,7 @@ void CustomScene3501::create_env_objects() {
 	// All test stuff
 	testEnvObj = memnew(EnvObject);
 	create_and_add_as_child(testEnvObj, "Test EnvObject", true);
-	testEnvObj->SetValues(ENV_OBJECT_FILE_CABINET, SHAPE_BOX);
+	testEnvObj->SetValues(ENV_OBJECT_SMALL_STAGE, SHAPE_BOX);
 }
 
 template <class T>
