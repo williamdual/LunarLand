@@ -4,8 +4,6 @@ render_mode skip_vertex_transform; // self-explanitory
 render_mode unshaded; // turns off environment lighting
 
 varying smooth vec3 position_interp;
-uniform bool in_range;
-uniform bool glows;
 uniform sampler2D sampler;
 
 uniform vec3 init_light_positions[32];
@@ -30,9 +28,6 @@ void vertex() {
 }
 
 void fragment() {
-	
-	// Glowing colour
-	vec3 glow_col = vec3(0.0196, 0.8353, 0.9804);
 	
 	// Calculating the lighting per light position
 	vec3 final_light = vec3(0.0, 0.0, 0.0);
@@ -67,12 +62,5 @@ void fragment() {
 	
 	// Setting the colour based on the player distance to the interactable
 	vec4 tex = texture(sampler, UV);
-	if (in_range && glows) {
-		ALBEDO = tex.rgb * darkening_val * glow_col;
-	} else if (in_range) {
-		ALBEDO = ALBEDO * glow_col;
-	} else {
-		ALBEDO = ALBEDO * tex.rgb * darkening_val;
-	}
-	
+	ALBEDO = ALBEDO * tex.rgb * darkening_val;
 }

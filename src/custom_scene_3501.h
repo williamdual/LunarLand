@@ -38,6 +38,7 @@
 #include "CounterInteractable.h"
 #include "AudioInteractable.h"
 #include "ItemInteractable.h"
+#include "EnvObject.h"
 
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -52,11 +53,14 @@ namespace godot
 		ColorRect *overscreen;
 		Vector<PlayerCamera *> cameras;
 		Vector<CameraTrigger *> cam_triggs;
+		Vector<Interactable*> interactables;
 		MeshInstance3D *playerTestObject_ptr;
 		Player* player;
 		GameState gameState;
 
 		AudioInteractable* testInt;
+
+		EnvObject* testEnvObj;
 
 		// create and setup the boxes; for this one they don't need to have separate create and setup functions.
 		// This shouldn't be called in the assignment that you hand in. You can choose to delete the code if you want to.
@@ -64,6 +68,7 @@ namespace godot
 		void create_cameras();
 		void setup_interactables();
 		void create_interactables();
+		void create_env_objects();
 
 		template <class T, class U>
 		void re_parent(T *parent, U *child);

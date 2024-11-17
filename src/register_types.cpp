@@ -11,6 +11,7 @@
 #include "CounterInteractable.h"
 #include "AudioInteractable.h"
 #include "ItemInteractable.h"
+#include "EnvObject.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -35,6 +36,7 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 	ClassDB::register_class<CounterInteractable>();
 	ClassDB::register_class<AudioInteractable>();
 	ClassDB::register_class<ItemInteractable>();
+	ClassDB::register_class<EnvObject>();
 }
 
 // gets called when godot unloads our plugin

@@ -1,5 +1,5 @@
 #include "defs.h"
-#include "Interactable.h"
+#include "EnvObject.h"
 
 #include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/variant/utility_functions.hpp> // for the debug statements
@@ -7,59 +7,33 @@
 
 using namespace godot;
 
-void Interactable::_bind_methods() {
-    ClassDB::bind_method(D_METHOD("SetCameraPosition"), &Interactable::SetCameraPosition);
+void EnvObject::_bind_methods() {
+    ClassDB::bind_method(D_METHOD("SetCameraPosition"), &EnvObject::SetCameraPosition);
 }
 
-Interactable::Interactable() {}
+EnvObject::EnvObject() {}
 
-Interactable::Interactable(Player* p, int type, int col_type, bool glow, double rad) : StaticBody3D() {
-    time_passed = 0.0;
-    radius = rad;
-    player = p;
-    interactable_type = type;
-    in_range = false;
-    glow_in_range = glow;
-    has_col_shape = false;
-    num_lights = 0;
-    light_positions.resize(32);
-    light_colours.resize(32);
-    specular_power.resize(32);
+void EnvObject::_enter_tree ( ){
+    if(DEBUG) UtilityFunctions::print("Enter Tree - EnvObject.");
 }
 
-void Interactable::_enter_tree ( ){
-    if(DEBUG) UtilityFunctions::print("Enter Tree - Interactable.");
+void EnvObject::_ready ( ){
+    if(DEBUG) UtilityFunctions::print("Ready - EnvObject."); 
 }
 
-void Interactable::_ready ( ){
-    if(DEBUG) UtilityFunctions::print("Ready - Interactable."); 
-}
-
-void Interactable::_process(double delta) {
+void EnvObject::_process(double delta) {
     if (Engine::get_singleton()->is_editor_hint()) return;
 
-    // Updating whether or not the player is in range
-    in_range = IsInRange();
-
     // Sending the necessary values to the shader
-    mat->set_shader_parameter("in_range", in_range);
-    mat->set_shader_parameter("glows", glow_in_range);
     mat->set_shader_parameter("init_light_positions", light_positions);
     mat->set_shader_parameter("light_colours", light_colours);
     mat->set_shader_parameter("view_pos", camera_position);
     mat->set_shader_parameter("spec_power", specular_power);
     mat->set_shader_parameter("num_lights", num_lights);
-
-    // Getting input and determining if the interactable should trigger
-    Input *_input = Input::get_singleton();
-    if (_input->is_action_just_pressed("interact") && in_range) {
-        UtilityFunctions::print("Interacted");
-        Interact();
-    }
 }
 
 // Member function that registers camera triggers for signal purposes
-void Interactable::RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs) {
+void EnvObject::RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs) {
 
     // Connecting each camera trigger
     for (int i = 0; i < cam_trigs.size(); i++) {
@@ -67,24 +41,14 @@ void Interactable::RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs) {
     }
 }
 
-// Nothing in this function it is meant to be overriden
-void Interactable::Interact() {}
-
-// Member function that acts as a contructor in the event the default contructor is used
-void Interactable::SetValues(Player* p, int type, int col_type, bool glow, double rad) {
-    time_passed = 0.0;
-    radius = rad;
-    player = p;
-    interactable_type = type;
-    in_range = false;
-    glow_in_range = glow;
-    num_lights = 0;
-    camera_position = Vector3(0, 0, 0);
+// Member function that sets starting values for the environment object
+void EnvObject::SetValues(int obj_type, int col_type) {
 
     // Setting proper array sizes
     light_positions.resize(32);
     light_colours.resize(32);
     specular_power.resize(32);
+    num_lights = 0;
 
     // Setting up shader
     mat = memnew(ShaderMaterial);
@@ -92,18 +56,18 @@ void Interactable::SetValues(Player* p, int type, int col_type, bool glow, doubl
     mat->set_shader(shader);
 
     // Setting the mesh
-    create_and_add_as_child<MeshInstance3D>(mesh, "InterMesh", true);
-    Ref<Mesh> new_mesh = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", model_names[interactable_type]), "Mesh");
+    create_and_add_as_child<MeshInstance3D>(mesh, "EnvObjMesh", true);
+    Ref<Mesh> new_mesh = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", model_names[obj_type]), "Mesh");
     new_mesh->surface_set_material(0, mat);
     mesh->set_mesh(new_mesh);
-    mesh->set_position(mesh_offsets[interactable_type]);
+    mesh->set_position(mesh_offsets[obj_type]);
 
     // Setting the texture
-    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s%s", "Textures/", texture_names[interactable_type], texture_formats[interactable_type]), "CompressedTexture2D");
+    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s%s", "Textures/", texture_names[obj_type], texture_formats[obj_type]), "CompressedTexture2D");
     mat->set_shader_parameter("sampler", texture);
 
     // Setting the darking value for the texture
-    mat->set_shader_parameter("darkening_val", tex_darken_values[interactable_type]);
+    mat->set_shader_parameter("darkening_val", tex_darken_values[obj_type]);
 
     // Seeing if the object already has a collision shape
     if (find_child("CollisionShape") == NULL) {
@@ -128,7 +92,7 @@ void Interactable::SetValues(Player* p, int type, int col_type, bool glow, doubl
 }
 
 // This member function creates a hitbox
-void Interactable::SetHitBox() {
+void EnvObject::SetHitBox() {
 
     // If the object already has a collision shape then return
     if (has_col_shape) {
@@ -146,7 +110,7 @@ void Interactable::SetHitBox() {
 }
 
 // This member function creates a hit cylinder
-void Interactable::SetHitCylinder() {
+void EnvObject::SetHitCylinder() {
 
     // If the object already has a collision shape then return
     if (has_col_shape) {
@@ -178,12 +142,12 @@ void Interactable::SetHitCylinder() {
 }
 
 // Member function that sets a camera position
-void Interactable::SetCameraPosition(Vector3 camera_pos) {
+void EnvObject::SetCameraPosition(Vector3 camera_pos) {
     camera_position = camera_pos;
 }
 
-// Member function that adds a light position and colour to the interactable
-void Interactable::AddLight(Vector3 light_pos, Vector3 light_col, int spec_power) {
+// Member function that adds a light position and colour to the environment object
+void EnvObject::AddLight(Vector3 light_pos, Vector3 light_col, int spec_power) {
 
     // Adding light position and colour to the necessary arrays
     light_positions[num_lights] = light_pos;
@@ -192,18 +156,9 @@ void Interactable::AddLight(Vector3 light_pos, Vector3 light_col, int spec_power
     num_lights++;
 }
 
-// This member function determines if the player is in range
-bool Interactable::IsInRange() {
-    if ((player->get_global_position() - this->get_global_position()).length() <= radius) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 template <class T>
 // returns true if pointer is brand-new; false if retrieved from SceneTree
-bool Interactable::create_and_add_as_child(T *&pointer, String name, bool search)
+bool EnvObject::create_and_add_as_child(T *&pointer, String name, bool search)
 {
 	// this is the default behaviour
 	// added the search parameter so that we can skip the slow "find_child" call during runtime (not applicable to this demo, you should always use search = true until next assignment)
