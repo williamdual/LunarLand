@@ -31,7 +31,7 @@ void Inventory::_process(double delta) {
             // Setting the position of the inventory if it is not already set
             if (!inventory_set) {
                 Size2 viewport_size = viewport->get_visible_rect().size;
-                inventory_space->set_global_position(Vector2(viewport_size.x / 2, viewport_size.y - 50));
+                inventory_space->set_global_position(Vector2(viewport_size.x / 2, viewport_size.y - 70));
             }
         }
     }

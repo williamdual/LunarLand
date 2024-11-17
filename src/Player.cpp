@@ -9,7 +9,7 @@ using namespace godot;
 
 void Player::_bind_methods() {}
 
-Player::Player() : MeshInstance3D()
+Player::Player() : CharacterBody3D()
 {
 }
 
@@ -21,17 +21,17 @@ Player::~Player()
 void Player::_enter_tree()
 {
     // Mesh and Mat
+    create_and_add_as_child<MeshInstance3D>(mesh_instance, "PlayerMesh", true);
+
     mesh = memnew(CylinderMesh);
     mesh->set_height(2);
     mesh->set_top_radius(1);
     mesh->set_bottom_radius(1);
-    set_mesh(mesh);
+    mesh_instance->set_mesh(mesh);
 
     mat = memnew(StandardMaterial3D);
     mat->set_albedo(Color(1.0f, 1.0f, 0.0f, 1.0f));
     mesh->surface_set_material(0, mat);
-
-    set_mesh(mesh);
 
     // Colision
     area = memnew(Area3D);
@@ -46,6 +46,14 @@ void Player::_enter_tree()
     collider->set_shape(cylinder_shape);
     cylinder_shape->set_height(2);
     cylinder_shape->set_radius(1);
+
+    // Setting the collision shape that will serve to detect collisions with physical objects in the environment
+    surface_collider = memnew(CollisionShape3D);
+    create_and_add_as_child<CollisionShape3D>(surface_collider, "SurfaceCollider", true);
+    CylinderShape3D* surface_collider_shape = memnew(CylinderShape3D);
+    surface_collider_shape->set_height(2);
+    surface_collider_shape->set_radius(1);
+    surface_collider->set_shape(surface_collider_shape);
 
     // Setting the listener
     create_and_add_as_child<AudioListener3D>(listener, "Listener", true);
@@ -72,19 +80,28 @@ void Player::_process(double delta)
 
     if (_input->is_action_pressed("move_forward"))
     {
-        this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
+        //this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
+        this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed);
+        this->move_and_slide();
+        //this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
     }
     if (_input->is_action_pressed("move_backward"))
     {
-        this->set_global_position(this->get_global_position() - camera->GetMovementPlaneForward() * delta * moveSpeed);
+        //this->set_global_position(this->get_global_position() - camera->GetMovementPlaneForward() * delta * moveSpeed);
+        this->set_velocity(-1.0 * camera->GetMovementPlaneForward() * moveSpeed);
+        this->move_and_slide();
     }
     if (_input->is_action_pressed("move_right"))
     {
-        this->set_global_position(this->get_global_position() + camera->GetMovementPlaneSide() * delta * moveSpeed);
+        //this->set_global_position(this->get_global_position() + camera->GetMovementPlaneSide() * delta * moveSpeed);
+        this->set_velocity(camera->GetMovementPlaneSide() * moveSpeed);
+        this->move_and_slide();
     }
     if (_input->is_action_pressed("move_left"))
     {
-        this->set_global_position(this->get_global_position() - camera->GetMovementPlaneSide() * delta * moveSpeed);
+        //this->set_global_position(this->get_global_position() - camera->GetMovementPlaneSide() * delta * moveSpeed);
+        this->set_velocity(-1.0 * camera->GetMovementPlaneSide() * moveSpeed);
+        this->move_and_slide();
     }
 }
 

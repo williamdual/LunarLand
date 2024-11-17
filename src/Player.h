@@ -16,6 +16,7 @@
 #include <godot_cpp/classes/cylinder_mesh.hpp>
 #include <godot_cpp/classes/node3d.hpp>
 #include <godot_cpp/classes/area3d.hpp>
+#include <godot_cpp/classes/character_body3d.hpp>
 #include <godot_cpp/classes/collision_shape3d.hpp>
 #include <godot_cpp/classes/cylinder_shape3d.hpp>
 #include <godot_cpp/classes/standard_material3d.hpp>
@@ -28,15 +29,17 @@
 // everything in gdextension is defined in this namespace
 namespace godot
 {
-    class Player : public MeshInstance3D
+    class Player : public CharacterBody3D
     {
-        GDCLASS(Player, MeshInstance3D);
+        GDCLASS(Player, CharacterBody3D);
 
     private:
+        MeshInstance3D* mesh_instance;
         CylinderMesh *mesh;
         StandardMaterial3D *mat;
         Area3D *area;
         CollisionShape3D *collider;
+        CollisionShape3D* surface_collider;
         CylinderShape3D *cylinder_shape;
         PlayerCamera *camera;
         AudioListener3D* listener;

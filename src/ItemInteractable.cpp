@@ -11,8 +11,8 @@ void ItemInteractable::_bind_methods() {}
 
 ItemInteractable::ItemInteractable() {}
 
-ItemInteractable::ItemInteractable(Player* p, int type, bool glow, double rad, int found_item)
-    : Interactable(p, type, glow, rad) {
+ItemInteractable::ItemInteractable(Player* p, int type, int col_type, bool glow, double rad, int found_item)
+    : Interactable(p, type, col_type, glow, rad) {
 
     item = found_item;
 

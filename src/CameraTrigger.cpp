@@ -10,6 +10,7 @@ using namespace godot;
 void CameraTrigger::_bind_methods()
 {
     ClassDB::bind_method(D_METHOD("Collision"), &CameraTrigger::Collision);
+    ADD_SIGNAL(MethodInfo("NewCamPos", PropertyInfo(Variant::VECTOR3, "camera_pos")));
 }
 
 CameraTrigger::CameraTrigger() : Area3D()
@@ -51,6 +52,7 @@ void CameraTrigger::Collision(Area3D *area_that_entered)
         UtilityFunctions::print(target_cam->get_name());
         target_cam->make_current();
         player->SetCamera(target_cam);
+        emit_signal("NewCamPos", target_cam->get_global_position());
     }
 }
 

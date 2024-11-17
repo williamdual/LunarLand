@@ -1,5 +1,5 @@
-#ifndef INTERACTABLE_H
-#define INTERACTABLE_H
+#ifndef ENVOBJECT_H
+#define ENVOBJECT_H
 
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/engine.hpp>
@@ -21,49 +21,37 @@
 #include <godot_cpp/templates/vector.hpp>
 #include <godot_cpp/variant/vector3.hpp>
 
-#include "player.h"
+#include "Interactable.h"
 #include "CameraTrigger.h"
 
 // everything in gdextension is defined in this namespace
 namespace godot {
 
-// Enum for better control over what interactable is created
-enum InteractableType {
-    INTER_OBJECT_COMPUTER_TERMINAL_SCREEN,
-    INTERACTABLE_AMOUNT
+// Enum for better control over what environment object is created
+enum EnvObjectType {
+    ENV_OBJECT_ALIEN,
+    ENV_OBJECT_CAFETERIA_TABLE,
+    ENV_OBJECT_COMPUTER_TERMINAL,
+    ENV_OBJECT_FILE_CABINET,
+    ENV_OBJECT_MICROPHONE,
+    ENV_OBJECT_SMALL_STAGE,
+    ENV_OBJECT_AMOUNT
 };
 
-// Enum for hit box type
-enum CollisionShapeType {
-    SHAPE_NONE,
-    SHAPE_BOX,
-    SHAPE_CYLINDER,
-    SHAPE_AMOUNT
-};
-
-class Interactable : public StaticBody3D {
-    GDCLASS(Interactable, StaticBody3D);
+class EnvObject : public StaticBody3D {
+    GDCLASS(EnvObject, StaticBody3D);
 
 private:
     double time_passed; // maybe you don't need this, just an example
-    double radius;
-    bool in_range;
-    bool glow_in_range;
 
-    // Shader and shader material material for interactable
+    // Shader and shader material material for environment object
     ShaderMaterial* mat;
     Texture2D* tex;
     MeshInstance3D* mesh;
 
-    // Collision values for the interactable
+    // Collision values for the environment object
     bool has_col_shape;
     CollisionShape3D* hit_shape;
-
-    // A pointer to the player
-    Player* player;
-
-    // Number corresponding to what interactable is created
-    int interactable_type;
 
     // Vectors for light and camera positions and colours as well as the number of lights
     int num_lights;
@@ -73,32 +61,58 @@ private:
     Vector3 camera_position;
 
     // Array of shader names
-    char* shader_names[INTERACTABLE_AMOUNT] = {
-		"interactable"
+    char* shader_names[ENV_OBJECT_AMOUNT] = {
+		"envobj"
 	};
 
     // Array of model names
-    char* model_names[INTERACTABLE_AMOUNT] = {
-		"ComputerTerminalSceen",
+    char* model_names[ENV_OBJECT_AMOUNT] = {
+        "Alian",
+        "CafeteriaTable",
+        "ComputerTerminal",
+		"FileCabinet",
+        "Microphone",
+        "SmallStage"
 	};
 
     // Array of texture names
-    char* texture_names[INTERACTABLE_AMOUNT] = {
-		"ComputerTerminalSceen_Texture",
+    char* texture_names[ENV_OBJECT_AMOUNT] = {
+        "Alian_Texture",
+        "CafeteriaTable_Texture",
+        "ComputerTerminal_Texture",
+		"FileCabinet_Texture",
+        "Microphone_Texture",
+        "SmallStage_Texture"
 	};
 
-    char* texture_formats[INTERACTABLE_AMOUNT] = {
-		".png",
+    // Array of texture formats for each texture file
+    char* texture_formats[ENV_OBJECT_AMOUNT] = {
+		".jpg",
+        ".png",
+        ".png",
+        ".png",
+        ".jpg",
+        ".png"
 	};
 
     // Array of mesh offsets
-    Vector3 mesh_offsets[INTERACTABLE_AMOUNT] = {
-		Vector3(-6, -0.60, -0.1)
+    Vector3 mesh_offsets[ENV_OBJECT_AMOUNT] = {
+		Vector3(0.0, -0.25, 0.2),
+        Vector3(0.0, -1.0, 0.0),
+        Vector3(-6.0, -0.4, 0.0),
+        Vector3(0.0, -1.5, 0.0),
+        Vector3(0.0, -1.3, 0.0),
+        Vector3(0.0, -0.75, 0.0)
 	};
 
     // Values that darken the texture since the loaded texture can often appear faded
-    float tex_darken_values[INTERACTABLE_AMOUNT] = {
-        1.0
+    float tex_darken_values[ENV_OBJECT_AMOUNT] = {
+        0.8,
+        0.7,
+        0.7,
+        0.5,
+        0.2,
+        0.2
     };
 
     // This member function creates a hitbox
@@ -111,34 +125,23 @@ protected:
     static void _bind_methods();
 
 public:
-    Interactable();
-    Interactable(Player* p, int type, int col_type, bool glow, double rad);
+    EnvObject();
     
     void _enter_tree ( ) override;
     void _ready ( ) override;
     void _process(double delta);
 
-    // Member function that acts as a contructor in the event the default contructor is used
-    void SetValues(Player* p, int type, int col_type, bool glow, double rad);
-
-    // Member function that adds a light to the interactable
+    // Member function that adds a light to the environment object
     void AddLight(Vector3 light_pos, Vector3 light_col, int spec_power);
 
-    // Member function that updates the view position for the interactable
+    // Member function that updates the view position for the environment object
     void SetCameraPosition(Vector3 camera_pos);
 
     // Member function that registers camera triggers for signal purposes
     void RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs);
 
-    // Member function that determines if the player is in range of the interactable
-    bool IsInRange(void);
-
-    // The function that triggers when an interactable is interacted with
-    virtual void Interact();
-
-    // Getters for the member variables
-    inline double GetRadius() { return radius; }
-    inline Player* GetPlayer() { return player; }
+    // Member function that sets initial values for the environment object
+    void SetValues(int obj_type, int col_type);
 
     // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance
