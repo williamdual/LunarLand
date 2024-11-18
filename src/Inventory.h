@@ -22,6 +22,7 @@ namespace godot {
 
 // Enum for the items to be found
 enum MissingItems {
+    ITEM_NONE,
     ITEM_CHIP,
     ITEM_PAPERS,
     ITEM_LINT,

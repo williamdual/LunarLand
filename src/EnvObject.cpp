@@ -11,7 +11,7 @@ void EnvObject::_bind_methods() {
     ClassDB::bind_method(D_METHOD("SetCameraPosition"), &EnvObject::SetCameraPosition);
 }
 
-EnvObject::EnvObject() {}
+EnvObject::EnvObject() : StaticBody3D() {}
 
 void EnvObject::_enter_tree ( ){
     if(DEBUG) UtilityFunctions::print("Enter Tree - EnvObject.");
@@ -60,6 +60,7 @@ void EnvObject::SetValues(int obj_type, int col_type) {
     Ref<Mesh> new_mesh = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", model_names[obj_type]), "Mesh");
     new_mesh->surface_set_material(0, mat);
     mesh->set_mesh(new_mesh);
+    mesh->set_material_override(mat);
     mesh->set_position(mesh_offsets[obj_type]);
 
     // Setting the texture

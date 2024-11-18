@@ -27,7 +27,7 @@ void CustomScene3501::_enter_tree()
 	{
 	}
 	create_cameras();
-	create_interactables();
+	// create_interactables();
 	// create_env_objects();
 }
 
@@ -41,12 +41,12 @@ void CustomScene3501::_ready()
 	setup_cameras();
 
 	// Setting up the test interactable
-	testInt->set_global_position(Vector3(3.0, -10.0, -15.0f));
-	testInt->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
-	testInt->RegisterCameraTrigs(cam_triggs);
-	testInt->SetCameraPosition(cameras[2]->get_global_position());
-	testInt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// testInt->set_global_position(Vector3(3.0, -10.0, -15.0f));
+	// testInt->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
+	// testInt->RegisterCameraTrigs(cam_triggs);
+	// testInt->SetCameraPosition(cameras[2]->get_global_position());
+	// testInt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// // Setting up the test environment object
 	// testEnvObj->set_global_position(Vector3(3.0, -10.0, -10.0f));
@@ -55,6 +55,25 @@ void CustomScene3501::_ready()
 	// testEnvObj->SetCameraPosition(cameras[2]->get_global_position());
 	// testEnvObj->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 40.0);
 	// testEnvObj->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 40.0);
+
+	// Setting up test counter interactable with lockout interactables
+	// testCount->set_global_position(Vector3(6.0, -10.0, -15.0f));
+	// testCount->RegisterCameraTrigs(cam_triggs);
+	// testCount->SetCameraPosition(cameras[2]->get_global_position());
+	// testCount->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// testCount->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+
+	// testLock1->set_global_position(Vector3(-6.0, -10.0, -15.0f));
+	// testLock1->RegisterCameraTrigs(cam_triggs);
+	// testLock1->SetCameraPosition(cameras[2]->get_global_position());
+	// testLock1->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// testLock1->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+
+	// testLock2->set_global_position(Vector3(-6.0, -10.0, -5.0f));
+	// testLock2->RegisterCameraTrigs(cam_triggs);
+	// testLock2->SetCameraPosition(cameras[2]->get_global_position());
+	// testLock2->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// testLock2->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 }
 
 // called every frame (as often as possible)
@@ -143,6 +162,27 @@ void CustomScene3501::create_interactables() {
 	create_and_add_as_child(testInt, "Test Interactable", true);
 	testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
 	testInt->SetAudio(AUDIO_JOE_LAW_JOHNNY);
+
+	// Additional test stuff
+	
+	// testCount = memnew(CounterInteractable);
+	// create_and_add_as_child(testCount, "CounterInteractable", true);
+	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	// testCount->SetCounter(0);
+	// testCount->SetTrigger(15);
+
+	// create_and_add_as_child(testLock1, "NoneLockout", true);
+	// testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+
+	// create_and_add_as_child(testLock2, "ItemLockout", true);
+	// testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+
+	// Vector<LockoutInteractable*> dependents;
+	// dependents.append(testLock1);
+	// dependents.append(testLock2);
+
+	// testLock1->SetLockout(ITEM_NONE, testCount, dependents);
+	// testLock2->SetLockout(ITEM_PAPERS, testCount, dependents);
 }
 
 // Member function to create environment objects
