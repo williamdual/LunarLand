@@ -7,7 +7,12 @@
 
 using namespace godot;
 
-void CounterInteractable::_bind_methods() {}
+void CounterInteractable::_bind_methods() {
+
+    // Binding lockout signal
+    ADD_SIGNAL(MethodInfo("InterUnlock", PropertyInfo(Variant::BOOL, "lock")));
+
+}
 
 CounterInteractable::CounterInteractable() {}
 
@@ -30,7 +35,6 @@ void CounterInteractable::_ready ( ){
 // This member function increments the counter when it is interacted with
 void CounterInteractable::Interact() {
     // Incrementing the counter
-    UtilityFunctions::print("Incremented");
     counter++;
 
     // Checking if the right value has been reached
@@ -43,6 +47,7 @@ void CounterInteractable::Interact() {
 void CounterInteractable::Trigger() {
     UtilityFunctions::print("Made It");
     trigger *= 10;
+    emit_signal("InterUnlock", false);
 }
 
 // Setter for the counter value
