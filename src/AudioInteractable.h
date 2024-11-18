@@ -30,6 +30,14 @@ enum AudioFile {
     AUDIO_SUSIE_PAPERS,
     AUDIO_SUSIE_CHIP,
     AUDIO_SUSIE_LINT,
+    AUDIO_HOOTENANNY_HARRY,
+    AUDIO_PENNY_PINCHER,
+    AUDIO_SEBASTIAN_STANZA,
+    AUDIO_TYLER,
+    AUDIO_MCNAMRA,
+    AUDIO_JOE_LAW_INTRO,
+    AUDIO_JOE_LAW_GENERATOR,
+    AUDIO_JOE_LAW_JOHNNY,
     NUM_AUDIO_FILES
 };
 
@@ -47,7 +55,15 @@ private:
 		"susie1",
         "susie2",
         "susie3",
-        "susie4"
+        "susie4",
+        "HootenannyHarry",
+        "PennyPincher",
+        "SebastianStanza",
+        "Tyler",
+        "McNamra",
+        "JoeLawIntro",
+        "JoeLawGenerator",
+        "JoeLawJohnnyTheHungry"
 	};
     
 protected:

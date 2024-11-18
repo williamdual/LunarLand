@@ -27,7 +27,7 @@ void CustomScene3501::_enter_tree()
 	{
 	}
 	create_cameras();
-	// create_interactables();
+	create_interactables();
 	// create_env_objects();
 }
 
@@ -41,12 +41,12 @@ void CustomScene3501::_ready()
 	setup_cameras();
 
 	// Setting up the test interactable
-	// testInt->set_global_position(Vector3(3.0, -10.0, -15.0f));
-	// testInt->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
-	// testInt->RegisterCameraTrigs(cam_triggs);
-	// testInt->SetCameraPosition(cameras[2]->get_global_position());
-	// testInt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	testInt->set_global_position(Vector3(3.0, -10.0, -15.0f));
+	testInt->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
+	testInt->RegisterCameraTrigs(cam_triggs);
+	testInt->SetCameraPosition(cameras[2]->get_global_position());
+	testInt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// // Setting up the test environment object
 	// testEnvObj->set_global_position(Vector3(3.0, -10.0, -10.0f));
@@ -142,7 +142,7 @@ void CustomScene3501::create_interactables() {
 	testInt = memnew(AudioInteractable);
 	create_and_add_as_child(testInt, "Test Interactable", true);
 	testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
-	testInt->SetAudio(AUDIO_SUSIE_OPENING);
+	testInt->SetAudio(AUDIO_JOE_LAW_JOHNNY);
 }
 
 // Member function to create environment objects
