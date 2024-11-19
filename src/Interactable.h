@@ -137,6 +137,7 @@ public:
     virtual void Interact();
 
     // Getters for the member variables
+    inline void SetRadius(float rad) { radius = rad; }
     inline double GetRadius() { return radius; }
     inline Player* GetPlayer() { return player; }
 

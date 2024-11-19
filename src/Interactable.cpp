@@ -11,7 +11,7 @@ void Interactable::_bind_methods() {
     ClassDB::bind_method(D_METHOD("SetCameraPosition"), &Interactable::SetCameraPosition);
 }
 
-Interactable::Interactable() {}
+Interactable::Interactable() : StaticBody3D() {}
 
 Interactable::Interactable(Player* p, int type, int col_type, bool glow, double rad) : StaticBody3D() {
     time_passed = 0.0;
@@ -50,7 +50,7 @@ void Interactable::_process(double delta) {
     mat->set_shader_parameter("spec_power", specular_power);
     mat->set_shader_parameter("num_lights", num_lights);
 
-    // Getting input and determining if the interactable should trigger
+    // // Getting input and determining if the interactable should trigger
     Input *_input = Input::get_singleton();
     if (_input->is_action_just_pressed("interact") && in_range) {
         UtilityFunctions::print("Interacted");
@@ -96,6 +96,7 @@ void Interactable::SetValues(Player* p, int type, int col_type, bool glow, doubl
     Ref<Mesh> new_mesh = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", model_names[interactable_type]), "Mesh");
     new_mesh->surface_set_material(0, mat);
     mesh->set_mesh(new_mesh);
+    mesh->set_material_override(mat);
     mesh->set_position(mesh_offsets[interactable_type]);
 
     // Setting the texture

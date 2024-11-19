@@ -38,6 +38,7 @@
 #include "CounterInteractable.h"
 #include "AudioInteractable.h"
 #include "ItemInteractable.h"
+#include "LockoutInteractable.h"
 #include "EnvObject.h"
 
 // everything in gdextension is defined in this namespace
@@ -59,6 +60,10 @@ namespace godot
 		GameState gameState;
 
 		AudioInteractable* testInt;
+
+		CounterInteractable* testCount;
+		LockoutInteractable* testLock1;
+		LockoutInteractable* testLock2;
 
 		EnvObject* testEnvObj;
 
