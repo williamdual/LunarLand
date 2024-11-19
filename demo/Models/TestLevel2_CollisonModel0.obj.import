@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dp0kb4125vufa"
+path="res://.godot/imported/TestLevel2_CollisonModel0.obj-06cc6ed94ad84351ab84f904dfaadf5e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/TestLevel2_CollisonModel0.obj-06cc6ed94ad84351ab84f904dfaadf5e.mesh"]
+
+source_file="res://Models/TestLevel2_CollisonModel0.obj"
+dest_files=["res://.godot/imported/TestLevel2_CollisonModel0.obj-06cc6ed94ad84351ab84f904dfaadf5e.mesh", "res://.godot/imported/TestLevel2_CollisonModel0.obj-06cc6ed94ad84351ab84f904dfaadf5e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
