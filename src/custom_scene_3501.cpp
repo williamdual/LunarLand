@@ -48,7 +48,7 @@ void CustomScene3501::_ready()
 	// testInt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
-	// // Setting up the test environment object
+	// Setting up the test environment object
 	// testEnvObj->set_global_position(Vector3(3.0, -10.0, -10.0f));
 	// testEnvObj->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
 	// testEnvObj->RegisterCameraTrigs(cam_triggs);
@@ -158,31 +158,31 @@ void CustomScene3501::create_interactables() {
 	// To be set when more of the environment is ready
 
 	// All test stuff
-	testInt = memnew(AudioInteractable);
-	create_and_add_as_child(testInt, "Test Interactable", true);
-	testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
-	testInt->SetAudio(AUDIO_JOE_LAW_JOHNNY);
+	// testInt = memnew(AudioInteractable);
+	// create_and_add_as_child(testInt, "Test Interactable", true);
+	// testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
+	// testInt->SetAudio(AUDIO_JOE_LAW_JOHNNY);
 
 	// Additional test stuff
 	
 	// testCount = memnew(CounterInteractable);
-	// create_and_add_as_child(testCount, "CounterInteractable", true);
-	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
-	// testCount->SetCounter(0);
-	// testCount->SetTrigger(15);
+	create_and_add_as_child(testCount, "CounterInteractable", true);
+	testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	testCount->SetCounter(0);
+	testCount->SetTrigger(15);
 
-	// create_and_add_as_child(testLock1, "NoneLockout", true);
-	// testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	create_and_add_as_child(testLock1, "NoneLockout", true);
+	testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
 
-	// create_and_add_as_child(testLock2, "ItemLockout", true);
-	// testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	create_and_add_as_child(testLock2, "ItemLockout", true);
+	testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
 
-	// Vector<LockoutInteractable*> dependents;
-	// dependents.append(testLock1);
-	// dependents.append(testLock2);
+	Vector<LockoutInteractable*> dependents;
+	dependents.append(testLock1);
+	dependents.append(testLock2);
 
-	// testLock1->SetLockout(ITEM_NONE, testCount, dependents);
-	// testLock2->SetLockout(ITEM_PAPERS, testCount, dependents);
+	testLock1->SetLockout(ITEM_NONE, testCount, dependents);
+	testLock2->SetLockout(ITEM_PAPERS, testCount, dependents);
 }
 
 // Member function to create environment objects
