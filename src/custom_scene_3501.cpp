@@ -120,7 +120,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_3;
 	create_and_add_as_child<PlayerCamera>(cam_3, "Tracking Camera", true);
 	cam_3->set_global_position(Vector3(20.5f, 0.0, 0.0f));
-	cam_3->set_rotation_degrees(Vector3(-23.0f, 46.0f, 0.0f));
+	cam_3->set_rotation_degrees(Vector3(-23.0f, 0.0f, 0.0f));//DO NOT SET X OR Z ROTATION (BAD THINGS WILL HAPPEN)
 	cam_3->SetTarget(player);
 	cam_3->SetTrackType(CameraTrackType::tracking);
 	CameraTrigger *trigg_5;
