@@ -96,31 +96,47 @@ void CustomScene3501::_process(double delta)
 void CustomScene3501::create_cameras()
 {
 	PlayerCamera *cam_1;
-	create_and_add_as_child<PlayerCamera>(cam_1, "Absalute Camera", true);
+	create_and_add_as_child<PlayerCamera>(cam_1, "Static Camera", true);
 	cam_1->set_global_position(Vector3(0.0, 0.0, 0.0f));
+	cam_1->set_rotation_degrees(Vector3(-40.0f, 0.0f, 0.0f));
 	cam_1->SetTarget(player);
+	cam_1->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_1;
 	create_and_add_as_child<CameraTrigger>(trigg_1, "cam_1_trigg_1", true);
+	CameraTrigger *trigg_2;
+	create_and_add_as_child<CameraTrigger>(trigg_2, "cam_1_trigg_2", true);
 
 	PlayerCamera *cam_2;
-	create_and_add_as_child<PlayerCamera>(cam_2, "Pans Camera", true);
-	cam_2->set_global_position(Vector3(7.2f, -10.6, -24.5f));
+	create_and_add_as_child<PlayerCamera>(cam_2, "Panning Camera", true);
+	cam_2->set_global_position(Vector3(8.5f, -10.6, -24.5f));
 	cam_2->set_rotation_degrees(Vector3(-0.0f, 180.0f, 0.0f));
 	cam_2->SetTarget(player);
+	cam_2->SetTrackType(CameraTrackType::panning);
+	CameraTrigger *trigg_3;
+	create_and_add_as_child<CameraTrigger>(trigg_3, "cam_2_trigg_1", true);
+	CameraTrigger *trigg_4;
+	create_and_add_as_child<CameraTrigger>(trigg_4, "cam_2_trigg_2", true);
 
 	PlayerCamera *cam_3;
-	create_and_add_as_child<PlayerCamera>(cam_3, "Stiff Camera", true);
+	create_and_add_as_child<PlayerCamera>(cam_3, "Tracking Camera", true);
 	cam_3->set_global_position(Vector3(20.5f, 0.0, 0.0f));
 	cam_3->set_rotation_degrees(Vector3(-23.0f, 46.0f, 0.0f));
 	cam_3->SetTarget(player);
-	CameraTrigger *trigg_3;
-	create_and_add_as_child<CameraTrigger>(trigg_3, "cam_3_trigg_1", true);
+	cam_3->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_5;
+	create_and_add_as_child<CameraTrigger>(trigg_5, "cam_3_trigg_1", true);
+	CameraTrigger *trigg_6;
+	create_and_add_as_child<CameraTrigger>(trigg_6, "cam_3_trigg_2", true);
 
 	cameras.append(cam_1);
 	cameras.append(cam_2);
 	cameras.append(cam_3);
 	cam_triggs.append(trigg_1);
+	cam_triggs.append(trigg_2);
 	cam_triggs.append(trigg_3);
+	cam_triggs.append(trigg_4);
+	cam_triggs.append(trigg_5);
+	cam_triggs.append(trigg_6);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -145,17 +161,38 @@ void CustomScene3501::setup_cameras()
 			re_parent<Node, CameraTrigger>(trigg_ref_group, cam_triggs[i]);
 			cam_triggs[i]->_ready();
 			cam_triggs[i]->SetPlayer(player);
-			if (i == 0)
+			cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f)); // default, can change per collider if desired
+			if (i == 0)															 // Static Cam
 			{
 				cam_triggs[i]->set_global_position(Vector3(5.0f, -12.0f, -6.0f));
 				cam_triggs[i]->SetCamera(cameras[0]);
-				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f));
 			}
-			else if (i == 1) // TODO change to approprite number later
+			if (i == 1)
+			{
+				cam_triggs[i]->set_global_position(Vector3(5.5f, -11.11f, -22.7f));
+				cam_triggs[i]->SetCamera(cameras[0]);
+			}
+			else if (i == 2) // panning cam
+			{
+				cam_triggs[i]->set_global_position(Vector3(8.0f, -11.11f, -22.7f));
+				cam_triggs[i]->SetCamera(cameras[1]);
+			}
+			else if (i == 3)
+			{
+				cam_triggs[i]->set_global_position(Vector3(19.5f, -11.15f, -15.7f));
+				cam_triggs[i]->set_rotation_degrees(Vector3(0, 90.0f, 0)); // TODO FIND OUT WHY THE ROTATION DOESNT WORK
+				cam_triggs[i]->SetCamera(cameras[1]);
+			}
+			else if (i == 4) // Tracking Cam
 			{
 				cam_triggs[i]->set_global_position(Vector3(8.5f, -11.11f, -5.5f));
 				cam_triggs[i]->SetCamera(cameras[2]);
-				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f));
+			}
+			else if (i == 5)
+			{
+				cam_triggs[i]->set_global_position(Vector3(19.5f, -11.15f, -11.5f));
+				cam_triggs[i]->set_rotation_degrees(Vector3(0, 90.0f, 0));
+				cam_triggs[i]->SetCamera(cameras[2]);
 			}
 			cam_triggs[i]->set_global_rotation_degrees(Vector3(0, 0, 0));
 		}
@@ -163,7 +200,8 @@ void CustomScene3501::setup_cameras()
 }
 
 // Member function to create interactables
-void CustomScene3501::create_interactables() {
+void CustomScene3501::create_interactables()
+{
 	// To be set when more of the environment is ready
 
 	// All test stuff
@@ -173,7 +211,7 @@ void CustomScene3501::create_interactables() {
 	// testInt->SetAudio(AUDIO_JOE_LAW_JOHNNY);
 
 	// Additional test stuff
-	
+
 	// testCount = memnew(CounterInteractable);
 	create_and_add_as_child(testCount, "CounterInteractable", true);
 	testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
@@ -186,7 +224,7 @@ void CustomScene3501::create_interactables() {
 	create_and_add_as_child(testLock2, "ItemLockout", true);
 	testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
 
-	Vector<LockoutInteractable*> dependents;
+	Vector<LockoutInteractable *> dependents;
 	dependents.append(testLock1);
 	dependents.append(testLock2);
 
@@ -195,7 +233,8 @@ void CustomScene3501::create_interactables() {
 }
 
 // Member function to create environment objects
-void CustomScene3501::create_env_objects() {
+void CustomScene3501::create_env_objects()
+{
 	// To be set when more of environment is ready
 
 	// All test stuff
@@ -205,7 +244,8 @@ void CustomScene3501::create_env_objects() {
 }
 
 // Member function to create building objects
-void CustomScene3501::create_building_objects() {
+void CustomScene3501::create_building_objects()
+{
 	// To be set when more of environment is ready
 
 	// All test stuff

@@ -20,6 +20,9 @@ Player::~Player()
 
 void Player::_enter_tree()
 {
+    // init vars
+    saved_velocity = Vector3(0, 0, 0);
+    moveSpeed = 10.0f;
     // Mesh and Mat
     create_and_add_as_child<MeshInstance3D>(mesh_instance, "PlayerMesh", true);
 
@@ -50,7 +53,7 @@ void Player::_enter_tree()
     // Setting the collision shape that will serve to detect collisions with physical objects in the environment
     surface_collider = memnew(CollisionShape3D);
     create_and_add_as_child<CollisionShape3D>(surface_collider, "SurfaceCollider", true);
-    CylinderShape3D* surface_collider_shape = memnew(CylinderShape3D);
+    CylinderShape3D *surface_collider_shape = memnew(CylinderShape3D);
     surface_collider_shape->set_height(2);
     surface_collider_shape->set_radius(1);
     surface_collider->set_shape(surface_collider_shape);
@@ -76,31 +79,33 @@ void Player::_process(double delta)
                 // Game loop stuff HERE
 
     Input *_input = Input::get_singleton();
-    float moveSpeed = 10;
-
-    if (_input->is_action_pressed("move_forward"))
+    if (_input->is_action_pressed("move_forward") && saved_velocity == Vector3(0, 0, 0))
     {
-        //this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
         this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed);
         this->move_and_slide();
-        //this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
     }
-    if (_input->is_action_pressed("move_backward"))
+    if (_input->is_action_pressed("move_backward") && saved_velocity == Vector3(0, 0, 0))
     {
-        //this->set_global_position(this->get_global_position() - camera->GetMovementPlaneForward() * delta * moveSpeed);
         this->set_velocity(-1.0 * camera->GetMovementPlaneForward() * moveSpeed);
         this->move_and_slide();
     }
-    if (_input->is_action_pressed("move_right"))
+    if (_input->is_action_pressed("move_right") && saved_velocity == Vector3(0, 0, 0))
     {
-        //this->set_global_position(this->get_global_position() + camera->GetMovementPlaneSide() * delta * moveSpeed);
         this->set_velocity(camera->GetMovementPlaneSide() * moveSpeed);
         this->move_and_slide();
     }
-    if (_input->is_action_pressed("move_left"))
+    if (_input->is_action_pressed("move_left") && saved_velocity == Vector3(0, 0, 0))
     {
-        //this->set_global_position(this->get_global_position() - camera->GetMovementPlaneSide() * delta * moveSpeed);
         this->set_velocity(-1.0 * camera->GetMovementPlaneSide() * moveSpeed);
+        this->move_and_slide();
+    }
+    if (_input->is_action_just_released("move_forward") || _input->is_action_just_released("move_backward") || _input->is_action_just_released("move_right") || _input->is_action_just_released("move_left"))
+    {
+        saved_velocity = Vector3(0, 0, 0);
+    }
+    else if (saved_velocity != Vector3(0, 0, 0))
+    {
+        this->set_velocity(saved_velocity);
         this->move_and_slide();
     }
 }
@@ -113,37 +118,43 @@ PlayerCamera *Player::GetCamera()
 void Player::SetCamera(PlayerCamera *cam)
 {
     camera = cam;
+    saved_velocity = get_velocity();
+}
+
+float Player::GetMoveSpeed()
+{
+    return moveSpeed;
 }
 
 template <class T>
 // returns true if pointer is brand-new; false if retrieved from SceneTree
 bool Player::create_and_add_as_child(T *&pointer, String name, bool search)
 {
-	// this is the default behaviour
-	// added the search parameter so that we can skip the slow "find_child" call during runtime (not applicable to this demo, you should always use search = true until next assignment)
-	if (search == false)
-	{
-		pointer = memnew(T);
-		pointer->set_name(name);
-		add_child(pointer);
-		pointer->set_owner(get_tree()->get_edited_scene_root());
-		return true;
-	}
+    // this is the default behaviour
+    // added the search parameter so that we can skip the slow "find_child" call during runtime (not applicable to this demo, you should always use search = true until next assignment)
+    if (search == false)
+    {
+        pointer = memnew(T);
+        pointer->set_name(name);
+        add_child(pointer);
+        pointer->set_owner(get_tree()->get_edited_scene_root());
+        return true;
+    }
 
-	// always only have to search once if we save it here
-	Node *child = find_child(name);
+    // always only have to search once if we save it here
+    Node *child = find_child(name);
 
-	if (child == nullptr)
-	{
-		pointer = memnew(T);
-		pointer->set_name(name);
-		add_child(pointer);
-		pointer->set_owner(get_tree()->get_edited_scene_root());
-		return true;
-	}
-	else
-	{
-		pointer = dynamic_cast<T *>(child);
-		return false;
-	}
+    if (child == nullptr)
+    {
+        pointer = memnew(T);
+        pointer->set_name(name);
+        add_child(pointer);
+        pointer->set_owner(get_tree()->get_edited_scene_root());
+        return true;
+    }
+    else
+    {
+        pointer = dynamic_cast<T *>(child);
+        return false;
+    }
 }
