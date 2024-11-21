@@ -13,6 +13,7 @@
 #include "ItemInteractable.h"
 #include "LockoutInteractable.h"
 #include "EnvObject.h"
+#include "BuildingObj.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -39,6 +40,7 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 	ClassDB::register_class<ItemInteractable>();
 	ClassDB::register_class<LockoutInteractable>();
 	ClassDB::register_class<EnvObject>();
+	ClassDB::register_class<BuildingObj>();
 }
 
 // gets called when godot unloads our plugin

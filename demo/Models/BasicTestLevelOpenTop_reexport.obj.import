@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c0t1sd3jo3dx7"
+path="res://.godot/imported/BasicTestLevelOpenTop_reexport.obj-7c03a70fe611d60f65217c4c58272cfb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/BasicTestLevelOpenTop_reexport.obj-7c03a70fe611d60f65217c4c58272cfb.mesh"]
+
+source_file="res://Models/BasicTestLevelOpenTop_reexport.obj"
+dest_files=["res://.godot/imported/BasicTestLevelOpenTop_reexport.obj-7c03a70fe611d60f65217c4c58272cfb.mesh", "res://.godot/imported/BasicTestLevelOpenTop_reexport.obj-7c03a70fe611d60f65217c4c58272cfb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
