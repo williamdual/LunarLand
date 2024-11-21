@@ -40,6 +40,7 @@
 #include "ItemInteractable.h"
 #include "LockoutInteractable.h"
 #include "EnvObject.h"
+#include "BuildingObj.h"
 
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -67,6 +68,8 @@ namespace godot
 
 		EnvObject* testEnvObj;
 
+		BuildingObj* testBuilding;
+
 		// create and setup the boxes; for this one they don't need to have separate create and setup functions.
 		// This shouldn't be called in the assignment that you hand in. You can choose to delete the code if you want to.
 		void setup_cameras();
@@ -74,6 +77,7 @@ namespace godot
 		void setup_interactables();
 		void create_interactables();
 		void create_env_objects();
+		void create_building_objects();
 
 		template <class T, class U>
 		void re_parent(T *parent, U *child);

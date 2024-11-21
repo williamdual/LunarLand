@@ -29,6 +29,7 @@ void CustomScene3501::_enter_tree()
 	create_cameras();
 	// create_interactables();
 	// create_env_objects();
+	create_building_objects();
 }
 
 void CustomScene3501::_ready()
@@ -74,6 +75,14 @@ void CustomScene3501::_ready()
 	// testLock2->SetCameraPosition(cameras[2]->get_global_position());
 	// testLock2->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// testLock2->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+
+	// Setting up the test building
+	testBuilding->set_scale(Vector3(1.5, 1.5, 1.5));
+	testBuilding->set_global_position(Vector3(-0.023, -12.92, -5.635));
+	testBuilding->RegisterCameraTrigs(cam_triggs);
+	testBuilding->SetCameraPosition(cameras[2]->get_global_position());
+	testBuilding->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	testBuilding->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 }
 
 // called every frame (as often as possible)
@@ -193,6 +202,16 @@ void CustomScene3501::create_env_objects() {
 	testEnvObj = memnew(EnvObject);
 	create_and_add_as_child(testEnvObj, "Test EnvObject", true);
 	testEnvObj->SetValues(ENV_OBJECT_SMALL_STAGE, SHAPE_BOX);
+}
+
+// Member function to create building objects
+void CustomScene3501::create_building_objects() {
+	// To be set when more of environment is ready
+
+	// All test stuff
+	testBuilding = memnew(BuildingObj);
+	create_and_add_as_child(testBuilding, "Test Building", true);
+	testBuilding->SetValues(BUILDING_TEST_BUILDING, false);
 }
 
 template <class T>
