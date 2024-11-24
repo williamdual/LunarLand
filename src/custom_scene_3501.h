@@ -41,6 +41,7 @@
 #include "LockoutInteractable.h"
 #include "EnvObject.h"
 #include "BuildingObj.h"
+#include "SkyBox.h"
 
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -59,6 +60,7 @@ namespace godot
 		MeshInstance3D *playerTestObject_ptr;
 		Player* player;
 		GameState gameState;
+		SkyBox* skybox;
 
 		AudioInteractable* testInt;
 

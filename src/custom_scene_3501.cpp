@@ -26,6 +26,11 @@ void CustomScene3501::_enter_tree()
 	if (is_new == true)
 	{
 	}
+
+	// Creating the skybox
+	skybox = memnew(SkyBox);
+	create_and_add_as_child(skybox, "Sky Box", true);
+
 	create_cameras();
 	// create_interactables();
 	// create_env_objects();
