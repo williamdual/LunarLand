@@ -40,7 +40,7 @@ void CustomScene3501::_enter_tree()
 	// When creating this terrain all this code must appear together
 	// hmt = memnew(HeightMapTerrain);
 	// create_and_add_as_child(hmt, "Test Height Map", true);
-	// hmt->SetupHeightMap(MOON, 20.0);
+	// hmt->SetupHeightMap(SAND, 20.0);
 	// hmt->set_scale(Vector3(100.0, 100.0, 100.0));
 	// hmt->set_global_position(Vector3(0,-20,0));
 	// hmt->RegisterCameraTrigs(cam_triggs);
@@ -56,6 +56,7 @@ void CustomScene3501::_ready()
 
 	// set the player's position (the camera)
 	player->set_global_position(Vector3(0.0, -11.5, -20.0f));
+	//player->set_global_position(Vector3(0.0, -7.5, -20.0f));
 	setup_cameras();
 
 	// Setting up the test interactable

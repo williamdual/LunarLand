@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjnsd2nwiwxpp"
-path.s3tc="res://.godot/imported/moon_surface_heightmap.png-81f48a0dce41f990bb8115cfaaf71205.s3tc.ctex"
+uid="uid://cj8yjro1c76pw"
+path.s3tc="res://.godot/imported/sand_texture.jpg-60f9813eef2059513e49ad6e9c3972e3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Terrain/moon_surface_heightmap.png"
-dest_files=["res://.godot/imported/moon_surface_heightmap.png-81f48a0dce41f990bb8115cfaaf71205.s3tc.ctex"]
+source_file="res://Terrain/sand_texture.jpg"
+dest_files=["res://.godot/imported/sand_texture.jpg-60f9813eef2059513e49ad6e9c3972e3.s3tc.ctex"]
 
 [params]
 

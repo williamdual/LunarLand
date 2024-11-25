@@ -70,6 +70,7 @@ void HeightMapTerrain::SetupHeightMap(int type, float max_height) {
 
         // Generating noise based on pixels
         FastNoiseLite noise_gen;
+        srand(time(NULL));
         noise_gen.set_seed(rand() % 100);
         noise_gen.set_noise_type(FastNoiseLite::TYPE_PERLIN);
         noise_gen.set_frequency(0.003);
