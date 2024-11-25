@@ -35,6 +35,18 @@ void CustomScene3501::_enter_tree()
 	// create_interactables();
 	// create_env_objects();
 	create_building_objects();
+
+	// Test terrain
+	// When creating this terrain all this code must appear together
+	// hmt = memnew(HeightMapTerrain);
+	// create_and_add_as_child(hmt, "Test Height Map", true);
+	// hmt->SetupHeightMap(MOON, 20.0);
+	// hmt->set_scale(Vector3(100.0, 100.0, 100.0));
+	// hmt->set_global_position(Vector3(0,-20,0));
+	// hmt->RegisterCameraTrigs(cam_triggs);
+	// hmt->SetCameraPosition(cameras[2]->get_global_position());
+	// hmt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 }
 
 void CustomScene3501::_ready()

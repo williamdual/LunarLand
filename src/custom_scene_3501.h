@@ -42,6 +42,7 @@
 #include "EnvObject.h"
 #include "BuildingObj.h"
 #include "SkyBox.h"
+#include "HeightMapTerrain.h"
 
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -54,13 +55,14 @@ namespace godot
 	private:
 		double time_passed;
 		ColorRect *overscreen;
-		Vector<PlayerCamera *> cameras;
-		Vector<CameraTrigger *> cam_triggs;
+		Vector<PlayerCamera*> cameras;
+		Vector<CameraTrigger*> cam_triggs;
 		Vector<Interactable*> interactables;
 		MeshInstance3D *playerTestObject_ptr;
 		Player* player;
 		GameState gameState;
 		SkyBox* skybox;
+		HeightMapTerrain* hmt;
 
 		AudioInteractable* testInt;
 
