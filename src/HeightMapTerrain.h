@@ -30,6 +30,7 @@ namespace godot {
 // Enum for better control over the type of terrain
 enum TerrainType {
     MOON,
+    SAND,
     TERRAIN_AMOUNT
 };
 
@@ -56,12 +57,14 @@ private:
 
     // Array of texture names
     char* texture_names[TERRAIN_AMOUNT] = {
-        "moon_surface"  // Moon texture designed by Freepik: https://www.freepik.com/free-photo/black-white-details-moon-texture-concept_29662110.htm#fromView=keyword&page=1&position=2&uuid=817eafe0-6585-4bc4-ba7c-eac145809aef&new_detail=true
+        "moon_surface",  // Moon texture designed by Freepik: https://www.freepik.com/free-photo/black-white-details-moon-texture-concept_29662110.htm#fromView=keyword&page=1&position=2&uuid=817eafe0-6585-4bc4-ba7c-eac145809aef&new_detail=true
+        "sand_texture" // Sand texture designed by Freepik: https://www.freepik.com/free-photo/yellow-textured-wall-background-texture_1198462.htm#fromView=keyword&page=1&position=14&uuid=b3a5d0e7-395c-41ca-b51f-492bbf48e2d7&new_detail=true
 	};
 
     // Array of texture formats for each texture file
     char* texture_formats[TERRAIN_AMOUNT] = {
-		".jpg"
+		".jpg",
+        ".jpg"
 	};
     
 protected:
