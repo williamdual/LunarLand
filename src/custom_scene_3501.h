@@ -121,6 +121,11 @@ namespace godot
 		template <class T>
 		bool create_and_add_as_child(T *&pointer, String name, bool search = false);
 
+		// this variant you have probably seen before; it allows you to create a CustomScene3501 will a bit more complex of a hierarchy
+		// we will assume that the node should always be searched for in this variant
+		template <class T>
+		bool create_and_add_as_child_of_parent(T* &pointer, String name, Node* parent);
+
 		// the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 		// search defines whether the scenetree should be checked for an instance
 		// SEE THE .CPP FOR MORE DETAIL ON THIS VARIANT (HINT: It is for pointers which have already been created).

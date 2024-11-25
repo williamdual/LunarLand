@@ -49,6 +49,6 @@ void fragment() {
 		pixel = vec4(grey_scale, grey_scale, grey_scale, 1.0);
 	}
 
-	pixel = textureLod(screen_texture, SCREEN_UV, 0.0);
+	//pixel = textureLod(screen_texture, SCREEN_UV, 0.0);
     ALBEDO = pixel.rgb;
 }
