@@ -57,7 +57,7 @@ void CustomScene3501::_enter_tree()
 	create_building_objects();
 
 	// Testing particle systems
-	// create_particle_system("Blazing Fire", "lonefire");
+	create_particle_system("Blazing Fire", "lonefire");
 
 	// Test terrain
 	// When creating this terrain all this code must appear together
@@ -125,11 +125,11 @@ void CustomScene3501::_ready()
 	testBuilding->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test particles
-	// GPUParticles3D* particle_system = particle_systems[0];
-	// ShaderMaterial* shader_material = dynamic_cast<ShaderMaterial*>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
-	// particle_system->set_amount(20000);
-	// shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
-	// particle_system->set_global_position(Vector3(-70, 0, 0));
+	GPUParticles3D* particle_system = particle_systems[0];
+	ShaderMaterial* shader_material = dynamic_cast<ShaderMaterial*>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
+	particle_system->set_amount(20000);
+	shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
+	particle_system->set_global_position(Vector3(-70, 0, 0));
 }
 
 // called every frame (as often as possible)
