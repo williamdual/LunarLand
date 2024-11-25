@@ -223,6 +223,11 @@ void CustomScene3501::setup_cameras()
 			cam_triggs[i]->set_global_rotation_degrees(Vector3(0, 0, 0));
 		}
 	}
+
+	// Adding static quads
+	// for (int i = 0; i < cameras.size(); i++) {
+	// 	create_and_add_as_child_of_parent(screen_quad_instance, "Static Quad", cameras[i]);
+	// }
 }
 
 // Member function to create interactables
@@ -352,6 +357,25 @@ bool CustomScene3501::add_as_child(T* &pointer, String name, bool search){
 		else{
 			memdelete(pointer);
 		}
+		pointer = dynamic_cast<T*>(child);
+		return false;
+	}
+}
+
+template <class T>
+// returns true if pointer is brand-new; false if retrieved from SceneTree
+// variant allows you to create a child of a node pointer other than 'this'
+bool CustomScene3501::create_and_add_as_child_of_parent(T* &pointer, String name, Node* parent){
+	Node* child = parent->find_child(name);
+	
+	if(child == nullptr){
+		pointer = memnew(T);
+		pointer->set_name(name);
+		parent->add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+	else{
 		pointer = dynamic_cast<T*>(child);
 		return false;
 	}
