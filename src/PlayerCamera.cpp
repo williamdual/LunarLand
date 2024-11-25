@@ -1,4 +1,5 @@
 #include "PlayerCamera.h"
+#include <godot_cpp/classes/resource_loader.hpp>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/classes/mesh.hpp>
 #include <godot_cpp/classes/engine.hpp>
@@ -16,9 +17,7 @@ PlayerCamera::PlayerCamera(float r) : Camera3D()
 	target_ptr = nullptr;
 }
 
-void PlayerCamera::_enter_tree()
-{
-}
+void PlayerCamera::_enter_tree() {}
 
 void PlayerCamera::_ready()
 {
@@ -39,8 +38,11 @@ PlayerCamera::~PlayerCamera()
 
 void PlayerCamera::_process(double delta)
 {
-	if (Engine::get_singleton()->is_editor_hint())
+	if (Engine::get_singleton()->is_editor_hint()) {
 		return; // Early return if we are in editor
+	}
+	
+	time_passed += delta;
 
 	// if we have a target, point at it
 	if (target_ptr == nullptr)

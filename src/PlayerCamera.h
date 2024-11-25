@@ -6,12 +6,17 @@
 #include <godot_cpp/classes/node3d.hpp>
 
 #include <godot_cpp/classes/input.hpp>
+#include <godot_cpp/classes/scene_tree.hpp>
 
 #include <godot_cpp/variant/utility_functions.hpp>
 #include <godot_cpp/variant/vector3.hpp>
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/packed_vector3_array.hpp>
 #include <godot_cpp/variant/quaternion.hpp>
+
+#include <godot_cpp/classes/mesh_instance3d.hpp>
+#include <godot_cpp/classes/shader_material.hpp>
+#include <godot_cpp/classes/quad_mesh.hpp>
 
 #include "defs.h"
 // everything in gdextension is defined in this namespace
@@ -29,6 +34,17 @@ namespace godot
 		Vector3 forward_;
 		Vector3 side_;
 		Node3D *target_ptr;
+
+		// If the screen should glitch
+		float time_passed;
+		bool is_static;
+		float start_static;
+		float end_static;
+		bool current_cam;
+
+		// Values for the screen space effect
+		MeshInstance3D* screen_quad_instance;
+		ShaderMaterial* screen_space_shader_material;
 
 	protected:
 		// a static function that Godot will call to find out which methods can be called and which properties it exposes

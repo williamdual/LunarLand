@@ -43,6 +43,9 @@
 #include "BuildingObj.h"
 #include "SkyBox.h"
 #include "HeightMapTerrain.h"
+#include "particle_system_3501.h"
+
+#define DEBUG true
 
 // everything in gdextension is defined in this namespace
 namespace godot
@@ -58,6 +61,7 @@ namespace godot
 		Vector<PlayerCamera*> cameras;
 		Vector<CameraTrigger*> cam_triggs;
 		Vector<Interactable*> interactables;
+		Vector<ParticleSystem3501*> particle_systems;
 		MeshInstance3D *playerTestObject_ptr;
 		Player* player;
 		GameState gameState;
@@ -73,6 +77,16 @@ namespace godot
 		EnvObject* testEnvObj;
 
 		BuildingObj* testBuilding;
+
+		// If the screen should glitch
+		bool is_static;
+		float start_static;
+		float end_static;
+		bool current_cam;
+
+		// Values for the screen space effect
+		MeshInstance3D* screen_quad_instance;
+		ShaderMaterial* screen_space_shader_material;
 
 		// create and setup the boxes; for this one they don't need to have separate create and setup functions.
 		// This shouldn't be called in the assignment that you hand in. You can choose to delete the code if you want to.
@@ -98,10 +112,19 @@ namespace godot
 		void _enter_tree() override;
 		void _ready() override;
 
+		// Member function that creates a particle system
+		void create_particle_system(String node_name, String shader_name);
+
 		// the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 		// search defines whether the scenetree should be checked for an instance
 		template <class T>
 		bool create_and_add_as_child(T *&pointer, String name, bool search = false);
+
+		// the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
+		// search defines whether the scenetree should be checked for an instance
+		// SEE THE .CPP FOR MORE DETAIL ON THIS VARIANT (HINT: It is for pointers which have already been created).
+		template <class T>
+		bool add_as_child(T* &pointer, String name, bool search = false);
 	};
 
 }
