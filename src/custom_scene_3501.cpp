@@ -44,7 +44,6 @@ void CustomScene3501::_enter_tree()
 	screen_space_shader_material->set_shader(shader);
 	quad_mesh->surface_set_material(0, screen_space_shader_material);
 	screen_quad_instance->set_mesh(quad_mesh);
-	//screen_quad_instance->set_material_override(screen_space_shader_material);
 	screen_quad_instance->set_extra_cull_margin(50.0f); // as suggested in the Godot docs to prevent culling
 	screen_space_shader_material->set_shader_parameter("static", is_static);
 
