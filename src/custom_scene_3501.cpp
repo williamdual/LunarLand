@@ -56,14 +56,14 @@ void CustomScene3501::_enter_tree()
 	// create_env_objects();
 	create_building_objects();
 
-	// Testing particle systems
-	create_particle_system("Blazing Fire", "lonefire");
+	// Testing particle system
+	// create_particle_system("Blazing Fire", "lonefire");
 
 	// Test terrain
 	// When creating this terrain all this code must appear together
 	// hmt = memnew(HeightMapTerrain);
 	// create_and_add_as_child(hmt, "Test Height Map", true);
-	// hmt->SetupHeightMap(MOON, 20.0);
+	// hmt->SetupHeightMap(TERRAIN_MOON, 20.0);
 	// hmt->set_scale(Vector3(100.0, 100.0, 100.0));
 	// hmt->set_global_position(Vector3(0,-20,0));
 	// hmt->RegisterCameraTrigs(cam_triggs);
@@ -125,11 +125,11 @@ void CustomScene3501::_ready()
 	testBuilding->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test particles
-	GPUParticles3D* particle_system = particle_systems[0];
-	ShaderMaterial* shader_material = dynamic_cast<ShaderMaterial*>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
-	particle_system->set_amount(20000);
-	shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
-	particle_system->set_global_position(Vector3(-70, 0, 0));
+	// GPUParticles3D* particle_system = particle_systems[0];
+	// ShaderMaterial* shader_material = dynamic_cast<ShaderMaterial*>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
+	// particle_system->set_amount(20000);
+	// shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
+	// particle_system->set_global_position(Vector3(-70, 0, 0));
 }
 
 // called every frame (as often as possible)
@@ -234,32 +234,31 @@ void CustomScene3501::setup_cameras()
 void CustomScene3501::create_interactables() {
 	// To be set when more of the environment is ready
 
-	// All test stuff
+	// Audio interactable test stuff
 	// testInt = memnew(AudioInteractable);
 	// create_and_add_as_child(testInt, "Test Interactable", true);
 	// testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
-	// testInt->SetAudio(AUDIO_JOE_LAW_JOHNNY);
+	// testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
 
 	// Additional test stuff
 	
-	// testCount = memnew(CounterInteractable);
-	create_and_add_as_child(testCount, "CounterInteractable", true);
-	testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
-	testCount->SetCounter(0);
-	testCount->SetTrigger(15);
+	// create_and_add_as_child(testCount, "CounterInteractable", true);
+	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	// testCount->SetCounter(0);
+	// testCount->SetTrigger(15);
 
-	create_and_add_as_child(testLock1, "NoneLockout", true);
-	testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	// create_and_add_as_child(testLock1, "NoneLockout", true);
+	// testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
 
-	create_and_add_as_child(testLock2, "ItemLockout", true);
-	testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	// create_and_add_as_child(testLock2, "ItemLockout", true);
+	// testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
 
-	Vector<LockoutInteractable*> dependents;
-	dependents.append(testLock1);
-	dependents.append(testLock2);
+	// Vector<LockoutInteractable*> dependents;
+	// dependents.append(testLock1);
+	// dependents.append(testLock2);
 
-	testLock1->SetLockout(ITEM_NONE, testCount, dependents);
-	testLock2->SetLockout(ITEM_PAPERS, testCount, dependents);
+	// testLock1->SetLockout(ITEM_NONE, testCount, dependents);
+	// testLock2->SetLockout(ITEM_PAPERS, testCount, dependents);
 }
 
 // Member function to create environment objects
