@@ -33,11 +33,16 @@ enum AudioFile {
     AUDIO_HOOTENANNY_HARRY,
     AUDIO_PENNY_PINCHER,
     AUDIO_SEBASTIAN_STANZA,
+    AUDIO_BUSY_IZZY,  // Previously just called unnamed character
     AUDIO_TYLER,
     AUDIO_MCNAMRA,
     AUDIO_JOE_LAW_INTRO,
     AUDIO_JOE_LAW_GENERATOR,
     AUDIO_JOE_LAW_JOHNNY,
+    AUDIO_JOE_LAW_BOBO,
+    AUDIO_JOE_LAW_TIMMY,
+    AUDIO_JOHNNY_TIMMY,
+    AUDIO_BOBO_TIMMY,
     NUM_AUDIO_FILES
 };
 
@@ -59,11 +64,16 @@ private:
         "HootenannyHarry",
         "PennyPincher",
         "SebastianStanza",
+        "BusyIzzy",
         "Tyler",
         "McNamra",
         "JoeLawIntro",
         "JoeLawGenerator",
-        "JoeLawJohnnyTheHungry"
+        "JoeLawJohnnyTheHungry",
+        "JoeLawBobo",
+        "JoeLawTimmyTwoJobs",
+        "JohnnyTheHungryTimmyTwoJobs",
+        "BoboTimmyTwoJobs"
 	};
     
 protected:

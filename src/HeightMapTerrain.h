@@ -29,8 +29,8 @@ namespace godot {
 
 // Enum for better control over the type of terrain
 enum TerrainType {
-    MOON,
-    SAND,
+    TERRAIN_MOON,
+    TERRAIN_SAND,
     TERRAIN_AMOUNT
 };
 
