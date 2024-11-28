@@ -32,9 +32,13 @@ enum EnvObjectType {
     ENV_OBJECT_ALIEN,
     ENV_OBJECT_CAFETERIA_TABLE,
     ENV_OBJECT_COMPUTER_TERMINAL,
+    ENV_OBJECT_DART_BOARD,
+    ENV_OBJECT_DARTS,
     ENV_OBJECT_FILE_CABINET,
     ENV_OBJECT_MECHANICAL_BULL,
+    ENV_OBJECT_MENU_BOARD,
     ENV_OBJECT_MICROPHONE,
+    ENV_OBJECT_PASTA_WORD_BIN,
     ENV_OBJECT_SMALL_STAGE,
     ENV_OBJECT_AMOUNT
 };
@@ -71,9 +75,13 @@ private:
         "Alian",
         "CafeteriaTable",
         "ComputerTerminal",
+        "DartBoard",
+        "DartBoardDarts",
 		"FileCabinet",
         "MechanicalBull",
+        "Menu",
         "Microphone",
+        "PastaWordBin",
         "SmallStage"
 	};
 
@@ -82,9 +90,13 @@ private:
         "Alian_Texture",
         "CafeteriaTable_Texture",
         "ComputerTerminal_Texture",
+        "DartBoard_Texture",
+        "DartBoard_Texture",
 		"FileCabinet_Texture",
         "MechanicalBull_Texture",
+        "MenuBoard_Texture",
         "Microphone_Texture",
+        "PastaWordBin_Texture",
         "SmallStage_Texture"
 	};
 
@@ -93,9 +105,13 @@ private:
 		".jpg", // Alien
         ".png", // Caf Table
         ".png", // Computer Terminal
+        ".png", // Dart Board
+        ".png", // Darts
         ".png", // File Cabinet
         ".png", // Mechanical Bull
+        ".png", // Menu Board
         ".jpg", // Microphone
+        ".png", // Pasta Word Bin
         ".png"  // Small Stage
 	};
 
@@ -104,9 +120,13 @@ private:
 		Vector3(0.0, -0.25, 0.2), // Alien
         Vector3(0.0, -1.0, 0.0), // Caf Table
         Vector3(-6.0, -0.4, 0.0), // Computer Terminal
+        Vector3(0.0, 0.0, 0.0), // Dart Board
+        Vector3(0.1, 0.0, -0.5), // Darts
         Vector3(0.0, -1.5, 0.0), // File Cabinet
         Vector3(0.0, -2.3, -1.0), // Mechanical Bull
+        Vector3(0.0, -2.0, 0.0), // Menu Board
         Vector3(0.0, -1.3, 0.0), // Microphone
+        Vector3(0.0, -0.9, 0.0), // Pasta Word Bin
         Vector3(0.0, -0.75, 0.0) // Small Stage
 	};
 
@@ -115,9 +135,13 @@ private:
         0.8, // Alien
         0.7, // Caf Table
         0.7, // Computer Terminal
+        0.8, // Dart Board
+        0.8, // Darts
         0.7, // File Cabinet
         0.8, // Mechanical Bull
+        0.8, // Menu Board
         0.2, // Microphone
+        0.8, // Pasta Word Bin
         0.2 // Small Stage
     };
 
