@@ -29,6 +29,7 @@ namespace godot {
 // Enum for better control over what building object is created
 enum BuildObjType {
     BUILDING_TEST_BUILDING,
+    BUILDING_MAP_BUILDING,
     BUILDING_OBJECT_AMOUNT
 };
 
@@ -60,7 +61,8 @@ private:
 
     // Array of model names
     char* model_names[BUILDING_OBJECT_AMOUNT] = {
-        "BasicTestLevelOpenTop_reexport"
+        "BasicTestLevelOpenTop_reexport",
+        "World_VisualModel"
 	};
 
     // Array of texture names
@@ -75,12 +77,14 @@ private:
 
     // Array of mesh offsets
     Vector3 mesh_offsets[BUILDING_OBJECT_AMOUNT] = {
-		Vector3(0.0, 0.0, 0.0) // Test building
+		Vector3(0.0, 0.0, 0.0), // Test building
+        Vector3(0.0, 0.0, 0.0)  // Map model
 	};
 
     // Values that darken the texture since the loaded texture can often appear faded
     float tex_darken_values[BUILDING_OBJECT_AMOUNT] = {
-        0.8 // Test building
+        0.8, // Test building
+        0.8  // Map model
     };
     
 protected:

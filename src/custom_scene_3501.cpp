@@ -268,7 +268,7 @@ void CustomScene3501::create_env_objects() {
 	// All test stuff
 	testEnvObj = memnew(EnvObject);
 	create_and_add_as_child(testEnvObj, "Test EnvObject", true);
-	testEnvObj->SetValues(ENV_OBJECT_SMALL_STAGE, SHAPE_BOX);
+	testEnvObj->SetValues(ENV_OBJECT_PASTA_WORD_BIN, SHAPE_CYLINDER);
 }
 
 // Member function to create building objects
