@@ -284,11 +284,10 @@ void CustomScene3501::create_interactables()
 
 	// Additional test stuff
 
-	// testCount = memnew(CounterInteractable);
-	create_and_add_as_child(testCount, "CounterInteractable", true);
-	testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
-	testCount->SetCounter(0);
-	testCount->SetTrigger(15);
+	// create_and_add_as_child(testCount, "CounterInteractable", true);
+	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	// testCount->SetCounter(0);
+	// testCount->SetTrigger(15);
 
 	// create_and_add_as_child(testLock1, "NoneLockout", true);
 	// testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
@@ -296,9 +295,9 @@ void CustomScene3501::create_interactables()
 	// create_and_add_as_child(testLock2, "ItemLockout", true);
 	// testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
 
-	Vector<LockoutInteractable *> dependents;
-	dependents.append(testLock1);
-	dependents.append(testLock2);
+	// Vector<LockoutInteractable*> dependents;
+	// dependents.append(testLock1);
+	// dependents.append(testLock2);
 
 	// testLock1->SetLockout(ITEM_NONE, testCount, dependents);
 	// testLock2->SetLockout(ITEM_PAPERS, testCount, dependents);
