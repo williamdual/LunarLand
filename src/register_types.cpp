@@ -14,6 +14,9 @@
 #include "LockoutInteractable.h"
 #include "EnvObject.h"
 #include "BuildingObj.h"
+#include "SkyBox.h"
+#include "HeightMapTerrain.h"
+#include "particle_system_3501.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -41,6 +44,9 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 	ClassDB::register_class<LockoutInteractable>();
 	ClassDB::register_class<EnvObject>();
 	ClassDB::register_class<BuildingObj>();
+	ClassDB::register_class<SkyBox>();
+	ClassDB::register_class<HeightMapTerrain>();
+	ClassDB::register_class<ParticleSystem3501>();
 }
 
 // gets called when godot unloads our plugin

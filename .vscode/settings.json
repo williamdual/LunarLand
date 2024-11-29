@@ -2,6 +2,7 @@
     "cmake.sourceDirectory": "C:/Users/m4s0n/OneDrive/Desktop/Skol_2024_Fall/COMP3501/LunarLand/godot-cpp",
     "cmake.ignoreCMakeListsMissing": true,
     "files.associations": {
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "xstring": "cpp"
     }
 }

@@ -81,23 +81,68 @@ void Player::_process(double delta)
     Input *_input = Input::get_singleton();
     if (_input->is_action_pressed("move_forward") && saved_velocity == Vector3(0, 0, 0))
     {
-        this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed);
+        // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
+        Vector3 prev_pos = this->get_global_position();
+        this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
         this->move_and_slide();
+        // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
+
+        // Making sure the player does not get stuck on terrain
+        if (prev_pos == this->get_global_position())
+        {
+            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
+            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
+            this->move_and_slide();
+            // UtilityFunctions::print(this->get_global_position());
+        }
     }
     if (_input->is_action_pressed("move_backward") && saved_velocity == Vector3(0, 0, 0))
     {
-        this->set_velocity(-1.0 * camera->GetMovementPlaneForward() * moveSpeed);
+        // this->set_global_position(this->get_global_position() - camera->GetMovementPlaneForward() * delta * moveSpeed);
+        Vector3 prev_pos = this->get_global_position();
+        this->set_velocity(-1.0 * camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
         this->move_and_slide();
+
+        // Making sure the player does not get stuck on terrain
+        if (prev_pos == this->get_global_position())
+        {
+            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
+            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
+            this->move_and_slide();
+            // UtilityFunctions::print(this->get_global_position());
+        }
     }
     if (_input->is_action_pressed("move_right") && saved_velocity == Vector3(0, 0, 0))
     {
-        this->set_velocity(camera->GetMovementPlaneSide() * moveSpeed);
+        // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneSide() * delta * moveSpeed);
+        Vector3 prev_pos = this->get_global_position();
+        this->set_velocity(camera->GetMovementPlaneSide() * moveSpeed + Vector3(0.0, -0.5, 0.0));
         this->move_and_slide();
+
+        // Making sure the player does not get stuck on terrain
+        if (prev_pos == this->get_global_position())
+        {
+            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
+            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
+            this->move_and_slide();
+            // UtilityFunctions::print(this->get_global_position());
+        }
     }
     if (_input->is_action_pressed("move_left") && saved_velocity == Vector3(0, 0, 0))
     {
-        this->set_velocity(-1.0 * camera->GetMovementPlaneSide() * moveSpeed);
+        // this->set_global_position(this->get_global_position() - camera->GetMovementPlaneSide() * delta * moveSpeed);
+        Vector3 prev_pos = this->get_global_position();
+        this->set_velocity(-1.0 * camera->GetMovementPlaneSide() * moveSpeed + Vector3(0.0, -0.5, 1.0));
         this->move_and_slide();
+
+        // Making sure the player does not get stuck on terrain
+        if (prev_pos == this->get_global_position())
+        {
+            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
+            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
+            this->move_and_slide();
+            // UtilityFunctions::print(this->get_global_position());
+        }
     }
     if (_input->is_action_just_released("move_forward") || _input->is_action_just_released("move_backward") || _input->is_action_just_released("move_right") || _input->is_action_just_released("move_left"))
     {

@@ -26,7 +26,7 @@ void AudioInteractable::_ready ( ){
     if(DEBUG) UtilityFunctions::print("Ready - AudioInteractable."); 
 }
 
-// Member function that plays an audio clip
+// Member function that plays an audio file
 void AudioInteractable::Interact() {
 
     // Stopping the stream in case it is playing
