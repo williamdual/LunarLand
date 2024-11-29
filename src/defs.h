@@ -20,4 +20,15 @@ enum GameState
     won,
     lost
 };
-#endif // DEFS_H
+enum CameraTrackType
+{
+    tracking,
+    panning,
+    statics
+};
+// enum CameraMoveType
+// {
+//     absalute,
+//     orientation
+// };
+#endif

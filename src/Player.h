@@ -34,16 +34,18 @@ namespace godot
         GDCLASS(Player, CharacterBody3D);
 
     private:
-        MeshInstance3D* mesh_instance;
+        MeshInstance3D *mesh_instance;
         CylinderMesh *mesh;
         StandardMaterial3D *mat;
         Area3D *area;
         CollisionShape3D *collider;
-        CollisionShape3D* surface_collider;
+        CollisionShape3D *surface_collider;
         CylinderShape3D *cylinder_shape;
         PlayerCamera *camera;
-        AudioListener3D* listener;
-        Inventory* inventory;
+        AudioListener3D *listener;
+        Inventory *inventory;
+        Vector3 saved_velocity;
+        float moveSpeed;
 
     protected:
         // a static function that Godot will call to find out which methods can be called and which properties it exposes
@@ -56,13 +58,14 @@ namespace godot
         void _ready() override;
         void _process(double delta) override;
         PlayerCamera *GetCamera();
-        inline Inventory* GetInventory(void) { return inventory; }
+        inline Inventory *GetInventory(void) { return inventory; }
         void SetCamera(PlayerCamera *);
 
         // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
         // search defines whether the scenetree should be checked for an instance
         template <class T>
         bool create_and_add_as_child(T *&pointer, String name, bool search = false);
+        float GetMoveSpeed();
     };
 }
 
