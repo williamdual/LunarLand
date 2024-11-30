@@ -42,7 +42,7 @@ void BuildingObj::RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs) {
 }
 
 // Member function that sets starting values for the building object
-void BuildingObj::SetValues(int building_type, bool is_textured) {
+void BuildingObj::SetValues(int building_type, bool is_textured, bool auto_collision) {
 
     // Setting proper array sizes
     light_positions.resize(32);
@@ -81,8 +81,25 @@ void BuildingObj::SetValues(int building_type, bool is_textured) {
     mat->set_shader_parameter("is_textured", textured);
 
     // Setting hitboxes for map
-    mesh->create_trimesh_collision();
-    //mesh->create_multiple_convex_collisions();
+    if (auto_collision) {
+
+        // Creating a collision mesh based on the building model
+        mesh->create_trimesh_collision();
+
+    } else {
+
+        // Establishing a new model as the basis for the collisions
+        create_and_add_as_child<MeshInstance3D>(col_mesh, "BuildingColMesh", true);
+        Ref<Mesh> col_shape = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", collision_boxes[building_type]), "Mesh");
+        StandardMaterial3D* col_mat = memnew(StandardMaterial3D);
+        col_mat->set_transparency(StandardMaterial3D::TRANSPARENCY_ALPHA);
+        col_mat->set_albedo(Color(1.0, 1.0, 1.0, 0.0));
+        //col_mesh->surface_set_material(0, col_mat);
+        col_mesh->set_mesh(col_shape);
+        col_mesh->set_material_override(col_mat);
+        col_mesh->set_position(col_offsets[building_type]);
+        col_mesh->create_trimesh_collision();
+    }
 }
 
 // Member function that sets a camera position
