@@ -3,6 +3,7 @@
     "cmake.ignoreCMakeListsMissing": true,
     "files.associations": {
         "system_error": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "mascot": "cpp"
     }
 }

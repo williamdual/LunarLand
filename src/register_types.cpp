@@ -17,6 +17,11 @@
 #include "SkyBox.h"
 #include "HeightMapTerrain.h"
 #include "particle_system_3501.h"
+#include "Mascot.h"
+#include "MascotPart.h"
+#include "MascotBody.h"
+#include "MascotArm.h"
+#include "MascotHead.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -47,6 +52,11 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 	ClassDB::register_class<SkyBox>();
 	ClassDB::register_class<HeightMapTerrain>();
 	ClassDB::register_class<ParticleSystem3501>();
+	ClassDB::register_class<Mascot>();
+	ClassDB::register_class<MascotPart>();
+	ClassDB::register_class<MascotBody>();
+	ClassDB::register_class<MascotArm>();
+	ClassDB::register_class<MascotHead>();
 }
 
 // gets called when godot unloads our plugin
