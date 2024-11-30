@@ -322,7 +322,7 @@ void CustomScene3501::create_building_objects()
 	// All test stuff
 	testBuilding = memnew(BuildingObj);
 	create_and_add_as_child(testBuilding, "Test Building", true);
-	testBuilding->SetValues(BUILDING_TEST_BUILDING, false);
+	testBuilding->SetValues(BUILDING_MAP_BUILDING, false, false);
 }
 
 // it felt a bit cleaner in my eyes to bundle this together

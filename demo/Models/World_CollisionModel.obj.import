@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://jwya7afhwbyk"
+path="res://.godot/imported/World_CollisionModel.obj-e0e20c1750cdc8359ecd944141e9adeb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/World_CollisionModel.obj-e0e20c1750cdc8359ecd944141e9adeb.mesh"]
+
+source_file="res://Models/World_CollisionModel.obj"
+dest_files=["res://.godot/imported/World_CollisionModel.obj-e0e20c1750cdc8359ecd944141e9adeb.mesh", "res://.godot/imported/World_CollisionModel.obj-e0e20c1750cdc8359ecd944141e9adeb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
