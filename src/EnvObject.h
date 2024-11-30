@@ -10,6 +10,8 @@
 #include <godot_cpp/classes/collision_shape3d.hpp>
 #include <godot_cpp/classes/static_body3d.hpp>
 #include <godot_cpp/classes/box_shape3d.hpp>
+#include <godot_cpp/classes/box_mesh.hpp>
+#include <godot_cpp/classes/prism_mesh.hpp>
 #include <godot_cpp/classes/cylinder_shape3d.hpp>
 
 #include <godot_cpp/classes/shader_material.hpp>
@@ -41,6 +43,13 @@ enum EnvObjectType {
     ENV_OBJECT_PASTA_WORD_BIN,
     ENV_OBJECT_SMALL_STAGE,
     ENV_OBJECT_AMOUNT
+};
+
+// Enum that contains options for primitive mesh shapes
+enum PrimShapeType {
+    PRIM_BOX,
+    PRIM_TRAPEZOID,
+    PRIM_SIZE
 };
 
 class EnvObject : public StaticBody3D {
@@ -172,6 +181,9 @@ public:
 
     // Member function that sets initial values for the environment object
     void SetValues(int obj_type, int col_type);
+
+    // Setter for more primitive mesh values
+    void SetPrimValues(int prim_type, int col_type);
 
     // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance

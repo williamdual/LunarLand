@@ -92,6 +92,75 @@ void EnvObject::SetValues(int obj_type, int col_type) {
     }
 }
 
+// Member function that sets starting values for the environment object
+void EnvObject::SetPrimValues(int prim_type, int col_type) {
+
+    // Setting proper array sizes
+    light_positions.resize(32);
+    light_colours.resize(32);
+    specular_power.resize(32);
+    num_lights = 0;
+
+    // Setting up shader
+    mat = memnew(ShaderMaterial);
+    Ref<Shader> shader = ResourceLoader::get_singleton()->load(vformat("%s%s.gdshader", "Shaders/", shader_names[0]), "Shader");
+    mat->set_shader(shader);
+
+    // Setting the mesh based on what kind of mesh is desired
+    create_and_add_as_child<MeshInstance3D>(mesh, "EnvObjMesh", true);
+    switch (prim_type) {
+
+        // Box shaped mesh
+        case PRIM_BOX: {
+            BoxMesh* box_mesh = memnew(BoxMesh);
+            box_mesh->surface_set_material(0, mat);
+            mesh->set_mesh(box_mesh);
+            mesh->set_material_override(mat);
+            break;
+        }
+
+        // Trapezoid prism shaped mesh
+        case PRIM_TRAPEZOID: {
+            PrismMesh* prism_mesh = memnew(PrismMesh);
+            prism_mesh->surface_set_material(0, mat);
+            mesh->set_mesh(prism_mesh);
+            mesh->set_material_override(mat);
+            break;
+        }
+
+        default:
+            break;
+    }
+
+    // Setting the texture
+    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s%s", "Textures/", texture_names[ENV_OBJECT_ALIEN], texture_formats[ENV_OBJECT_ALIEN]), "CompressedTexture2D");
+    mat->set_shader_parameter("sampler", texture);
+
+    // Setting the darking value for the texture
+    mat->set_shader_parameter("darkening_val", tex_darken_values[ENV_OBJECT_ALIEN]);
+
+    // Seeing if the object already has a collision shape
+    if (find_child("CollisionShape") == NULL) {
+        has_col_shape = false;
+    } else {
+        return;
+    }
+
+    // Seeing what type of collision to make
+    switch(col_type) {
+        case SHAPE_NONE:
+            break;
+        case SHAPE_BOX:
+            SetHitBox();
+            break;
+        case SHAPE_CYLINDER:
+            SetHitCylinder();
+            break;
+        default:
+            break;
+    }
+}
+
 // This member function creates a hitbox
 void EnvObject::SetHitBox() {
 

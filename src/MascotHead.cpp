@@ -17,15 +17,7 @@ MascotHead::~MascotHead(){
 
 void MascotHead::_enter_tree ( ) {
     if(DEBUG) UtilityFunctions::print("Enter Tree - MascotHead");
-    // Setup Base Geometry using SphereMesh
-    // SphereMesh* sphere = memnew(SphereMesh);
-    // sphere->set_radius(HEAD_RAD);
-    // sphere->set_height(HEAD_HEIGHT);
-    // StandardMaterial3D* sphere_material = memnew(StandardMaterial3D);
-    // sphere_material->set_albedo(Color(0.9961, 0.4412, 0.0942, 1.0));
-    // sphere->surface_set_material(0, sphere_material);
-
-    // set_mesh(sphere);
+    
 }
 
 void MascotHead::_process(double delta){
