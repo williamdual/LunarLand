@@ -11,7 +11,7 @@
 #include <godot_cpp/classes/static_body3d.hpp>
 #include <godot_cpp/classes/box_shape3d.hpp>
 #include <godot_cpp/classes/box_mesh.hpp>
-#include <godot_cpp/classes/prism_mesh.hpp>
+#include <godot_cpp/classes/capsule_mesh.hpp>
 #include <godot_cpp/classes/cylinder_shape3d.hpp>
 
 #include <godot_cpp/classes/shader_material.hpp>
@@ -48,7 +48,7 @@ enum EnvObjectType {
 // Enum that contains options for primitive mesh shapes
 enum PrimShapeType {
     PRIM_BOX,
-    PRIM_TRAPEZOID,
+    PRIM_CAPSULE,
     PRIM_SIZE
 };
 

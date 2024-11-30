@@ -120,10 +120,10 @@ void EnvObject::SetPrimValues(int prim_type, int col_type) {
         }
 
         // Trapezoid prism shaped mesh
-        case PRIM_TRAPEZOID: {
-            PrismMesh* prism_mesh = memnew(PrismMesh);
-            prism_mesh->surface_set_material(0, mat);
-            mesh->set_mesh(prism_mesh);
+        case PRIM_CAPSULE: {
+            CapsuleMesh* capsule_mesh = memnew(CapsuleMesh);
+            capsule_mesh->surface_set_material(0, mat);
+            mesh->set_mesh(capsule_mesh);
             mesh->set_material_override(mat);
             break;
         }
