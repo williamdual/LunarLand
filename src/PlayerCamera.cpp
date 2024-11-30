@@ -54,7 +54,7 @@ void PlayerCamera::_process(double delta)
 	}
 	else if (is_current() && track_type == CameraTrackType::panning)
 	{
-		Vector3 forward = GetMovementPlaneForward() * -1.0f; // TODO shouldnt work but seems to?
+		Vector3 forward = GetMovementPlaneForward();
 		Vector3 move_right = GetMovementPlaneSide();
 		Vector3 move_left = GetMovementPlaneSide() * -1.0f;
 		Vector3 to_player = (target_ptr->get_global_position() - this->get_global_position()).normalized();
@@ -76,13 +76,13 @@ void PlayerCamera::_process(double delta)
 
 Vector3 PlayerCamera::GetForward(void) const // TODO figure out why this doesnt work right (for cam 3)
 {
-	Vector3 current_forward = (get_quaternion().xform(forward_));
+	Vector3 current_forward = (get_quaternion().xform(forward_.rotated(Vector3(0, 1, 0), get_rotation().y)));
 	return -current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
 }
 
 Vector3 PlayerCamera::GetSide(void) const
 {
-	Vector3 current_side = (get_quaternion().xform(side_));
+	Vector3 current_side = (get_quaternion().xform(side_.rotated(Vector3(0, 1, 0), get_rotation().y)));
 	return current_side;
 }
 

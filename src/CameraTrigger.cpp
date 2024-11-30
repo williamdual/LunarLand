@@ -42,11 +42,11 @@ void CameraTrigger::_enter_tree()
 
 void CameraTrigger::Collision(Area3D *area_that_entered)
 {
-    UtilityFunctions::print("HELLOOOO");
-    UtilityFunctions::print(this->get_name());
-    UtilityFunctions::print(area_that_entered->get_parent()->get_name());
-    UtilityFunctions::print(player == nullptr);
-    UtilityFunctions::print(target_cam == nullptr);
+    // UtilityFunctions::print("HELLOOOO");
+    // UtilityFunctions::print(this->get_name());
+    // UtilityFunctions::print(area_that_entered->get_parent()->get_name());
+    // UtilityFunctions::print(player == nullptr);
+    // UtilityFunctions::print(target_cam == nullptr);
     if (area_that_entered->get_parent()->get_name() == player->get_name() && target_cam->is_current() == false)
     {
         UtilityFunctions::print(target_cam->get_name());
