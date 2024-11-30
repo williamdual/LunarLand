@@ -28,7 +28,7 @@ void Mascot::_enter_tree ( ){
 	//body->set_parent(spring_loops[spring_loops.size() - 1]);
 
     // Setting the primitive values of the body
-    body->SetPrimValues(PRIM_BOX, SHAPE_BOX);
+    body->SetPrimValues(PRIM_CAPSULE, SHAPE_CYLINDER);
 }
 
 void Mascot::_ready(){
