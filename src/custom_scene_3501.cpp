@@ -264,11 +264,6 @@ void CustomScene3501::setup_cameras()
 			cam_triggs[i]->set_global_rotation_degrees(Vector3(0, 0, 0));
 		}
 	}
-
-	// Adding static quads
-	// for (int i = 0; i < cameras.size(); i++) {
-	// 	create_and_add_as_child_of_parent(screen_quad_instance, "Static Quad", cameras[i]);
-	// }
 }
 
 // Member function to create interactables
