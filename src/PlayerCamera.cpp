@@ -8,11 +8,10 @@ using namespace godot;
 
 void PlayerCamera::_bind_methods() {}
 
-PlayerCamera::PlayerCamera(float r) : Camera3D()
+PlayerCamera::PlayerCamera() : Camera3D()
 {
 	// Initialize any variables here.
 	our_quaternion = Quaternion(Vector3(0, 0, 1), 0.0f);
-	radius = r;
 	target_ptr = nullptr;
 }
 
@@ -74,19 +73,28 @@ void PlayerCamera::_process(double delta)
 	// if its static then do nothing
 }
 
-Vector3 PlayerCamera::GetForward(void) const // TODO figure out why this doesnt work right (for cam 3)
+Vector3 PlayerCamera::GetForward(void) // TODO figure out why this doesnt work right (for cam 3)
 {
-	Vector3 current_forward = (get_quaternion().xform(forward_.rotated(Vector3(0, 1, 0), get_rotation().y)));
+	Vector3 current_forward = Vector3(0, 0, 0);
+	if (track_type == CameraTrackType::tracking)
+		current_forward = (get_quaternion().xform(forward_));
+	else
+		current_forward = (get_quaternion().xform(forward_.rotated(Vector3(0, 1, 0), get_rotation().y)));
+
 	return -current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
 }
 
-Vector3 PlayerCamera::GetSide(void) const
+Vector3 PlayerCamera::GetSide(void)
 {
-	Vector3 current_side = (get_quaternion().xform(side_.rotated(Vector3(0, 1, 0), get_rotation().y)));
+	Vector3 current_side = Vector3(0, 0, 0);
+	if (track_type == CameraTrackType::tracking)
+		current_side = (get_quaternion().xform(side_));
+	else
+		current_side = (get_quaternion().xform(side_.rotated(Vector3(0, 1, 0), get_rotation().y)));
 	return current_side;
 }
 
-Vector3 PlayerCamera::GetUp(void) const
+Vector3 PlayerCamera::GetUp(void)
 {
 	// how do you get the up vector?
 	Vector3 current_up = vec3_cross(GetSide(), GetForward());

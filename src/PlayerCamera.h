@@ -26,7 +26,9 @@ namespace godot
 		// this one is the one we will use to transform our side, up and forward vectors for the GetX functions.
 		// why would it be a bad idea to transform by the built-in quaternion?
 		Quaternion our_quaternion;
+		Transform3D aim;
 		Vector3 forward_;
+		Vector3 local_forward;
 		Vector3 side_;
 		Node3D *target_ptr;
 		// CameraMoveType move_type;
@@ -39,15 +41,14 @@ namespace godot
 		static void _bind_methods();
 
 	public:
-		PlayerCamera(float = 1.0f);
+		PlayerCamera();
 		~PlayerCamera();
-		float radius;
 		void _enter_tree() override;
 		void _ready() override;
 		void _process(double delta) override;
-		Vector3 GetForward() const;
-		Vector3 GetUp() const;
-		Vector3 GetSide() const;
+		Vector3 GetForward();
+		Vector3 GetUp();
+		Vector3 GetSide();
 		Vector3 GetMovementPlaneForward();
 		Vector3 GetMovementPlaneSide();
 		void SetTarget(Node3D *newTarget_ptr);
