@@ -63,6 +63,12 @@ public:
     // Member function that registers camera triggers for signal purposes
     void RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs);
 
+    // Setting the mascot's position
+    void SetPosition(Vector3 pos);
+
+    // Setting the mascot's rotation
+    void SetRotation(Vector3 rot);
+
 	// the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance
 	template <class T>

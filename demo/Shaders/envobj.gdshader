@@ -63,4 +63,5 @@ void fragment() {
 	
 	// Applying the final light colour
 	ALBEDO = final_light.xyz;
+	//ALBEDO = vec3(1.0, 0.0, 1.0);
 }

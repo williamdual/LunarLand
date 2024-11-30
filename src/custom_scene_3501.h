@@ -69,6 +69,7 @@ namespace godot
 		GameState gameState;
 		SkyBox* skybox;
 		HeightMapTerrain* hmt;
+		Mascot* mascot;
 
 		AudioInteractable* testInt;
 

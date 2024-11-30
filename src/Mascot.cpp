@@ -21,8 +21,14 @@ Mascot::~Mascot() {
 void Mascot::_enter_tree ( ){
 	if(DEBUG) UtilityFunctions::print("Entering Tree - Mascot.");
 
+    // Creating each of the body parts
+    create_and_add_as_child<MascotBody>(body, "MascotBody", true);
+
 	// The last (highest) spring loop is the parent of the body
 	//body->set_parent(spring_loops[spring_loops.size() - 1]);
+
+    // Setting the primitive values of the body
+    body->SetPrimValues(PRIM_BOX, SHAPE_BOX);
 }
 
 void Mascot::_ready(){
@@ -41,6 +47,33 @@ void Mascot::_ready(){
 
 void Mascot::_process(double delta){
     if (Engine::get_singleton()->is_editor_hint()) return; // Early return if we are in editor
+}
+
+// Member function that adds a light to the environment object
+void Mascot::AddLight(Vector3 light_pos, Vector3 light_col, int spec_power) {
+    body->AddLight(light_pos, light_col, spec_power);
+}
+
+// Member function that updates the view position for the environment object
+void Mascot::SetCameraPosition(Vector3 camera_pos) {
+    body->SetCameraPosition(camera_pos);
+}
+
+// Member function that registers camera triggers for signal purposes
+void Mascot::RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs) {
+    body->RegisterCameraTrigs(cam_trigs);
+}
+
+// Member function that sets global position
+void Mascot::SetPosition(Vector3 pos) {
+    this->set_global_position(pos);
+    body->set_local_position(pos);
+}
+
+// Member function that sets the global rotation
+void Mascot::SetRotation(Vector3 rot) {
+    this->set_global_rotation(rot);
+    body->set_local_rotation(rot);
 }
 
 template <class T>
