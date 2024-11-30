@@ -32,9 +32,9 @@ void CustomScene3501::_enter_tree()
 
 	// screen quad is a child of the camera so that it will follow it around (even though the shader positions it into clip space, this can prevent culling)
 	create_and_add_as_child<MeshInstance3D>(screen_quad_instance, "Static Quad", true);
-	
+
 	// Setup the screen-space shader
-	QuadMesh* quad_mesh = memnew(QuadMesh); 
+	QuadMesh *quad_mesh = memnew(QuadMesh);
 	quad_mesh->set_size(Vector2(2, 2)); // this will cover the whole screen
 	quad_mesh->set_flip_faces(true);
 
@@ -143,14 +143,18 @@ void CustomScene3501::_process(double delta)
 	time_passed += delta;
 
 	// Seeing whether or not to apply the camera glitch effect
-	if (time_passed > start_static && time_passed < end_static) {
+	if (time_passed > start_static && time_passed < end_static)
+	{
 		screen_space_shader_material->set_shader_parameter("static", true);
-	} else {
+	}
+	else
+	{
 		screen_space_shader_material->set_shader_parameter("static", false);
 	}
 
 	// Setting a new time for the glitch effect
-	if (time_passed > start_static && time_passed > end_static) {
+	if (time_passed > start_static && time_passed > end_static)
+	{
 		start_static = time_passed + 10.0 + rand() % 10;
 		end_static = start_static + 1.0;
 	}
@@ -159,31 +163,47 @@ void CustomScene3501::_process(double delta)
 void CustomScene3501::create_cameras()
 {
 	PlayerCamera *cam_1;
-	create_and_add_as_child<PlayerCamera>(cam_1, "Absalute Camera", true);
+	create_and_add_as_child<PlayerCamera>(cam_1, "Static Camera", true);
 	cam_1->set_global_position(Vector3(0.0, 0.0, 0.0f));
+	cam_1->set_rotation_degrees(Vector3(-40.0f, 0.0f, 0.0f));
 	cam_1->SetTarget(player);
+	cam_1->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_1;
 	create_and_add_as_child<CameraTrigger>(trigg_1, "cam_1_trigg_1", true);
+	CameraTrigger *trigg_2;
+	create_and_add_as_child<CameraTrigger>(trigg_2, "cam_1_trigg_2", true);
 
 	PlayerCamera *cam_2;
-	create_and_add_as_child<PlayerCamera>(cam_2, "Pans Camera", true);
-	cam_2->set_global_position(Vector3(7.2f, -10.6, -24.5f));
+	create_and_add_as_child<PlayerCamera>(cam_2, "Panning Camera", true);
+	cam_2->set_global_position(Vector3(8.5f, -10.6, -24.5f));
 	cam_2->set_rotation_degrees(Vector3(-0.0f, 180.0f, 0.0f));
 	cam_2->SetTarget(player);
+	cam_2->SetTrackType(CameraTrackType::panning);
+	CameraTrigger *trigg_3;
+	create_and_add_as_child<CameraTrigger>(trigg_3, "cam_2_trigg_1", true);
+	CameraTrigger *trigg_4;
+	create_and_add_as_child<CameraTrigger>(trigg_4, "cam_2_trigg_2", true);
 
 	PlayerCamera *cam_3;
-	create_and_add_as_child<PlayerCamera>(cam_3, "Stiff Camera", true);
+	create_and_add_as_child<PlayerCamera>(cam_3, "Tracking Camera", true);
 	cam_3->set_global_position(Vector3(20.5f, 0.0, 0.0f));
-	cam_3->set_rotation_degrees(Vector3(-23.0f, 46.0f, 0.0f));
+	cam_3->set_rotation_degrees(Vector3(-23.0f, 0.0f, 0.0f)); // DO NOT SET X OR Z ROTATION (BAD THINGS WILL HAPPEN)
 	cam_3->SetTarget(player);
-	CameraTrigger *trigg_3;
-	create_and_add_as_child<CameraTrigger>(trigg_3, "cam_3_trigg_1", true);
+	cam_3->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_5;
+	create_and_add_as_child<CameraTrigger>(trigg_5, "cam_3_trigg_1", true);
+	CameraTrigger *trigg_6;
+	create_and_add_as_child<CameraTrigger>(trigg_6, "cam_3_trigg_2", true);
 
 	cameras.append(cam_1);
 	cameras.append(cam_2);
 	cameras.append(cam_3);
 	cam_triggs.append(trigg_1);
+	cam_triggs.append(trigg_2);
 	cam_triggs.append(trigg_3);
+	cam_triggs.append(trigg_4);
+	cam_triggs.append(trigg_5);
+	cam_triggs.append(trigg_6);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -208,17 +228,38 @@ void CustomScene3501::setup_cameras()
 			re_parent<Node, CameraTrigger>(trigg_ref_group, cam_triggs[i]);
 			cam_triggs[i]->_ready();
 			cam_triggs[i]->SetPlayer(player);
-			if (i == 0)
+			cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f)); // default, can change per collider if desired
+			if (i == 0)															 // Static Cam
 			{
 				cam_triggs[i]->set_global_position(Vector3(5.0f, -12.0f, -6.0f));
 				cam_triggs[i]->SetCamera(cameras[0]);
-				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f));
 			}
-			else if (i == 1) // TODO change to approprite number later
+			if (i == 1)
+			{
+				cam_triggs[i]->set_global_position(Vector3(5.5f, -11.11f, -22.7f));
+				cam_triggs[i]->SetCamera(cameras[0]);
+			}
+			else if (i == 2) // panning cam
+			{
+				cam_triggs[i]->set_global_position(Vector3(8.0f, -11.11f, -22.7f));
+				cam_triggs[i]->SetCamera(cameras[1]);
+			}
+			else if (i == 3)
+			{
+				cam_triggs[i]->set_global_position(Vector3(19.5f, -11.15f, -15.7f));
+				cam_triggs[i]->set_rotation_degrees(Vector3(0, 90.0f, 0)); // TODO FIND OUT WHY THE ROTATION DOESNT WORK
+				cam_triggs[i]->SetCamera(cameras[1]);
+			}
+			else if (i == 4) // Tracking Cam
 			{
 				cam_triggs[i]->set_global_position(Vector3(8.5f, -11.11f, -5.5f));
 				cam_triggs[i]->SetCamera(cameras[2]);
-				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f));
+			}
+			else if (i == 5)
+			{
+				cam_triggs[i]->set_global_position(Vector3(19.5f, -11.15f, -11.5f));
+				cam_triggs[i]->set_rotation_degrees(Vector3(0, 90.0f, 0));
+				cam_triggs[i]->SetCamera(cameras[2]);
 			}
 			cam_triggs[i]->set_global_rotation_degrees(Vector3(0, 0, 0));
 		}
@@ -231,7 +272,8 @@ void CustomScene3501::setup_cameras()
 }
 
 // Member function to create interactables
-void CustomScene3501::create_interactables() {
+void CustomScene3501::create_interactables()
+{
 	// To be set when more of the environment is ready
 
 	// Audio interactable test stuff
@@ -241,7 +283,7 @@ void CustomScene3501::create_interactables() {
 	// testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
 
 	// Additional test stuff
-	
+
 	// create_and_add_as_child(testCount, "CounterInteractable", true);
 	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
 	// testCount->SetCounter(0);
@@ -262,7 +304,8 @@ void CustomScene3501::create_interactables() {
 }
 
 // Member function to create environment objects
-void CustomScene3501::create_env_objects() {
+void CustomScene3501::create_env_objects()
+{
 	// To be set when more of environment is ready
 
 	// All test stuff
@@ -272,7 +315,8 @@ void CustomScene3501::create_env_objects() {
 }
 
 // Member function to create building objects
-void CustomScene3501::create_building_objects() {
+void CustomScene3501::create_building_objects()
+{
 	// To be set when more of environment is ready
 
 	// All test stuff
@@ -283,10 +327,11 @@ void CustomScene3501::create_building_objects() {
 
 // it felt a bit cleaner in my eyes to bundle this together
 // not full file name for the shader; see the particle system code for more detail
-void CustomScene3501::create_particle_system(String node_name, String shader_name){
+void CustomScene3501::create_particle_system(String node_name, String shader_name)
+{
 	// if you want to use non-zero argument constructors, here is an example of how to do that
-	ParticleSystem3501* system = memnew(ParticleSystem3501(shader_name));
-	add_as_child(system, node_name, true); 
+	ParticleSystem3501 *system = memnew(ParticleSystem3501(shader_name));
+	add_as_child(system, node_name, true);
 	particle_systems.push_back(system);
 }
 
@@ -328,10 +373,12 @@ bool CustomScene3501::create_and_add_as_child(T *&pointer, String name, bool sea
 // deletes the memory if the node exists in the scenetree and isn't null when passed in
 // IMPORTANT: IF SEARCH IS FALSE, IT ASSUMES THAT THE POINTER IS TO A VALID INSTANCE ALREADY AKA MEMNEW HAS ALREADY BEEN CALLED
 template <class T>
-bool CustomScene3501::add_as_child(T* &pointer, String name, bool search){
+bool CustomScene3501::add_as_child(T *&pointer, String name, bool search)
+{
 	// this is the default behaviour
 	// added the search parameter so that we can skip the slow "find_child" call during runtime
-	if(search == false){
+	if (search == false)
+	{
 		pointer->set_name(name);
 		add_child(pointer);
 		pointer->set_owner(get_tree()->get_edited_scene_root());
@@ -339,24 +386,28 @@ bool CustomScene3501::add_as_child(T* &pointer, String name, bool search){
 	}
 
 	// always only have to search once if we save it here
-	Node* child = find_child(name);
-	
+	Node *child = find_child(name);
+
 	// if the node hasn't been added to the SceneTree yet
-	if(child == nullptr){
+	if (child == nullptr)
+	{
 		pointer->set_name(name);
 		add_child(pointer);
 		pointer->set_owner(get_tree()->get_edited_scene_root());
 		return true;
 	}
 	// if we are grabbing the existent one, clean up the memory to the new one that was just made and passed as an argument
-	else{
-		if(pointer == nullptr){
+	else
+	{
+		if (pointer == nullptr)
+		{
 			UtilityFunctions::print("There is a nullptr being passed to add_as_child...");
 		}
-		else{
+		else
+		{
 			memdelete(pointer);
 		}
-		pointer = dynamic_cast<T*>(child);
+		pointer = dynamic_cast<T *>(child);
 		return false;
 	}
 }
@@ -364,18 +415,21 @@ bool CustomScene3501::add_as_child(T* &pointer, String name, bool search){
 template <class T>
 // returns true if pointer is brand-new; false if retrieved from SceneTree
 // variant allows you to create a child of a node pointer other than 'this'
-bool CustomScene3501::create_and_add_as_child_of_parent(T* &pointer, String name, Node* parent){
-	Node* child = parent->find_child(name);
-	
-	if(child == nullptr){
+bool CustomScene3501::create_and_add_as_child_of_parent(T *&pointer, String name, Node *parent)
+{
+	Node *child = parent->find_child(name);
+
+	if (child == nullptr)
+	{
 		pointer = memnew(T);
 		pointer->set_name(name);
 		parent->add_child(pointer);
 		pointer->set_owner(get_tree()->get_edited_scene_root());
 		return true;
 	}
-	else{
-		pointer = dynamic_cast<T*>(child);
+	else
+	{
+		pointer = dynamic_cast<T *>(child);
 		return false;
 	}
 }

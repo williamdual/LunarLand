@@ -30,6 +30,8 @@ void PlayerCamera::_ready()
 	forward_ = Vector3(get_global_transform().basis[0][2], get_global_transform().basis[1][2], get_global_transform().basis[2][2]);
 	side_ = Vector3(get_global_transform().basis[0][0], get_global_transform().basis[1][0], get_global_transform().basis[2][0]);
 	// do not save _up as a member -- derive it. You will get a bad grade if you add it as a member variable like these two are.
+	moveSpeed = 10.0f;
+	cam_err = 0.5f;
 }
 
 PlayerCamera::~PlayerCamera()
@@ -46,17 +48,33 @@ void PlayerCamera::_process(double delta)
 	if (target_ptr == nullptr)
 	{
 	}
-	else if (is_current())
+	else if (is_current() && track_type == CameraTrackType::tracking)
 	{
 		this->look_at(target_ptr->get_global_position());
 	}
-
-	// if (target_ptr != nullptr && is_current())
-	// {
-	// }
+	else if (is_current() && track_type == CameraTrackType::panning)
+	{
+		Vector3 forward = GetMovementPlaneForward() * -1.0f; // TODO shouldnt work but seems to?
+		Vector3 move_right = GetMovementPlaneSide();
+		Vector3 move_left = GetMovementPlaneSide() * -1.0f;
+		Vector3 to_player = (target_ptr->get_global_position() - this->get_global_position()).normalized();
+		if (forward.distance_to(to_player) < cam_err) // if player is very close to the center of our screen
+		{
+			// DO NOTHING, WE ALL GOOD
+		}
+		else if (move_right.distance_to(to_player) < move_left.distance_to(to_player)) // if player is on our right hand side
+		{
+			this->set_global_position(this->get_global_position() + move_right * moveSpeed * delta);
+		}
+		else // if player is on our left hand side
+		{
+			this->set_global_position(this->get_global_position() + move_left * moveSpeed * delta);
+		}
+	}
+	// if its static then do nothing
 }
 
-Vector3 PlayerCamera::GetForward(void) const
+Vector3 PlayerCamera::GetForward(void) const // TODO figure out why this doesnt work right (for cam 3)
 {
 	Vector3 current_forward = (get_quaternion().xform(forward_));
 	return -current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
@@ -95,3 +113,23 @@ void godot::PlayerCamera::SetTarget(Node3D *newTarget_ptr)
 {
 	this->target_ptr = newTarget_ptr;
 }
+
+void godot::PlayerCamera::SetTrackType(CameraTrackType tt)
+{
+	track_type = tt;
+}
+
+CameraTrackType godot::PlayerCamera::GetTrackType()
+{
+	return track_type;
+}
+
+// void godot::PlayerCamera::SetType(CameraMoveType mt, CameraTrackType tt)
+// {
+// 	move_type = mt;
+// 	track_type = tt;
+// }
+// CameraMoveType godot::PlayerCamera::GetMoveType()
+// {
+// 	return move_type;
+// }
