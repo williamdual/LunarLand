@@ -45,6 +45,7 @@
 #include "SkyBox.h"
 #include "HeightMapTerrain.h"
 #include "particle_system_3501.h"
+#include "Mascot.h"
 
 #define DEBUG true
 

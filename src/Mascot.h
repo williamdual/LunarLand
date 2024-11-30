@@ -13,6 +13,9 @@
 #include <godot_cpp/variant/transform3d.hpp>
 
 #include "MascotPart.h"
+#include "MascotBody.h"
+#include "MascotArm.h"
+#include "MascotHead.h"
 #include "particle_system_3501.h"
 
 #define DEBUG true
@@ -26,6 +29,18 @@ class Mascot : public Node3D {
 
 private:
 
+    // Body parts of the mascot
+    MascotBody* body;
+    MascotHead* head;
+    MascotArm* upper_upper_left;
+    MascotArm* upper_lower_left;
+    MascotArm* upper_upper_right;
+    MascotArm* upper_lower_right;
+    MascotArm* lower_upper_left;
+    MascotArm* lower_lower_left;
+    MascotArm* lower_upper_right;
+    MascotArm* lower_lower_right;
+
 protected:
     // a static function that Godot will call to find out which methods can be called and which properties it exposes
 	static void _bind_methods();
@@ -38,6 +53,15 @@ public:
 	void _enter_tree ( ) override;
 	void _ready ( ) override;
 	void _process (double delta);
+
+    // Member function that adds a light to the environment object
+    void AddLight(Vector3 light_pos, Vector3 light_col, int spec_power);
+
+    // Member function that updates the view position for the environment object
+    void SetCameraPosition(Vector3 camera_pos);
+
+    // Member function that registers camera triggers for signal purposes
+    void RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs);
 
 	// the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance
