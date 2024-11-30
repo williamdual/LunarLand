@@ -70,6 +70,9 @@ void CustomScene3501::_enter_tree()
 	// hmt->SetCameraPosition(cameras[2]->get_global_position());
 	// hmt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+
+	// Creating the mascot
+	create_and_add_as_child(mascot, "Mascot", true);
 }
 
 void CustomScene3501::_ready()
@@ -130,6 +133,14 @@ void CustomScene3501::_ready()
 	// particle_system->set_amount(20000);
 	// shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
 	// particle_system->set_global_position(Vector3(-70, 0, 0));
+
+	// Setting up the mascot
+	mascot->SetPosition(Vector3(3.0, -11.0, -15.0f));
+	mascot->SetRotation(Vector3(0.0, 0.785398, 0.0));
+	mascot->RegisterCameraTrigs(cam_triggs);
+	mascot->SetCameraPosition(cameras[2]->get_global_position());
+	mascot->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	mascot->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 }
 
 // called every frame (as often as possible)
@@ -306,7 +317,7 @@ void CustomScene3501::create_env_objects()
 	// All test stuff
 	testEnvObj = memnew(EnvObject);
 	create_and_add_as_child(testEnvObj, "Test EnvObject", true);
-	testEnvObj->SetValues(ENV_OBJECT_PASTA_WORD_BIN, SHAPE_CYLINDER);
+	testEnvObj->SetValues(ENV_OBJECT_ALIEN, SHAPE_BOX);
 }
 
 // Member function to create building objects

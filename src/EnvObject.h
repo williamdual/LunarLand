@@ -59,20 +59,12 @@ private:
     double time_passed; // maybe you don't need this, just an example
 
     // Shader and shader material material for environment object
-    ShaderMaterial* mat;
     Texture2D* tex;
     MeshInstance3D* mesh;
 
     // Collision values for the environment object
     bool has_col_shape;
     CollisionShape3D* hit_shape;
-
-    // Vectors for light and camera positions and colours as well as the number of lights
-    int num_lights;
-    TypedArray<Vector3> light_positions;
-    TypedArray<Vector3> light_colours;
-    TypedArray<int> specular_power;
-    Vector3 camera_position;
 
     // Array of shader names
     char* shader_names[ENV_OBJECT_AMOUNT] = {
@@ -162,6 +154,16 @@ private:
     
 protected:
     static void _bind_methods();
+
+    // Shader material
+    ShaderMaterial* mat;
+
+    // Vectors for light and camera positions and colours as well as the number of lights
+    int num_lights;
+    TypedArray<Vector3> light_positions;
+    TypedArray<Vector3> light_colours;
+    TypedArray<int> specular_power;
+    Vector3 camera_position;
 
 public:
     EnvObject();
