@@ -30,6 +30,7 @@ void Mascot::_enter_tree ( ){
     create_and_add_as_child<MascotArm>(upper_right, "UpperRightArm", true);
     create_and_add_as_child<MascotArm>(lower_left, "LowerLeftArm", true);
     create_and_add_as_child<MascotArm>(lower_right, "LowerRightArm", true);
+    create_particle_system("Repulsors", "hover");
 
 	// The last (highest) spring loop is the parent of the body
 	//body->set_parent(spring_loops[spring_loops.size() - 1]);
@@ -82,6 +83,14 @@ void Mascot::_ready(){
 	lower_left->set_joint_position(Vector3(0.0, 0.5, 0.0));
 	lower_left->set_orbit_rotation(Quaternion(0.0, 0.0, -0.25, 1.0));
 	lower_left->set_global_transform(lower_left->get_transformation_matrix_without_scaling());
+
+    // Setting up particle system
+    GPUParticles3D* particle_system = particle_systems[0];
+	ShaderMaterial* shader_material = dynamic_cast<ShaderMaterial*>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
+	particle_system->set_amount(20000);
+	shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
+    particle_system->set_scale(Vector3(0.1, 0.1, 0.1));
+	particle_system->set_global_position(body->get_local_position() - Vector3(0.0, 1.5, 0.0));
 }
 
 void Mascot::_process(double delta){
@@ -92,6 +101,9 @@ void Mascot::_process(double delta){
 
     // Waving the arm
     upper_right->set_orbit_rotation(Quaternion(0.0, 0.0, 0.8 * sin(2.0 * time_passed) - 1.5, 1.0));
+
+    // Adjusting particle system position
+    particle_systems[0]->set_global_position(body->get_local_position() - Vector3(0.0, 1.5, 0.0));
 }
 
 // Member function that adds a light to the environment object
@@ -134,6 +146,16 @@ void Mascot::SetPosition(Vector3 pos) {
 void Mascot::SetRotation(Vector3 rot) {
     this->set_global_rotation(rot);
     body->set_local_rotation(rot);
+}
+
+// it felt a bit cleaner in my eyes to bundle this together
+// not full file name for the shader; see the particle system code for more detail
+void Mascot::create_particle_system(String node_name, String shader_name)
+{
+	// if you want to use non-zero argument constructors, here is an example of how to do that
+	ParticleSystem3501 *system = memnew(ParticleSystem3501(shader_name));
+	add_as_child(system, node_name, true);
+	particle_systems.push_back(system);
 }
 
 template <class T>
@@ -191,6 +213,50 @@ bool Mascot::create_and_add_as_child_of_node(T* &pointer, String name, Node* par
         pointer = dynamic_cast<T*>(child);
         return false;
     }
+}
+
+// This is a variant of the usual one. It allows you to more easily use a non-zero argument constructor, which I noticed some of you have struggled with. Hope this helps!
+// returns true if pointer is brand-new; false if retrieved from SceneTree
+// deletes the memory if the node exists in the scenetree and isn't null when passed in
+// IMPORTANT: IF SEARCH IS FALSE, IT ASSUMES THAT THE POINTER IS TO A VALID INSTANCE ALREADY AKA MEMNEW HAS ALREADY BEEN CALLED
+template <class T>
+bool Mascot::add_as_child(T *&pointer, String name, bool search)
+{
+	// this is the default behaviour
+	// added the search parameter so that we can skip the slow "find_child" call during runtime
+	if (search == false)
+	{
+		pointer->set_name(name);
+		add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+
+	// always only have to search once if we save it here
+	Node *child = find_child(name);
+
+	// if the node hasn't been added to the SceneTree yet
+	if (child == nullptr)
+	{
+		pointer->set_name(name);
+		add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+	// if we are grabbing the existent one, clean up the memory to the new one that was just made and passed as an argument
+	else
+	{
+		if (pointer == nullptr)
+		{
+			UtilityFunctions::print("There is a nullptr being passed to add_as_child...");
+		}
+		else
+		{
+			memdelete(pointer);
+		}
+		pointer = dynamic_cast<T *>(child);
+		return false;
+	}
 }
 
 /*
