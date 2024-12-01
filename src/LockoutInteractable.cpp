@@ -47,6 +47,11 @@ void LockoutInteractable::Interact() {
     if (item != ITEM_NONE) {
         // Giving the player the item they found
         this->GetPlayer()->GetInventory()->PickUpItem(item);
+
+        // Playing pick up sound effect
+        power_down->stop();
+        power_back->stop();
+        pick_up->play();
     }
 
     // Locking out the interactable
@@ -64,10 +69,18 @@ void LockoutInteractable::Lockout(bool lock) {
         is_locked_out = true;
         this->SetRadius(0.0);
 
+        // Playing the power up sound
+        power_back->stop();
+        power_down->play();
+
     // Unlocking the interactable
     } else {
         is_locked_out = false;
         this->SetRadius(stored_radius);
+
+        // Playing the power down sound
+        power_down->stop();
+        power_back->play();
     }
 }
 
@@ -85,4 +98,54 @@ void LockoutInteractable::SetLockout(int lost_item, CounterInteractable* gen, Ve
         item->connect("InterLockout", Callable(this, "Lockout"));
     }
 
+    // Instantiating both sound effects
+	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(power_down, "PowerDownEffectPlayer", true);
+    this->create_and_add_as_sub_child<AudioStreamPlayer3D>(power_back, "PowerBackEffectPlayer", true);
+    this->create_and_add_as_sub_child<AudioStreamPlayer3D>(pick_up, "PickUpEffectPlayer", true);
+
+	// Getting the file and setting the stream
+    Ref<AudioStreamWAV> power_down_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "PowerDown"), "AudioStreamWAV");
+    power_down->set_max_distance(this->GetRadius() * 6);
+    power_down->set_stream(power_down_stream);
+
+    Ref<AudioStreamWAV> power_back_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "PowerRestored"), "AudioStreamWAV");
+    power_back->set_max_distance(this->GetRadius() * 6);
+    power_back->set_stream(power_back_stream);
+
+    Ref<AudioStreamWAV> pick_up_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "ItemPickUp"), "AudioStreamWAV");
+    pick_up->set_max_distance(this->GetRadius() * 6);
+    pick_up->set_stream(pick_up_stream);
+}
+
+template <class T>
+// returns true if pointer is brand-new; false if retrieved from SceneTree
+bool LockoutInteractable::create_and_add_as_sub_child(T *&pointer, String name, bool search)
+{
+	// this is the default behaviour
+	// added the search parameter so that we can skip the slow "find_child" call during runtime (not applicable to this demo, you should always use search = true until next assignment)
+	if (search == false)
+	{
+		pointer = memnew(T);
+		pointer->set_name(name);
+		add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+
+	// always only have to search once if we save it here
+	Node *child = find_child(name);
+
+	if (child == nullptr)
+	{
+		pointer = memnew(T);
+		pointer->set_name(name);
+		add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+	else
+	{
+		pointer = dynamic_cast<T *>(child);
+		return false;
+	}
 }

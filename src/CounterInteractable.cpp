@@ -70,7 +70,7 @@ void CounterInteractable::SetInit(int c, int t) {
 	trigger = t;
 
 	// Instantiating the start playing effect
-	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(crank, "StartEffectPlayer", true);
+	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(crank, "CrankEffectPlayer", true);
 
 	// Getting the file and setting the stream
     Ref<AudioStreamWAV> effect_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "Crank"), "AudioStreamWAV");
