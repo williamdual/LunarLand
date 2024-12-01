@@ -52,7 +52,7 @@ void CustomScene3501::_enter_tree()
 	create_and_add_as_child(skybox, "Sky Box", true);
 
 	create_cameras();
-	// create_interactables();
+	create_interactables();
 	// create_env_objects();
 	create_building_objects();
 
@@ -107,13 +107,13 @@ void CustomScene3501::_ready()
 	// testCount->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// testCount->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
-	// testLock1->set_global_position(Vector3(-6.0, -10.0, -15.0f));
+	// testLock1->set_global_position(Vector3(-6.0, -11.0, -15.0f));
 	// testLock1->RegisterCameraTrigs(cam_triggs);
 	// testLock1->SetCameraPosition(cameras[2]->get_global_position());
 	// testLock1->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// testLock1->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
-	// testLock2->set_global_position(Vector3(-6.0, -10.0, -5.0f));
+	// testLock2->set_global_position(Vector3(-6.0, -11.0, -5.0f));
 	// testLock2->RegisterCameraTrigs(cam_triggs);
 	// testLock2->SetCameraPosition(cameras[2]->get_global_position());
 	// testLock2->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
@@ -291,16 +291,16 @@ void CustomScene3501::create_interactables()
 	// Additional test stuff
 
 	// create_and_add_as_child(testCount, "CounterInteractable", true);
-	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 5.0);
 	// testCount->SetInit(0, 15);
-	//testCount->SetCounter(0);
-	//testCount->SetTrigger(15);
+	// testCount->SetCounter(0);
+	// testCount->SetTrigger(15);
 
 	// create_and_add_as_child(testLock1, "NoneLockout", true);
-	// testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	// testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 5.0);
 
 	// create_and_add_as_child(testLock2, "ItemLockout", true);
-	// testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
+	// testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 5.0);
 
 	// Vector<LockoutInteractable*> dependents;
 	// dependents.append(testLock1);
