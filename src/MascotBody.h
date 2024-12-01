@@ -3,14 +3,16 @@
 
 #include "MascotPart.h"
 
-#define BODY_RAD 1.5
-#define BODY_HEIGHT 4.0
+#define MOVE_CAP 0.005
 
 // everything in gdextension is defined in this namespace
 namespace godot {
 class MascotBody : public MascotPart {
     // this macro sets up a few internal things
     GDCLASS(MascotBody, MascotPart);
+
+private:
+    float time_passed;
 
 protected:
     // a static function that Godot will call to find out which methods can be called and which properties it exposes

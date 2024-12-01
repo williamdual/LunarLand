@@ -60,11 +60,9 @@ private:
 
     // Shader and shader material material for environment object
     Texture2D* tex;
-    MeshInstance3D* mesh;
 
     // Collision values for the environment object
     bool has_col_shape;
-    CollisionShape3D* hit_shape;
 
     // Array of shader names
     char* shader_names[ENV_OBJECT_AMOUNT] = {
@@ -154,6 +152,10 @@ private:
     
 protected:
     static void _bind_methods();
+
+    // Mesh and hit shape
+    MeshInstance3D* mesh;
+    CollisionShape3D* hit_shape;
 
     // Shader material
     ShaderMaterial* mat;

@@ -10,6 +10,9 @@ class MascotArm : public MascotPart {
     // this macro sets up a few internal things
     GDCLASS(MascotArm, MascotPart);
 
+private:
+    float time_passed;
+
 protected:
     // a static function that Godot will call to find out which methods can be called and which properties it exposes
     static void _bind_methods();
