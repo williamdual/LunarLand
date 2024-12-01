@@ -30,9 +30,11 @@ void AudioInteractable::_ready ( ){
 void AudioInteractable::Interact() {
 
     // Stopping the stream in case it is playing
+	start_effect->stop();
     audio->stop();
 
     // Starting the stream again
+	start_effect->play();
     audio->play();
 }
 
@@ -48,6 +50,14 @@ void AudioInteractable::SetAudio(int file) {
     Ref<AudioStreamOggVorbis> stream = ResourceLoader::get_singleton()->load(vformat("%s%s.ogg", "SoundFiles/", audio_names[file_num]), "AudioStreamOggVorbis");
     audio->set_max_distance(this->GetRadius() * 3);
     audio->set_stream(stream);
+
+	// Instantiating the start playing effect
+	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(start_effect, "StartEffectPlayer", true);
+
+	// Getting the file and setting the stream
+    Ref<AudioStreamWAV> effect_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "AudioLogInteract"), "AudioStreamWAV");
+    start_effect->set_max_distance(this->GetRadius() * 3);
+    start_effect->set_stream(effect_stream);
 }
 
 template <class T>

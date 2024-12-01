@@ -16,6 +16,7 @@
 #include <godot_cpp/classes/audio_stream_player3d.hpp>
 #include <godot_cpp/classes/audio_listener3d.hpp>
 #include <godot_cpp/classes/audio_stream_ogg_vorbis.hpp>
+#include <godot_cpp/classes/audio_stream_wav.hpp>
 
 #include <godot_cpp/variant/vector3.hpp>
 
@@ -53,6 +54,7 @@ private:
 
     // Audio member variables
     AudioStreamPlayer3D* audio;
+    AudioStreamPlayer3D* start_effect;
     int file_num;
 
     // Array of audio file names
