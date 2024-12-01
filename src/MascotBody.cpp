@@ -8,7 +8,9 @@ void MascotBody::_bind_methods() {
 // You may not unset this class as top level (from parent)
 MascotBody::MascotBody() : MascotPart() { 
     // This is just to line them up for the starting scene -- change this for sure. 
-    local_position = Vector3(0.0f, 2.25f, 0.0f);
+    local_position = Vector3(0.0f, 0.0f, 0.0f);
+    scale = Vector3(1.5, 1.5, 1.5);
+    time_passed = 0.0;
 }
 
 MascotBody::~MascotBody(){
@@ -32,6 +34,10 @@ void MascotBody::_enter_tree ( ) {
 
 void MascotBody::_process(double delta){
     if (Engine::get_singleton()->is_editor_hint()) return; // Early return if we are in editor
+
+    // Bobbing up and down
+    time_passed += delta;
+    this->set_local_position(this->get_local_position() + Vector3(0.0, MOVE_CAP * sin(time_passed), 0.0));
 
     set_global_transform(get_transformation_matrix());
 

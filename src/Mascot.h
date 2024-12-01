@@ -18,6 +18,8 @@
 #include "MascotHead.h"
 #include "particle_system_3501.h"
 
+#define ORBIT_CAP 0.005
+
 #define DEBUG true
 
 
@@ -28,18 +30,16 @@ class Mascot : public Node3D {
 	GDCLASS(Mascot, Node3D);
 
 private:
+    // Time passed
+    float time_passed;
 
     // Body parts of the mascot
     MascotBody* body;
     MascotHead* head;
-    MascotArm* upper_upper_left;
-    MascotArm* upper_lower_left;
-    MascotArm* upper_upper_right;
-    MascotArm* upper_lower_right;
-    MascotArm* lower_upper_left;
-    MascotArm* lower_lower_left;
-    MascotArm* lower_upper_right;
-    MascotArm* lower_lower_right;
+    MascotArm* upper_left;
+    MascotArm* upper_right;
+    MascotArm* lower_left;
+    MascotArm* lower_right;
 
 protected:
     // a static function that Godot will call to find out which methods can be called and which properties it exposes
