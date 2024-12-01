@@ -74,11 +74,27 @@ void Player::_ready()
 // called every frame (as often as possible)
 void Player::_process(double delta)
 {
+    // dev tool for placing stuff
+    Input *_input = Input::get_singleton();
+    if (_input->is_action_just_pressed("ui_right"))
+    {
+        Vector3 editor_cam_pos = EditorInterface::get_singleton()->get_editor_viewport_3d()->get_camera_3d()->get_global_position();
+        Vector3 editor_cam_rot = EditorInterface::get_singleton()->get_editor_viewport_3d()->get_camera_3d()->get_global_rotation_degrees();
+        UtilityFunctions::print("Cam Pos - Rot");
+        UtilityFunctions::print(editor_cam_pos);
+        UtilityFunctions::print(editor_cam_rot);
+    }
+    if (_input->is_action_just_pressed("ui_left"))
+    {
+        UtilityFunctions::print("Trigg:");
+        UtilityFunctions::print(get_position());
+    }
+    // END OF DEV TOOL FOR PLACING STUFF
     if (Engine::get_singleton()->is_editor_hint())
         return; // Early return if we are in editor
                 // Game loop stuff HERE
 
-    Input *_input = Input::get_singleton();
+    // Input *_input = Input::get_singleton();
     if (_input->is_action_pressed("move_forward") && saved_velocity == Vector3(0, 0, 0))
     {
         // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);

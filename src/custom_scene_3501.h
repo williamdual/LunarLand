@@ -60,27 +60,27 @@ namespace godot
 	private:
 		double time_passed;
 		ColorRect *overscreen;
-		Vector<PlayerCamera*> cameras;
-		Vector<CameraTrigger*> cam_triggs;
-		Vector<Interactable*> interactables;
-		Vector<ParticleSystem3501*> particle_systems;
+		Vector<PlayerCamera *> cameras;
+		Vector<CameraTrigger *> cam_triggs;
+		Vector<Interactable *> interactables;
+		Vector<ParticleSystem3501 *> particle_systems;
 		MeshInstance3D *playerTestObject_ptr;
-		Player* player;
+		Player *player;
 		GameState gameState;
-		SkyBox* skybox;
-		HeightMapTerrain* hmt;
-		Mascot* mascot;
+		SkyBox *skybox;
+		HeightMapTerrain *hmt;
+		Mascot *mascot;
 
-		AudioInteractable* testInt;
-		ItemInteractable* testItem;
+		AudioInteractable *testInt;
+		ItemInteractable *testItem;
 
-		CounterInteractable* testCount;
-		LockoutInteractable* testLock1;
-		LockoutInteractable* testLock2;
+		CounterInteractable *testCount;
+		LockoutInteractable *testLock1;
+		LockoutInteractable *testLock2;
 
-		EnvObject* testEnvObj;
+		EnvObject *testEnvObj;
 
-		BuildingObj* testBuilding;
+		BuildingObj *testBuilding;
 
 		// If the screen should glitch
 		bool is_static;
@@ -89,8 +89,8 @@ namespace godot
 		bool current_cam;
 
 		// Values for the screen space effect
-		MeshInstance3D* screen_quad_instance;
-		ShaderMaterial* screen_space_shader_material;
+		MeshInstance3D *screen_quad_instance;
+		ShaderMaterial *screen_space_shader_material;
 
 		// create and setup the boxes; for this one they don't need to have separate create and setup functions.
 		// This shouldn't be called in the assignment that you hand in. You can choose to delete the code if you want to.
@@ -127,13 +127,13 @@ namespace godot
 		// this variant you have probably seen before; it allows you to create a CustomScene3501 will a bit more complex of a hierarchy
 		// we will assume that the node should always be searched for in this variant
 		template <class T>
-		bool create_and_add_as_child_of_parent(T* &pointer, String name, Node* parent);
+		bool create_and_add_as_child_of_parent(T *&pointer, String name, Node *parent);
 
 		// the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 		// search defines whether the scenetree should be checked for an instance
 		// SEE THE .CPP FOR MORE DETAIL ON THIS VARIANT (HINT: It is for pointers which have already been created).
 		template <class T>
-		bool add_as_child(T* &pointer, String name, bool search = false);
+		bool add_as_child(T *&pointer, String name, bool search = false);
 	};
 
 }

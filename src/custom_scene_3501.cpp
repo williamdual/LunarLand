@@ -72,7 +72,7 @@ void CustomScene3501::_enter_tree()
 	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Creating the mascot
-	//create_and_add_as_child(mascot, "Mascot", true);
+	// create_and_add_as_child(mascot, "Mascot", true);
 }
 
 void CustomScene3501::_ready()
@@ -81,7 +81,7 @@ void CustomScene3501::_ready()
 		UtilityFunctions::print("Ready - CustomScene3501.");
 
 	// set the player's position (the camera)
-	player->set_global_position(Vector3(0.0, -11.5, -20.0f));
+	player->set_global_position(Vector3(0.0, -11.5, -30.0f));
 	setup_cameras();
 
 	// Setting up the test interactable
@@ -128,11 +128,11 @@ void CustomScene3501::_ready()
 	// testLock2->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test building
-	//testBuilding->set_scale(Vector3(1.5, 1.5, 1.5));
+	// testBuilding->set_scale(Vector3(1.5, 1.5, 1.5));
 	testBuilding->set_global_position(Vector3(-0.023, -12.92, -5.635));
 	testBuilding->RegisterCameraTrigs(cam_triggs);
 	testBuilding->SetCameraPosition(cameras[2]->get_global_position());
-	testBuilding->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	testBuilding->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0); // pos, color, specular compponent power
 	testBuilding->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test particles
@@ -181,48 +181,63 @@ void CustomScene3501::_process(double delta)
 
 void CustomScene3501::create_cameras()
 {
+	// Starting bulding
 	PlayerCamera *cam_1;
-	create_and_add_as_child<PlayerCamera>(cam_1, "Static Camera", true);
-	cam_1->set_global_position(Vector3(0.0, 0.0, 0.0f));
-	cam_1->set_rotation_degrees(Vector3(-40.0f, 0.0f, 0.0f));
-	cam_1->SetTarget(player);
+	create_and_add_as_child<PlayerCamera>(cam_1, "SEC", true);
+	cam_1->set_global_position(Vector3(4.632536, -1.755016, -26.03943));
+	cam_1->set_rotation_degrees(Vector3(-48.20439, 48.67517, 0));
 	cam_1->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_1;
-	create_and_add_as_child<CameraTrigger>(trigg_1, "cam_1_trigg_1", true);
-	CameraTrigger *trigg_2;
-	create_and_add_as_child<CameraTrigger>(trigg_2, "cam_1_trigg_2", true);
+	create_and_add_as_child<CameraTrigger>(trigg_1, "SEC_trigg_1", true);
 
 	PlayerCamera *cam_2;
-	create_and_add_as_child<PlayerCamera>(cam_2, "Panning Camera", true);
-	cam_2->set_global_position(Vector3(8.5f, -10.6, -24.5f));
-	cam_2->set_rotation_degrees(Vector3(0.0f, 180.0f, 0.0f));
-	cam_2->SetTarget(player);
+	create_and_add_as_child<PlayerCamera>(cam_2, "SHC", true);
+	cam_2->set_global_position(Vector3(-4.818558, -9.923786, -39.83393));
+	cam_2->set_rotation_degrees(Vector3(-0.704379, -88.32508, 0));
 	cam_2->SetTrackType(CameraTrackType::panning);
+	CameraTrigger *trigg_2;
+	create_and_add_as_child<CameraTrigger>(trigg_2, "SHC_trigg_1", true);
 	CameraTrigger *trigg_3;
-	create_and_add_as_child<CameraTrigger>(trigg_3, "cam_2_trigg_1", true);
-	CameraTrigger *trigg_4;
-	create_and_add_as_child<CameraTrigger>(trigg_4, "cam_2_trigg_2", true);
+	create_and_add_as_child<CameraTrigger>(trigg_3, "SHC_trigg_2", true);
 
 	PlayerCamera *cam_3;
-	create_and_add_as_child<PlayerCamera>(cam_3, "Tracking Camera", true);
-	cam_3->set_global_position(Vector3(20.5f, 0.0, 0.0f));
-	cam_3->set_rotation_degrees(Vector3(0.0f, 0.0f, 0.0f)); // DO NOT SET X OR Z ROTATION (BAD THINGS WILL HAPPEN)
-	cam_3->SetTarget(player);
+	create_and_add_as_child<PlayerCamera>(cam_3, "SBC", true);
+	cam_3->set_global_position(Vector3(-0.176132, 23.11914, -75.44937));
+	cam_3->set_rotation_degrees(Vector3(-90.0, 0, 0));
 	cam_3->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_4;
+	create_and_add_as_child<CameraTrigger>(trigg_4, "SBC_trigg_1", true);
 	CameraTrigger *trigg_5;
-	create_and_add_as_child<CameraTrigger>(trigg_5, "cam_3_trigg_1", true);
+	create_and_add_as_child<CameraTrigger>(trigg_5, "SBC_trigg_2", true);
 	CameraTrigger *trigg_6;
-	create_and_add_as_child<CameraTrigger>(trigg_6, "cam_3_trigg_2", true);
+	create_and_add_as_child<CameraTrigger>(trigg_6, "SBC_trigg_3", true);
+	CameraTrigger *trigg_7;
+	create_and_add_as_child<CameraTrigger>(trigg_7, "SBC_trigg_4", true);
+
+	// Wiliams Cameras
+	PlayerCamera *cam_4;
+	create_and_add_as_child<PlayerCamera>(cam_4, "WHC", true);
+	cam_4->set_global_position(Vector3(7.65308, -8.397577, -95.25987));
+	cam_4->set_rotation_degrees(Vector3(-0.45437, 90.15166, 0));
+	cam_4->SetTrackType(CameraTrackType::panning);
+	CameraTrigger *trigg_8;
+	create_and_add_as_child<CameraTrigger>(trigg_8, "WHC_trigg_1", true);
+	CameraTrigger *trigg_9;
+	create_and_add_as_child<CameraTrigger>(trigg_9, "WHC_trigg_2", true);
 
 	cameras.append(cam_1);
 	cameras.append(cam_2);
 	cameras.append(cam_3);
+	cameras.append(cam_4);
 	cam_triggs.append(trigg_1);
 	cam_triggs.append(trigg_2);
 	cam_triggs.append(trigg_3);
 	cam_triggs.append(trigg_4);
 	cam_triggs.append(trigg_5);
 	cam_triggs.append(trigg_6);
+	cam_triggs.append(trigg_7);
+	cam_triggs.append(trigg_8);
+	cam_triggs.append(trigg_9);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -235,6 +250,7 @@ void CustomScene3501::setup_cameras()
 		for (int i = 0; i < cameras.size(); i++)
 		{
 			re_parent<Node, PlayerCamera>(cam_ref_group, cameras[i]);
+			cameras[i]->SetTarget(player);
 			cameras[i]->_ready();
 			if (i == 0)
 			{
@@ -242,45 +258,66 @@ void CustomScene3501::setup_cameras()
 				player->SetCamera(cameras[i]);
 			}
 		}
+		Vector3 right_angle_turn = Vector3(0, 90, 0);
 		for (int i = 0; i < cam_triggs.size(); i++)
 		{
 			re_parent<Node, CameraTrigger>(trigg_ref_group, cam_triggs[i]);
 			cam_triggs[i]->_ready();
 			cam_triggs[i]->SetPlayer(player);
-			cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 5.0f, 3.3f)); // default, can change per collider if desired
-			if (i == 0)															 // Static Cam
+			cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 10.0f, 5.3f)); // default, can change per collider if desired
+			cam_triggs[i]->set_global_rotation_degrees(Vector3(0, 0, 0));
+			if (i == 0) // SEC Trig 1
 			{
-				cam_triggs[i]->set_global_position(Vector3(5.0f, -12.0f, -6.0f));
+				cam_triggs[i]->set_global_position(Vector3(0, -11.5, -35));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[0]);
 			}
-			if (i == 1)
+			if (i == 1) // SHC Trig 1 and 2
 			{
-				cam_triggs[i]->set_global_position(Vector3(5.5f, -11.11f, -22.7f));
-				cam_triggs[i]->SetCamera(cameras[0]);
-			}
-			else if (i == 2) // panning cam
-			{
-				cam_triggs[i]->set_global_position(Vector3(8.0f, -11.11f, -22.7f));
+				cam_triggs[i]->set_global_position(Vector3(0, -11.5, -39.02035));
+				cam_triggs[i]->set_global_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[1]);
 			}
-			else if (i == 3)
+			else if (i == 2)
 			{
-				cam_triggs[i]->set_global_position(Vector3(19.5f, -11.15f, -15.7f));
-				cam_triggs[i]->set_rotation_degrees(Vector3(0, 90.0f, 0)); // TODO FIND OUT WHY THE ROTATION DOESNT WORK
+				cam_triggs[i]->set_global_position(Vector3(0, -11.5, -58.64443));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[1]);
 			}
-			else if (i == 4) // Tracking Cam
+			else if (i == 3) // SBC Trig 1-5
 			{
-				cam_triggs[i]->set_global_position(Vector3(8.5f, -11.11f, -5.5f));
+				cam_triggs[i]->set_global_position(Vector3(0.23662, -11.5, -87.31493));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[2]);
+			}
+			else if (i == 4)
+			{
+				cam_triggs[i]->set_global_position(Vector3(0, -11.5, -63.13406));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[2]);
 			}
 			else if (i == 5)
 			{
-				cam_triggs[i]->set_global_position(Vector3(19.5f, -11.15f, -11.5f));
-				cam_triggs[i]->set_rotation_degrees(Vector3(0, 90.0f, 0));
+				cam_triggs[i]->set_global_position(Vector3(-10.23, -11.5, -69.77975));
 				cam_triggs[i]->SetCamera(cameras[2]);
 			}
-			cam_triggs[i]->set_global_rotation_degrees(Vector3(0, 0, 0));
+			else if (i == 6)
+			{
+				cam_triggs[i]->set_global_position(Vector3(9.455, -11.5, -81.07484));
+				cam_triggs[i]->SetCamera(cameras[2]);
+			}
+			else if (i == 7) // WHC Trig 1 and 2
+			{
+				cam_triggs[i]->set_global_position(Vector3(1.043307, -11.5, -93.37697));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[3]);
+			}
+			else if (i == 8)
+			{
+				cam_triggs[i]->set_global_position(Vector3(1.043307, -11.5, -134.7595));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[3]);
+			}
 		}
 	}
 }
@@ -343,8 +380,8 @@ void CustomScene3501::create_building_objects()
 	// All test stuff
 	testBuilding = memnew(BuildingObj);
 	create_and_add_as_child(testBuilding, "Test Building", true);
-	//testBuilding->SetValues(BUILDING_TEST_BUILDING, false, true);
-	testBuilding->SetValues(BUILDING_MAP_BUILDING, false, false);
+	// testBuilding->SetValues(BUILDING_TEST_BUILDING, false, true);
+	testBuilding->SetValues(BUILDING_MAP_BUILDING, true, false);
 }
 
 // it felt a bit cleaner in my eyes to bundle this together

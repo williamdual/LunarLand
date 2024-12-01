@@ -73,7 +73,7 @@ void PlayerCamera::_process(double delta)
 	// if its static then do nothing
 }
 
-Vector3 PlayerCamera::GetForward(void) // TODO figure out why this doesnt work right (for cam 3)
+Vector3 PlayerCamera::GetForward(void)
 {
 	Vector3 current_forward = Vector3(0, 0, 0);
 	if (track_type == CameraTrackType::tracking)
@@ -81,7 +81,7 @@ Vector3 PlayerCamera::GetForward(void) // TODO figure out why this doesnt work r
 	else
 		current_forward = (get_quaternion().xform(forward_.rotated(Vector3(0, 1, 0), get_rotation().y)));
 
-	return -current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
+	return current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
 }
 
 Vector3 PlayerCamera::GetSide(void)

@@ -3,7 +3,8 @@
 
 // parent class
 #include <godot_cpp/classes/scene_tree.hpp>
-
+#include <godot_cpp/classes/editor_interface.hpp>
+#include <godot_cpp/classes/sub_viewport.hpp>
 #include <godot_cpp/classes/input.hpp>
 
 #include <godot_cpp/variant/utility_functions.hpp>
