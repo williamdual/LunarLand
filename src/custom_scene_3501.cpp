@@ -283,10 +283,10 @@ void CustomScene3501::create_interactables()
 	// To be set when more of the environment is ready
 
 	// Audio interactable test stuff
-	// testInt = memnew(AudioInteractable);
-	// create_and_add_as_child(testInt, "Test Interactable", true);
-	// testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
-	// testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
+	testInt = memnew(AudioInteractable);
+	create_and_add_as_child(testInt, "Test Interactable", true);
+	testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
+	testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
 
 	// Additional test stuff
 
