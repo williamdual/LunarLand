@@ -29,6 +29,7 @@ namespace godot {
 
 // Enum for better control over what interactable is created
 enum InteractableType {
+    INTER_OBJECT_BEIGE_BAG,
     INTER_OBJECT_COMPUTER_TERMINAL_SCREEN,
     INTERACTABLE_AMOUNT
 };
@@ -79,26 +80,31 @@ private:
 
     // Array of model names
     char* model_names[INTERACTABLE_AMOUNT] = {
-		"ComputerTerminalSceen",
+		"BeigeBag",
+        "ComputerTerminalSceen"
 	};
 
     // Array of texture names
     char* texture_names[INTERACTABLE_AMOUNT] = {
-		"ComputerTerminalSceen_Texture",
+        "BeigeBag_Texture",
+		"ComputerTerminalSceen_Texture"
 	};
 
     char* texture_formats[INTERACTABLE_AMOUNT] = {
-		".png",
+        ".png", // Beige Bag
+		".png"  // Computer Screen
 	};
 
     // Array of mesh offsets
     Vector3 mesh_offsets[INTERACTABLE_AMOUNT] = {
-		Vector3(-6, -0.60, -0.1)
+        Vector3(0.0, -0.6, 0.0),  // Beige Bag
+		Vector3(-6, -0.60, -0.1) // Computer Screen
 	};
 
     // Values that darken the texture since the loaded texture can often appear faded
     float tex_darken_values[INTERACTABLE_AMOUNT] = {
-        1.0
+        0.8, // Beige Bag
+        1.0  // Computer Screen
     };
 
     // This member function creates a hitbox

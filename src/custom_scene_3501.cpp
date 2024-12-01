@@ -93,7 +93,7 @@ void CustomScene3501::_ready()
 	// testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Test item interactable
-	// testItem->set_global_position(Vector3(3.0, -10.0, -15.0f));
+	// testItem->set_global_position(Vector3(3.0, -13.5, -15.0f));
 	// testItem->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
 	// testItem->RegisterCameraTrigs(cam_triggs);
 	// testItem->SetCameraPosition(cameras[2]->get_global_position());
@@ -299,8 +299,8 @@ void CustomScene3501::create_interactables()
 	// Test item interactable
 	// testItem = memnew(ItemInteractable);
 	// create_and_add_as_child(testItem, "Test Interactable", true);
-	// testItem->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
-	// testItem->SetItem(ITEM_LINT);
+	// testItem->SetValues(player, INTER_OBJECT_BEIGE_BAG, SHAPE_BOX, true, 3.0);
+	// testItem->SetItem(ITEM_PAPERS);
 
 	// Additional test stuff
 
