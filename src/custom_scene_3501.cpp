@@ -72,7 +72,7 @@ void CustomScene3501::_enter_tree()
 	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Creating the mascot
-	create_and_add_as_child(mascot, "Mascot", true);
+	// create_and_add_as_child(mascot, "Mascot", true);
 }
 
 void CustomScene3501::_ready()
@@ -120,7 +120,7 @@ void CustomScene3501::_ready()
 	// testLock2->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test building
-	testBuilding->set_scale(Vector3(1.5, 1.5, 1.5));
+	//testBuilding->SetScale(Vector3(1.5, 1.5, 1.5));
 	testBuilding->set_global_position(Vector3(-0.023, -12.92, -5.635));
 	testBuilding->RegisterCameraTrigs(cam_triggs);
 	testBuilding->SetCameraPosition(cameras[2]->get_global_position());
@@ -135,12 +135,12 @@ void CustomScene3501::_ready()
 	// particle_system->set_global_position(Vector3(-70, 0, 0));
 
 	// Setting up the mascot
-	mascot->SetPosition(Vector3(3.0, -11.0, -15.0f));
-	mascot->SetRotation(Vector3(0.0, 0.785398, 0.0));
-	mascot->RegisterCameraTrigs(cam_triggs);
-	mascot->SetCameraPosition(cameras[2]->get_global_position());
-	mascot->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	mascot->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// mascot->SetPosition(Vector3(3.0, -11.0, -15.0f));
+	// mascot->SetRotation(Vector3(0.0, 0.785398, 0.0));
+	// mascot->RegisterCameraTrigs(cam_triggs);
+	// mascot->SetCameraPosition(cameras[2]->get_global_position());
+	// mascot->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// mascot->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 }
 
 // called every frame (as often as possible)
@@ -328,8 +328,8 @@ void CustomScene3501::create_building_objects()
 	// All test stuff
 	testBuilding = memnew(BuildingObj);
 	create_and_add_as_child(testBuilding, "Test Building", true);
-	testBuilding->SetValues(BUILDING_TEST_BUILDING, false, true);
-	//testBuilding->SetValues(BUILDING_MAP_BUILDING, false, false);
+	// testBuilding->SetValues(BUILDING_TEST_BUILDING, false, true);
+	testBuilding->SetValues(BUILDING_MAP_BUILDING, false, false);
 }
 
 // it felt a bit cleaner in my eyes to bundle this together

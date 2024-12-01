@@ -102,6 +102,12 @@ void BuildingObj::SetValues(int building_type, bool is_textured, bool auto_colli
     }
 }
 
+// Member function that sets overall scale
+void BuildingObj::SetScale(Vector3 scale) {
+    mesh->set_scale(scale);
+    col_mesh->set_scale(scale);
+}
+
 // Member function that sets a camera position
 void BuildingObj::SetCameraPosition(Vector3 camera_pos) {
     camera_position = camera_pos;

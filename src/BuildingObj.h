@@ -127,6 +127,9 @@ public:
     // Member function that sets initial values for the building object
     void SetValues(int build_type, bool is_textured, bool auto_collision);
 
+    // Set scale for all objects
+    void SetScale(Vector3 scale);
+
     // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance
 	template <class T>
