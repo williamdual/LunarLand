@@ -52,7 +52,7 @@ void CustomScene3501::_enter_tree()
 	create_and_add_as_child(skybox, "Sky Box", true);
 
 	create_cameras();
-	create_interactables();
+	// create_interactables();
 	// create_env_objects();
 	create_building_objects();
 
@@ -101,7 +101,7 @@ void CustomScene3501::_ready()
 	// testItem->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test environment object
-	// testEnvObj->set_global_position(Vector3(3.0, -10.0, -10.0f));
+	// testEnvObj->set_global_position(Vector3(3.0, -11.5, -10.0f));
 	// testEnvObj->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
 	// testEnvObj->RegisterCameraTrigs(cam_triggs);
 	// testEnvObj->SetCameraPosition(cameras[2]->get_global_position());
@@ -332,7 +332,7 @@ void CustomScene3501::create_env_objects()
 	// All test stuff
 	testEnvObj = memnew(EnvObject);
 	create_and_add_as_child(testEnvObj, "Test EnvObject", true);
-	testEnvObj->SetValues(ENV_OBJECT_ALIEN, SHAPE_BOX);
+	testEnvObj->SetValues(ENV_OBJECT_LOST_AND_FOUND, SHAPE_BOX);
 }
 
 // Member function to create building objects

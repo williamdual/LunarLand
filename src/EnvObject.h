@@ -37,6 +37,7 @@ enum EnvObjectType {
     ENV_OBJECT_DART_BOARD,
     ENV_OBJECT_DARTS,
     ENV_OBJECT_FILE_CABINET,
+    ENV_OBJECT_LOST_AND_FOUND,
     ENV_OBJECT_MECHANICAL_BULL,
     ENV_OBJECT_MENU_BOARD,
     ENV_OBJECT_MICROPHONE,
@@ -77,6 +78,7 @@ private:
         "DartBoard",
         "DartBoardDarts",
 		"FileCabinet",
+        "LostAndFoundBin",
         "MechanicalBull",
         "Menu",
         "Microphone",
@@ -92,6 +94,7 @@ private:
         "DartBoard_Texture",
         "DartBoard_Texture",
 		"FileCabinet_Texture",
+        "LostAndFoundBin_Texture",
         "MechanicalBull_Texture",
         "MenuBoard_Texture",
         "Microphone_Texture",
@@ -107,6 +110,7 @@ private:
         ".png", // Dart Board
         ".png", // Darts
         ".png", // File Cabinet
+        ".png", // Lost and Found Bin
         ".png", // Mechanical Bull
         ".png", // Menu Board
         ".jpg", // Microphone
@@ -122,6 +126,7 @@ private:
         Vector3(0.0, 0.0, 0.0), // Dart Board
         Vector3(0.1, 0.0, -0.5), // Darts
         Vector3(0.0, -1.5, 0.0), // File Cabinet
+        Vector3(0.0, -0.8, 0.0), // Lost and Found Bin
         Vector3(0.0, -2.3, -1.0), // Mechanical Bull
         Vector3(0.0, -2.0, 0.0), // Menu Board
         Vector3(0.0, -1.3, 0.0), // Microphone
@@ -137,6 +142,7 @@ private:
         0.8, // Dart Board
         0.8, // Darts
         0.7, // File Cabinet
+        0.8, // Lost and Found Bin
         0.8, // Mechanical Bull
         0.8, // Menu Board
         0.2, // Microphone
