@@ -101,7 +101,7 @@ void CustomScene3501::_ready()
 	// testEnvObj->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 40.0);
 
 	// Setting up test counter interactable with lockout interactables
-	// testCount->set_global_position(Vector3(6.0, -10.0, -15.0f));
+	// testCount->set_global_position(Vector3(6.0, -11.0, -15.0f));
 	// testCount->RegisterCameraTrigs(cam_triggs);
 	// testCount->SetCameraPosition(cameras[2]->get_global_position());
 	// testCount->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
@@ -283,17 +283,18 @@ void CustomScene3501::create_interactables()
 	// To be set when more of the environment is ready
 
 	// Audio interactable test stuff
-	testInt = memnew(AudioInteractable);
-	create_and_add_as_child(testInt, "Test Interactable", true);
-	testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
-	testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
+	// testInt = memnew(AudioInteractable);
+	// create_and_add_as_child(testInt, "Test Interactable", true);
+	// testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
+	// testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
 
 	// Additional test stuff
 
 	// create_and_add_as_child(testCount, "CounterInteractable", true);
 	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);
-	// testCount->SetCounter(0);
-	// testCount->SetTrigger(15);
+	// testCount->SetInit(0, 15);
+	//testCount->SetCounter(0);
+	//testCount->SetTrigger(15);
 
 	// create_and_add_as_child(testLock1, "NoneLockout", true);
 	// testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 2.0);

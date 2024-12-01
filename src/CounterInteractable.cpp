@@ -22,6 +22,14 @@ CounterInteractable::CounterInteractable(Player* p, int type, int col_type, bool
     counter = c;
     trigger = t;
 
+	// Instantiating the start playing effect
+	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(crank, "StartEffectPlayer", true);
+
+	// Getting the file and setting the stream
+    Ref<AudioStreamWAV> effect_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "Crank"), "AudioStreamWAV");
+    crank->set_max_distance(this->GetRadius() * 3);
+    crank->set_stream(effect_stream);
+
 }
 
 void CounterInteractable::_enter_tree ( ){
@@ -34,6 +42,11 @@ void CounterInteractable::_ready ( ){
 
 // This member function increments the counter when it is interacted with
 void CounterInteractable::Interact() {
+
+    // Playing the crank noise
+    crank->stop();
+    crank->play();
+
     // Incrementing the counter
     counter++;
 
@@ -50,6 +63,21 @@ void CounterInteractable::Trigger() {
     emit_signal("InterUnlock", false);
 }
 
+// Setter for both initial values
+void CounterInteractable::SetInit(int c, int t) {
+	// Setting the counter and trigger values
+	counter = c;
+	trigger = t;
+
+	// Instantiating the start playing effect
+	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(crank, "StartEffectPlayer", true);
+
+	// Getting the file and setting the stream
+    Ref<AudioStreamWAV> effect_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "Crank"), "AudioStreamWAV");
+    crank->set_max_distance(this->GetRadius() * 3);
+    crank->set_stream(effect_stream);
+}
+
 // Setter for the counter value
 void CounterInteractable::SetCounter(int c) {
     counter = c;
@@ -58,4 +86,37 @@ void CounterInteractable::SetCounter(int c) {
 // Setter for the trigger value
 void CounterInteractable::SetTrigger(int t) {
     trigger = t;
+}
+
+template <class T>
+// returns true if pointer is brand-new; false if retrieved from SceneTree
+bool CounterInteractable::create_and_add_as_sub_child(T *&pointer, String name, bool search)
+{
+	// this is the default behaviour
+	// added the search parameter so that we can skip the slow "find_child" call during runtime (not applicable to this demo, you should always use search = true until next assignment)
+	if (search == false)
+	{
+		pointer = memnew(T);
+		pointer->set_name(name);
+		add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+
+	// always only have to search once if we save it here
+	Node *child = find_child(name);
+
+	if (child == nullptr)
+	{
+		pointer = memnew(T);
+		pointer->set_name(name);
+		add_child(pointer);
+		pointer->set_owner(get_tree()->get_edited_scene_root());
+		return true;
+	}
+	else
+	{
+		pointer = dynamic_cast<T *>(child);
+		return false;
+	}
 }
