@@ -72,6 +72,7 @@ namespace godot
 		Mascot* mascot;
 
 		AudioInteractable* testInt;
+		ItemInteractable* testItem;
 
 		CounterInteractable* testCount;
 		LockoutInteractable* testLock1;

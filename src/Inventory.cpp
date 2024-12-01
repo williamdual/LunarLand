@@ -33,6 +33,21 @@ void Inventory::_process(double delta) {
                 Size2 viewport_size = viewport->get_visible_rect().size;
                 inventory_space->set_global_position(Vector2(viewport_size.x / 2, viewport_size.y - 70));
             }
+
+            // Situation chip if found
+            if (has_chip) {
+                chip->set_global_position(inventory_space->get_global_position() - Vector2(105, 0));
+            }
+
+            // Situating papers if found
+            if (has_papers) {
+                papers->set_global_position(inventory_space->get_global_position());
+            }
+
+            // Situating lint if found
+            if (has_lint) {
+                lint->set_global_position(inventory_space->get_global_position() + Vector2(105, 0));
+            }
         }
     }
 }
@@ -79,7 +94,7 @@ void Inventory::PickUpItem(int found) {
 
     // Setting that the computer chip has been picked up
     if (found == ITEM_CHIP && !has_chip) {
-        chip->set_global_position(inventory_space->get_global_position() - Vector2(52.5, 0));
+        chip->set_global_position(inventory_space->get_global_position() - Vector2(105, 0));
         has_chip = true;
 
     // Setting that the health papers have been found
@@ -89,7 +104,7 @@ void Inventory::PickUpItem(int found) {
 
     // Setting that the lunar lint has been found
     } else if (found == ITEM_LINT && !has_lint) {
-        lint->set_global_position(inventory_space->get_global_position() + Vector2(52.5, 0));
+        lint->set_global_position(inventory_space->get_global_position() + Vector2(105, 0));
         has_lint = true;
     }
 }

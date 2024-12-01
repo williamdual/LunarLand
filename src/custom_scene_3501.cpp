@@ -92,6 +92,14 @@ void CustomScene3501::_ready()
 	// testInt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
+	// Test item interactable
+	// testItem->set_global_position(Vector3(3.0, -10.0, -15.0f));
+	// testItem->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
+	// testItem->RegisterCameraTrigs(cam_triggs);
+	// testItem->SetCameraPosition(cameras[2]->get_global_position());
+	// testItem->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// testItem->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+
 	// Setting up the test environment object
 	// testEnvObj->set_global_position(Vector3(3.0, -10.0, -10.0f));
 	// testEnvObj->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
@@ -287,6 +295,12 @@ void CustomScene3501::create_interactables()
 	// create_and_add_as_child(testInt, "Test Interactable", true);
 	// testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
 	// testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
+
+	// Test item interactable
+	// testItem = memnew(ItemInteractable);
+	// create_and_add_as_child(testItem, "Test Interactable", true);
+	// testItem->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
+	// testItem->SetItem(ITEM_LINT);
 
 	// Additional test stuff
 
