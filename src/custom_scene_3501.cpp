@@ -72,7 +72,7 @@ void CustomScene3501::_enter_tree()
 	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Creating the mascot
-	// create_and_add_as_child(mascot, "Mascot", true);
+	//create_and_add_as_child(mascot, "Mascot", true);
 }
 
 void CustomScene3501::_ready()
@@ -144,7 +144,7 @@ void CustomScene3501::_ready()
 
 	// Setting up the mascot
 	// mascot->SetPosition(Vector3(3.0, -11.0, -15.0f));
-	//mascot->SetRotation(Vector3(0.0, 0.785398, 0.0));
+	// //mascot->SetRotation(Vector3(0.0, 0.785398, 0.0));
 	// mascot->RegisterCameraTrigs(cam_triggs);
 	// mascot->SetCameraPosition(cameras[2]->get_global_position());
 	// mascot->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
