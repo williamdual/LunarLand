@@ -102,7 +102,7 @@ private:
     // Array of collision mesh offsets
     Vector3 col_offsets[BUILDING_OBJECT_AMOUNT] = {
 		Vector3(0.0, 0.0, 0.0), // Test building
-        Vector3(2.0, 0.0, 78.0)  // Map model
+        Vector3(0.0, 0.0, 0.0)  // Map model
 	};
     
 protected:
