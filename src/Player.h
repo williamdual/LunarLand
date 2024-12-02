@@ -46,7 +46,10 @@ namespace godot
         AudioListener3D *listener;
         Inventory *inventory;
         Vector3 saved_velocity;
+        Vector3 movementDelta;
+        Vector3 savedMovementDelta;
         float moveSpeed;
+        Vector3 gravityDelta;
 
     protected:
         // a static function that Godot will call to find out which methods can be called and which properties it exposes

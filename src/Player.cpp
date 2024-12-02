@@ -22,7 +22,8 @@ void Player::_enter_tree()
 {
     // init vars
     saved_velocity = Vector3(0, 0, 0);
-    moveSpeed = 10.0f;
+    moveSpeed = 1000.0f;
+    gravityDelta = Vector3(0, -9.8, 0);//I have no idea if this works how real gravity works
     camera = nullptr;
     // Mesh and Mat
     create_and_add_as_child<MeshInstance3D>(mesh_instance, "PlayerMesh", true);
@@ -76,6 +77,7 @@ void Player::_ready()
 void Player::_process(double delta)
 {
     Input *_input = Input::get_singleton();
+    
     // dev tool for placing stuff
     if (_input->is_action_just_pressed("ui_right"))
     {
@@ -85,109 +87,78 @@ void Player::_process(double delta)
         UtilityFunctions::print(editor_cam_pos);
         UtilityFunctions::print(editor_cam_rot);
     }
+    
     if (_input->is_action_just_pressed("ui_left"))
     {
         UtilityFunctions::print("Trigg:");
         UtilityFunctions::print(get_position());
     }
     // END OF DEV TOOL FOR PLACING STUFF
+
     if (Engine::get_singleton()->is_editor_hint())
         return; // Early return if we are in editor
                 // Game loop stuff HERE
-    UtilityFunctions::print(saved_velocity, " - ", this->get_velocity());
-    if (_input->is_action_pressed("move_forward") && saved_velocity == Vector3(0, 0, 0))
-    {
-        UtilityFunctions::print("forward");
-        // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
-        Vector3 prev_pos = this->get_global_position();
-        this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-        this->move_and_slide();
-        // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
 
-        // Making sure the player does not get stuck on terrain
-        if (prev_pos == this->get_global_position())
-        {
-            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
-            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-            this->move_and_slide();
-            // UtilityFunctions::print(this->get_global_position());
-        }
-    }
-    if (_input->is_action_pressed("move_backward") && saved_velocity == Vector3(0, 0, 0))
-    {
-        UtilityFunctions::print("back");
-        // this->set_global_position(this->get_global_position() - camera->GetMovementPlaneForward() * delta * moveSpeed);
-        Vector3 prev_pos = this->get_global_position();
-        this->set_velocity(-1.0 * camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-        this->move_and_slide();
+    
+    //Movement block
+    Vector3 prev_pos = this->get_global_position();//before moving, record the players position so that we can unditch them if they are stuck
+    movementDelta = Vector3(0, 0, 0);//reset movementDelta, so that the previous frame input doesn't bleed into this frames input.
 
-        // Making sure the player does not get stuck on terrain
-        if (prev_pos == this->get_global_position())
-        {
-            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
-            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-            this->move_and_slide();
-            // UtilityFunctions::print(this->get_global_position());
-        }
-    }
-    if (_input->is_action_pressed("move_right") && saved_velocity == Vector3(0, 0, 0))
+    
+    //forsake savedMovementDelta, if the player releases any movement key, or presses any movement key
+    bool anyMovementKeyWasReleased = (_input->is_action_just_released("move_forward") || _input->is_action_just_released("move_backward") || _input->is_action_just_released("move_right") || _input->is_action_just_released("move_left"));
+    bool anyMovementKeyWasJustPressed = (_input->is_action_just_pressed("move_forward") || _input->is_action_just_pressed("move_backward") || _input->is_action_just_pressed("move_right") || _input->is_action_just_pressed("move_left"));
+    if(anyMovementKeyWasReleased || anyMovementKeyWasJustPressed)
     {
-        UtilityFunctions::print("right");
-        // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneSide() * delta * moveSpeed);
-        Vector3 prev_pos = this->get_global_position();
-        this->set_velocity(camera->GetMovementPlaneSide() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-        this->move_and_slide();
+        UtilityFunctions::print("savedMovementDelta has been forsaken");
+        savedMovementDelta = Vector3(0, 0, 0);
+    }
 
-        // Making sure the player does not get stuck on terrain
-        if (prev_pos == this->get_global_position())
-        {
-            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
-            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-            this->move_and_slide();
-            // UtilityFunctions::print(this->get_global_position());
-        }
-    }
-    if (_input->is_action_pressed("move_left") && saved_velocity == Vector3(0, 0, 0))
+    if(savedMovementDelta == Vector3(0, 0, 0))//if savedMovementDelta is zero, then we look for user input
     {
-        UtilityFunctions::print("left");
-        // this->set_global_position(this->get_global_position() - camera->GetMovementPlaneSide() * delta * moveSpeed);
-        Vector3 prev_pos = this->get_global_position();
-        this->set_velocity(-1.0 * camera->GetMovementPlaneSide() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-        this->move_and_slide();
+        Vector3 movmentInputVector = Vector3(0, 0, 0);
+        if(_input->is_action_pressed("move_forward"))
+        {
+            //UtilityFunctions::print("forward");
+            movmentInputVector += camera->GetMovementPlaneForward();
+        }
+            
+        if(_input->is_action_pressed("move_backward"))
+        {
+            //UtilityFunctions::print("backward");
+            movmentInputVector -= camera->GetMovementPlaneForward();
+        }
+           
 
-        // Making sure the player does not get stuck on terrain
-        if (prev_pos == this->get_global_position())
+        if(_input->is_action_pressed("move_right"))
         {
-            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
-            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-            this->move_and_slide();
-            // UtilityFunctions::print(this->get_global_position());
+            //UtilityFunctions::print("right");
+            movmentInputVector += camera->GetMovementPlaneSide();
         }
+
+        if(_input->is_action_pressed("move_left"))
+        {
+            //UtilityFunctions::print("left");
+            movmentInputVector -= camera->GetMovementPlaneSide();
+        }
+        
+        movementDelta = movmentInputVector.normalized() * moveSpeed; 
     }
-    if (_input->is_action_just_released("move_forward") || _input->is_action_just_released("move_backward") || _input->is_action_just_released("move_right") || _input->is_action_just_released("move_left"))
+    else if (savedMovementDelta != Vector3(0, 0, 0))//if savedMovementDelta is not zero, then we use it as movementDelta
     {
-        UtilityFunctions::print("Forsake velocity");
-        saved_velocity = Vector3(0, 0, 0);
+        UtilityFunctions::print("Using savedMovementDelta as movementDelta");
+        movementDelta = savedMovementDelta;
     }
-    else if (saved_velocity != Vector3(0, 0, 0))
+    
+    //apply movementDelta and gravityDelta
+    this->set_velocity((movementDelta + gravityDelta) * delta);
+    this->move_and_slide();
+
+    //if the player tried to move but was unable to move, give them a vertical boost
+    if((movementDelta != Vector3(0, 0, 0)) && (prev_pos == this->get_global_position()))
     {
-        UtilityFunctions::print("Using Saved velocity");
-        Vector3 prev_pos = this->get_global_position();
-        if (saved_velocity != get_velocity())
-        {
-            UtilityFunctions::print("Changing Saved velocity ----------------------------------------------------------------------");
-            UtilityFunctions::print(saved_velocity, " - ", this->get_velocity());
-        }
-        this->set_velocity(saved_velocity + Vector3(0.0, -0.5, 0.0));
-        this->move_and_slide();
-        if (prev_pos == this->get_global_position())
-        {
-            UtilityFunctions::print("FIXING STUFF");
-            this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
-            this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
-            this->move_and_slide();
-            // UtilityFunctions::print(this->get_global_position());
-        }
+        UtilityFunctions::print("Unditching player");
+        //this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));//move the player up 1 unit
     }
 }
 
@@ -199,9 +170,12 @@ PlayerCamera *Player::GetCamera()
 void Player::SetCamera(PlayerCamera *cam)
 {
     if (camera != nullptr)
-        saved_velocity = this->get_velocity();
+    {
+        savedMovementDelta = movementDelta;//save the current movementDelta
+        UtilityFunctions::print("Set savedMovementDelta as:", savedMovementDelta);
+    }
+        
     camera = cam;
-    UtilityFunctions::print("Set Save Velocity");
 }
 
 float Player::GetMoveSpeed()
