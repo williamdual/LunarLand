@@ -9,3 +9,4 @@ demo/bin/~lib*
 demo/bin
 demo/bin/lib*.obj
 demo/bin/~lib*.obj
+/src/*.obj

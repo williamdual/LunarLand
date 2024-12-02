@@ -225,10 +225,47 @@ void CustomScene3501::create_cameras()
 	CameraTrigger *trigg_9;
 	create_and_add_as_child<CameraTrigger>(trigg_9, "WHC_trigg_2", true);
 
+	PlayerCamera *cam_5;
+	create_and_add_as_child<PlayerCamera>(cam_5, "WEC", true);
+	cam_5->set_global_position(Vector3(-8.092813, -2.793831, -138.3976));
+	cam_5->set_rotation_degrees(Vector3(-41.7042, -18.33477, 0));
+	cam_5->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_10;
+	create_and_add_as_child<CameraTrigger>(trigg_10, "WEC_trigg_1", true);
+	CameraTrigger *trigg_11;
+	create_and_add_as_child<CameraTrigger>(trigg_11, "WEC_trigg_2", true);
+	CameraTrigger *trigg_12;
+	create_and_add_as_child<CameraTrigger>(trigg_12, "WEC_trigg_3", true);
+	CameraTrigger *trigg_13;
+	create_and_add_as_child<CameraTrigger>(trigg_13, "WEC_trigg_4", true);
+	CameraTrigger *trigg_14;
+	create_and_add_as_child<CameraTrigger>(trigg_14, "WEC_trigg_5", true);
+
+	PlayerCamera *cam_6;
+	create_and_add_as_child<PlayerCamera>(cam_6, "WCC", true);
+	cam_6->set_global_position(Vector3(-36.14626, -8.253156, -189.9177));
+	cam_6->set_rotation_degrees(Vector3(0, 180, 0));
+	cam_6->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_15;
+	create_and_add_as_child<CameraTrigger>(trigg_14, "WCC_trigg_1", true);
+	CameraTrigger *trigg_16;
+	create_and_add_as_child<CameraTrigger>(trigg_15, "WCC_trigg_2", true);
+
+	PlayerCamera *cam_7;
+	create_and_add_as_child<PlayerCamera>(cam_7, "WBoBoC", true);
+	cam_7->set_global_position(Vector3(0.652023, -5.790375, -173.8483));
+	cam_7->set_rotation_degrees(Vector3(-31.7042, -90.0, 0));
+	cam_7->SetTrackType(CameraTrackType::panning);
+	CameraTrigger *trigg_17;
+	create_and_add_as_child<CameraTrigger>(trigg_16, "WBoBoC_trigg_1", true);
+
 	cameras.append(cam_1);
 	cameras.append(cam_2);
 	cameras.append(cam_3);
 	cameras.append(cam_4);
+	cameras.append(cam_5);
+	cameras.append(cam_6);
+	cameras.append(cam_7);
 	cam_triggs.append(trigg_1);
 	cam_triggs.append(trigg_2);
 	cam_triggs.append(trigg_3);
@@ -238,6 +275,13 @@ void CustomScene3501::create_cameras()
 	cam_triggs.append(trigg_7);
 	cam_triggs.append(trigg_8);
 	cam_triggs.append(trigg_9);
+	cam_triggs.append(trigg_10);
+	cam_triggs.append(trigg_11);
+	cam_triggs.append(trigg_12);
+	cam_triggs.append(trigg_13);
+	cam_triggs.append(trigg_14);
+	cam_triggs.append(trigg_15);
+	cam_triggs.append(trigg_16);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -317,6 +361,49 @@ void CustomScene3501::setup_cameras()
 				cam_triggs[i]->set_global_position(Vector3(1.043307, -11.5, -134.7595));
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[3]);
+			}
+			else if (i == 9) // Employe lounge main area
+			{
+				cam_triggs[i]->set_global_position(Vector3(0, -11.5, -140.3351));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[4]);
+			}
+			else if (i == 10)
+			{
+				cam_triggs[i]->set_global_position(Vector3(-18.33708, -11.5, -146.5542));
+				cam_triggs[i]->SetCamera(cameras[4]);
+			}
+			else if (i == 11)
+			{
+				cam_triggs[i]->set_global_position(Vector3(-18.33708, -11.5, -177.7186));
+				cam_triggs[i]->SetCamera(cameras[4]);
+			}
+			else if (i == 12)
+			{
+				cam_triggs[i]->set_global_position(Vector3(1.243914, -11.5, -173.0238));
+				cam_triggs[i]->SetCamera(cameras[4]);
+			}
+			else if (i == 13)
+			{
+				cam_triggs[i]->set_global_position(Vector3(-7.495, -11.5, -180.482));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 10.0f, 23.8f));
+				cam_triggs[i]->SetCamera(cameras[4]);
+			}
+			else if (i == 14) // Cafeteria triggs
+			{
+				cam_triggs[i]->set_global_position(Vector3(-23.8, -11.5, -146.5542));
+				cam_triggs[i]->SetCamera(cameras[5]);
+			}
+			else if (i == 15)
+			{
+				cam_triggs[i]->set_global_position(Vector3(-23.8, -11.5, -177.7186));
+				cam_triggs[i]->SetCamera(cameras[5]);
+			}
+			else if (i == 16)
+			{
+				cam_triggs[i]->set_global_position(Vector3(6.230962, -11.5, -173.556));
+				cam_triggs[i]->SetCamera(cameras[6]);
 			}
 		}
 	}
