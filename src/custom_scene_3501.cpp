@@ -247,9 +247,9 @@ void CustomScene3501::create_cameras()
 	cam_6->set_rotation_degrees(Vector3(0, 180, 0));
 	cam_6->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_15;
-	create_and_add_as_child<CameraTrigger>(trigg_14, "WCC_trigg_1", true);
+	create_and_add_as_child<CameraTrigger>(trigg_15, "WCC_trigg_1", true);
 	CameraTrigger *trigg_16;
-	create_and_add_as_child<CameraTrigger>(trigg_15, "WCC_trigg_2", true);
+	create_and_add_as_child<CameraTrigger>(trigg_16, "WCC_trigg_2", true);
 
 	PlayerCamera *cam_7;
 	create_and_add_as_child<PlayerCamera>(cam_7, "WBoBoC", true);
@@ -257,7 +257,49 @@ void CustomScene3501::create_cameras()
 	cam_7->set_rotation_degrees(Vector3(-31.7042, -90.0, 0));
 	cam_7->SetTrackType(CameraTrackType::panning);
 	CameraTrigger *trigg_17;
-	create_and_add_as_child<CameraTrigger>(trigg_16, "WBoBoC_trigg_1", true);
+	create_and_add_as_child<CameraTrigger>(trigg_17, "WBoBoC_trigg_1", true);
+
+	PlayerCamera *cam_8;
+	create_and_add_as_child<PlayerCamera>(cam_8, "WELC", true);
+	cam_8->set_global_position(Vector3(10.29093, -0.882858, -182.5928));
+	cam_8->set_rotation_degrees(Vector3(-22.20435, 3.440094, 0));
+	cam_8->SetTrackType(CameraTrackType::panning);
+	CameraTrigger *trigg_18;
+	create_and_add_as_child<CameraTrigger>(trigg_18, "WELC_trigg_1", true);
+	CameraTrigger *trigg_19;
+	create_and_add_as_child<CameraTrigger>(trigg_19, "WELC_trigg_2", true);
+	CameraTrigger *trigg_20;
+	create_and_add_as_child<CameraTrigger>(trigg_20, "WELC_trigg_3", true);
+	CameraTrigger *trigg_21;
+	create_and_add_as_child<CameraTrigger>(trigg_21, "WELC_trigg_4", true);
+	CameraTrigger *trigg_22;
+	create_and_add_as_child<CameraTrigger>(trigg_22, "WELC_trigg_5", true);
+	CameraTrigger *trigg_23;
+	create_and_add_as_child<CameraTrigger>(trigg_23, "WELC_trigg_6", true);
+
+	PlayerCamera *cam_9; // Pool Cam
+	create_and_add_as_child<PlayerCamera>(cam_9, "W_pool_C", true);
+	cam_9->set_global_position(Vector3(20.58441, -4.134171, -199.112));
+	cam_9->set_rotation_degrees(Vector3(-34.20435, -133.3126, 0));
+	cam_9->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_24;
+	create_and_add_as_child<CameraTrigger>(trigg_24, "W_pool_C_trigg_1", true);
+
+	PlayerCamera *cam_10; // Pasta Cam
+	create_and_add_as_child<PlayerCamera>(cam_10, "W_pasta_C", true);
+	cam_10->set_global_position(Vector3(-34.74051, -11.13709, -220.2767));
+	cam_10->set_rotation_degrees(Vector3(10.54556, -111.057, 0));
+	cam_10->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_25;
+	create_and_add_as_child<CameraTrigger>(trigg_25, "W_pasta_C_trigg_1", true);
+
+	PlayerCamera *cam_11; // Pool Cam
+	create_and_add_as_child<PlayerCamera>(cam_11, "W_steals_C", true);
+	cam_11->set_global_position(Vector3(-3.120258, 0.202873, -239.4347));
+	cam_11->set_rotation_degrees(Vector3(-24.20443, -0.547862, 0));
+	cam_11->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_26;
+	create_and_add_as_child<CameraTrigger>(trigg_26, "W_steals_C_trigg_1", true);
 
 	cameras.append(cam_1);
 	cameras.append(cam_2);
@@ -266,6 +308,10 @@ void CustomScene3501::create_cameras()
 	cameras.append(cam_5);
 	cameras.append(cam_6);
 	cameras.append(cam_7);
+	cameras.append(cam_8);
+	cameras.append(cam_9);
+	cameras.append(cam_10);
+	cameras.append(cam_11);
 	cam_triggs.append(trigg_1);
 	cam_triggs.append(trigg_2);
 	cam_triggs.append(trigg_3);
@@ -282,6 +328,16 @@ void CustomScene3501::create_cameras()
 	cam_triggs.append(trigg_14);
 	cam_triggs.append(trigg_15);
 	cam_triggs.append(trigg_16);
+	cam_triggs.append(trigg_17);
+	cam_triggs.append(trigg_18);
+	cam_triggs.append(trigg_19);
+	cam_triggs.append(trigg_20);
+	cam_triggs.append(trigg_21);
+	cam_triggs.append(trigg_22);
+	cam_triggs.append(trigg_23);
+	cam_triggs.append(trigg_24);
+	cam_triggs.append(trigg_25);
+	cam_triggs.append(trigg_26);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -303,6 +359,8 @@ void CustomScene3501::setup_cameras()
 			}
 		}
 		Vector3 right_angle_turn = Vector3(0, 90, 0);
+		Vector3 long_box = Vector3(1.1f, 10.0f, 23.8f);
+		Vector3 cube_box = Vector3(6.1f, 10.0f, 5.788f);
 		for (int i = 0; i < cam_triggs.size(); i++)
 		{
 			re_parent<Node, CameraTrigger>(trigg_ref_group, cam_triggs[i]);
@@ -365,7 +423,6 @@ void CustomScene3501::setup_cameras()
 			else if (i == 9) // Employe lounge main area
 			{
 				cam_triggs[i]->set_global_position(Vector3(0, -11.5, -140.3351));
-				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[4]);
 			}
 			else if (i == 10)
@@ -387,7 +444,7 @@ void CustomScene3501::setup_cameras()
 			{
 				cam_triggs[i]->set_global_position(Vector3(-7.495, -11.5, -180.482));
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
-				cam_triggs[i]->setColliderTransformation(Vector3(1.1f, 10.0f, 23.8f));
+				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[4]);
 			}
 			else if (i == 14) // Cafeteria triggs
@@ -400,10 +457,68 @@ void CustomScene3501::setup_cameras()
 				cam_triggs[i]->set_global_position(Vector3(-23.8, -11.5, -177.7186));
 				cam_triggs[i]->SetCamera(cameras[5]);
 			}
-			else if (i == 16)
+			else if (i == 16) // Bobos tent trigg
 			{
 				cam_triggs[i]->set_global_position(Vector3(6.230962, -11.5, -173.556));
 				cam_triggs[i]->SetCamera(cameras[6]);
+			}
+			else if (i == 17) // Northern Employee Lounge
+			{
+				cam_triggs[i]->set_global_position(Vector3(-7.495, -11.5, -183.877));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[7]);
+			}
+			else if (i == 18)
+			{
+				cam_triggs[i]->set_global_position(Vector3(-18.24476, -11.5, -217.9538));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[7]);
+			}
+			else if (i == 19)
+			{
+				cam_triggs[i]->set_global_position(Vector3(2.575, -11.5, -244.3493));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[7]);
+			}
+			else if (i == 20)
+			{
+				cam_triggs[i]->set_global_position(Vector3(22.50648, -11.5, -192.5537));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[7]);
+			}
+			else if (i == 21)
+			{
+				cam_triggs[i]->set_global_position(Vector3(22.50648, -11.5, -200.2746));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[7]);
+			}
+			else if (i == 22)
+			{
+				cam_triggs[i]->set_global_position(Vector3(17.21342, -11.5, -196.1647));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[7]);
+			}
+			else if (i == 23) // Pool cam trigger
+			{
+				cam_triggs[i]->set_global_position(Vector3(22.51979, -11.5, -196.6439));
+				cam_triggs[i]->setColliderTransformation(cube_box);
+				cam_triggs[i]->SetCamera(cameras[8]);
+			}
+			else if (i == 24) // PASTA Trigger
+			{
+				cam_triggs[i]->set_global_position(Vector3(-22.51009, -11.5, -219.0184));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[9]);
+			}
+			else if (i == 25) // STEALS Trigger
+			{
+				cam_triggs[i]->set_global_position(Vector3(2.575, -11.5, -248.06));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[10]);
 			}
 		}
 	}
