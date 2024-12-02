@@ -43,12 +43,32 @@ void PlayerCamera::_process(double delta)
 	if (Engine::get_singleton()->is_editor_hint())
 		return; // Early return if we are in editor
 
-	// if we have a target, point at it
+	
 	if (target_ptr == nullptr)
 	{
+		// if we dont have a target, dont do anything
 	}
 	else if (is_current() && track_type == CameraTrackType::tracking)
 	{
+		//turn to face the player
+
+		//step 1) generate the yaw rotation, from the camera to the player
+		Vector3 flatTarget = (target_ptr->get_global_position() - this->get_global_position()).normalized();
+		flatTarget.y = 0;
+		Vector3 flatForward = GetForward();
+		flatForward.y = 0;
+
+		//step 2) make the shortest rotational arc from the flatforward vector to the flatTarget vector
+		Quaternion desiredWorldYawRotation = Quaternion(flatForward, flatTarget).normalized();
+
+		//step 3) update "our_quaternion" so that forward_ and side_ work properly
+		our_quaternion = (desiredWorldYawRotation * our_quaternion).normalized();
+
+		//step 4) apply the yaw rotation
+    	set_quaternion((desiredWorldYawRotation * get_quaternion()).normalized());
+		
+		//step 5) pivot the camera down so that it looks directly at the player
+		//Note: this is very very jank, but this angles the camera down towards the player without messing with anything else.
 		this->look_at(target_ptr->get_global_position());
 	}
 	else if (is_current() && track_type == CameraTrackType::panning)
@@ -75,6 +95,10 @@ void PlayerCamera::_process(double delta)
 
 Vector3 PlayerCamera::GetForward(void)
 {
+	Vector3 current_forward = (our_quaternion.xform(forward_));
+    return -current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
+
+	/*
 	Vector3 current_forward = Vector3(0, 0, 0);
 	if (track_type == CameraTrackType::tracking)
 		current_forward = (get_quaternion().xform(forward_));
@@ -82,16 +106,22 @@ Vector3 PlayerCamera::GetForward(void)
 		current_forward = (get_quaternion().xform(forward_.rotated(Vector3(0, 1, 0), get_rotation().y)));
 
 	return current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
+	*/
 }
 
 Vector3 PlayerCamera::GetSide(void)
 {
+	Vector3 current_side = (our_quaternion.xform(side_));
+	return current_side.normalized();
+
+	/*
 	Vector3 current_side = Vector3(0, 0, 0);
 	if (track_type == CameraTrackType::tracking)
 		current_side = (get_quaternion().xform(side_));
 	else
 		current_side = (get_quaternion().xform(side_.rotated(Vector3(0, 1, 0), get_rotation().y)));
 	return current_side;
+	*/
 }
 
 Vector3 PlayerCamera::GetUp(void)
@@ -130,6 +160,14 @@ void godot::PlayerCamera::SetTrackType(CameraTrackType tt)
 CameraTrackType godot::PlayerCamera::GetTrackType()
 {
 	return track_type;
+}
+
+void godot::PlayerCamera::SafelyRotate(Vector3 worldAxis, float angleDegrees)
+{
+	Quaternion desiredWorldRotation = Quaternion(worldAxis, Math::deg_to_rad(angleDegrees));
+	set_quaternion((desiredWorldRotation * get_quaternion()).normalized());
+	//set_quaternion(get_quaternion().normalized());
+	
 }
 
 // void godot::PlayerCamera::SetType(CameraMoveType mt, CameraTrackType tt)

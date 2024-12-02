@@ -56,6 +56,7 @@ namespace godot
 		// CameraMoveType GetMoveType();
 		void SetTrackType(CameraTrackType);
 		CameraTrackType GetTrackType();
+		void SafelyRotate(Vector3 axis, float angle);
 	};
 }
 
