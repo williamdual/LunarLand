@@ -185,7 +185,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_1;
 	create_and_add_as_child<PlayerCamera>(cam_1, "SEC", true);
 	cam_1->set_global_position(Vector3(4.632536, -1.755016, -26.03943));
-	cam_1->set_rotation_degrees(Vector3(-48.20439, 48.67517, 0));
+	cam_1->SafelyRotate(Vector3(-48.20439, 48.67517, 0));
 	cam_1->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_1;
 	create_and_add_as_child<CameraTrigger>(trigg_1, "SEC_trigg_1", true);
@@ -193,7 +193,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_2;
 	create_and_add_as_child<PlayerCamera>(cam_2, "SHC", true);
 	cam_2->set_global_position(Vector3(-4.818558, -9.923786, -39.83393));
-	cam_2->set_rotation_degrees(Vector3(-0.704379, -88.32508, 0));
+	cam_2->SafelyRotate(Vector3(-0.704379, -88.32508, 0));
 	cam_2->SetTrackType(CameraTrackType::panning);
 	CameraTrigger *trigg_2;
 	create_and_add_as_child<CameraTrigger>(trigg_2, "SHC_trigg_1", true);
@@ -203,7 +203,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_3;
 	create_and_add_as_child<PlayerCamera>(cam_3, "SBC", true);
 	cam_3->set_global_position(Vector3(-0.176132, 23.11914, -75.44937));
-	cam_3->set_rotation_degrees(Vector3(-90.0, 0, 0));
+	// cam_3->SafelyRotate(Vector3(-90.0, 0, 0));
 	cam_3->SetTrackType(CameraTrackType::tracking);
 	CameraTrigger *trigg_4;
 	create_and_add_as_child<CameraTrigger>(trigg_4, "SBC_trigg_1", true);
@@ -218,7 +218,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_4;
 	create_and_add_as_child<PlayerCamera>(cam_4, "WHC", true);
 	cam_4->set_global_position(Vector3(7.65308, -8.397577, -95.25987));
-	cam_4->set_rotation_degrees(Vector3(-0.45437, 90.15166, 0));
+	cam_4->SafelyRotate(Vector3(-0.45437, 90.15166, 0));
 	cam_4->SetTrackType(CameraTrackType::panning);
 	CameraTrigger *trigg_8;
 	create_and_add_as_child<CameraTrigger>(trigg_8, "WHC_trigg_1", true);
@@ -228,7 +228,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_5;
 	create_and_add_as_child<PlayerCamera>(cam_5, "WEC", true);
 	cam_5->set_global_position(Vector3(-8.092813, -2.793831, -138.3976));
-	cam_5->set_rotation_degrees(Vector3(-41.7042, -18.33477, 0));
+	// cam_5->SafelyRotate(Vector3(-41.7042, -18.33477, 0));
 	cam_5->SetTrackType(CameraTrackType::tracking);
 	CameraTrigger *trigg_10;
 	create_and_add_as_child<CameraTrigger>(trigg_10, "WEC_trigg_1", true);
@@ -244,7 +244,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_6;
 	create_and_add_as_child<PlayerCamera>(cam_6, "WCC", true);
 	cam_6->set_global_position(Vector3(-36.14626, -8.253156, -189.9177));
-	cam_6->set_rotation_degrees(Vector3(0, 180, 0));
+	cam_6->SafelyRotate(Vector3(0, 180, 0));
 	cam_6->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_15;
 	create_and_add_as_child<CameraTrigger>(trigg_15, "WCC_trigg_1", true);
@@ -254,7 +254,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_7;
 	create_and_add_as_child<PlayerCamera>(cam_7, "WBoBoC", true);
 	cam_7->set_global_position(Vector3(0.652023, -5.790375, -173.8483));
-	cam_7->set_rotation_degrees(Vector3(-31.7042, -90.0, 0));
+	cam_7->SafelyRotate(Vector3(-31.7042, -90.0, 0));
 	cam_7->SetTrackType(CameraTrackType::panning);
 	CameraTrigger *trigg_17;
 	create_and_add_as_child<CameraTrigger>(trigg_17, "WBoBoC_trigg_1", true);
@@ -262,8 +262,8 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_8;
 	create_and_add_as_child<PlayerCamera>(cam_8, "WELC", true);
 	cam_8->set_global_position(Vector3(10.29093, -0.882858, -182.5928));
-	cam_8->set_rotation_degrees(Vector3(-22.20435, 3.440094, 0));
-	cam_8->SetTrackType(CameraTrackType::panning);
+	cam_8->SafelyRotate(Vector3(-22.20435, 3.440094, 0));
+	cam_8->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_18;
 	create_and_add_as_child<CameraTrigger>(trigg_18, "WELC_trigg_1", true);
 	CameraTrigger *trigg_19;
@@ -280,15 +280,15 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_9; // Pool Cam
 	create_and_add_as_child<PlayerCamera>(cam_9, "W_pool_C", true);
 	cam_9->set_global_position(Vector3(20.58441, -4.134171, -199.112));
-	cam_9->set_rotation_degrees(Vector3(-34.20435, -133.3126, 0));
+	cam_9->SafelyRotate(Vector3(-34.20435, -133.3126, 0));
 	cam_9->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_24;
 	create_and_add_as_child<CameraTrigger>(trigg_24, "W_pool_C_trigg_1", true);
 
 	PlayerCamera *cam_10; // Pasta Cam
 	create_and_add_as_child<PlayerCamera>(cam_10, "W_pasta_C", true);
-	cam_10->set_global_position(Vector3(-34.74051, -11.13709, -220.2767));
-	cam_10->set_rotation_degrees(Vector3(10.54556, -111.057, 0));
+	cam_10->set_global_position(Vector3(-34.69436, -5.034119, -220.5239));
+	cam_10->SafelyRotate(Vector3(-47.45443, -115.7982, 0));
 	cam_10->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_25;
 	create_and_add_as_child<CameraTrigger>(trigg_25, "W_pasta_C_trigg_1", true);
@@ -296,7 +296,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_11; // Pool Cam
 	create_and_add_as_child<PlayerCamera>(cam_11, "W_steals_C", true);
 	cam_11->set_global_position(Vector3(-3.120258, 0.202873, -239.4347));
-	cam_11->set_rotation_degrees(Vector3(-24.20443, -0.547862, 0));
+	cam_11->SafelyRotate(Vector3(-24.20443, -0.547862, 0));
 	cam_11->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_26;
 	create_and_add_as_child<CameraTrigger>(trigg_26, "W_steals_C_trigg_1", true);
@@ -465,6 +465,7 @@ void CustomScene3501::setup_cameras()
 			else if (i == 17) // Northern Employee Lounge
 			{
 				cam_triggs[i]->set_global_position(Vector3(-7.495, -11.5, -183.877));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[7]);
 			}

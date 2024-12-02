@@ -23,6 +23,7 @@ void Player::_enter_tree()
     // init vars
     saved_velocity = Vector3(0, 0, 0);
     moveSpeed = 10.0f;
+    camera = nullptr;
     // Mesh and Mat
     create_and_add_as_child<MeshInstance3D>(mesh_instance, "PlayerMesh", true);
 
@@ -74,8 +75,8 @@ void Player::_ready()
 // called every frame (as often as possible)
 void Player::_process(double delta)
 {
-    // dev tool for placing stuff
     Input *_input = Input::get_singleton();
+    // dev tool for placing stuff
     if (_input->is_action_just_pressed("ui_right"))
     {
         Vector3 editor_cam_pos = EditorInterface::get_singleton()->get_editor_viewport_3d()->get_camera_3d()->get_global_position();
@@ -93,10 +94,10 @@ void Player::_process(double delta)
     if (Engine::get_singleton()->is_editor_hint())
         return; // Early return if we are in editor
                 // Game loop stuff HERE
-
-    // Input *_input = Input::get_singleton();
+    UtilityFunctions::print(saved_velocity, " - ", this->get_velocity());
     if (_input->is_action_pressed("move_forward") && saved_velocity == Vector3(0, 0, 0))
     {
+        UtilityFunctions::print("forward");
         // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneForward() * delta * moveSpeed);
         Vector3 prev_pos = this->get_global_position();
         this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
@@ -114,6 +115,7 @@ void Player::_process(double delta)
     }
     if (_input->is_action_pressed("move_backward") && saved_velocity == Vector3(0, 0, 0))
     {
+        UtilityFunctions::print("back");
         // this->set_global_position(this->get_global_position() - camera->GetMovementPlaneForward() * delta * moveSpeed);
         Vector3 prev_pos = this->get_global_position();
         this->set_velocity(-1.0 * camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
@@ -130,6 +132,7 @@ void Player::_process(double delta)
     }
     if (_input->is_action_pressed("move_right") && saved_velocity == Vector3(0, 0, 0))
     {
+        UtilityFunctions::print("right");
         // this->set_global_position(this->get_global_position() + camera->GetMovementPlaneSide() * delta * moveSpeed);
         Vector3 prev_pos = this->get_global_position();
         this->set_velocity(camera->GetMovementPlaneSide() * moveSpeed + Vector3(0.0, -0.5, 0.0));
@@ -146,9 +149,10 @@ void Player::_process(double delta)
     }
     if (_input->is_action_pressed("move_left") && saved_velocity == Vector3(0, 0, 0))
     {
+        UtilityFunctions::print("left");
         // this->set_global_position(this->get_global_position() - camera->GetMovementPlaneSide() * delta * moveSpeed);
         Vector3 prev_pos = this->get_global_position();
-        this->set_velocity(-1.0 * camera->GetMovementPlaneSide() * moveSpeed + Vector3(0.0, -0.5, 1.0));
+        this->set_velocity(-1.0 * camera->GetMovementPlaneSide() * moveSpeed + Vector3(0.0, -0.5, 0.0));
         this->move_and_slide();
 
         // Making sure the player does not get stuck on terrain
@@ -162,29 +166,28 @@ void Player::_process(double delta)
     }
     if (_input->is_action_just_released("move_forward") || _input->is_action_just_released("move_backward") || _input->is_action_just_released("move_right") || _input->is_action_just_released("move_left"))
     {
+        UtilityFunctions::print("Forsake velocity");
         saved_velocity = Vector3(0, 0, 0);
     }
     else if (saved_velocity != Vector3(0, 0, 0))
     {
+        UtilityFunctions::print("Using Saved velocity");
         Vector3 prev_pos = this->get_global_position();
-        this->set_velocity(saved_velocity);
+        if (saved_velocity != get_velocity())
+        {
+            UtilityFunctions::print("Changing Saved velocity ----------------------------------------------------------------------");
+            UtilityFunctions::print(saved_velocity, " - ", this->get_velocity());
+        }
+        this->set_velocity(saved_velocity + Vector3(0.0, -0.5, 0.0));
         this->move_and_slide();
         if (prev_pos == this->get_global_position())
         {
+            UtilityFunctions::print("FIXING STUFF");
             this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));
             this->set_velocity(camera->GetMovementPlaneForward() * moveSpeed + Vector3(0.0, -0.5, 0.0));
             this->move_and_slide();
             // UtilityFunctions::print(this->get_global_position());
         }
-    }
-    if (_input->is_action_just_released("move_forward") || _input->is_action_just_released("move_backward") || _input->is_action_just_released("move_right") || _input->is_action_just_released("move_left"))
-    {
-        saved_velocity = Vector3(0, 0, 0);
-    }
-    else if (saved_velocity != Vector3(0, 0, 0))
-    {
-        this->set_velocity(saved_velocity);
-        this->move_and_slide();
     }
 }
 
@@ -195,8 +198,10 @@ PlayerCamera *Player::GetCamera()
 
 void Player::SetCamera(PlayerCamera *cam)
 {
+    if (camera != nullptr)
+        saved_velocity = this->get_velocity();
     camera = cam;
-    saved_velocity = get_velocity();
+    UtilityFunctions::print("Set Save Velocity");
 }
 
 float Player::GetMoveSpeed()
