@@ -177,6 +177,11 @@ void CustomScene3501::_process(double delta)
 		start_static = time_passed + 10.0 + rand() % 10;
 		end_static = start_static + 1.0;
 	}
+
+	// Checking if the game should end
+	if (player->GetInventory()->GetCapacity() >= 3) {
+		this->get_tree()->change_scene_to_file("res://end.tscn");
+	}
 }
 
 void CustomScene3501::create_cameras()

@@ -1,7 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://hx53hchqjssn"]
+[gd_scene load_steps=11 format=3 uid="uid://hx53hchqjssn"]
 
 [ext_resource type="FontFile" uid="uid://dv1qw0u3oy8uq" path="res://Fonts/ThaleahFat.ttf" id="1_2fml0"]
 [ext_resource type="Script" path="res://how_to_play.gd" id="1_k37gp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nv0o6"]
+font = ExtResource("1_2fml0")
+font_size = 40
+font_color = Color(0.298039, 0.788235, 0.941176, 1)
+outline_size = 10
+outline_color = Color(0.933333, 0.933333, 0.933333, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_s557f"]
 font = ExtResource("1_2fml0")
@@ -65,9 +72,8 @@ layout_mode = 2
 
 [node name="Title" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/TitleContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_2fml0")
-theme_override_font_sizes/font_size = 40
 text = "How To Play"
+label_settings = SubResource("LabelSettings_nv0o6")
 
 [node name="TextAlignment" type="CenterContainer" parent="CanvasLayer/MarginContainer/MainContainer"]
 layout_mode = 2

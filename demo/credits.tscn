@@ -6,6 +6,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ff3bo"]
 font = ExtResource("1_e0esc")
 font_size = 40
+font_color = Color(0.298039, 0.788235, 0.941176, 1)
+outline_size = 10
+outline_color = Color(0.933333, 0.933333, 0.933333, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_i0e3l"]
 font = ExtResource("1_e0esc")
@@ -72,8 +75,10 @@ metadata/_edit_lock_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -57.0
 offset_top = -50.0
-offset_bottom = -50.0
+offset_right = 57.0
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 120
@@ -177,7 +182,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/QuoteContainer"]
 layout_mode = 2
-text = "\"I admire casino's because they fool the common person into giving them every penny - just like me\"
+text = "\"I admire casino's because they fool the common person into giving them every penny - just like me!\"
 - Locklen Lincan, Founder of LunarLand"
 label_settings = SubResource("LabelSettings_rpsim")
 horizontal_alignment = 1
