@@ -62,7 +62,7 @@ namespace godot
 		ColorRect *overscreen;
 		Vector<PlayerCamera *> cameras;
 		Vector<CameraTrigger *> cam_triggs;
-		Vector<Interactable *> interactables;
+		Vector<AudioInteractable *> audio_interactables;
 		Vector<ParticleSystem3501 *> particle_systems;
 		MeshInstance3D *playerTestObject_ptr;
 		Player *player;
@@ -98,6 +98,7 @@ namespace godot
 		void create_cameras();
 		void setup_interactables();
 		void create_interactables();
+		void create_lights();
 		void create_env_objects();
 		void create_building_objects();
 

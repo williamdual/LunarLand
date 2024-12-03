@@ -52,7 +52,7 @@ void CustomScene3501::_enter_tree()
 	create_and_add_as_child(skybox, "Sky Box", true);
 
 	create_cameras();
-	// create_interactables();
+	create_interactables();
 	// create_env_objects();
 	create_building_objects();
 
@@ -83,6 +83,7 @@ void CustomScene3501::_ready()
 	// set the player's position (the camera)
 	player->set_global_position(Vector3(0.0, -11.5, -30.0f));
 	setup_cameras();
+	setup_interactables();
 
 	// Setting up the test interactable
 	// testInt->set_global_position(Vector3(3.0, -10.0, -15.0f));
@@ -179,7 +180,8 @@ void CustomScene3501::_process(double delta)
 	}
 
 	// Checking if the game should end
-	if (player->GetInventory()->GetCapacity() >= 3) {
+	if (player->GetInventory()->GetCapacity() >= 3)
+	{
 		this->get_tree()->change_scene_to_file("res://end.tscn");
 	}
 }
@@ -428,6 +430,7 @@ void CustomScene3501::setup_cameras()
 			else if (i == 9) // Employe lounge main area
 			{
 				cam_triggs[i]->set_global_position(Vector3(0, -11.5, -140.3351));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[4]);
 			}
 			else if (i == 10)
@@ -533,6 +536,13 @@ void CustomScene3501::setup_cameras()
 // Member function to create interactables
 void CustomScene3501::create_interactables()
 {
+	// TODO CRASHES FOR SOME REASON, MAYBE CALLING _REDAY, MIGHT HAVE BEEN MOVING IT IN THE ENTER TREE, TEST NOW
+	UtilityFunctions::print("finished setup");
+	AudioInteractable *log_1;
+	create_and_add_as_child(log_1, "log_joe_intro", true);
+
+	audio_interactables.append(log_1);
+
 	// To be set when more of the environment is ready
 
 	// Audio interactable test stuff
@@ -567,6 +577,30 @@ void CustomScene3501::create_interactables()
 
 	// testLock1->SetLockout(ITEM_NONE, testCount, dependents);
 	// testLock2->SetLockout(ITEM_PAPERS, testCount, dependents);
+}
+
+void CustomScene3501::setup_interactables()
+{
+	Node *interact_ref_group;
+	bool is_new = create_and_add_as_child<Node>(interact_ref_group, "Interactables", true);
+	if (true)
+	{
+		for (int i = 0; i < audio_interactables.size(); i++)
+		{
+			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
+			audio_interactables[i]->_ready();
+			if (i == 0)
+			{
+				audio_interactables[i]->set_global_position(Vector3(-4.431467, -11.5, -67.91608));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
+				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_INTRO);
+			}
+		}
+	}
+}
+
+void CustomScene3501::create_lights()
+{
 }
 
 // Member function to create environment objects
