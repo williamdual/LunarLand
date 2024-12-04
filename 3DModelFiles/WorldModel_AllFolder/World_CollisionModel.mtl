@@ -1,71 +1,3 @@
-newmtl Alian:lambert22SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd Alian_Texture.jpg
-Ni 1.00
-newmtl DartBoard:lambert24SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd DartBoard_Texture.png
-Ni 1.00
-newmtl DartBoardDarts:lambert24SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd DartBoard_Texture.png
-Ni 1.00
-newmtl LostAndFoundBin:lambert28SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd LostAndFoundBin_Texture.png
-Ni 1.00
-newmtl Menu:lambert25SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd MenuBoard_Texture.png
-Ni 1.00
-newmtl Microphone:lambert21SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd Microphone_Texture.jpg
-Ni 1.00
-newmtl PastaWordBin:lambert27SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd PastaWordBin_Texture.png
-Ni 1.00
-newmtl SmallStage:lambert18SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd SmallStage_Texture.png
-Ni 1.00
-newmtl WorldModelsWorkshop:lambert11SG
-illum 4
-Kd 0.50 0.50 0.50
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-newmtl World_VisualModel:lambert26SG
-illum 4
-Kd 0.50 0.00 0.40
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
 newmtl initialShadingGroup
 illum 4
 Kd 0.00 0.00 0.00
@@ -87,13 +19,6 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd MechanicalBull_Texture.png
 Ni 1.00
-newmtl lambert13SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd old-cracked-concrete-surface-close-up-EMD38X.jpg
-Ni 1.00
 newmtl lambert19SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -101,21 +26,9 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd BeigeBag_Texture.png
 Ni 1.00
-newmtl lambert24SG
-illum 4
-Kd 0.50 0.50 0.50
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
 newmtl lambert25SG
 illum 4
 Kd 0.02 0.50 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-newmtl lambert26SG
-illum 4
-Kd 0.50 0.00 0.40
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
