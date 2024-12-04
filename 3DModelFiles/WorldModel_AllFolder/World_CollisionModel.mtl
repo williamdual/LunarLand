@@ -5,15 +5,6 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd Alian_Texture.jpg
 Ni 1.00
-newmtl CafeteriaTable1:phong1SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd CafeteriaTable_Texture.png
-Ni 1.00
-Ks 0.50 0.50 0.50
-Ns 18.00
 newmtl DartBoard:lambert24SG
 illum 4
 Kd 0.00 0.00 0.00
@@ -69,12 +60,6 @@ Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
-newmtl World_CollisionModel:lambert25SG
-illum 4
-Kd 0.02 0.50 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
 newmtl World_VisualModel:lambert26SG
 illum 4
 Kd 0.50 0.00 0.40
@@ -90,9 +75,10 @@ map_Kd PortableComputerTerminal_Texture.png
 Ni 1.00
 newmtl lambert2SG
 illum 4
-Kd 0.50 0.50 0.50
+Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
+map_Kd 20x20sqaures.png
 Ni 1.00
 newmtl lambert10SG
 illum 4
@@ -100,6 +86,13 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd MechanicalBull_Texture.png
+Ni 1.00
+newmtl lambert13SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd old-cracked-concrete-surface-close-up-EMD38X.jpg
 Ni 1.00
 newmtl lambert19SG
 illum 4
