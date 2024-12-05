@@ -50,6 +50,7 @@ namespace godot
         Vector3 savedMovementDelta;
         float moveSpeed;
         Vector3 gravityDelta;
+        bool paused;
 
     protected:
         // a static function that Godot will call to find out which methods can be called and which properties it exposes

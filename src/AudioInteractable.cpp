@@ -34,14 +34,50 @@ void AudioInteractable::Interact() {
     audio->stop();
 
     // Starting the stream again
+	audio_pos = 0.0;
+	start_pos = 0.0;
 	start_effect->play();
     audio->play();
+}
+
+// Member function to pause audio
+void AudioInteractable::PauseAudio() {
+	// Getting audio positions
+	audio_pos = audio->get_playback_position();
+	start_pos = start_effect->get_playback_position();
+
+	// Pausing audio
+	audio->stop();
+	start_effect->stop();
+}
+
+// Member function to resume audio
+void AudioInteractable::ResumeAudio() {
+	// Playing audio from current position
+	if (audio_pos > 0.0) {
+		audio->play(audio_pos);
+	}
+	if (start_pos > 0.0) {
+		start_effect->play(start_pos);
+	}
+}
+
+// Member function to reset audio position
+void AudioInteractable::ResetAudioPos() {
+	audio_pos = 0.0;
+}
+
+// Member function to reset start effect audio position
+void AudioInteractable::ResetStartEffectPos() {
+	start_pos = 0.0;
 }
 
 // Member function for setting the audio
 void AudioInteractable::SetAudio(int file) {
     // Setting the given values
     file_num = file;
+	audio_pos = 0.0;
+	start_pos = 0.0;
 
     // Instantiating stream player and listener
     this->create_and_add_as_sub_child<AudioStreamPlayer3D>(audio, "StreamPlayer", true);
@@ -58,6 +94,10 @@ void AudioInteractable::SetAudio(int file) {
     Ref<AudioStreamWAV> effect_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "AudioLogInteract"), "AudioStreamWAV");
     start_effect->set_max_distance(this->GetRadius() * 3);
     start_effect->set_stream(effect_stream);
+
+	// Connecting audio stream finish functions to reset functions
+	audio->connect("finished", Callable(this, "ResetAudioPos"));
+	start_effect->connect("finished", Callable(this, "ResetStartEffectPos"));
 }
 
 template <class T>
