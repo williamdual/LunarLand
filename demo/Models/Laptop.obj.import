@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c2ie1fwp6adr5"
+path="res://.godot/imported/Laptop.obj-472ff00d48db2007d1ba5770bbb74ba6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Laptop.obj-472ff00d48db2007d1ba5770bbb74ba6.mesh"]
+
+source_file="res://Models/Laptop.obj"
+dest_files=["res://.godot/imported/Laptop.obj-472ff00d48db2007d1ba5770bbb74ba6.mesh", "res://.godot/imported/Laptop.obj-472ff00d48db2007d1ba5770bbb74ba6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
