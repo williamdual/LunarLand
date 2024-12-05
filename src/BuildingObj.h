@@ -50,6 +50,7 @@ namespace godot
 
         // Collision mesh for if the mesh is manually set
         MeshInstance3D *col_mesh;
+        bool has_col;
 
         // Indicator for if the building is textured
         bool textured;

@@ -50,6 +50,7 @@ private:
     double radius;
     bool in_range;
     bool glow_in_range;
+    bool paused;
 
     // Shader and shader material material for interactable
     ShaderMaterial* mat;

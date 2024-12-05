@@ -23,6 +23,7 @@ void Player::_enter_tree()
     // init vars
     saved_velocity = Vector3(0, 0, 0);
     moveSpeed = 1000.0f;
+    paused = false;
     gravityDelta = Vector3(0, -9.8, 0); // I have no idea if this works how real gravity works
     camera = nullptr;
     // Mesh and Mat
@@ -98,6 +99,16 @@ void Player::_process(double delta)
     if (Engine::get_singleton()->is_editor_hint())
         return; // Early return if we are in editor
                 // Game loop stuff HERE
+
+    // Checking if game should pause or unpause
+    if (_input->is_action_just_pressed("pause")) {
+        paused = !paused;
+    }
+
+    // Not accepting input if game is paused
+    if (paused) {
+        return;
+    }
 
     // Movement block
     Vector3 prev_pos = this->get_global_position(); // before moving, record the players position so that we can unditch them if they are stuck

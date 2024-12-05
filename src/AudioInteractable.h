@@ -55,6 +55,8 @@ private:
     // Audio member variables
     AudioStreamPlayer3D* audio;
     AudioStreamPlayer3D* start_effect;
+    float audio_pos;
+    float start_pos;
     int file_num;
 
     // Array of audio file names
@@ -77,6 +79,10 @@ private:
         "JohnnyTheHungryTimmyTwoJobs",
         "BoboTimmyTwoJobs"
 	};
+
+    // Member functions to reset audio positions
+    void ResetAudioPos(void);
+    void ResetStartEffectPos(void);
     
 protected:
     static void _bind_methods();
@@ -93,6 +99,10 @@ public:
 
     // The function that triggers when an interactable is interacted with
     void Interact() override;
+
+    // Functions to pause and resume all audio
+    void PauseAudio(void);
+    void ResumeAudio(void);
 
     // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance

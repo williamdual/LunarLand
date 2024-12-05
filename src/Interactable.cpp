@@ -22,6 +22,7 @@ Interactable::Interactable(Player* p, int type, int col_type, bool glow, double 
     glow_in_range = glow;
     has_col_shape = false;
     num_lights = 0;
+    paused = false;
     light_positions.resize(32);
     light_colours.resize(32);
     specular_power.resize(32);
@@ -52,6 +53,18 @@ void Interactable::_process(double delta) {
 
     // // Getting input and determining if the interactable should trigger
     Input *_input = Input::get_singleton();
+
+    // Getting if the game was paused
+    if (_input->is_action_just_pressed("pause")) {
+        paused = !paused;
+    }
+
+    // Returning if scene is paused
+    if (!paused) {
+        return;
+    }
+
+    // Seeing if the player interacted with the object
     if (_input->is_action_just_pressed("interact") && in_range) {
         UtilityFunctions::print("Interacted");
         Interact();
@@ -79,6 +92,7 @@ void Interactable::SetValues(Player* p, int type, int col_type, bool glow, doubl
     in_range = false;
     glow_in_range = glow;
     num_lights = 0;
+    paused = false;
     camera_position = Vector3(0, 0, 0);
 
     // Setting proper array sizes

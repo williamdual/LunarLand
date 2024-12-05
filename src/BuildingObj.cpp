@@ -60,6 +60,7 @@ void BuildingObj::SetValues(int building_type, bool is_textured, bool auto_colli
     specular_power.resize(32);
     num_lights = 0;
     textured = is_textured;
+    has_col = false;
 
     // Setting up shader
     mat = memnew(ShaderMaterial);
@@ -95,12 +96,27 @@ void BuildingObj::SetValues(int building_type, bool is_textured, bool auto_colli
     // Setting the textured value for the shader
     mat->set_shader_parameter("is_textured", textured);
 
+    // Seeing if the object already has a collision shape
+    if (find_child("BuildingColMesh_col") == NULL) {
+        has_col = false;
+    } else {
+        return;
+    }
+
+    // If the object already has a collision shape then return
+    if (has_col) {
+        return;
+    } else {
+        has_col = true;
+    }
+
     // Setting hitboxes for map
     if (auto_collision)
     {
 
         // Creating a collision mesh based on the building model
         mesh->create_trimesh_collision();
+        has_col = true;
     }
     else
     {
@@ -116,6 +132,7 @@ void BuildingObj::SetValues(int building_type, bool is_textured, bool auto_colli
         col_mesh->set_material_override(col_mat);
         col_mesh->set_position(col_offsets[building_type]);
         col_mesh->create_trimesh_collision();
+        has_col = true;
     }
 }
 

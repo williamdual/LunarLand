@@ -104,7 +104,8 @@ text = "Controls:
 - Left: a
 - Backwards: s
 - Right: d
-- Interact: left click"
+- Interact: left click
+- pause/resume: ESC"
 label_settings = SubResource("LabelSettings_qluq8")
 
 [node name="QuoteContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer/MainContainer"]
