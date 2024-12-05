@@ -100,7 +100,7 @@ layout_mode = 2
 text = "Thank you for Collecting all our Lost Items!
 
 As a thank you for your long and perilous journey, we will offer you one day's worth of
-minimum wage pay! If your rocket trip back doesn't crash, contact Susie from HR for
+unpaid vacation! If your rocket trip back doesn't crash, contact Susie from HR for
 your reward! We hope you work with us again soon!"
 label_settings = SubResource("LabelSettings_jrlln")
 horizontal_alignment = 1
