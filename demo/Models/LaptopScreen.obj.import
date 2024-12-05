@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://jh6cflm52vnu"
+path="res://.godot/imported/LaptopScreen.obj-798e0fe550b253f279c91ac19ae533cc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/LaptopScreen.obj-798e0fe550b253f279c91ac19ae533cc.mesh"]
+
+source_file="res://Models/LaptopScreen.obj"
+dest_files=["res://.godot/imported/LaptopScreen.obj-798e0fe550b253f279c91ac19ae533cc.mesh", "res://.godot/imported/LaptopScreen.obj-798e0fe550b253f279c91ac19ae533cc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
