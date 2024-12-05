@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bhnb22ut4d62k"
+path="res://.godot/imported/StealsJohn.obj-c18b0365576564d689e8897d30b9ed86.mesh"
+
+[deps]
+
+files=["res://.godot/imported/StealsJohn.obj-c18b0365576564d689e8897d30b9ed86.mesh"]
+
+source_file="res://Models/StealsJohn.obj"
+dest_files=["res://.godot/imported/StealsJohn.obj-c18b0365576564d689e8897d30b9ed86.mesh", "res://.godot/imported/StealsJohn.obj-c18b0365576564d689e8897d30b9ed86.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

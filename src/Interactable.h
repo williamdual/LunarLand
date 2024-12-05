@@ -35,6 +35,10 @@ enum InteractableType {
     INTER_OBJECT_LAPTOP,
     INTER_OBJECT_LAPTOP_SCREEN,
     INTER_OBJECT_SODA_CHIP,
+    INTER_OBJECT_STEALS_BOBO,
+    INTER_OBJECT_STEALS_CRANK,
+    INTER_OBJECT_STEALS_JOHNNY,
+    INTER_OBJECT_STEALS_TIMMY,
     INTERACTABLE_AMOUNT
 };
 
@@ -90,7 +94,11 @@ private:
         "ComputerTerminalSceen",
         "Laptop",
         "LaptopScreen",
-        "SodaChip"
+        "SodaChip",
+        "StealsBobo",
+        "StealsCrank",
+        "StealsJohn",
+        "StealsTimm"
 	};
 
     // Array of texture names
@@ -100,7 +108,11 @@ private:
 		"ComputerTerminalSceen_Texture",
         "Laptop_Texture",
         "LaptopSceen_Texture",
-        "SodaChip_Texture"
+        "SodaChip_Texture",
+        "Steals_Texture_Bobo",
+        "StealsCrank_Texture",
+        "Steals_Texture_John",
+        "Steals_Texture_Timm"
 	};
 
     char* texture_formats[INTERACTABLE_AMOUNT] = {
@@ -109,7 +121,11 @@ private:
 		".png", // Computer Screen
         ".png", // Laptop
         ".png", // Laptop Screen
-        ".png"  // Soda Chip
+        ".png", // Soda Chip
+        ".png", // Steals Bobo
+        ".png", // Steals Crank
+        ".png", // Steals Johnny
+        ".png", // Steals Timmy
 	};
 
     // Array of mesh offsets
@@ -119,7 +135,11 @@ private:
 		Vector3(-6, -0.60, -0.1), // Computer Screen
         Vector3(0.0, -0.3, 0.0), // Laptop
         Vector3(0.0, -0.35, 0.1), // Laptop Screen
-        Vector3(0.0, 0.0, 0.0)  // Soda Chip
+        Vector3(0.0, 0.0, 0.0),  // Soda Chip
+        Vector3(0.0, -2.1, 1.1),  // Steals Bobo
+        Vector3(0.0, -1.65, 0.0),  // Steals Crank
+        Vector3(0.0, -2.1, 1.1),  // Steals Johnny
+        Vector3(0.0, -2.1, 1.1),  // Steals Timmy
 	};
 
     // Values that darken the texture since the loaded texture can often appear faded
@@ -129,7 +149,11 @@ private:
         1.0, // Computer Screen
         0.6, // Laptop
         1.0, // Laptop Screen
-        0.6  // Soda Chip
+        0.6, // Soda Chip
+        0.8, // Steals Bobo
+        0.8, // Steals Crank
+        0.8, // Steals Johnny
+        0.8, // Steals Timmy
     };
 
     // This member function creates a hitbox
