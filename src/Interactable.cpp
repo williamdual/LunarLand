@@ -60,7 +60,7 @@ void Interactable::_process(double delta) {
     }
 
     // Returning if scene is paused
-    if (!paused) {
+    if (paused) {
         return;
     }
 

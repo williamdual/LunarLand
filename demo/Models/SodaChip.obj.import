@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cle4hhicfig3r"
+path="res://.godot/imported/SodaChip.obj-030afcd34e03482af91ffecd99e4c42f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SodaChip.obj-030afcd34e03482af91ffecd99e4c42f.mesh"]
+
+source_file="res://Models/SodaChip.obj"
+dest_files=["res://.godot/imported/SodaChip.obj-030afcd34e03482af91ffecd99e4c42f.mesh", "res://.godot/imported/SodaChip.obj-030afcd34e03482af91ffecd99e4c42f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

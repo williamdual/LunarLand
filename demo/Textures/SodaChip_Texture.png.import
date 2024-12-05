@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xrxpvqmkmj8j"
-path.s3tc="res://.godot/imported/Laptop_Texture.png-d74561ec9fbe5067ebd8a9023a748dc9.s3tc.ctex"
+uid="uid://bd8d37sxuyxar"
+path.s3tc="res://.godot/imported/SodaChip_Texture.png-8f45fa3b175695e367e8d1a3eec239f8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Laptop_Texture.png"
-dest_files=["res://.godot/imported/Laptop_Texture.png-d74561ec9fbe5067ebd8a9023a748dc9.s3tc.ctex"]
+source_file="res://Textures/SodaChip_Texture.png"
+dest_files=["res://.godot/imported/SodaChip_Texture.png-8f45fa3b175695e367e8d1a3eec239f8.s3tc.ctex"]
 
 [params]
 

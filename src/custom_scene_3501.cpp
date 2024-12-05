@@ -86,7 +86,7 @@ void CustomScene3501::_ready()
 	setup_interactables();
 
 	// Setting up the test interactable
-	// testInt->set_global_position(Vector3(3.0, -10.0, -15.0f));
+	// testInt->set_global_position(Vector3(3.0, -11.0, -30.0f));
 	// testInt->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
 	// testInt->RegisterCameraTrigs(cam_triggs);
 	// testInt->SetCameraPosition(cameras[2]->get_global_position());
@@ -548,7 +548,7 @@ void CustomScene3501::create_interactables()
 	// Audio interactable test stuff
 	// testInt = memnew(AudioInteractable);
 	// create_and_add_as_child(testInt, "Test Interactable", true);
-	// testInt->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
+	// testInt->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 3.0);
 	// testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
 
 	// Test item interactable

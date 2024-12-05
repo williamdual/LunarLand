@@ -30,7 +30,11 @@ namespace godot {
 // Enum for better control over what interactable is created
 enum InteractableType {
     INTER_OBJECT_BEIGE_BAG,
+    INTER_OBJECT_COMPUTER_TERMINAL,
     INTER_OBJECT_COMPUTER_TERMINAL_SCREEN,
+    INTER_OBJECT_LAPTOP,
+    INTER_OBJECT_LAPTOP_SCREEN,
+    INTER_OBJECT_SODA_CHIP,
     INTERACTABLE_AMOUNT
 };
 
@@ -82,30 +86,50 @@ private:
     // Array of model names
     char* model_names[INTERACTABLE_AMOUNT] = {
 		"BeigeBag",
-        "ComputerTerminalSceen"
+        "ComputerTerminal",
+        "ComputerTerminalSceen",
+        "Laptop",
+        "LaptopScreen",
+        "SodaChip"
 	};
 
     // Array of texture names
     char* texture_names[INTERACTABLE_AMOUNT] = {
         "BeigeBag_Texture",
-		"ComputerTerminalSceen_Texture"
+        "ComputerTerminal_Texture",
+		"ComputerTerminalSceen_Texture",
+        "Laptop_Texture",
+        "LaptopSceen_Texture",
+        "SodaChip_Texture"
 	};
 
     char* texture_formats[INTERACTABLE_AMOUNT] = {
         ".png", // Beige Bag
-		".png"  // Computer Screen
+        ".png", // Computer Terminal
+		".png", // Computer Screen
+        ".png", // Laptop
+        ".png", // Laptop Screen
+        ".png"  // Soda Chip
 	};
 
     // Array of mesh offsets
     Vector3 mesh_offsets[INTERACTABLE_AMOUNT] = {
         Vector3(0.0, -0.6, 0.0),  // Beige Bag
-		Vector3(-6, -0.60, -0.1) // Computer Screen
+        Vector3(-6.0, -0.5, 0.0),  // Computer Terminal
+		Vector3(-6, -0.60, -0.1), // Computer Screen
+        Vector3(0.0, -0.3, 0.0), // Laptop
+        Vector3(0.0, -0.35, 0.1), // Laptop Screen
+        Vector3(0.0, 0.0, 0.0)  // Soda Chip
 	};
 
     // Values that darken the texture since the loaded texture can often appear faded
     float tex_darken_values[INTERACTABLE_AMOUNT] = {
         0.8, // Beige Bag
-        1.0  // Computer Screen
+        0.8, // Computer Terminal
+        1.0, // Computer Screen
+        0.6, // Laptop
+        1.0, // Laptop Screen
+        0.6  // Soda Chip
     };
 
     // This member function creates a hitbox
