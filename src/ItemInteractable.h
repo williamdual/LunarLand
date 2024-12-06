@@ -34,6 +34,10 @@ private:
 
     // Audio stream for pick up sound effect
     AudioStreamPlayer3D* pick_up;
+    float pick_up_pos;
+
+    // Member functions to reset audio positions
+    void ResetPickUpPos(void);
     
 protected:
     static void _bind_methods();
@@ -50,6 +54,10 @@ public:
 
     // Member function that sets the item
     void SetItem(int lost_item);
+
+    // Functions to pause and resume all audio
+    void PauseAudio(void);
+    void ResumeAudio(void);
 
     // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance

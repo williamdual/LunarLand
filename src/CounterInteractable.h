@@ -34,6 +34,10 @@ private:
 
     // Audio player for sound effects
     AudioStreamPlayer3D* crank;
+    float crank_pos;
+
+    // Member functions to reset audio positions
+    void ResetCrankEffectPos(void);
     
 protected:
     static void _bind_methods();
@@ -55,6 +59,10 @@ public:
 
     // This member function is triggered when
     void Trigger();
+
+    // Functions to pause and resume all audio
+    void PauseAudio(void);
+    void ResumeAudio(void);
 
     // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance

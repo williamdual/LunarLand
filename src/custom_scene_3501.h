@@ -62,7 +62,6 @@ namespace godot
 		ColorRect *overscreen;
 		Vector<PlayerCamera *> cameras;
 		Vector<CameraTrigger *> cam_triggs;
-		Vector<AudioInteractable *> audio_interactables;
 		Vector<ParticleSystem3501 *> particle_systems;
 		MeshInstance3D *playerTestObject_ptr;
 		Player *player;
@@ -70,6 +69,11 @@ namespace godot
 		SkyBox *skybox;
 		HeightMapTerrain *hmt;
 		Mascot *mascot;
+
+		Vector<AudioInteractable*> audio_interactables;
+		Vector<ItemInteractable*> item_interactables;
+		Vector<CounterInteractable*> counter_interactables;
+		Vector<LockoutInteractable*> lockout_interactables;
 
 		AudioInteractable *testInt;
 		ItemInteractable *testItem;

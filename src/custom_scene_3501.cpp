@@ -195,12 +195,42 @@ void CustomScene3501::_process(double delta)
 				audio_interactables[i]->PauseAudio();
 			}
 
+			// Item interactables
+			for (int i = 0; i < item_interactables.size(); i++) {
+				item_interactables[i]->PauseAudio();
+			}
+
+			// Counter interactables
+			for (int i = 0; i < counter_interactables.size(); i++) {
+				counter_interactables[i]->PauseAudio();
+			}
+
+			// Lockout interactables
+			for (int i = 0; i < lockout_interactables.size(); i++) {
+				lockout_interactables[i]->PauseAudio();
+			}
+
 		// Unpausing audio
 		} else {
 
 			// Audio interactables
 			for (int i = 0; i < audio_interactables.size(); i++) {
 				audio_interactables[i]->ResumeAudio();
+			}
+
+			// Item interactables
+			for (int i = 0; i < item_interactables.size(); i++) {
+				item_interactables[i]->ResumeAudio();
+			}
+
+			// Counter interactables
+			for (int i = 0; i < counter_interactables.size(); i++) {
+				counter_interactables[i]->ResumeAudio();
+			}
+
+			// Lockout interactables
+			for (int i = 0; i < lockout_interactables.size(); i++) {
+				lockout_interactables[i]->ResumeAudio();
 			}
 
 		}

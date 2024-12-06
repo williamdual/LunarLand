@@ -33,13 +33,37 @@ void ItemInteractable::Interact() {
     this->GetPlayer()->GetInventory()->PickUpItem(item);
 
     // Playing pick up audio
+	pick_up_pos = 0.0;
     pick_up->stop();
     pick_up->play();
+}
+
+// Member function to pause audio
+void ItemInteractable::PauseAudio() {
+	// Getting audio positions
+	pick_up_pos = pick_up->get_playback_position();
+
+	// Pausing audio
+	pick_up->stop();
+}
+
+// Member function to resume audio
+void ItemInteractable::ResumeAudio() {
+	// Playing audio from current position
+	if (pick_up_pos > 0.0) {
+		pick_up->play(pick_up_pos);
+	}
+}
+
+// Member function to reset pick up effect position
+void ItemInteractable::ResetPickUpPos() {
+	pick_up_pos = 0.0;
 }
 
 // Member function that sets the item
 void ItemInteractable::SetItem(int lost_item) {
     item = lost_item;
+	pick_up_pos = 0.0;
 
     // Instantiating the start playing effect
 	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(pick_up, "PickUpEffectPlayer", true);
@@ -48,6 +72,9 @@ void ItemInteractable::SetItem(int lost_item) {
     Ref<AudioStreamWAV> effect_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "ItemPickUp"), "AudioStreamWAV");
     pick_up->set_max_distance(this->GetRadius() * 3);
     pick_up->set_stream(effect_stream);
+
+	// Connecting audio stream finish functions to reset functions
+	pick_up->connect("finished", Callable(this, "ResetPickUpPos"));
 }
 
 template <class T>

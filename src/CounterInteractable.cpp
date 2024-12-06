@@ -44,6 +44,7 @@ void CounterInteractable::_ready ( ){
 void CounterInteractable::Interact() {
 
     // Playing the crank noise
+	crank_pos = 0.0;
     crank->stop();
     crank->play();
 
@@ -68,6 +69,7 @@ void CounterInteractable::SetInit(int c, int t) {
 	// Setting the counter and trigger values
 	counter = c;
 	trigger = t;
+	crank_pos = 0.0;
 
 	// Instantiating the start playing effect
 	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(crank, "CrankEffectPlayer", true);
@@ -76,6 +78,31 @@ void CounterInteractable::SetInit(int c, int t) {
     Ref<AudioStreamWAV> effect_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "Crank"), "AudioStreamWAV");
     crank->set_max_distance(this->GetRadius() * 3);
     crank->set_stream(effect_stream);
+
+	// Connecting audio stream finish functions to reset functions
+	crank->connect("finished", Callable(this, "ResetCrankEffectPos"));
+}
+
+// Member function to pause audio
+void CounterInteractable::PauseAudio() {
+	// Getting audio positions
+	crank_pos = crank->get_playback_position();
+
+	// Pausing audio
+	crank->stop();
+}
+
+// Member function to resume audio
+void CounterInteractable::ResumeAudio() {
+	// Playing audio from current position
+	if (crank_pos > 0.0) {
+		crank->play(crank_pos);
+	}
+}
+
+// Member function to reset audio position
+void CounterInteractable::ResetCrankEffectPos() {
+	crank_pos = 0.0;
 }
 
 // Setter for the counter value
