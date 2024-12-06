@@ -24,7 +24,7 @@ void Player::_enter_tree()
     saved_velocity = Vector3(0, 0, 0);
     moveSpeed = 1000.0f;
     paused = false;
-    gravityDelta = Vector3(0, -9.8, 0); // I have no idea if this works how real gravity works
+    gravityDelta = Vector3(0, -9.8 * 50.0, 0); // I have no idea if this works how real gravity works <- No doesnt look like it
     camera = nullptr;
     // Mesh and Mat
     create_and_add_as_child<MeshInstance3D>(mesh_instance, "PlayerMesh", true);
@@ -101,12 +101,14 @@ void Player::_process(double delta)
                 // Game loop stuff HERE
 
     // Checking if game should pause or unpause
-    if (_input->is_action_just_pressed("pause")) {
+    if (_input->is_action_just_pressed("pause"))
+    {
         paused = !paused;
     }
 
     // Not accepting input if game is paused
-    if (paused) {
+    if (paused)
+    {
         return;
     }
 
