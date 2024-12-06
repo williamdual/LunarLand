@@ -51,6 +51,7 @@ void LockoutInteractable::Interact() {
         // Playing pick up sound effect
         power_down->stop();
         power_back->stop();
+        pick_up_pos = 0.0;
         pick_up->play();
     }
 
@@ -70,6 +71,8 @@ void LockoutInteractable::Lockout(bool lock) {
         this->SetRadius(0.0);
 
         // Playing the power up sound
+        power_down_pos = 0.0;
+        power_back_pos = 0.0;
         power_back->stop();
         power_down->play();
 
@@ -79,9 +82,53 @@ void LockoutInteractable::Lockout(bool lock) {
         this->SetRadius(stored_radius);
 
         // Playing the power down sound
+        power_down_pos = 0.0;
+        power_back_pos = 0.0;
         power_down->stop();
         power_back->play();
     }
+}
+
+// Member function to pause audio
+void LockoutInteractable::PauseAudio() {
+	// Getting audio positions
+	pick_up_pos = pick_up->get_playback_position();
+	power_down_pos = power_down->get_playback_position();
+    power_back_pos = power_back->get_playback_position();
+
+	// Pausing audio
+	pick_up->stop();
+	power_down->stop();
+    power_back->stop();
+}
+
+// Member function to resume audio
+void LockoutInteractable::ResumeAudio() {
+	// Playing audio from current position
+	if (pick_up_pos > 0.0) {
+		pick_up->play(pick_up_pos);
+	}
+	if (power_down_pos > 0.0) {
+		power_down->play(power_down_pos);
+	}
+    if (power_back_pos > 0.0) {
+		power_back->play(power_back_pos);
+	}
+}
+
+// Member function to reset pick up effect position
+void LockoutInteractable::ResetPickUpPos() {
+	pick_up_pos = 0.0;
+}
+
+// Member function to reset power down effect position
+void LockoutInteractable::ResetPowerDownPos() {
+	power_down_pos = 0.0;
+}
+
+// Member function to reset power back effect position
+void LockoutInteractable::ResetPowerBackPos() {
+	power_back_pos = 0.0;
 }
 
 // Member function that sets the lockout state
@@ -97,6 +144,9 @@ void LockoutInteractable::SetLockout(int lost_item, CounterInteractable* gen, Ve
         LockoutInteractable* item = dependents[i];
         item->connect("InterLockout", Callable(this, "Lockout"));
     }
+    power_back_pos = 0.0;
+    power_down_pos = 0.0;
+    pick_up_pos = 0.0;
 
     // Instantiating both sound effects
 	this->create_and_add_as_sub_child<AudioStreamPlayer3D>(power_down, "PowerDownEffectPlayer", true);
@@ -115,6 +165,11 @@ void LockoutInteractable::SetLockout(int lost_item, CounterInteractable* gen, Ve
     Ref<AudioStreamWAV> pick_up_stream = ResourceLoader::get_singleton()->load(vformat("%s%s.wav", "SoundFiles/", "ItemPickUp"), "AudioStreamWAV");
     pick_up->set_max_distance(this->GetRadius() * 6);
     pick_up->set_stream(pick_up_stream);
+
+    // Connecting audio stream finish functions to reset functions
+	pick_up->connect("finished", Callable(this, "ResetPickUpPos"));
+	power_down->connect("finished", Callable(this, "ResetPowerDownPos"));
+    power_back->connect("finished", Callable(this, "ResetPowerBackPos"));
 }
 
 template <class T>

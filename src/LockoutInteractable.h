@@ -46,6 +46,14 @@ private:
     AudioStreamPlayer3D* power_down;
     AudioStreamPlayer3D* power_back;
     AudioStreamPlayer3D* pick_up;
+    float power_down_pos;
+    float power_back_pos;
+    float pick_up_pos;
+
+    // Member functions to reset audio positions
+    void ResetPowerDownPos(void);
+    void ResetPowerBackPos(void);
+    void ResetPickUpPos(void);
     
 protected:
     static void _bind_methods();
@@ -65,6 +73,10 @@ public:
 
     // Member function that sets the item
     void SetLockout(int lost_item, CounterInteractable* gen, Vector<LockoutInteractable*> dependents);
+
+    // Functions to pause and resume all audio
+    void PauseAudio(void);
+    void ResumeAudio(void);
 
     // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
 	// search defines whether the scenetree should be checked for an instance
