@@ -691,8 +691,8 @@ void CustomScene3501::setup_interactables()
 	{
 		for (int i = 0; i < audio_interactables.size(); i++) // Audio Logs
 		{
-			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
-			audio_interactables[i]->_ready();
+			//re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
+			//audio_interactables[i]->_ready();
 			if (i == 0) // Williams Audio Logs
 			{
 				audio_interactables[i]->set_global_position(Vector3(-22.48615, -7.101642, -254.866));
@@ -741,6 +741,7 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->SetAudio(AUDIO_BOBO_TIMMY);
 			}
+			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
 		}
 	}
 }
