@@ -358,6 +358,36 @@ void CustomScene3501::create_cameras()
 	cam_triggs.append(trigg_26);
 	cam_triggs.append(trigg_27);
 	cam_triggs.append(trigg_28);
+
+	// Jacobs Cameras
+	PlayerCamera *cam_13;
+	create_and_add_as_child<PlayerCamera>(cam_13, "JEC", true);
+	cam_13->set_global_position(Vector3(66.74512, -2.127899, -64.9141));
+	// cam_13->SafelyRotate(Vector3(-21.20438, 50.28828, 0));
+	cam_13->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_29;
+	create_and_add_as_child<CameraTrigger>(trigg_29, "JEC_trigg_1", true);
+	CameraTrigger *trigg_30;
+	create_and_add_as_child<CameraTrigger>(trigg_30, "JEC_trigg_2", true);
+	CameraTrigger *trigg_31;
+	create_and_add_as_child<CameraTrigger>(trigg_31, "JEC_trigg_3", true);
+
+	PlayerCamera *cam_14;
+	create_and_add_as_child<PlayerCamera>(cam_14, "JCC", true);
+	cam_14->set_global_position(Vector3(167.4163, 43.29909, -98.47244));
+	cam_14->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_32;
+	create_and_add_as_child<CameraTrigger>(trigg_32, "JCC_trigg_1", true);
+	CameraTrigger *trigg_33;
+	create_and_add_as_child<CameraTrigger>(trigg_33, "JCC_trigg_2", true);
+
+	cameras.append(cam_13);
+	cameras.append(cam_14);
+	cam_triggs.append(trigg_29);
+	cam_triggs.append(trigg_30);
+	cam_triggs.append(trigg_31);
+	cam_triggs.append(trigg_32);
+	cam_triggs.append(trigg_33);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -381,6 +411,7 @@ void CustomScene3501::setup_cameras()
 		Vector3 right_angle_turn = Vector3(0, 90, 0);
 		Vector3 long_box = Vector3(1.1f, 10.0f, 23.8f);
 		Vector3 cube_box = Vector3(19.513f, 10.0f, 16.016f); // Pool trigger shape
+		Vector3 giant_rect = Vector3(2.0, 10.0f, 100);
 		for (int i = 0; i < cam_triggs.size(); i++)
 		{
 			re_parent<Node, CameraTrigger>(trigg_ref_group, cam_triggs[i]);
@@ -553,6 +584,37 @@ void CustomScene3501::setup_cameras()
 				cam_triggs[i]->set_global_position(Vector3(-17.02117, -10.15762, -248.1444));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[11]);
+			}
+			else if (i == 28) // JEC Triggers FIRST JACOB TRIGGER ---------------------------------------------------------------------------------
+			{
+				cam_triggs[i]->set_global_position(Vector3(16, -10.158, -82.563));
+				cam_triggs[i]->SetCamera(cameras[12]);
+			}
+			else if (i == 29)
+			{
+				cam_triggs[i]->set_global_position(Vector3(138.2366, -8.6, -60.5618));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->SetCamera(cameras[12]);
+			}
+			else if (i == 30)
+			{
+				cam_triggs[i]->set_global_position(Vector3(104.6677, -8.6, -92.3312));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[12]);
+			}
+			else if (i == 31) // JCC Triggers
+			{
+				cam_triggs[i]->set_global_position(Vector3(150.2366, -0.151898, -60.5618));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->SetCamera(cameras[13]);
+			}
+			else if (i == 32)
+			{
+				cam_triggs[i]->set_global_position(Vector3(104.6677, -0.151898, -100.0273));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[13]);
 			}
 		}
 	}

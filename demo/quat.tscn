@@ -49,6 +49,7 @@ sky = SubResource("Sky_522s3")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ncdj4"]
 render_priority = 0
 shader = ExtResource("9_vvs1r")
+
 shader_parameter/static_colour = null
 shader_parameter/is_textured = true
 shader_parameter/init_light_positions = null
@@ -57,6 +58,7 @@ shader_parameter/view_pos = null
 shader_parameter/spec_power = null
 shader_parameter/num_lights = null
 shader_parameter/darkening_val = 0.8
+
 shader_parameter/sampler = ExtResource("10_b3iss")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n5vkt"]
@@ -210,12 +212,14 @@ mesh = SubResource("CylinderMesh_v36jd")
 [node name="SurfaceCollider" type="CollisionShape3D" parent="CustomScene3501/PlayerTestObject"]
 shape = SubResource("CylinderShape3D_rcax0")
 
+
 [node name="Listener" type="AudioListener3D" parent="CustomScene3501/PlayerTestObject"]
 current = true
 
 [node name="Inventory" type="Inventory" parent="CustomScene3501/PlayerTestObject"]
 
 [node name="Inventory Space" type="Sprite2D" parent="CustomScene3501/PlayerTestObject/Inventory"]
+
 texture = ExtResource("2_v6lcv")
 
 [node name="Computer Chip" type="Sprite2D" parent="CustomScene3501/PlayerTestObject/Inventory"]
@@ -241,6 +245,7 @@ environment = SubResource("Environment_4qrvx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.023, -12.92, -5.635)
 
 [node name="BuildingObjMesh" type="MeshInstance3D" parent="CustomScene3501/Test Building"]
+
 material_override = SubResource("ShaderMaterial_ncdj4")
 mesh = ExtResource("11_o0sd0")
 
@@ -251,6 +256,7 @@ mesh = ExtResource("12_b874k")
 [node name="BuildingColMesh_col" type="StaticBody3D" parent="CustomScene3501/Test Building/BuildingColMesh"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CustomScene3501/Test Building/BuildingColMesh/BuildingColMesh_col"]
+
 shape = SubResource("ConcavePolygonShape3D_skx7g")
 
 [node name="Cameras" type="Node" parent="CustomScene3501"]
@@ -292,10 +298,17 @@ transform = Transform3D(0.991535, -0.0529036, 0.118569, 1.86265e-09, 0.913221, 0
 [node name="W_office_C" type="PlayerCamera" parent="CustomScene3501/Cameras"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3967, 0.244593, -228.493)
 
+[node name="JEC" type="PlayerCamera" parent="CustomScene3501/Cameras"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.7451, -2.1279, -64.9141)
+
+[node name="JCC" type="PlayerCamera" parent="CustomScene3501/Cameras"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 167.416, 43.2991, -98.4724)
+
 [node name="Triggers" type="Node" parent="CustomScene3501"]
 
 [node name="SEC_trigg_1" type="CameraTrigger" parent="CustomScene3501/Triggers"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -11.5, -35)
+
 
 [node name="@CollisionShape3D@19549" type="CollisionShape3D" parent="CustomScene3501/Triggers/SEC_trigg_1"]
 shape = SubResource("BoxShape3D_0js7i")
@@ -306,17 +319,22 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -11
 [node name="@CollisionShape3D@19550" type="CollisionShape3D" parent="CustomScene3501/Triggers/SHC_trigg_1"]
 shape = SubResource("BoxShape3D_hana1")
 
+
 [node name="SHC_trigg_2" type="CameraTrigger" parent="CustomScene3501/Triggers"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -11.5, -58.6444)
+
 
 [node name="@CollisionShape3D@19551" type="CollisionShape3D" parent="CustomScene3501/Triggers/SHC_trigg_2"]
 shape = SubResource("BoxShape3D_y2av0")
 
+
 [node name="SBC_trigg_1" type="CameraTrigger" parent="CustomScene3501/Triggers"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.23662, -11.5, -87.3149)
 
+
 [node name="@CollisionShape3D@19552" type="CollisionShape3D" parent="CustomScene3501/Triggers/SBC_trigg_1"]
 shape = SubResource("BoxShape3D_nm7g5")
+
 
 [node name="SBC_trigg_2" type="CameraTrigger" parent="CustomScene3501/Triggers"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -11.5, -63.1341)
