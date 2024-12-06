@@ -87,6 +87,7 @@ namespace godot
 		float start_static;
 		float end_static;
 		bool current_cam;
+		bool paused;
 
 		// Values for the screen space effect
 		MeshInstance3D *screen_quad_instance;

@@ -13,6 +13,7 @@ CustomScene3501::CustomScene3501() : Node3D()
 	start_static = 10.0 + rand() % 10;
 	end_static = start_static + 1.0;
 	is_static = false;
+	paused = false;
 }
 
 CustomScene3501::~CustomScene3501()
@@ -178,6 +179,32 @@ void CustomScene3501::_process(double delta)
 		start_static = time_passed + 10.0 + rand() % 10;
 		end_static = start_static + 1.0;
 	}
+
+	// Getting player input
+	Input *_input = Input::get_singleton();
+
+	// Getting if the game was paused
+    if (_input->is_action_just_pressed("pause")) {
+        paused = !paused;
+
+		// Stopping audio if the game was paused
+		if (paused) {
+
+			// Audio interactables
+			for (int i = 0; i < audio_interactables.size(); i++) {
+				audio_interactables[i]->PauseAudio();
+			}
+
+		// Unpausing audio
+		} else {
+
+			// Audio interactables
+			for (int i = 0; i < audio_interactables.size(); i++) {
+				audio_interactables[i]->ResumeAudio();
+			}
+
+		}
+    } 
 
 	// Checking if the game should end
 	if (player->GetInventory()->GetCapacity() >= 3)
