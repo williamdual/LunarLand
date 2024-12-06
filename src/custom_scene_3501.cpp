@@ -184,57 +184,68 @@ void CustomScene3501::_process(double delta)
 	Input *_input = Input::get_singleton();
 
 	// Getting if the game was paused
-    if (_input->is_action_just_pressed("pause")) {
-        paused = !paused;
+	if (_input->is_action_just_pressed("pause"))
+	{
+		paused = !paused;
 
 		// Stopping audio if the game was paused
-		if (paused) {
+		if (paused)
+		{
 
 			// Audio interactables
-			for (int i = 0; i < audio_interactables.size(); i++) {
+			for (int i = 0; i < audio_interactables.size(); i++)
+			{
 				audio_interactables[i]->PauseAudio();
 			}
 
 			// Item interactables
-			for (int i = 0; i < item_interactables.size(); i++) {
+			for (int i = 0; i < item_interactables.size(); i++)
+			{
 				item_interactables[i]->PauseAudio();
 			}
 
 			// Counter interactables
-			for (int i = 0; i < counter_interactables.size(); i++) {
+			for (int i = 0; i < counter_interactables.size(); i++)
+			{
 				counter_interactables[i]->PauseAudio();
 			}
 
 			// Lockout interactables
-			for (int i = 0; i < lockout_interactables.size(); i++) {
+			for (int i = 0; i < lockout_interactables.size(); i++)
+			{
 				lockout_interactables[i]->PauseAudio();
 			}
 
-		// Unpausing audio
-		} else {
+			// Unpausing audio
+		}
+		else
+		{
 
 			// Audio interactables
-			for (int i = 0; i < audio_interactables.size(); i++) {
+			for (int i = 0; i < audio_interactables.size(); i++)
+			{
 				audio_interactables[i]->ResumeAudio();
 			}
 
 			// Item interactables
-			for (int i = 0; i < item_interactables.size(); i++) {
+			for (int i = 0; i < item_interactables.size(); i++)
+			{
 				item_interactables[i]->ResumeAudio();
 			}
 
 			// Counter interactables
-			for (int i = 0; i < counter_interactables.size(); i++) {
+			for (int i = 0; i < counter_interactables.size(); i++)
+			{
 				counter_interactables[i]->ResumeAudio();
 			}
 
 			// Lockout interactables
-			for (int i = 0; i < lockout_interactables.size(); i++) {
+			for (int i = 0; i < lockout_interactables.size(); i++)
+			{
 				lockout_interactables[i]->ResumeAudio();
 			}
-
 		}
-    } 
+	}
 
 	// Checking if the game should end
 	if (player->GetInventory()->GetCapacity() >= 3)
@@ -349,7 +360,7 @@ void CustomScene3501::create_cameras()
 	cam_9->SafelyRotate(Vector3(-35.79578, -130.5289, 0));
 	cam_9->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_25;
-	create_and_add_as_child<CameraTrigger>(trigg_25, "W_pool_C_trigg_1", true);
+	create_and_add_as_child<CameraTrigger>(trigg_25, "W_pool_trigg_1", true);
 
 	PlayerCamera *cam_10; // Pasta Cam
 	create_and_add_as_child<PlayerCamera>(cam_10, "W_pasta_C", true);
@@ -357,7 +368,7 @@ void CustomScene3501::create_cameras()
 	cam_10->SafelyRotate(Vector3(-47.45443, -115.7982, 0));
 	cam_10->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_26;
-	create_and_add_as_child<CameraTrigger>(trigg_26, "W_pasta_C_trigg_1", true);
+	create_and_add_as_child<CameraTrigger>(trigg_26, "W_pasta_trigg_1", true);
 
 	PlayerCamera *cam_11; // Steals Cam
 	create_and_add_as_child<PlayerCamera>(cam_11, "W_steals_C", true);
@@ -365,7 +376,7 @@ void CustomScene3501::create_cameras()
 	cam_11->SafelyRotate(Vector3(-24.04568, 7.460113, 0));
 	cam_11->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_27;
-	create_and_add_as_child<CameraTrigger>(trigg_27, "W_steals_C_trigg_1", true);
+	create_and_add_as_child<CameraTrigger>(trigg_27, "W_steals_trigg_1", true);
 
 	PlayerCamera *cam_12; // Security Office Cam
 	create_and_add_as_child<PlayerCamera>(cam_12, "W_office_C", true);
@@ -373,7 +384,21 @@ void CustomScene3501::create_cameras()
 	// cam_12->SafelyRotate(Vector3(-31.29581, 41.95086, 0));
 	cam_12->SetTrackType(CameraTrackType::tracking);
 	CameraTrigger *trigg_28;
-	create_and_add_as_child<CameraTrigger>(trigg_28, "W_office_C_trigg_1", true);
+	create_and_add_as_child<CameraTrigger>(trigg_28, "W_office_trigg_1", true);
+
+	PlayerCamera *cam_13; // Cafeateria Menu Cam
+	create_and_add_as_child<PlayerCamera>(cam_13, "W_menu_C", true);
+	cam_13->set_global_position(Vector3(-31.91892, -6.609335, -163.9559));
+	cam_13->SafelyRotate(Vector3(4.545617, 88.94998, 0));
+	cam_13->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_29;
+	create_and_add_as_child<CameraTrigger>(trigg_29, "W_menu_trigg_1", true);
+
+	// Souronding triggers for normal cafeteria cam
+	CameraTrigger *trigg_30;
+	create_and_add_as_child<CameraTrigger>(trigg_30, "WCC_trigg_3", true);
+	CameraTrigger *trigg_31;
+	create_and_add_as_child<CameraTrigger>(trigg_31, "WCC_trigg_4", true);
 
 	cameras.append(cam_1);
 	cameras.append(cam_2);
@@ -387,6 +412,7 @@ void CustomScene3501::create_cameras()
 	cameras.append(cam_10);
 	cameras.append(cam_11);
 	cameras.append(cam_12);
+	cameras.append(cam_13);
 	cam_triggs.append(trigg_1);
 	cam_triggs.append(trigg_2);
 	cam_triggs.append(trigg_3);
@@ -415,36 +441,39 @@ void CustomScene3501::create_cameras()
 	cam_triggs.append(trigg_26);
 	cam_triggs.append(trigg_27);
 	cam_triggs.append(trigg_28);
-
-	// Jacobs Cameras
-	PlayerCamera *cam_13;
-	create_and_add_as_child<PlayerCamera>(cam_13, "JEC", true);
-	cam_13->set_global_position(Vector3(66.74512, -2.127899, -64.9141));
-	// cam_13->SafelyRotate(Vector3(-21.20438, 50.28828, 0));
-	cam_13->SetTrackType(CameraTrackType::tracking);
-	CameraTrigger *trigg_29;
-	create_and_add_as_child<CameraTrigger>(trigg_29, "JEC_trigg_1", true);
-	CameraTrigger *trigg_30;
-	create_and_add_as_child<CameraTrigger>(trigg_30, "JEC_trigg_2", true);
-	CameraTrigger *trigg_31;
-	create_and_add_as_child<CameraTrigger>(trigg_31, "JEC_trigg_3", true);
-
-	PlayerCamera *cam_14;
-	create_and_add_as_child<PlayerCamera>(cam_14, "JCC", true);
-	cam_14->set_global_position(Vector3(167.4163, 43.29909, -98.47244));
-	cam_14->SetTrackType(CameraTrackType::tracking);
-	CameraTrigger *trigg_32;
-	create_and_add_as_child<CameraTrigger>(trigg_32, "JCC_trigg_1", true);
-	CameraTrigger *trigg_33;
-	create_and_add_as_child<CameraTrigger>(trigg_33, "JCC_trigg_2", true);
-
-	cameras.append(cam_13);
-	cameras.append(cam_14);
 	cam_triggs.append(trigg_29);
 	cam_triggs.append(trigg_30);
 	cam_triggs.append(trigg_31);
-	cam_triggs.append(trigg_32);
-	cam_triggs.append(trigg_33);
+
+	// Jacobs Cameras
+	PlayerCamera *cam_101;
+	create_and_add_as_child<PlayerCamera>(cam_101, "JEC", true);
+	cam_101->set_global_position(Vector3(66.74512, -2.127899, -64.9141));
+	// cam_13->SafelyRotate(Vector3(-21.20438, 50.28828, 0));
+	cam_101->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_101;
+	create_and_add_as_child<CameraTrigger>(trigg_101, "JEC_trigg_1", true);
+	CameraTrigger *trigg_102;
+	create_and_add_as_child<CameraTrigger>(trigg_102, "JEC_trigg_2", true);
+	CameraTrigger *trigg_103;
+	create_and_add_as_child<CameraTrigger>(trigg_103, "JEC_trigg_3", true);
+
+	PlayerCamera *cam_102;
+	create_and_add_as_child<PlayerCamera>(cam_102, "JCC", true);
+	cam_102->set_global_position(Vector3(167.4163, 43.29909, -98.47244));
+	cam_102->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_104;
+	create_and_add_as_child<CameraTrigger>(trigg_104, "JCC_trigg_1", true);
+	CameraTrigger *trigg_105;
+	create_and_add_as_child<CameraTrigger>(trigg_105, "JCC_trigg_2", true);
+
+	cameras.append(cam_101);
+	cameras.append(cam_102);
+	cam_triggs.append(trigg_101);
+	cam_triggs.append(trigg_102);
+	cam_triggs.append(trigg_103);
+	cam_triggs.append(trigg_104);
+	cam_triggs.append(trigg_105);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -642,36 +671,51 @@ void CustomScene3501::setup_cameras()
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[11]);
 			}
-			else if (i == 28) // JEC Triggers FIRST JACOB TRIGGER ---------------------------------------------------------------------------------
+			else if (i == 28) // Trigger for looking at the menu in the cafeateria
 			{
-				cam_triggs[i]->set_global_position(Vector3(16, -10.158, -82.563));
+				cam_triggs[i]->set_global_position(Vector3(-36.72801, -10.15762, -162.8331));
 				cam_triggs[i]->SetCamera(cameras[12]);
 			}
-			else if (i == 29)
+			else if (i == 29) // Trigger for returning to the normal cafeateria cam
 			{
-				cam_triggs[i]->set_global_position(Vector3(138.2366, -8.6, -60.5618));
-				cam_triggs[i]->setColliderTransformation(giant_rect);
-				cam_triggs[i]->SetCamera(cameras[12]);
+				cam_triggs[i]->set_global_position(Vector3(-36.72801, -10.15762, -150.7204));
+				cam_triggs[i]->SetCamera(cameras[5]);
 			}
 			else if (i == 30)
 			{
-				cam_triggs[i]->set_global_position(Vector3(104.6677, -8.6, -92.3312));
-				cam_triggs[i]->setColliderTransformation(giant_rect);
-				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
-				cam_triggs[i]->SetCamera(cameras[12]);
+				cam_triggs[i]->set_global_position(Vector3(-36.72801, -10.15762, -174.2415));
+				cam_triggs[i]->SetCamera(cameras[5]);
 			}
-			else if (i == 31) // JCC Triggers
+			else if (i == 31) // JEC Triggers FIRST JACOB TRIGGER ---------------------------------------------------------------------------------
 			{
-				cam_triggs[i]->set_global_position(Vector3(150.2366, -0.151898, -60.5618));
-				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->set_global_position(Vector3(16, -10.158, -82.563));
 				cam_triggs[i]->SetCamera(cameras[13]);
 			}
 			else if (i == 32)
 			{
-				cam_triggs[i]->set_global_position(Vector3(104.6677, -0.151898, -100.0273));
+				cam_triggs[i]->set_global_position(Vector3(138.2366, -8.6, -60.5618));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->SetCamera(cameras[13]);
+			}
+			else if (i == 33)
+			{
+				cam_triggs[i]->set_global_position(Vector3(104.6677, -8.6, -92.3312));
 				cam_triggs[i]->setColliderTransformation(giant_rect);
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[13]);
+			}
+			else if (i == 34) // JCC Triggers
+			{
+				cam_triggs[i]->set_global_position(Vector3(150.2366, -0.151898, -60.5618));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 35)
+			{
+				cam_triggs[i]->set_global_position(Vector3(104.6677, -0.151898, -100.0273));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[14]);
 			}
 		}
 	}
@@ -748,8 +792,8 @@ void CustomScene3501::setup_interactables()
 	{
 		for (int i = 0; i < audio_interactables.size(); i++) // Audio Logs
 		{
-			//re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
-			//audio_interactables[i]->_ready();
+			// re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
+			// audio_interactables[i]->_ready();
 			if (i == 0) // Williams Audio Logs
 			{
 				audio_interactables[i]->set_global_position(Vector3(-22.48615, -7.101642, -254.866));
