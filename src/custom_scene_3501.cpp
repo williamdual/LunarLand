@@ -81,7 +81,7 @@ void CustomScene3501::_ready()
 		UtilityFunctions::print("Ready - CustomScene3501.");
 
 	// set the player's position (the camera)
-	player->set_global_position(Vector3(0.0, -11.5, -30.0f));
+	player->set_global_position(Vector3(0, -10.15762, -32.28558));
 	setup_cameras();
 	setup_interactables();
 
@@ -248,9 +248,9 @@ void CustomScene3501::create_cameras()
 	CameraTrigger *trigg_14;
 	create_and_add_as_child<CameraTrigger>(trigg_14, "WEC_trigg_5", true);
 
-	PlayerCamera *cam_6;
+	PlayerCamera *cam_6; // Cafeateria cam
 	create_and_add_as_child<PlayerCamera>(cam_6, "WCC", true);
-	cam_6->set_global_position(Vector3(-36.14626, -8.253156, -189.9177));
+	cam_6->set_global_position(Vector3(-36.53674, -6.390055, -189.2349));
 	cam_6->SafelyRotate(Vector3(0, 180, 0));
 	cam_6->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_15;
@@ -283,30 +283,40 @@ void CustomScene3501::create_cameras()
 	create_and_add_as_child<CameraTrigger>(trigg_22, "WELC_trigg_5", true);
 	CameraTrigger *trigg_23;
 	create_and_add_as_child<CameraTrigger>(trigg_23, "WELC_trigg_6", true);
+	CameraTrigger *trigg_24;
+	create_and_add_as_child<CameraTrigger>(trigg_24, "WELC_trigg_7", true);
 
 	PlayerCamera *cam_9; // Pool Cam
 	create_and_add_as_child<PlayerCamera>(cam_9, "W_pool_C", true);
-	cam_9->set_global_position(Vector3(20.58441, -4.134171, -199.112));
-	cam_9->SafelyRotate(Vector3(-34.20435, -133.3126, 0));
+	cam_9->set_global_position(Vector3(21.46057, -0.807379, -207.8787));
+	cam_9->SafelyRotate(Vector3(-35.79578, -130.5289, 0));
 	cam_9->SetTrackType(CameraTrackType::statics);
-	CameraTrigger *trigg_24;
-	create_and_add_as_child<CameraTrigger>(trigg_24, "W_pool_C_trigg_1", true);
+	CameraTrigger *trigg_25;
+	create_and_add_as_child<CameraTrigger>(trigg_25, "W_pool_C_trigg_1", true);
 
 	PlayerCamera *cam_10; // Pasta Cam
 	create_and_add_as_child<PlayerCamera>(cam_10, "W_pasta_C", true);
 	cam_10->set_global_position(Vector3(-34.69436, -5.034119, -220.5239));
 	cam_10->SafelyRotate(Vector3(-47.45443, -115.7982, 0));
 	cam_10->SetTrackType(CameraTrackType::statics);
-	CameraTrigger *trigg_25;
-	create_and_add_as_child<CameraTrigger>(trigg_25, "W_pasta_C_trigg_1", true);
-
-	PlayerCamera *cam_11; // Pool Cam
-	create_and_add_as_child<PlayerCamera>(cam_11, "W_steals_C", true);
-	cam_11->set_global_position(Vector3(-3.120258, 0.202873, -239.4347));
-	cam_11->SafelyRotate(Vector3(-24.20443, -0.547862, 0));
-	cam_11->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_26;
-	create_and_add_as_child<CameraTrigger>(trigg_26, "W_steals_C_trigg_1", true);
+	create_and_add_as_child<CameraTrigger>(trigg_26, "W_pasta_C_trigg_1", true);
+
+	PlayerCamera *cam_11; // Steals Cam
+	create_and_add_as_child<PlayerCamera>(cam_11, "W_steals_C", true);
+	cam_11->set_global_position(Vector3(3.999357, 1.749868, -267.9107));
+	cam_11->SafelyRotate(Vector3(-24.04568, 7.460113, 0));
+	cam_11->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_27;
+	create_and_add_as_child<CameraTrigger>(trigg_27, "W_steals_C_trigg_1", true);
+
+	PlayerCamera *cam_12; // Security Office Cam
+	create_and_add_as_child<PlayerCamera>(cam_12, "W_office_C", true);
+	cam_12->set_global_position(Vector3(-19.39669, 0.244593, -228.493));
+	// cam_12->SafelyRotate(Vector3(-31.29581, 41.95086, 0));
+	cam_12->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_28;
+	create_and_add_as_child<CameraTrigger>(trigg_28, "W_office_C_trigg_1", true);
 
 	cameras.append(cam_1);
 	cameras.append(cam_2);
@@ -319,6 +329,7 @@ void CustomScene3501::create_cameras()
 	cameras.append(cam_9);
 	cameras.append(cam_10);
 	cameras.append(cam_11);
+	cameras.append(cam_12);
 	cam_triggs.append(trigg_1);
 	cam_triggs.append(trigg_2);
 	cam_triggs.append(trigg_3);
@@ -345,6 +356,8 @@ void CustomScene3501::create_cameras()
 	cam_triggs.append(trigg_24);
 	cam_triggs.append(trigg_25);
 	cam_triggs.append(trigg_26);
+	cam_triggs.append(trigg_27);
+	cam_triggs.append(trigg_28);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -367,7 +380,7 @@ void CustomScene3501::setup_cameras()
 		}
 		Vector3 right_angle_turn = Vector3(0, 90, 0);
 		Vector3 long_box = Vector3(1.1f, 10.0f, 23.8f);
-		Vector3 cube_box = Vector3(6.1f, 10.0f, 5.788f);
+		Vector3 cube_box = Vector3(19.513f, 10.0f, 16.016f); // Pool trigger shape
 		for (int i = 0; i < cam_triggs.size(); i++)
 		{
 			re_parent<Node, CameraTrigger>(trigg_ref_group, cam_triggs[i]);
@@ -435,12 +448,12 @@ void CustomScene3501::setup_cameras()
 			}
 			else if (i == 10)
 			{
-				cam_triggs[i]->set_global_position(Vector3(-18.33708, -11.5, -146.5542));
+				cam_triggs[i]->set_global_position(Vector3(-19.71, -11.5, -146.5542));
 				cam_triggs[i]->SetCamera(cameras[4]);
 			}
 			else if (i == 11)
 			{
-				cam_triggs[i]->set_global_position(Vector3(-18.33708, -11.5, -177.7186));
+				cam_triggs[i]->set_global_position(Vector3(-20.198, -11.5, -177.7186));
 				cam_triggs[i]->SetCamera(cameras[4]);
 			}
 			else if (i == 12)
@@ -451,8 +464,8 @@ void CustomScene3501::setup_cameras()
 			else if (i == 13)
 			{
 				cam_triggs[i]->set_global_position(Vector3(-7.495, -11.5, -180.482));
-				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[4]);
 			}
 			else if (i == 14) // Cafeteria triggs
@@ -479,27 +492,27 @@ void CustomScene3501::setup_cameras()
 			}
 			else if (i == 18)
 			{
-				cam_triggs[i]->set_global_position(Vector3(-18.24476, -11.5, -217.9538));
+				cam_triggs[i]->set_global_position(Vector3(-18.24476, -11.5, -214.492));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[7]);
 			}
 			else if (i == 19)
 			{
-				cam_triggs[i]->set_global_position(Vector3(2.575, -11.5, -244.3493));
+				cam_triggs[i]->set_global_position(Vector3(2.575, -11.5, -268.966));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[7]);
 			}
 			else if (i == 20)
 			{
-				cam_triggs[i]->set_global_position(Vector3(22.50648, -11.5, -192.5537));
+				cam_triggs[i]->set_global_position(Vector3(22.506, -11.5, -192.554));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[7]);
 			}
 			else if (i == 21)
 			{
-				cam_triggs[i]->set_global_position(Vector3(22.50648, -11.5, -200.2746));
+				cam_triggs[i]->set_global_position(Vector3(17.213, -11.5, -210.88));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[7]);
@@ -510,24 +523,36 @@ void CustomScene3501::setup_cameras()
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[7]);
 			}
-			else if (i == 23) // Pool cam trigger
+			else if (i == 23)
 			{
-				cam_triggs[i]->set_global_position(Vector3(22.51979, -11.5, -196.6439));
+				cam_triggs[i]->set_global_position(Vector3(-12.03628, -10.15762, -248.1444));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[7]);
+			}
+			else if (i == 24) // Pool cam trigger
+			{
+				cam_triggs[i]->set_global_position(Vector3(27.884, -11.5, -201.195));
 				cam_triggs[i]->setColliderTransformation(cube_box);
 				cam_triggs[i]->SetCamera(cameras[8]);
 			}
-			else if (i == 24) // PASTA Trigger
+			else if (i == 25) // PASTA Trigger
 			{
-				cam_triggs[i]->set_global_position(Vector3(-22.51009, -11.5, -219.0184));
+				cam_triggs[i]->set_global_position(Vector3(-22.51009, -11.5, -214.362));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[9]);
 			}
-			else if (i == 25) // STEALS Trigger
+			else if (i == 26) // STEALS Trigger
 			{
-				cam_triggs[i]->set_global_position(Vector3(2.575, -11.5, -248.06));
+				cam_triggs[i]->set_global_position(Vector3(2.575, -11.5, -276.073));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[10]);
+			}
+			else if (i == 27) // Security Office Trigger
+			{
+				cam_triggs[i]->set_global_position(Vector3(-17.02117, -10.15762, -248.1444));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[11]);
 			}
 		}
 	}
@@ -536,12 +561,28 @@ void CustomScene3501::setup_cameras()
 // Member function to create interactables
 void CustomScene3501::create_interactables()
 {
-	// TODO CRASHES FOR SOME REASON, MAYBE CALLING _REDAY, MIGHT HAVE BEEN MOVING IT IN THE ENTER TREE, TEST NOW
-	UtilityFunctions::print("finished setup");
 	AudioInteractable *log_1;
 	create_and_add_as_child(log_1, "log_joe_intro", true);
+	AudioInteractable *log_2;
+	create_and_add_as_child(log_2, "log_joe_Johnny", true);
+	AudioInteractable *log_3;
+	create_and_add_as_child(log_3, "log_joe_Bobo", true);
+	AudioInteractable *log_4;
+	create_and_add_as_child(log_4, "log_joe_Timmy", true);
+	AudioInteractable *log_5;
+	create_and_add_as_child(log_5, "log_Johnny_Timmy", true);
+	AudioInteractable *log_6;
+	create_and_add_as_child(log_6, "log_Generator", true);
+	AudioInteractable *log_7;
+	create_and_add_as_child(log_7, "log_Bobo_Timmy", true);
 
 	audio_interactables.append(log_1);
+	audio_interactables.append(log_2);
+	audio_interactables.append(log_3);
+	audio_interactables.append(log_4);
+	audio_interactables.append(log_5);
+	audio_interactables.append(log_6);
+	audio_interactables.append(log_7);
 
 	// To be set when more of the environment is ready
 
@@ -583,17 +624,60 @@ void CustomScene3501::setup_interactables()
 {
 	Node *interact_ref_group;
 	bool is_new = create_and_add_as_child<Node>(interact_ref_group, "Interactables", true);
+	Vector3 right_angle = Vector3(0, 90, 0);
 	if (true)
 	{
-		for (int i = 0; i < audio_interactables.size(); i++)
+		for (int i = 0; i < audio_interactables.size(); i++) // Audio Logs
 		{
 			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
 			audio_interactables[i]->_ready();
-			if (i == 0)
+			if (i == 0) // Williams Audio Logs
 			{
-				audio_interactables[i]->set_global_position(Vector3(-4.431467, -11.5, -67.91608));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 3.0);
+				audio_interactables[i]->set_global_position(Vector3(-22.48615, -7.101642, -254.866));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_INTRO);
+			}
+			else if (i == 1)
+			{
+				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -250.75));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
+				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_JOHNNY);
+			}
+			else if (i == 2)
+			{
+				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -241.1618));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
+				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_BOBO);
+			}
+			else if (i == 3)
+			{
+				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -232.7377));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
+				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_TIMMY);
+			}
+			else if (i == 4)
+			{
+				audio_interactables[i]->set_global_position(Vector3(-39.23154, -7.359558, -186.8915));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 6.0);
+				audio_interactables[i]->set_global_rotation_degrees(Vector3(0, 180, 0));
+				audio_interactables[i]->SetAudio(AUDIO_JOHNNY_TIMMY);
+			}
+			else if (i == 5)
+			{
+				audio_interactables[i]->set_global_position(Vector3(-12.75724, -10.04689, -283.267));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 4.0);
+				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_GENERATOR);
+			}
+			else if (i == 6)
+			{
+				audio_interactables[i]->set_global_position(Vector3(21.46068, -10.4836, -167.2278));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 4.0);
+				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_BOBO_TIMMY);
 			}
 		}
 	}
