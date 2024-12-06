@@ -74,7 +74,7 @@ namespace godot
         // Array of texture names
         char *texture_names[BUILDING_OBJECT_AMOUNT] = {
             "Texture",     // Test building
-            "20x20squares" // World building(s)
+            "World_Texture" // World building(s)
         };
 
         // Array of texture formats for each texture file
