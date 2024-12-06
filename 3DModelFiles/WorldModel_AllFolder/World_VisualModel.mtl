@@ -24,7 +24,7 @@ illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd 20x20sqaures.png
+map_Kd World_Texture.png
 Ni 1.00
 newmtl lambert10SG
 illum 4
