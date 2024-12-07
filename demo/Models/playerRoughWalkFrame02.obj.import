@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cvdcju57ylvvy"
+path="res://.godot/imported/playerRoughWalkFrame02.obj-cf1e6c096c63e78622710c3b1d295371.mesh"
+
+[deps]
+
+files=["res://.godot/imported/playerRoughWalkFrame02.obj-cf1e6c096c63e78622710c3b1d295371.mesh"]
+
+source_file="res://Models/playerRoughWalkFrame02.obj"
+dest_files=["res://.godot/imported/playerRoughWalkFrame02.obj-cf1e6c096c63e78622710c3b1d295371.mesh", "res://.godot/imported/playerRoughWalkFrame02.obj-cf1e6c096c63e78622710c3b1d295371.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
