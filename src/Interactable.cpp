@@ -51,7 +51,7 @@ void Interactable::_process(double delta) {
     mat->set_shader_parameter("spec_power", specular_power);
     mat->set_shader_parameter("num_lights", num_lights);
 
-    // // Getting input and determining if the interactable should trigger
+    // Getting input and determining if the interactable should trigger
     Input *_input = Input::get_singleton();
 
     // Getting if the game was paused
