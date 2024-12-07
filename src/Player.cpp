@@ -7,7 +7,9 @@
 
 using namespace godot;
 
-void Player::_bind_methods() {}
+void Player::_bind_methods() {
+    ClassDB::bind_method(D_METHOD("SetCameraPosition"), &Player::SetCameraPosition);
+}
 
 Player::Player() : CharacterBody3D()
 {
@@ -40,6 +42,7 @@ void Player::_enter_tree()
     gravityDelta = Vector3(0, -9.8 * 50.0, 0); // I have no idea if this works how real gravity works <- No doesnt look like it
     camera = nullptr;
     rot_speed = Math_TAU * 2.0;
+    camera_position = Vector3(0.0, 0.0, 0.0);
 
     // Mesh and Mat
     create_and_add_as_child<MeshInstance3D>(mesh, "PlayerMesh", true);
@@ -123,6 +126,11 @@ void Player::_process(double delta)
 {
     // Adding the delta to time passed
     time_passed += delta;
+
+    // Changing camera position if needed
+    if (camera != NULL) {
+        camera_position = camera->get_global_position();
+    }
     
     // Sending the necessary values to the shader
     mat->set_shader_parameter("init_light_positions", light_positions);
@@ -268,6 +276,30 @@ float Player::Sign(float value) {
     return 1.0;
 }
 
+// Member function that registers camera triggers for signal purposes
+// void Player::RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs) {
+
+//     // Connecting each camera trigger
+//     for (int i = 0; i < cam_trigs.size(); i++) {
+//         cam_trigs[i]->connect("NewCamPos", Callable(this, "SetCameraPosition"));
+//     }
+// }
+
+// Member function that sets a camera position
+void Player::SetCameraPosition(Vector3 camera_pos) {
+    camera_position = camera_pos;
+}
+
+// Member function that adds a light position and colour to the environment object
+void Player::AddLight(Vector3 light_pos, Vector3 light_col, int spec_power) {
+
+    // Adding light position and colour to the necessary arrays
+    light_positions[num_lights] = light_pos;
+    light_colours[num_lights] = light_col;
+    specular_power[num_lights] = spec_power;
+    num_lights++;
+}
+
 PlayerCamera *Player::GetCamera()
 {
     return camera;
@@ -282,6 +314,7 @@ void Player::SetCamera(PlayerCamera *cam)
     }
 
     camera = cam;
+    camera_position = camera->get_global_position();
 }
 
 float Player::GetMoveSpeed()
