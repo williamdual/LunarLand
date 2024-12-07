@@ -20,24 +20,39 @@ Player::~Player()
 
 void Player::_enter_tree()
 {
+
+    // Setting proper array sizes
+    light_positions.resize(32);
+    light_colours.resize(32);
+    specular_power.resize(32);
+    num_lights = 0;
+
+    // Setting up shader
+    mat = memnew(ShaderMaterial);
+    Ref<Shader> shader = ResourceLoader::get_singleton()->load(vformat("%s%s.gdshader", "Shaders/", "player"), "Shader");
+    mat->set_shader(shader);
+
     // init vars
     saved_velocity = Vector3(0, 0, 0);
     moveSpeed = 1000.0f;
     paused = false;
     gravityDelta = Vector3(0, -9.8 * 50.0, 0); // I have no idea if this works how real gravity works <- No doesnt look like it
     camera = nullptr;
+
     // Mesh and Mat
-    create_and_add_as_child<MeshInstance3D>(mesh_instance, "PlayerMesh", true);
+    create_and_add_as_child<MeshInstance3D>(mesh, "PlayerMesh", true);
+    Ref<Mesh> new_mesh = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", "playerIdle"), "Mesh");
+    new_mesh->surface_set_material(0, mat);
+    mesh->set_mesh(new_mesh);
+    mesh->set_material_override(mat);
+    mesh->set_global_position(Vector3(0.0, -2.7, 0.0));
 
-    mesh = memnew(CylinderMesh);
-    mesh->set_height(2);
-    mesh->set_top_radius(1);
-    mesh->set_bottom_radius(1);
-    mesh_instance->set_mesh(mesh);
+    // Setting the texture
+    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s", "Textures/", "MechanicalBull_Texture.png"), "CompressedTexture2D");
+    mat->set_shader_parameter("sampler", texture);
 
-    mat = memnew(StandardMaterial3D);
-    mat->set_albedo(Color(1.0f, 1.0f, 0.0f, 1.0f));
-    mesh->surface_set_material(0, mat);
+    // Setting the darking value for the texture
+    mat->set_shader_parameter("darkening_val", 0.8);
 
     // Colision
     area = memnew(Area3D);
@@ -53,14 +68,6 @@ void Player::_enter_tree()
     cylinder_shape->set_height(2);
     cylinder_shape->set_radius(1);
 
-    // Setting the collision shape that will serve to detect collisions with physical objects in the environment
-    surface_collider = memnew(CollisionShape3D);
-    create_and_add_as_child<CollisionShape3D>(surface_collider, "SurfaceCollider", true);
-    CylinderShape3D *surface_collider_shape = memnew(CylinderShape3D);
-    surface_collider_shape->set_height(2);
-    surface_collider_shape->set_radius(1);
-    surface_collider->set_shape(surface_collider_shape);
-
     // Setting the listener
     create_and_add_as_child<AudioListener3D>(listener, "Listener", true);
     listener->make_current();
@@ -68,6 +75,35 @@ void Player::_enter_tree()
     // Creating the inventory
     create_and_add_as_child<Inventory>(inventory, "Inventory", true);
     inventory->SetupInventory();
+
+    // Seeing if the object already has a collision shape
+    if (!find_child("CollisionShape") == NULL) {
+        return;
+    }
+
+    // Creating the hit shape
+    create_and_add_as_child<CollisionShape3D>(hit_shape, "CollisionShape", false);
+
+    // Determining widest part of scale
+    CylinderShape3D* cyl_shape = memnew(CylinderShape3D);
+    Vector3 obj_size = mesh->get_mesh()->get_aabb().size;
+    float diameter = 1.0;
+    if (obj_size.x > obj_size.z) {
+        diameter = obj_size.x;
+    } else {
+        diameter = obj_size.z;
+    }
+
+    // Setting the height and radius of the shape
+    cyl_shape->set_height(obj_size.y);
+    cyl_shape->set_radius(diameter / 2.0);
+
+    // Setting the collision shape
+    hit_shape->set_shape(cyl_shape);
+
+    // Setting the shape for trigger collision
+    cylinder_shape->set_height(cyl_shape->get_height());
+    cylinder_shape->set_radius(cyl_shape->get_radius());
 }
 
 void Player::_ready()
@@ -77,6 +113,13 @@ void Player::_ready()
 // called every frame (as often as possible)
 void Player::_process(double delta)
 {
+    // Sending the necessary values to the shader
+    mat->set_shader_parameter("init_light_positions", light_positions);
+    mat->set_shader_parameter("light_colours", light_colours);
+    mat->set_shader_parameter("view_pos", camera_position);
+    mat->set_shader_parameter("spec_power", specular_power);
+    mat->set_shader_parameter("num_lights", num_lights);
+
     Input *_input = Input::get_singleton();
 
     // dev tool for placing stuff

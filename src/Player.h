@@ -12,6 +12,7 @@
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/packed_vector3_array.hpp>
 #include <godot_cpp/variant/quaternion.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
 
 #include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/classes/cylinder_mesh.hpp>
@@ -21,6 +22,8 @@
 #include <godot_cpp/classes/collision_shape3d.hpp>
 #include <godot_cpp/classes/cylinder_shape3d.hpp>
 #include <godot_cpp/classes/standard_material3d.hpp>
+#include <godot_cpp/classes/shader_material.hpp>
+#include <godot_cpp/classes/shader.hpp>
 #include <godot_cpp/classes/audio_listener3d.hpp>
 
 #include "Inventory.h"
@@ -35,12 +38,11 @@ namespace godot
         GDCLASS(Player, CharacterBody3D);
 
     private:
-        MeshInstance3D *mesh_instance;
-        CylinderMesh *mesh;
-        StandardMaterial3D *mat;
+        MeshInstance3D *mesh;
+        ShaderMaterial *mat;
         Area3D *area;
         CollisionShape3D *collider;
-        CollisionShape3D *surface_collider;
+        CollisionShape3D *hit_shape;
         CylinderShape3D *cylinder_shape;
         PlayerCamera *camera;
         AudioListener3D *listener;
@@ -51,6 +53,13 @@ namespace godot
         float moveSpeed;
         Vector3 gravityDelta;
         bool paused;
+
+        // Vectors for light and camera positions and colours as well as the number of lights
+        int num_lights;
+        TypedArray<Vector3> light_positions;
+        TypedArray<Vector3> light_colours;
+        TypedArray<int> specular_power;
+        Vector3 camera_position;
 
     protected:
         // a static function that Godot will call to find out which methods can be called and which properties it exposes
