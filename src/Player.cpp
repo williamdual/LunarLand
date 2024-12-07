@@ -38,6 +38,7 @@ void Player::_enter_tree()
     paused = false;
     gravityDelta = Vector3(0, -9.8 * 50.0, 0); // I have no idea if this works how real gravity works <- No doesnt look like it
     camera = nullptr;
+    rot_speed = Math_TAU * 2.0;
 
     // Mesh and Mat
     create_and_add_as_child<MeshInstance3D>(mesh, "PlayerMesh", true);
@@ -171,31 +172,39 @@ void Player::_process(double delta)
     if (savedMovementDelta == Vector3(0, 0, 0)) // if savedMovementDelta is zero, then we look for user input
     {
         Vector3 movmentInputVector = Vector3(0, 0, 0);
+        float theta = 0.0;
+        float new_rot = 0.0;
         if (_input->is_action_pressed("move_forward"))
         {
             // UtilityFunctions::print("forward");
+            theta += WrapDegree(atan2(camera->GetMovementPlaneForward().x, camera->GetMovementPlaneForward().z) - mesh->get_global_rotation().y);
             movmentInputVector += camera->GetMovementPlaneForward();
         }
 
         if (_input->is_action_pressed("move_backward"))
         {
             // UtilityFunctions::print("backward");
+            theta += WrapDegree(atan2(-camera->GetMovementPlaneForward().x, -camera->GetMovementPlaneForward().z) - mesh->get_global_rotation().y);
             movmentInputVector -= camera->GetMovementPlaneForward();
         }
 
         if (_input->is_action_pressed("move_right"))
         {
             // UtilityFunctions::print("right");
+            theta += WrapDegree(atan2(camera->GetMovementPlaneSide().x, camera->GetMovementPlaneSide().z) - mesh->get_global_rotation().y);
             movmentInputVector += camera->GetMovementPlaneSide();
         }
 
         if (_input->is_action_pressed("move_left"))
         {
             // UtilityFunctions::print("left");
+            theta += WrapDegree(atan2(-camera->GetMovementPlaneSide().x, -camera->GetMovementPlaneSide().z) - mesh->get_global_rotation().y);
             movmentInputVector -= camera->GetMovementPlaneSide();
         }
 
         movementDelta = movmentInputVector.normalized() * moveSpeed;
+        new_rot = mesh->get_global_rotation().y + Clamp(rot_speed * delta, 0, abs(theta)) * Sign(theta);
+        mesh->set_global_rotation(Vector3(0.0, new_rot, 0.0));
     }
     else if (savedMovementDelta != Vector3(0, 0, 0)) // if savedMovementDelta is not zero, then we use it as movementDelta
     {
@@ -213,6 +222,30 @@ void Player::_process(double delta)
         // UtilityFunctions::print("Unditching player");
         this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0)); // move the player up 1 unit
     }
+}
+
+float Player::WrapDegree(float value) {
+    return -Math_PI + fmod((fmod(value - -Math_PI, Math_PI - -Math_PI) + Math_PI - -Math_PI), Math_PI - -Math_PI);
+}
+
+float Player::Clamp(float value, float min, float max) {
+    // Checking if the value is smaller than the lower bound
+    if (value < min) {
+        return min;
+
+    // Checking if value is greater than the upper bound
+    } else if (value > max) {
+        return max;
+    }
+    return value;
+}
+
+float Player::Sign(float value) {
+    // Returning sign of the value
+    if (value < 0.0) {
+        return -1.0;
+    }
+    return 1.0;
 }
 
 PlayerCamera *Player::GetCamera()

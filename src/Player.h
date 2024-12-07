@@ -53,6 +53,7 @@ namespace godot
         float moveSpeed;
         Vector3 gravityDelta;
         bool paused;
+        float rot_speed;
 
         // Vectors for light and camera positions and colours as well as the number of lights
         int num_lights;
@@ -60,6 +61,10 @@ namespace godot
         TypedArray<Vector3> light_colours;
         TypedArray<int> specular_power;
         Vector3 camera_position;
+
+        float WrapDegree(float value);
+        float Clamp(float value, float min, float max);
+        float Sign(float value);
 
     protected:
         // a static function that Godot will call to find out which methods can be called and which properties it exposes
