@@ -38,6 +38,7 @@ namespace godot
         GDCLASS(Player, CharacterBody3D);
 
     private:
+        double time_passed;
         MeshInstance3D *mesh;
         ShaderMaterial *mat;
         Area3D *area;
@@ -54,6 +55,9 @@ namespace godot
         Vector3 gravityDelta;
         bool paused;
         float rot_speed;
+        Ref<Mesh> idle;
+        Ref<Mesh> first_move;
+        Ref<Mesh> second_move;
 
         // Vectors for light and camera positions and colours as well as the number of lights
         int num_lights;

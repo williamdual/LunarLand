@@ -33,6 +33,7 @@ void Player::_enter_tree()
     mat->set_shader(shader);
 
     // init vars
+    time_passed = 0.0;
     saved_velocity = Vector3(0, 0, 0);
     moveSpeed = 1000.0f;
     paused = false;
@@ -42,11 +43,17 @@ void Player::_enter_tree()
 
     // Mesh and Mat
     create_and_add_as_child<MeshInstance3D>(mesh, "PlayerMesh", true);
-    Ref<Mesh> new_mesh = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", "playerIdle"), "Mesh");
-    new_mesh->surface_set_material(0, mat);
-    mesh->set_mesh(new_mesh);
+    idle = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", "playerIdle"), "Mesh");
+    idle->surface_set_material(0, mat);
+    mesh->set_mesh(idle);
     mesh->set_material_override(mat);
     mesh->set_global_position(Vector3(0.0, -2.7, 0.0));
+
+    // Setting up movement meshes
+    first_move = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", "playerRoughWalkFrame01"), "Mesh");
+    first_move->surface_set_material(0, mat);
+    second_move = ResourceLoader::get_singleton()->load(vformat("%s%s.obj", "Models/", "playerRoughWalkFrame02"), "Mesh");
+    second_move->surface_set_material(0, mat);
 
     // Setting the texture
     Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s", "Textures/", "MechanicalBull_Texture.png"), "CompressedTexture2D");
@@ -114,6 +121,9 @@ void Player::_ready()
 // called every frame (as often as possible)
 void Player::_process(double delta)
 {
+    // Adding the delta to time passed
+    time_passed += delta;
+    
     // Sending the necessary values to the shader
     mat->set_shader_parameter("init_light_positions", light_positions);
     mat->set_shader_parameter("light_colours", light_colours);
@@ -163,6 +173,7 @@ void Player::_process(double delta)
     // forsake savedMovementDelta, if the player releases any movement key, or presses any movement key
     bool anyMovementKeyWasReleased = (_input->is_action_just_released("move_forward") || _input->is_action_just_released("move_backward") || _input->is_action_just_released("move_right") || _input->is_action_just_released("move_left"));
     bool anyMovementKeyWasJustPressed = (_input->is_action_just_pressed("move_forward") || _input->is_action_just_pressed("move_backward") || _input->is_action_just_pressed("move_right") || _input->is_action_just_pressed("move_left"));
+    bool anyMovementKeyWasPressed = (_input->is_action_pressed("move_forward") || _input->is_action_pressed("move_backward") || _input->is_action_pressed("move_right") || _input->is_action_pressed("move_left"));
     if (anyMovementKeyWasReleased || anyMovementKeyWasJustPressed)
     {
         // UtilityFunctions::print("savedMovementDelta has been forsaken");
@@ -205,6 +216,15 @@ void Player::_process(double delta)
         movementDelta = movmentInputVector.normalized() * moveSpeed;
         new_rot = mesh->get_global_rotation().y + Clamp(rot_speed * delta, 0, abs(theta)) * Sign(theta);
         mesh->set_global_rotation(Vector3(0.0, new_rot, 0.0));
+
+        // Setting the player mesh
+        if (roundf(time_passed) > time_passed && anyMovementKeyWasPressed) {
+            mesh->set_mesh(first_move);
+        } else if (anyMovementKeyWasPressed) {
+            mesh->set_mesh(second_move);
+        } else {
+            mesh->set_mesh(idle);
+        }
     }
     else if (savedMovementDelta != Vector3(0, 0, 0)) // if savedMovementDelta is not zero, then we use it as movementDelta
     {
