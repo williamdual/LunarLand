@@ -706,13 +706,13 @@ void CustomScene3501::setup_cameras()
 			}
 			else if (i == 34) // JCC Triggers
 			{
-				cam_triggs[i]->set_global_position(Vector3(150.2366, -0.151898, -60.5618));
+				cam_triggs[i]->set_global_position(Vector3(150.2366, -0.151898, -50.69));
 				cam_triggs[i]->setColliderTransformation(giant_rect);
 				cam_triggs[i]->SetCamera(cameras[14]);
 			}
 			else if (i == 35)
 			{
-				cam_triggs[i]->set_global_position(Vector3(104.6677, -0.151898, -100.0273));
+				cam_triggs[i]->set_global_position(Vector3(101.548, -0.151898, -100.027));
 				cam_triggs[i]->setColliderTransformation(giant_rect);
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[14]);

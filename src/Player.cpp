@@ -168,7 +168,7 @@ void Player::_process(double delta)
     if ((movementDelta != Vector3(0, 0, 0)) && (prev_pos == this->get_global_position()))
     {
         // UtilityFunctions::print("Unditching player");
-        // this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0));//move the player up 1 unit
+        this->set_global_position(this->get_global_position() + Vector3(0.0, 1.0, 0.0)); // move the player up 1 unit
     }
 }
 
