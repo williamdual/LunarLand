@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ccqljt8l453yr"
+path="res://.godot/imported/playerIdle.obj-797955f25223442592ff424ce488fbae.mesh"
+
+[deps]
+
+files=["res://.godot/imported/playerIdle.obj-797955f25223442592ff424ce488fbae.mesh"]
+
+source_file="res://Models/playerIdle.obj"
+dest_files=["res://.godot/imported/playerIdle.obj-797955f25223442592ff424ce488fbae.mesh", "res://.godot/imported/playerIdle.obj-797955f25223442592ff424ce488fbae.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
