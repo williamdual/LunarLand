@@ -57,6 +57,9 @@ void CustomScene3501::_enter_tree()
 	// create_env_objects();
 	create_building_objects();
 
+	// Creating pause screen
+	create_and_add_as_child(pause_screen, "Pause Screen", true);
+
 	// Testing particle system
 	// create_particle_system("Blazing Fire", "lonefire");
 
@@ -85,6 +88,9 @@ void CustomScene3501::_ready()
 	player->set_global_position(Vector3(0, -10.15762, -32.28558));
 	setup_cameras();
 	setup_interactables();
+
+	// Setting up pause screen
+	pause_screen->SetupScreen();
 
 	// Setting up the test interactable
 	// testInt->set_global_position(Vector3(0.0, -11.0, -35.0f));
@@ -192,6 +198,9 @@ void CustomScene3501::_process(double delta)
 		if (paused)
 		{
 
+			// Setting pause screen
+			pause_screen->Pause();
+
 			// Audio interactables
 			for (int i = 0; i < audio_interactables.size(); i++)
 			{
@@ -220,6 +229,9 @@ void CustomScene3501::_process(double delta)
 		}
 		else
 		{
+
+			// Unsetting pause screen
+			pause_screen->Resume();
 
 			// Audio interactables
 			for (int i = 0; i < audio_interactables.size(); i++)
