@@ -43,6 +43,9 @@ void CounterInteractable::_ready ( ){
 // This member function increments the counter when it is interacted with
 void CounterInteractable::Interact() {
 
+	// Rotating the crank mesh
+	this->set_global_rotation(this->get_global_rotation() + Vector3(0.0, Math_PI / 2.0, 0.0));
+
     // Playing the crank noise
 	crank_pos = 0.0;
     crank->stop();

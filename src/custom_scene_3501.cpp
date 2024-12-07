@@ -759,6 +759,22 @@ void CustomScene3501::create_interactables()
 	audio_interactables.append(log_6);
 	audio_interactables.append(log_7);
 
+	// Counter interactable
+	CounterInteractable* generator;
+	create_and_add_as_child(generator, "generator_crank", true);
+	counter_interactables.append(generator);
+
+	// Lockout interactables
+	LockoutInteractable* bobo;
+	create_and_add_as_child(bobo, "bobo_steals", true);
+	LockoutInteractable* johnny;
+	create_and_add_as_child(johnny, "johnny_steals", true);
+	LockoutInteractable* timmy;
+	create_and_add_as_child(timmy, "timmy_steals", true);
+	lockout_interactables.append(bobo);
+	lockout_interactables.append(johnny);
+	lockout_interactables.append(timmy);
+
 	// To be set when more of the environment is ready
 
 	// Audio interactable test stuff
@@ -855,6 +871,41 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->SetAudio(AUDIO_BOBO_TIMMY);
 			}
 			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
+		}
+
+		// Counter interactable setup
+		for (int i = 0; i < counter_interactables.size(); i++) {
+			if (i == 0) { // Generator crank
+				counter_interactables[i]->set_global_position(Vector3(-2.3848, -10.0, -291.5));
+				counter_interactables[i]->SetValues(player, INTER_OBJECT_STEALS_CRANK, SHAPE_CYLINDER, true, 3.5);
+				counter_interactables[i]->SetInit(0, 15);
+			}
+			re_parent<Node, CounterInteractable>(interact_ref_group, counter_interactables[i]);
+		}
+
+		// Lockout interactables
+		for (int i = 0; i < lockout_interactables.size(); i++) {
+			if (i == 0) { // Bobo STEALS
+				lockout_interactables[i]->set_global_position(Vector3(-15.11, -8.0, -300.45));
+				lockout_interactables[i]->set_global_rotation(Vector3(0.0, 45, 0.0));
+				lockout_interactables[i]->set_scale(Vector3(1.7, 1.7, 1.7));
+				lockout_interactables[i]->SetValues(player, INTER_OBJECT_STEALS_BOBO, SHAPE_BOX, true, 8.0);
+				lockout_interactables[i]->SetLockout(ITEM_NONE, counter_interactables[0], lockout_interactables);
+			}
+			else if (i == 1) { // Johnny STEALS
+				lockout_interactables[i]->set_global_position(Vector3(-2.3, -8.0, -308.45));
+				lockout_interactables[i]->set_scale(Vector3(1.7, 1.7, 1.7));
+				lockout_interactables[i]->SetValues(player, INTER_OBJECT_STEALS_JOHNNY, SHAPE_BOX, true, 8.0);
+				lockout_interactables[i]->SetLockout(ITEM_LINT, counter_interactables[0], lockout_interactables);
+			}
+			else if (i == 2) { // Timmy STEALS
+				lockout_interactables[i]->set_global_position(Vector3(12.53, -8.0, -300.45));
+				lockout_interactables[i]->set_global_rotation(Vector3(0.0, -1.0 * 45, 0.0));
+				lockout_interactables[i]->set_scale(Vector3(1.7, 1.7, 1.7));
+				lockout_interactables[i]->SetValues(player, INTER_OBJECT_STEALS_TIMMY, SHAPE_BOX, true, 8.0);
+				lockout_interactables[i]->SetLockout(ITEM_NONE, counter_interactables[0], lockout_interactables);
+			}
+			re_parent<Node, LockoutInteractable>(interact_ref_group, lockout_interactables[i]);
 		}
 	}
 }
