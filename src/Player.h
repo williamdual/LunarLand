@@ -8,6 +8,7 @@
 #include <godot_cpp/classes/input.hpp>
 
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/templates/vector.hpp>
 #include <godot_cpp/variant/vector3.hpp>
 #include <godot_cpp/variant/array.hpp>
 #include <godot_cpp/variant/packed_vector3_array.hpp>
@@ -83,6 +84,15 @@ namespace godot
         PlayerCamera *GetCamera();
         inline Inventory *GetInventory(void) { return inventory; }
         void SetCamera(PlayerCamera *);
+
+        // Member function that adds a light to the environment object
+        void AddLight(Vector3 light_pos, Vector3 light_col, int spec_power);
+
+        // Member function that updates the view position for the environment object
+        void SetCameraPosition(Vector3 camera_pos);
+
+        // Member function that registers camera triggers for signal purposes
+        //void RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs);
 
         // the return type represents whether it existed already; true if it is brand-new; false if it was retrieved from the SceneTree
         // search defines whether the scenetree should be checked for an instance
