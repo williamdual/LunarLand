@@ -22,6 +22,7 @@
 #include "MascotBody.h"
 #include "MascotArm.h"
 #include "MascotHead.h"
+#include "PauseScreen.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -57,6 +58,7 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 	ClassDB::register_class<MascotBody>();
 	ClassDB::register_class<MascotArm>();
 	ClassDB::register_class<MascotHead>();
+	ClassDB::register_class<PauseScreen>();
 }
 
 // gets called when godot unloads our plugin

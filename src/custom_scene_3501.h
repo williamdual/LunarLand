@@ -46,6 +46,7 @@
 #include "HeightMapTerrain.h"
 #include "particle_system_3501.h"
 #include "Mascot.h"
+#include "PauseScreen.h"
 
 #define DEBUG true
 
@@ -69,6 +70,7 @@ namespace godot
 		SkyBox *skybox;
 		HeightMapTerrain *hmt;
 		Mascot *mascot;
+		PauseScreen* pause_screen;
 
 		Vector<AudioInteractable*> audio_interactables;
 		Vector<ItemInteractable*> item_interactables;
