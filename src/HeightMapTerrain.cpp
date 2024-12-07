@@ -66,49 +66,49 @@ void HeightMapTerrain::SetupHeightMap(int type, float max_height) {
     // This code generates the height map but Godot will need to be restarted if generating for the first time
     // The images containing _heightmap in their names were all generated with this code
     // So that the game editor does not crash on first launch all generated heightmaps were included with this submission
-    if (ResourceLoader::get_singleton()->load(vformat("%s%s%s%s", "res://Terrain/", texture_names[type], "_heightmap", ".png"), "Image") == NULL) {
+    // if (ResourceLoader::get_singleton()->load(vformat("%s%s%s%s", "res://Terrain/", texture_names[type], "_heightmap", ".png"), "Image") == NULL) {
 
-        // Generating noise based on pixels
-        FastNoiseLite noise_gen;
-        srand(time(NULL));
-        noise_gen.set_seed(rand() % 100);
-        noise_gen.set_noise_type(FastNoiseLite::TYPE_PERLIN);
-        noise_gen.set_frequency(0.003);
-        PackedFloat64Array pixels;
-        for (int i = 0; i < image_height; i++) {
-            for (int j = 0; j < image_width; j++) {
+    //     // Generating noise based on pixels
+    //     FastNoiseLite noise_gen;
+    //     srand(time(NULL));
+    //     noise_gen.set_seed(rand() % 100);
+    //     noise_gen.set_noise_type(FastNoiseLite::TYPE_PERLIN);
+    //     noise_gen.set_frequency(0.003);
+    //     PackedFloat64Array pixels;
+    //     for (int i = 0; i < image_height; i++) {
+    //         for (int j = 0; j < image_width; j++) {
 
-                // Determining noise per pixel
-                float noise = noise_gen.get_noise_2d(i, j);
-                pixels.append(noise);
-            }
-        }
+    //             // Determining noise per pixel
+    //             float noise = noise_gen.get_noise_2d(i, j);
+    //             pixels.append(noise);
+    //         }
+    //     }
 
-        // Creating a new image and buffer for the noise image
-        Image new_noise_image;
-        new_noise_image.create(image_width, image_height, false, Image::FORMAT_RGB8);
-        PackedByteArray noise_image_buf;
-        noise_image_buf.resize(image_width * image_height * 4); // Multiplied by 4 to accomodate for all values in RGB8
-        noise_image_buf = new_noise_image.get_data();
+    //     // Creating a new image and buffer for the noise image
+    //     Image new_noise_image;
+    //     new_noise_image.create(image_width, image_height, false, Image::FORMAT_RGB8);
+    //     PackedByteArray noise_image_buf;
+    //     noise_image_buf.resize(image_width * image_height * 4); // Multiplied by 4 to accomodate for all values in RGB8
+    //     noise_image_buf = new_noise_image.get_data();
 
-        // Copying collected noise to the buffer
-        for (int i = 0; i < image_height; i++) {
-            for (int j = 0; j < image_width; j++) {
+    //     // Copying collected noise to the buffer
+    //     for (int i = 0; i < image_height; i++) {
+    //         for (int j = 0; j < image_width; j++) {
 
-                // Converting value to grayscale
-                int val = int((pixels[i * image_width + j] + 1.0) * 127.5);
+    //             // Converting value to grayscale
+    //             int val = int((pixels[i * image_width + j] + 1.0) * 127.5);
 
-                // Appending three times for r g and b
-                noise_image_buf.append(val);
-                noise_image_buf.append(val);
-                noise_image_buf.append(val);
-            }
-        }
+    //             // Appending three times for r g and b
+    //             noise_image_buf.append(val);
+    //             noise_image_buf.append(val);
+    //             noise_image_buf.append(val);
+    //         }
+    //     }
 
-        // Setting the image data
-        new_noise_image.set_data(image_width, image_height, false, Image::FORMAT_RGB8, noise_image_buf);
-        new_noise_image.save_png(vformat("%s%s%s%s", "res://Terrain/", texture_names[type], "_heightmap", ".png"));
-    }
+    //     // Setting the image data
+    //     new_noise_image.set_data(image_width, image_height, false, Image::FORMAT_RGB8, noise_image_buf);
+    //     new_noise_image.save_png(vformat("%s%s%s%s", "res://Terrain/", texture_names[type], "_heightmap", ".png"));
+    // }
 
     // Establishing the surface that will be used for the terrain
     create_and_add_as_child<MeshInstance3D>(mesh, "TerrainMesh", true);

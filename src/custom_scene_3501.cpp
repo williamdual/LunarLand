@@ -63,18 +63,6 @@ void CustomScene3501::_enter_tree()
 	// Testing particle system
 	// create_particle_system("Blazing Fire", "lonefire");
 
-	// Test terrain
-	// When creating this terrain all this code must appear together
-	// hmt = memnew(HeightMapTerrain);
-	// create_and_add_as_child(hmt, "Test Height Map", true);
-	// hmt->SetupHeightMap(TERRAIN_MOON, 20.0);
-	// hmt->set_scale(Vector3(100.0, 100.0, 100.0));
-	// hmt->set_global_position(Vector3(0,-20,0));
-	// hmt->RegisterCameraTrigs(cam_triggs);
-	// hmt->SetCameraPosition(cameras[2]->get_global_position());
-	// hmt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-
 	// Creating the mascot
 	// create_and_add_as_child(mascot, "Mascot", true);
 }
@@ -91,6 +79,19 @@ void CustomScene3501::_ready()
 
 	// Setting up pause screen
 	pause_screen->SetupScreen();
+
+	// Lunar surface
+	// When creating this terrain all this code must appear together
+	hmt = memnew(HeightMapTerrain);
+	create_and_add_as_child(hmt, "Lunar Surface", true);
+	hmt->SetupHeightMap(TERRAIN_MOON, 20.0);
+	hmt->set_global_position(Vector3(118.75, -210, 26.0));
+	hmt->set_scale(Vector3(12.5, 12.5, 12.5));
+	hmt->RegisterCameraTrigs(cam_triggs);
+	hmt->SetCameraPosition(cameras[2]->get_global_position());
+	// hmt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// hmt->AddLight(player->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test interactable
 	// testInt->set_global_position(Vector3(0.0, -11.0, -35.0f));
