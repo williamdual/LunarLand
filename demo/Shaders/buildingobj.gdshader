@@ -45,7 +45,7 @@ void fragment() {
 		
 		// Lighting attenuation calculation
 		float dist = distance(position_interp, light_positions[i]);
-		float attenuation = 1.0 / (1.0 + 0.0075 * dist + 0.0075 * dist * dist);
+		float attenuation = 1.0 / (1.0 + 0.0075 * dist + 0.0075 * dist * dist); //<- MODIFY the decimals TO EFFECT THE LIGHT DROP OFF
 		// The two 0.0075 constants are arbitrary since they appeared to create reasonable light attenuation
 		// Replace later with uniforms if needed
 		
@@ -71,7 +71,7 @@ void fragment() {
 	}
 	
 	// Applying the final light colour
-	//ALBEDO = final_light.xyz;
+	ALBEDO = final_light.xyz;
 	//ALBEDO = vec3(0.5, 0.0, 0.5);
 	ALBEDO = tex.rgb;
 }
