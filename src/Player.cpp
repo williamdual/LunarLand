@@ -224,6 +224,7 @@ void Player::_process(double delta)
         movementDelta = movmentInputVector.normalized() * moveSpeed;
         new_rot = mesh->get_global_rotation().y + Clamp(rot_speed * delta, 0, abs(theta)) * Sign(theta);
         mesh->set_global_rotation(Vector3(0.0, new_rot, 0.0));
+        listener->set_global_rotation(Vector3(0.0, -new_rot, 0.0));
 
         // Setting the player mesh
         if (roundf(time_passed) > time_passed && anyMovementKeyWasPressed) {
