@@ -54,7 +54,7 @@ void CustomScene3501::_enter_tree()
 
 	create_cameras();
 	create_interactables();
-	// create_env_objects();
+	create_env_objects();
 	create_building_objects();
 
 	// Creating pause screen
@@ -79,6 +79,7 @@ void CustomScene3501::_ready()
 	player->set_global_position(Vector3(0.0, -33.92, 47.84));
 	setup_cameras();
 	setup_interactables();
+	setup_env_objects();
 
 	// Setting up pause screen
 	pause_screen->SetupScreen();
@@ -155,7 +156,7 @@ void CustomScene3501::_ready()
 	// particle_system->set_global_position(Vector3(-70, 0, 0));
 
 	// Setting up the mascot
-	// mascot->SetPosition(Vector3(3.0, -11.0, -15.0f));
+	// mascot->SetPosition(Vector3(190.657, 7.365, -25.987));
 	// //mascot->SetRotation(Vector3(0.0, 0.785398, 0.0));
 	// mascot->RegisterCameraTrigs(cam_triggs);
 	// mascot->SetCameraPosition(cameras[2]->get_global_position());
@@ -754,6 +755,12 @@ void CustomScene3501::create_interactables()
 	create_and_add_as_child(log_6, "log_Generator", true);
 	AudioInteractable *log_7;
 	create_and_add_as_child(log_7, "log_Bobo_Timmy", true);
+	AudioInteractable *log_8;
+	create_and_add_as_child(log_8, "log_Susie_chip", true);
+	AudioInteractable *log_9;
+	create_and_add_as_child(log_9, "log_Susie_papers", true);
+	AudioInteractable *log_10;
+	create_and_add_as_child(log_10, "log_Susie_lint", true);
 
 	audio_interactables.append(log_1);
 	audio_interactables.append(log_2);
@@ -762,6 +769,9 @@ void CustomScene3501::create_interactables()
 	audio_interactables.append(log_5);
 	audio_interactables.append(log_6);
 	audio_interactables.append(log_7);
+	audio_interactables.append(log_8);
+	audio_interactables.append(log_9);
+	audio_interactables.append(log_10);
 
 	// Counter interactable
 	CounterInteractable *generator;
@@ -874,6 +884,32 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->SetAudio(AUDIO_BOBO_TIMMY);
 			}
+			else if (i == 7)
+			{
+				audio_interactables[i]->set_global_position(Vector3(-8.71, -8.1, -64.5));
+				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.0);
+				//audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_SUSIE_CHIP);
+			}
+			else if (i == 8)
+			{
+				audio_interactables[i]->set_global_position(Vector3(8.78, -8.1, -75.31));
+				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.0);
+				//audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_SUSIE_PAPERS);
+			}
+			else if (i == 9)
+			{
+				audio_interactables[i]->set_global_position(Vector3(-4.36, -8.1, -88.352));
+				audio_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.0);
+				//audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_SUSIE_LINT);
+			}
 			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
 		}
 
@@ -930,9 +966,58 @@ void CustomScene3501::create_env_objects()
 	// To be set when more of environment is ready
 
 	// All test stuff
-	testEnvObj = memnew(EnvObject);
-	create_and_add_as_child(testEnvObj, "Test EnvObject", true);
-	testEnvObj->SetValues(ENV_OBJECT_LOST_AND_FOUND, SHAPE_BOX);
+	// testEnvObj = memnew(EnvObject);
+	// create_and_add_as_child(testEnvObj, "Test EnvObject", true);
+	// testEnvObj->SetValues(ENV_OBJECT_LOST_AND_FOUND, SHAPE_BOX);
+
+	// Creating stands for the computer terminals
+	EnvObject* chip_stand;
+	create_and_add_as_child(chip_stand, "Chip Terminal Stand", true);
+	EnvObject* papers_stand;
+	create_and_add_as_child(papers_stand, "Papers Terminal Stand", true);
+	EnvObject* lint_stand;
+	create_and_add_as_child(lint_stand, "Lint Terminal Stand", true);
+	environment_objects.append(chip_stand);
+	environment_objects.append(papers_stand);
+	environment_objects.append(lint_stand);
+
+}
+
+void CustomScene3501::setup_env_objects()
+{
+	Node *interact_ref_group;
+	bool is_new = create_and_add_as_child<Node>(interact_ref_group, "Environment Objects", true);
+	Vector3 right_angle = Vector3(0, 90, 0);
+	if (true)
+	{
+		for (int i = 0; i < environment_objects.size(); i++) // Audio Logs
+		{
+			// re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
+			// audio_interactables[i]->_ready();
+			if (i == 0) // Chip terminal stand
+			{
+				environment_objects[i]->set_global_position(Vector3(-8.71, -10.33, -64.5));
+				environment_objects[i]->set_global_rotation_degrees(right_angle);
+				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
+				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
+			}
+			else if (i == 1) // Papers terminal stand
+			{
+				environment_objects[i]->set_global_position(Vector3(8.78, -10.33, -75.31));
+				environment_objects[i]->set_global_rotation_degrees(right_angle * 2);
+				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
+				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
+			}
+			else if (i == 2) // Lint terminal stand
+			{
+				environment_objects[i]->set_global_position(Vector3(-4.36, -10.33, -88.352));
+				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
+				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
+				//environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			re_parent<Node, EnvObject>(interact_ref_group, environment_objects[i]);
+		}
+	}
 }
 
 // Member function to create building objects

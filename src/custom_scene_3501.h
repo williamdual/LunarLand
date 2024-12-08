@@ -79,6 +79,8 @@ namespace godot
 		Vector<CounterInteractable*> counter_interactables;
 		Vector<LockoutInteractable*> lockout_interactables;
 
+		Vector<EnvObject*> environment_objects;
+
 		AudioInteractable *testInt;
 		ItemInteractable *testItem;
 
@@ -106,6 +108,7 @@ namespace godot
 		void setup_cameras();
 		void create_cameras();
 		void setup_interactables();
+		void setup_env_objects();
 		void create_interactables();
 		void create_lights();
 		void create_env_objects();

@@ -41,12 +41,12 @@ void Mascot::_enter_tree ( ){
     lower_right->set_parent(upper_right);
 
     // Setting the primitive values of the body
-    body->SetPrimValues(PRIM_CAPSULE, SHAPE_CYLINDER);
+    body->SetPrimValues(PRIM_CAPSULE, ENV_OBJECT_ALIEN, SHAPE_CYLINDER);
     head->SetValues(ENV_OBJECT_ALIEN, SHAPE_BOX);
-    upper_left->SetPrimValues(PRIM_BOX, SHAPE_BOX);
-    upper_right->SetPrimValues(PRIM_BOX, SHAPE_BOX);
-    lower_left->SetPrimValues(PRIM_BOX, SHAPE_BOX);
-    lower_right->SetPrimValues(PRIM_BOX, SHAPE_BOX);
+    upper_left->SetPrimValues(PRIM_BOX, ENV_OBJECT_ALIEN, SHAPE_BOX);
+    upper_right->SetPrimValues(PRIM_BOX, ENV_OBJECT_ALIEN, SHAPE_BOX);
+    lower_left->SetPrimValues(PRIM_BOX, ENV_OBJECT_ALIEN, SHAPE_BOX);
+    lower_right->SetPrimValues(PRIM_BOX, ENV_OBJECT_ALIEN, SHAPE_BOX);
 }
 
 void Mascot::_ready(){
