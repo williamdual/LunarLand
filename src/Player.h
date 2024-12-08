@@ -25,7 +25,9 @@
 #include <godot_cpp/classes/standard_material3d.hpp>
 #include <godot_cpp/classes/shader_material.hpp>
 #include <godot_cpp/classes/shader.hpp>
+#include <godot_cpp/classes/audio_stream_player3d.hpp>
 #include <godot_cpp/classes/audio_listener3d.hpp>
+#include <godot_cpp/classes/audio_stream_ogg_vorbis.hpp>
 
 #include "Inventory.h"
 #include "PlayerCamera.h"
@@ -66,6 +68,10 @@ namespace godot
         TypedArray<Vector3> light_colours;
         TypedArray<int> specular_power;
         Vector3 camera_position;
+
+        // Initial audio log
+        AudioStreamPlayer3D* start_log;
+        float start_log_pos;
 
         float WrapDegree(float value);
         float Clamp(float value, float min, float max);

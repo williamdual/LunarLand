@@ -43,6 +43,7 @@ void Player::_enter_tree()
     camera = nullptr;
     rot_speed = Math_TAU * 2.0;
     camera_position = Vector3(0.0, 0.0, 0.0);
+    start_log_pos = 0.0;
 
     // Mesh and Mat
     create_and_add_as_child<MeshInstance3D>(mesh, "PlayerMesh", true);
@@ -78,6 +79,14 @@ void Player::_enter_tree()
     collider->set_shape(cylinder_shape);
     cylinder_shape->set_height(2);
     cylinder_shape->set_radius(1);
+
+    // Instantiating stream player and listener
+    this->create_and_add_as_child<AudioStreamPlayer3D>(start_log, "StartLog", true);
+
+    // Getting the file and setting the stream
+    Ref<AudioStreamOggVorbis> stream = ResourceLoader::get_singleton()->load(vformat("%s%s.ogg", "SoundFiles/", "susie1"), "AudioStreamOggVorbis");
+    start_log->set_max_distance(3.0);
+    start_log->set_stream(stream);
 
     // Setting the listener
     create_and_add_as_child<AudioListener3D>(listener, "Listener", true);
@@ -124,9 +133,6 @@ void Player::_ready()
 // called every frame (as often as possible)
 void Player::_process(double delta)
 {
-    // Adding the delta to time passed
-    time_passed += delta;
-
     // Changing camera position if needed
     if (camera != NULL) {
         camera_position = camera->get_global_position();
@@ -162,16 +168,34 @@ void Player::_process(double delta)
         return; // Early return if we are in editor
                 // Game loop stuff HERE
 
+    // Playing initial log on startup
+    if (time_passed == 0.0) {
+        start_log->play();
+    }
+
+    // Adding the delta to time passed
+    time_passed += delta;
+
     // Checking if game should pause or unpause
     if (_input->is_action_just_pressed("pause"))
     {
         paused = !paused;
+        if (paused) {
+            start_log->stop();
+        } else {
+            float duration = start_log->get_stream()->get_length();
+            if (start_log_pos < duration) {
+                start_log->play(start_log_pos);
+            }
+        }
     }
 
     // Not accepting input if game is paused
     if (paused)
     {
         return;
+    } else {
+        start_log_pos += delta;
     }
 
     // Movement block
