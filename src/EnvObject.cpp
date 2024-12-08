@@ -93,7 +93,7 @@ void EnvObject::SetValues(int obj_type, int col_type) {
 }
 
 // Member function that sets starting values for the environment object
-void EnvObject::SetPrimValues(int prim_type, int col_type) {
+void EnvObject::SetPrimValues(int prim_type, int tex_type, int col_type) {
 
     // Setting proper array sizes
     light_positions.resize(32);
@@ -133,11 +133,11 @@ void EnvObject::SetPrimValues(int prim_type, int col_type) {
     }
 
     // Setting the texture
-    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s%s", "Textures/", texture_names[ENV_OBJECT_ALIEN], texture_formats[ENV_OBJECT_ALIEN]), "CompressedTexture2D");
+    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s%s", "Textures/", texture_names[tex_type], texture_formats[tex_type]), "CompressedTexture2D");
     mat->set_shader_parameter("sampler", texture);
 
     // Setting the darking value for the texture
-    mat->set_shader_parameter("darkening_val", tex_darken_values[ENV_OBJECT_ALIEN]);
+    mat->set_shader_parameter("darkening_val", tex_darken_values[tex_type]);
 
     // Seeing if the object already has a collision shape
     if (find_child("CollisionShape") == NULL) {
