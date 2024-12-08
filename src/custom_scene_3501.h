@@ -47,6 +47,7 @@
 #include "particle_system_3501.h"
 #include "Mascot.h"
 #include "PauseScreen.h"
+#include "Cage.h"
 
 #define DEBUG true
 
@@ -71,6 +72,7 @@ namespace godot
 		HeightMapTerrain *hmt;
 		Mascot *mascot;
 		PauseScreen* pause_screen;
+		Cage* cage;
 
 		Vector<AudioInteractable*> audio_interactables;
 		Vector<ItemInteractable*> item_interactables;

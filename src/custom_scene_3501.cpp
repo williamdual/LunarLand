@@ -60,6 +60,9 @@ void CustomScene3501::_enter_tree()
 	// Creating pause screen
 	create_and_add_as_child(pause_screen, "Pause Screen", true);
 
+	// Creating boundaries for starting area
+	create_and_add_as_child(cage, "Cage", true);
+
 	// Testing particle system
 	// create_particle_system("Blazing Fire", "lonefire");
 
@@ -73,7 +76,7 @@ void CustomScene3501::_ready()
 		UtilityFunctions::print("Ready - CustomScene3501.");
 
 	// set the player's position (the camera)
-	player->set_global_position(Vector3(-5.664335, -34.59767, 61.84895));
+	player->set_global_position(Vector3(0.0, -33.92, 47.84));
 	setup_cameras();
 	setup_interactables();
 
