@@ -29,7 +29,7 @@ void PlayerCamera::_ready()
 	forward_ = Vector3(get_global_transform().basis[0][2], get_global_transform().basis[1][2], get_global_transform().basis[2][2]);
 	side_ = Vector3(get_global_transform().basis[0][0], get_global_transform().basis[1][0], get_global_transform().basis[2][0]);
 	// do not save _up as a member -- derive it. You will get a bad grade if you add it as a member variable like these two are.
-	moveSpeed = 10.0f;
+	moveSpeed = 16.6f;
 	cam_err = 0.5f;
 }
 
@@ -75,7 +75,11 @@ void PlayerCamera::_process(double delta)
 		Vector3 forward = GetMovementPlaneForward();
 		Vector3 move_right = GetMovementPlaneSide();
 		Vector3 move_left = GetMovementPlaneSide() * -1.0f;
-		Vector3 to_player = (target_ptr->get_global_position() - this->get_global_position()).normalized();
+		Vector3 dist_to_player = target_ptr->get_global_position() - this->get_global_position();
+		dist_to_player.y = 0;
+		Vector3 to_player = (dist_to_player).normalized();
+		// UtilityFunctions::print("Distance", forward.distance_to(to_player));
+		// UtilityFunctions::print("To Player", to_player);
 		if (forward.distance_to(to_player) < cam_err) // if player is very close to the center of our screen
 		{
 			// DO NOTHING, WE ALL GOOD
