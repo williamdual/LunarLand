@@ -1211,20 +1211,33 @@ void CustomScene3501::setup_lights()
 		testBuilding->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0); // the building needs all of the lights
 		if (1 <= i && i <= 2)											// set up starting area lights
 		{
+			if (i == 1)
+			{
+				audio_interactables[7]->RegisterCameraTrigs(cam_triggs);
+				audio_interactables[8]->RegisterCameraTrigs(cam_triggs);
+				audio_interactables[9]->RegisterCameraTrigs(cam_triggs);
+			}
 			audio_interactables[7]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[8]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[9]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
 		if (i == 3) // cafe light
 		{
+			audio_interactables[4]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[4]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
 		if (i == 4) // bobos tent light
 		{
+			audio_interactables[6]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[6]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
 		if (i == 5) // Joe Law Office light
 		{
+			audio_interactables[0]->RegisterCameraTrigs(cam_triggs);
+			audio_interactables[1]->RegisterCameraTrigs(cam_triggs);
+			audio_interactables[2]->RegisterCameraTrigs(cam_triggs);
+			audio_interactables[3]->RegisterCameraTrigs(cam_triggs);
+
 			audio_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
@@ -1232,6 +1245,12 @@ void CustomScene3501::setup_lights()
 		}
 		if (i == 6) // STEALS light
 		{
+			audio_interactables[5]->RegisterCameraTrigs(cam_triggs);
+			counter_interactables[0]->RegisterCameraTrigs(cam_triggs);
+			lockout_interactables[0]->RegisterCameraTrigs(cam_triggs);
+			lockout_interactables[1]->RegisterCameraTrigs(cam_triggs);
+			lockout_interactables[2]->RegisterCameraTrigs(cam_triggs);
+
 			audio_interactables[5]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			counter_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			lockout_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
