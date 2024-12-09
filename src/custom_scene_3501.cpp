@@ -80,7 +80,8 @@ void CustomScene3501::_ready()
 	setup_cameras();
 	setup_interactables();
 	setup_env_objects();
-
+	create_lights();
+	setup_lights();
 	// Setting up pause screen
 	pause_screen->SetupScreen();
 
@@ -145,8 +146,8 @@ void CustomScene3501::_ready()
 	testBuilding->set_global_position(Vector3(-0.023, -12.92, -5.635));
 	testBuilding->RegisterCameraTrigs(cam_triggs);
 	testBuilding->SetCameraPosition(cameras[2]->get_global_position());
-	testBuilding->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0); // pos, color, specular compponent power
-	testBuilding->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// testBuilding->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0); // pos, color, specular compponent power
+	// testBuilding->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test particles
 	// GPUParticles3D* particle_system = particle_systems[0];
@@ -956,6 +957,7 @@ void CustomScene3501::setup_cameras()
 // Member function to create interactables
 void CustomScene3501::create_interactables()
 {
+	// Williams Logs
 	AudioInteractable *log_1;
 	create_and_add_as_child(log_1, "log_joe_intro", true);
 	AudioInteractable *log_2;
@@ -970,6 +972,7 @@ void CustomScene3501::create_interactables()
 	create_and_add_as_child(log_6, "log_Generator", true);
 	AudioInteractable *log_7;
 	create_and_add_as_child(log_7, "log_Bobo_Timmy", true);
+	// Begining Logs
 	AudioInteractable *log_8;
 	create_and_add_as_child(log_8, "log_Susie_chip", true);
 	AudioInteractable *log_9;
@@ -1173,6 +1176,69 @@ void CustomScene3501::setup_interactables()
 
 void CustomScene3501::create_lights()
 {
+	// WILLS AND ENTRANCE LIGHTS ---------------------------------
+	// entrance light
+	lights.append(Vector3(-0.019287, -2.103276, -18.0873));
+	// Starting area lights
+	lights.append(Vector3(-0.638398, -2.309664, -67.39607));
+	lights.append(Vector3(-0.457353, -1.836718, -85.00605));
+	// cafe
+	lights.append(Vector3(-31.55577, -0.178398, -163.6181));
+	// bobos tent
+	lights.append(Vector3(13.26463, -0.144877, -160.2082));
+	// law office
+	lights.append(Vector3(-22.62637, 0.194353, -239.8974));
+	// steals
+	lights.append(Vector3(1.328687, 0.914379, -285.606));
+	// JACOBS LIGHTS ---------------------------------------------
+	// Midle (attraction) light
+	lights.append(Vector3(167.3897, 48.82837, -98.55389));
+	// Gift Shop Light
+	lights.append(Vector3(160.8335, 8.465527, -13.47883));
+	// Mic Stand Light
+	lights.append(Vector3(228.8997, 31.13538, -109.3951));
+	// Bull Light
+	lights.append(Vector3(152.5195, 25.2194, -187.9763));
+	// Lost and Found Light
+	lights.append(Vector3(84.18179, 12.30133, -136.6754));
+	// lights.append(Vector3);
+}
+
+void CustomScene3501::setup_lights()
+{
+	for (int i = 0; i < lights.size(); i++)
+	{
+		testBuilding->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0); // the building needs all of the lights
+		if (1 <= i && i <= 2)											// set up starting area lights
+		{
+			audio_interactables[7]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[8]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[9]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		if (i == 3) // cafe light
+		{
+			audio_interactables[4]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		if (i == 4) // bobos tent light
+		{
+			audio_interactables[6]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		if (i == 5) // Joe Law Office light
+		{
+			audio_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		if (i == 6) // STEALS light
+		{
+			audio_interactables[5]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			counter_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			lockout_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			lockout_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			lockout_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+	}
 }
 
 // Member function to create environment objects

@@ -71,15 +71,16 @@ namespace godot
 		SkyBox *skybox;
 		HeightMapTerrain *hmt;
 		Mascot *mascot;
-		PauseScreen* pause_screen;
-		Cage* cage;
+		PauseScreen *pause_screen;
+		Cage *cage;
 
-		Vector<AudioInteractable*> audio_interactables;
-		Vector<ItemInteractable*> item_interactables;
-		Vector<CounterInteractable*> counter_interactables;
-		Vector<LockoutInteractable*> lockout_interactables;
+		Vector<AudioInteractable *> audio_interactables;
+		Vector<ItemInteractable *> item_interactables;
+		Vector<CounterInteractable *> counter_interactables;
+		Vector<LockoutInteractable *> lockout_interactables;
 
-		Vector<EnvObject*> environment_objects;
+		Vector<EnvObject *> environment_objects;
+		Vector<Vector3> lights;
 
 		AudioInteractable *testInt;
 		ItemInteractable *testItem;
@@ -109,8 +110,9 @@ namespace godot
 		void create_cameras();
 		void setup_interactables();
 		void setup_env_objects();
-		void create_interactables();
 		void create_lights();
+		void setup_lights();
+		void create_interactables();
 		void create_env_objects();
 		void create_building_objects();
 
