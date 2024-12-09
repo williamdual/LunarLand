@@ -19,23 +19,10 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd PortableComputerTerminal_Texture.png
 Ni 1.00
-newmtl lambert2SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd World_Texture.png
-Ni 1.00
 newmtl lambert10SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd MechanicalBull_Texture.png
-Ni 1.00
-newmtl lambert25SG
-illum 4
-Kd 0.02 0.50 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
 Ni 1.00
