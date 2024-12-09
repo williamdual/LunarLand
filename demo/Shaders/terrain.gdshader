@@ -65,7 +65,10 @@ void fragment() {
 	}
 	
 	// Applying the final light colour
+	if (sqrt(final_light.x * final_light.x + final_light.y * final_light.y + final_light.z * final_light.z) < 0.025) {
+		final_light = tex.rgb * 0.025;	// Minimal light level
+	}
 	ALBEDO = final_light.xyz;
 	//ALBEDO = vec3(0.0, 1.0, 0.0);
-	ALBEDO = tex.rgb;
+	//ALBEDO = tex.rgb;
 }
