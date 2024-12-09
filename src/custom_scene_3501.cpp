@@ -67,7 +67,7 @@ void CustomScene3501::_enter_tree()
 	// create_particle_system("Blazing Fire", "lonefire");
 
 	// Creating the mascot
-	// create_and_add_as_child(mascot, "Mascot", true);
+	create_and_add_as_child(mascot, "Mascot", true);
 }
 
 void CustomScene3501::_ready()
@@ -166,12 +166,15 @@ void CustomScene3501::_ready()
 	// particle_system->set_global_position(Vector3(-70, 0, 0));
 
 	// Setting up the mascot
-	// mascot->SetPosition(Vector3(190.657, 7.365, -25.987));
-	// //mascot->SetRotation(Vector3(0.0, 0.785398, 0.0));
-	// mascot->RegisterCameraTrigs(cam_triggs);
-	// mascot->SetCameraPosition(cameras[2]->get_global_position());
-	// mascot->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// mascot->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	mascot->SetPosition(Vector3(157.52, 1.75, -11.741));
+	mascot->SetRotation(Vector3(0.0, Math_PI / 2.0, 0.0));
+	mascot->RegisterCameraTrigs(cam_triggs);
+	mascot->SetCameraPosition(cameras[2]->get_global_position());
+	mascot->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 5.0);
+	mascot->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 5.0);
+	mascot->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
+	mascot->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
+	mascot->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
 }
 
 // called every frame (as often as possible)

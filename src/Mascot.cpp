@@ -53,7 +53,7 @@ void Mascot::_ready(){
 	if(DEBUG) UtilityFunctions::print("Ready - Mascot.");
 
 	// Setting the body and head positions relative to their parents
-    body->set_local_position(this->get_global_position());
+    body->set_local_position(Vector3(157.52, 1.75, -11.741));
     body->set_global_transform(body->get_transformation_matrix_without_scaling());
     head->set_local_position(Vector3(0.0f, 1.6f, 0.0f));
 	head->set_global_transform(head->get_transformation_matrix_without_scaling());
@@ -61,15 +61,16 @@ void Mascot::_ready(){
     // Setting arm positions
 
 	// Setting the upper right arm local position and position relative to parent
-	upper_right->set_local_position(Vector3(-0.5, 0.5, 0.0));
-	upper_right->set_joint_position(Vector3(0.0, 0.5, 0.0));
+	upper_right->set_local_position(Vector3(-0.25, 0.0, 0.0));
+	upper_right->set_local_rotation(Vector3(0.0, 0.0, Math_PI));
+	upper_right->set_joint_position(Vector3(-0.5, 1.0, 0.0));
 	upper_right->set_orbit_rotation(Quaternion(0.0, 0.0, -0.5, 1.0));
 	upper_right->set_global_transform(upper_right->get_transformation_matrix_without_scaling());
 
 	// Setting the lower right arm local position and position relative to parent
 	lower_right->set_local_position(Vector3(0.0, -0.75, 0.0));
 	lower_right->set_joint_position(Vector3(0.0, 0.5, 0.0));
-	lower_right->set_orbit_rotation(Quaternion(0.0, 0.0, -0.25, 1.0));
+	lower_right->set_orbit_rotation(Quaternion(0.0, 0.0, 0.25, 1.0));
 	lower_right->set_global_transform(lower_right->get_transformation_matrix_without_scaling());
 
 	// Setting the upper left arm local position and position relative to parent
@@ -100,7 +101,7 @@ void Mascot::_process(double delta){
     time_passed += delta;
 
     // Waving the arm
-    upper_right->set_orbit_rotation(Quaternion(0.0, 0.0, 0.8 * sin(2.0 * time_passed) - 1.5, 1.0));
+    upper_right->set_orbit_rotation(Quaternion(0.0, 0.0, 0.9 * sin(2.0 * time_passed) - 1.5, 1.0));
 
     // Adjusting particle system position
     particle_systems[0]->set_global_position(body->get_local_position() - Vector3(0.0, 1.5, 0.0));
