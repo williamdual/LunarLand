@@ -74,4 +74,5 @@ void fragment() {
 		// Applying the final light colour
 		ALBEDO = final_light.xyz;
 	}
+	//ALBEDO = tex.rgb;
 }

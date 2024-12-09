@@ -79,9 +79,10 @@ void CustomScene3501::_ready()
 	player->set_global_position(Vector3(0.0, -33.92, 47.84));
 	setup_cameras();
 	setup_interactables();
-	setup_env_objects();
 	create_lights();
 	setup_lights();
+	setup_env_objects();
+
 	// Setting up pause screen
 	pause_screen->SetupScreen();
 
@@ -94,9 +95,17 @@ void CustomScene3501::_ready()
 	hmt->set_scale(Vector3(12.5, 12.5, 12.5));
 	hmt->RegisterCameraTrigs(cam_triggs);
 	hmt->SetCameraPosition(cameras[2]->get_global_position());
+	for (int i = 0; i < lights.size(); i++) {
+		hmt->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+	}
+
+	// Additional light for starting area
+	hmt->AddLight(player->get_global_position() + Vector3(0.0, 10.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
+	player->AddLight(player->get_global_position() + Vector3(0.0, 10.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
+
 	// hmt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// hmt->AddLight(player->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
+	// hmt->AddLight(lights[0], Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// Setting up the test interactable
 	// testInt->set_global_position(Vector3(0.0, -11.0, -35.0f));
@@ -980,6 +989,15 @@ void CustomScene3501::create_interactables()
 	AudioInteractable *log_10;
 	create_and_add_as_child(log_10, "log_Susie_lint", true);
 
+	// Amusement audio logs
+	AudioInteractable* log_11;
+	create_and_add_as_child(log_11, "log_harry", true);
+	AudioInteractable* log_12;
+	create_and_add_as_child(log_12, "log_stanza", true);
+	AudioInteractable* log_13;
+	create_and_add_as_child(log_13, "log_penny", true);
+
+
 	audio_interactables.append(log_1);
 	audio_interactables.append(log_2);
 	audio_interactables.append(log_3);
@@ -990,6 +1008,9 @@ void CustomScene3501::create_interactables()
 	audio_interactables.append(log_8);
 	audio_interactables.append(log_9);
 	audio_interactables.append(log_10);
+	audio_interactables.append(log_11);
+	audio_interactables.append(log_12);
+	audio_interactables.append(log_13);
 
 	// Counter interactable
 	CounterInteractable *generator;
@@ -1006,6 +1027,21 @@ void CustomScene3501::create_interactables()
 	lockout_interactables.append(bobo);
 	lockout_interactables.append(johnny);
 	lockout_interactables.append(timmy);
+
+	// Item interactables
+	ItemInteractable* bag;
+	create_and_add_as_child(bag, "papers_bag", true);
+	ItemInteractable* harry_laptop;
+	create_and_add_as_child(harry_laptop, "harry_laptop", true);
+	ItemInteractable* stanza_laptop;
+	create_and_add_as_child(stanza_laptop, "stanza_laptop", true);
+	ItemInteractable* penny_laptop;
+	create_and_add_as_child(penny_laptop, "penny_laptop", true);
+
+	item_interactables.append(bag);
+	item_interactables.append(harry_laptop);
+	item_interactables.append(stanza_laptop);
+	item_interactables.append(penny_laptop);
 
 	// To be set when more of the environment is ready
 
@@ -1057,49 +1093,56 @@ void CustomScene3501::setup_interactables()
 			if (i == 0) // Williams Audio Logs
 			{
 				audio_interactables[i]->set_global_position(Vector3(-22.48615, -7.101642, -254.866));
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
 				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_INTRO);
 			}
 			else if (i == 1)
 			{
 				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -250.75));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_JOHNNY);
 			}
 			else if (i == 2)
 			{
 				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -241.1618));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_BOBO);
 			}
 			else if (i == 3)
 			{
 				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -232.7377));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 7.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_TIMMY);
 			}
 			else if (i == 4)
 			{
 				audio_interactables[i]->set_global_position(Vector3(-39.23154, -7.359558, -186.8915));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 6.0);
 				audio_interactables[i]->set_global_rotation_degrees(Vector3(0, 180, 0));
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 6.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOHNNY_TIMMY);
 			}
 			else if (i == 5)
 			{
 				audio_interactables[i]->set_global_position(Vector3(-12.75724, -10.04689, -283.267));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 4.0);
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 4.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_GENERATOR);
 			}
 			else if (i == 6)
 			{
 				audio_interactables[i]->set_global_position(Vector3(21.46068, -10.4836, -167.2278));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 4.0);
 				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 4.0);
 				audio_interactables[i]->SetAudio(AUDIO_BOBO_TIMMY);
 			}
 			else if (i == 7)
@@ -1127,6 +1170,33 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.0);
 				// audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->SetAudio(AUDIO_SUSIE_LINT);
+			}
+			else if (i == 10)
+			{
+				audio_interactables[i]->set_global_position(Vector3(146.93, 4.284, -162.164));
+				audio_interactables[i]->set_global_rotation_degrees(2.0 * right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 4.0);
+				// audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_HOOTENANNY_HARRY);
+			}
+			else if (i == 11)
+			{
+				audio_interactables[i]->set_global_position(Vector3(227.958, -0.52, -109.21));
+				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, 90.0, 6.6));
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 4.0);
+				// audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_SEBASTIAN_STANZA);
+			}
+			else if (i == 12)
+			{
+				audio_interactables[i]->set_global_position(Vector3(92.127, 0.811, -121.097));
+				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -160.4, 0));
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 4.0);
+				// audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->SetAudio(AUDIO_PENNY_PINCHER);
 			}
 			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
 		}
@@ -1171,6 +1241,43 @@ void CustomScene3501::setup_interactables()
 			}
 			re_parent<Node, LockoutInteractable>(interact_ref_group, lockout_interactables[i]);
 		}
+
+		// Item interactables
+		for (int i = 0; i < item_interactables.size(); i++) {
+			if (i == 0) {
+				item_interactables[i]->set_global_position(Vector3(159.92, -1.19, -7.34));
+				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -98.1, 0.0));
+				item_interactables[i]->set_scale(Vector3(0.5, 0.5, 0.5));
+				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				item_interactables[i]->SetValues(player, INTER_OBJECT_BEIGE_BAG, SHAPE_BOX, true, 3.0);
+				item_interactables[i]->SetItem(ITEM_PAPERS);
+			}
+			else if (i == 1) {
+				item_interactables[i]->set_global_position(Vector3(146.93, 4.233, -162.32));
+				item_interactables[i]->set_global_rotation_degrees(2.0 * right_angle);
+				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
+				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
+				item_interactables[i]->SetItem(ITEM_NONE);
+			}
+			else if (i == 2) {
+				item_interactables[i]->set_global_position(Vector3(228.117, -0.572, -109.21));
+				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, 90.0, 6.6));
+				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
+				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
+				item_interactables[i]->SetItem(ITEM_NONE);
+			}
+			else if (i == 3) {
+				item_interactables[i]->set_global_position(Vector3(92.07, 0.739, -121.246));
+				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -160.4, 0));
+				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
+				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
+				item_interactables[i]->SetItem(ITEM_NONE);
+			}
+			re_parent<Node, ItemInteractable>(interact_ref_group, item_interactables[i]);
+		}
 	}
 }
 
@@ -1194,7 +1301,7 @@ void CustomScene3501::create_lights()
 	// Midle (attraction) light
 	lights.append(Vector3(167.3897, 48.82837, -98.55389));
 	// Gift Shop Light
-	lights.append(Vector3(160.8335, 8.465527, -13.47883));
+	lights.append(Vector3(160.8335, 8.465527, -11.56));
 	// Mic Stand Light
 	lights.append(Vector3(228.8997, 31.13538, -109.3951));
 	// Bull Light
@@ -1206,8 +1313,14 @@ void CustomScene3501::create_lights()
 
 void CustomScene3501::setup_lights()
 {
+	// 
+
 	for (int i = 0; i < lights.size(); i++)
 	{
+		player->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+
+		// Heightmap technically doesn't need all the lights but it looks good
+		// for ambient reasons
 		testBuilding->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0); // the building needs all of the lights
 		if (1 <= i && i <= 2)											// set up starting area lights
 		{
@@ -1217,9 +1330,9 @@ void CustomScene3501::setup_lights()
 				audio_interactables[8]->RegisterCameraTrigs(cam_triggs);
 				audio_interactables[9]->RegisterCameraTrigs(cam_triggs);
 			}
-			audio_interactables[7]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[8]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[9]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[7]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[8]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[9]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 3) // cafe light
 		{
@@ -1253,9 +1366,63 @@ void CustomScene3501::setup_lights()
 
 			audio_interactables[5]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			counter_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			lockout_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			lockout_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			lockout_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			lockout_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			lockout_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			lockout_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+		}
+		if (i == 7) { // Middle dome lights
+			audio_interactables[10]->RegisterCameraTrigs(cam_triggs);
+			audio_interactables[11]->RegisterCameraTrigs(cam_triggs);
+			audio_interactables[12]->RegisterCameraTrigs(cam_triggs);
+			item_interactables[0]->RegisterCameraTrigs(cam_triggs);
+			item_interactables[1]->RegisterCameraTrigs(cam_triggs);
+			item_interactables[2]->RegisterCameraTrigs(cam_triggs);
+			item_interactables[3]->RegisterCameraTrigs(cam_triggs);
+
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		if (i == 8) { // Gift shop light
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+
+			item_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		if (i == 9) { // Mic stand light
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		if (i == 10) { // Bull light
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		if (i == 11) { // Lost and found light
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
 	}
 }
@@ -1299,6 +1466,9 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->set_global_rotation_degrees(right_angle);
 				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
 				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[1], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[2], Vector3(1.0, 1.0, 1.0), 45.0);
 			}
 			else if (i == 1) // Papers terminal stand
 			{
@@ -1306,12 +1476,18 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->set_global_rotation_degrees(right_angle * 2);
 				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
 				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[1], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[2], Vector3(1.0, 1.0, 1.0), 45.0);
 			}
 			else if (i == 2) // Lint terminal stand
 			{
 				environment_objects[i]->set_global_position(Vector3(-4.36, -10.33, -88.352));
 				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
 				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[1], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[2], Vector3(1.0, 1.0, 1.0), 45.0);
 				// environment_objects[i]->set_global_rotation_degrees(right_angle);
 			}
 			re_parent<Node, EnvObject>(interact_ref_group, environment_objects[i]);
