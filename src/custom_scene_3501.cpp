@@ -466,7 +466,7 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_101;
 	create_and_add_as_child<PlayerCamera>(cam_101, "JEC", true);
 	cam_101->set_global_position(Vector3(66.74512, -2.127899, -64.9141));
-	// cam_13->SafelyRotate(Vector3(-21.20438, 50.28828, 0));
+	// cam_101->SafelyRotate(Vector3(-21.20438, 50.28828, 0));
 	cam_101->SetTrackType(CameraTrackType::tracking);
 	CameraTrigger *trigg_101;
 	create_and_add_as_child<CameraTrigger>(trigg_101, "JEC_trigg_1", true);
@@ -483,14 +483,109 @@ void CustomScene3501::create_cameras()
 	create_and_add_as_child<CameraTrigger>(trigg_104, "JCC_trigg_1", true);
 	CameraTrigger *trigg_105;
 	create_and_add_as_child<CameraTrigger>(trigg_105, "JCC_trigg_2", true);
+	CameraTrigger *trigg_106;
+	create_and_add_as_child<CameraTrigger>(trigg_106, "JCC_trigg_3", true);
+
+	CameraTrigger *trigg_107;
+	create_and_add_as_child<CameraTrigger>(trigg_107, "JCC_trigg_4", true);
+	CameraTrigger *trigg_108;
+	create_and_add_as_child<CameraTrigger>(trigg_108, "JCC_trigg_5", true);
+	CameraTrigger *trigg_109;
+	create_and_add_as_child<CameraTrigger>(trigg_109, "JCC_trigg_6", true);
+	CameraTrigger *trigg_110;
+	create_and_add_as_child<CameraTrigger>(trigg_110, "JCC_trigg_7", true);
+
+	CameraTrigger *trigg_111;
+	create_and_add_as_child<CameraTrigger>(trigg_111, "JCC_trigg_8", true);
+	CameraTrigger *trigg_112;
+	create_and_add_as_child<CameraTrigger>(trigg_112, "JCC_trigg_9", true);
+	CameraTrigger *trigg_113;
+	create_and_add_as_child<CameraTrigger>(trigg_113, "JCC_trigg_10", true);
+
+	CameraTrigger *trigg_114;
+	create_and_add_as_child<CameraTrigger>(trigg_114, "JCC_trigg_11", true);
+	CameraTrigger *trigg_115;
+	create_and_add_as_child<CameraTrigger>(trigg_115, "JCC_trigg_12", true);
+
+	PlayerCamera *cam_103;
+	create_and_add_as_child<PlayerCamera>(cam_103, "J_gift_C", true);
+	cam_103->set_global_position(Vector3(161.7935, 1.81235, -4.533199));
+	cam_103->SafelyRotate(Vector3(-7.204331, -5.904332, 0));
+	cam_103->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_116;
+	create_and_add_as_child<CameraTrigger>(trigg_116, "J_gift_C_trigg_1", true);
+	CameraTrigger *trigg_117;
+	create_and_add_as_child<CameraTrigger>(trigg_117, "J_gift_C_trigg_2", true);
+
+	PlayerCamera *cam_104;
+	create_and_add_as_child<PlayerCamera>(cam_104, "J_bag_C", true);
+	cam_104->set_global_position(Vector3(157.9231, -0.42158, -6.995563));
+	cam_104->SafelyRotate(Vector3(-4.204408, -91.64561, 0));
+	cam_104->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_118;
+	create_and_add_as_child<CameraTrigger>(trigg_118, "J_bag_C_trigg_1", true);
+
+	PlayerCamera *cam_105;
+	create_and_add_as_child<PlayerCamera>(cam_105, "J_stage_C", true);
+	cam_105->set_global_position(Vector3(231.339, -0.411575, -109.4678));
+	cam_105->SafelyRotate(Vector3(3.295652, 92.56026, 0));
+	cam_105->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_119;
+	create_and_add_as_child<CameraTrigger>(trigg_119, "J_stage_C_trigg_1", true);
+
+	PlayerCamera *cam_106;
+	create_and_add_as_child<PlayerCamera>(cam_106, "J_bull_C", true);
+	cam_106->set_global_position(Vector3(151.3281, 7.94869, -172.7185));
+	// cam_106->SafelyRotate(Vector3(-7.704312, 164.3583, 0));
+	cam_106->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_120;
+	create_and_add_as_child<CameraTrigger>(trigg_120, "J_bull_C_trigg_1", true);
+	CameraTrigger *trigg_121;
+	create_and_add_as_child<CameraTrigger>(trigg_121, "J_bull_C_trigg_2", true);
+	CameraTrigger *trigg_122;
+	create_and_add_as_child<CameraTrigger>(trigg_122, "J_bull_C_trigg_3", true);
+
+	PlayerCamera *cam_107;
+	create_and_add_as_child<PlayerCamera>(cam_107, "J_lost_C", true);
+	cam_107->set_global_position(Vector3(88.03352, 5.295483, -128.1651));
+	cam_107->SafelyRotate(Vector3(-21.20434, -157.1797, 0));
+	cam_107->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_123;
+	create_and_add_as_child<CameraTrigger>(trigg_123, "J_lost_C_trigg_1", true);
+	CameraTrigger *trigg_124;
+	create_and_add_as_child<CameraTrigger>(trigg_124, "J_lost_C_trigg_2", true);
 
 	cameras.append(cam_101);
 	cameras.append(cam_102);
+	cameras.append(cam_103);
+	cameras.append(cam_104);
+	cameras.append(cam_105);
+	cameras.append(cam_106);
+	cameras.append(cam_107);
 	cam_triggs.append(trigg_101);
 	cam_triggs.append(trigg_102);
 	cam_triggs.append(trigg_103);
 	cam_triggs.append(trigg_104);
 	cam_triggs.append(trigg_105);
+	cam_triggs.append(trigg_106);
+	cam_triggs.append(trigg_107);
+	cam_triggs.append(trigg_108);
+	cam_triggs.append(trigg_109);
+	cam_triggs.append(trigg_110);
+	cam_triggs.append(trigg_111);
+	cam_triggs.append(trigg_112);
+	cam_triggs.append(trigg_113);
+	cam_triggs.append(trigg_114);
+	cam_triggs.append(trigg_115);
+	cam_triggs.append(trigg_116);
+	cam_triggs.append(trigg_117);
+	cam_triggs.append(trigg_118);
+	cam_triggs.append(trigg_119);
+	cam_triggs.append(trigg_120);
+	cam_triggs.append(trigg_121);
+	cam_triggs.append(trigg_122);
+	cam_triggs.append(trigg_123);
+	cam_triggs.append(trigg_124);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -513,6 +608,7 @@ void CustomScene3501::setup_cameras()
 		}
 		Vector3 right_angle_turn = Vector3(0, 90, 0);
 		Vector3 long_box = Vector3(1.1f, 10.0f, 23.8f);
+		Vector3 medium_box = Vector3(1.1f, 10.0f, 16.0f);
 		Vector3 cube_box = Vector3(19.513f, 10.0f, 16.016f); // Pool trigger shape
 		Vector3 giant_rect = Vector3(2.0, 10.0f, 100);
 		for (int i = 0; i < cam_triggs.size(); i++)
@@ -734,6 +830,125 @@ void CustomScene3501::setup_cameras()
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[14]);
 			}
+			else if (i == 36)
+			{
+				cam_triggs[i]->set_global_position(Vector3(162.4896, 1.168311, -20.56222));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 37) // Souronding the mic trigg
+			{
+				cam_triggs[i]->set_global_position(Vector3(227.493, -0.1408, -97.466));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 38)
+			{
+				cam_triggs[i]->set_global_position(Vector3(227.4926, -0.1408, -117.621));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 39)
+			{
+				cam_triggs[i]->set_global_position(Vector3(216.10, -0.1408, -107.47));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 40)
+			{
+				cam_triggs[i]->set_global_position(Vector3(239.112, -0.1408, -107.4758));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 41) // Souronding the Bull
+			{
+				cam_triggs[i]->set_global_position(Vector3(163.298, 2.336435, -163.648)); // JCC 8
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 42)
+			{
+				cam_triggs[i]->set_global_position(Vector3(136.75, 4.7394, -163.945));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 43)
+			{
+				cam_triggs[i]->set_global_position(Vector3(149.01, 3.060749, -151.872));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 44) // Souronding the lost and found bin
+			{
+				cam_triggs[i]->set_global_position(Vector3(99.528, 3.060749, -120));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 45)
+			{
+				cam_triggs[i]->set_global_position(Vector3(85.736, 3.060749, -112.583));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[14]);
+			}
+			else if (i == 46) // Gift Shop triggers
+			{
+				cam_triggs[i]->set_global_position(Vector3(162.4896, 1.168311, -17.1238));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[15]);
+			}
+			else if (i == 47)
+			{
+				cam_triggs[i]->set_global_position(Vector3(165.9967, 1.080543, -8.129217));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[15]);
+			}
+			else if (i == 48) // Bag Trigger
+			{
+				cam_triggs[i]->set_global_position(Vector3(163.2457, 0.691376, -5.532805));
+				cam_triggs[i]->SetCamera(cameras[16]);
+			}
+			else if (i == 49) // Stage Trigger
+			{
+				cam_triggs[i]->set_global_position(Vector3(227.4926, -0.1408, -108.0959));
+				cam_triggs[i]->setColliderTransformation(cube_box);
+				cam_triggs[i]->SetCamera(cameras[17]);
+			}
+			else if (i == 50) // Bull Triggers
+			{
+				cam_triggs[i]->set_global_position(Vector3(149.19, 2.336435, -154.906));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[18]);
+			}
+			else if (i == 51)
+			{
+				cam_triggs[i]->set_global_position(Vector3(158.151, 3.060749, -167.203));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[18]);
+			}
+			else if (i == 52)
+			{
+				cam_triggs[i]->set_global_position(Vector3(140.617, 3.060749, -167.34));
+				cam_triggs[i]->setColliderTransformation(long_box);
+				cam_triggs[i]->SetCamera(cameras[18]);
+			}
+			else if (i == 53) // Lost and Found bin Triggers
+			{
+				cam_triggs[i]->set_global_position(Vector3(97.296, 3.060749, -123.713));
+				cam_triggs[i]->setColliderTransformation(medium_box);
+				cam_triggs[i]->SetCamera(cameras[19]);
+			}
+			else if (i == 54)
+			{
+				cam_triggs[i]->set_global_position(Vector3(89.824, 3.060749, -114.928));
+				cam_triggs[i]->setColliderTransformation(medium_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[19]);
+			}
 		}
 	}
 }
@@ -890,7 +1105,7 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
 				audio_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.0);
-				//audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				// audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->SetAudio(AUDIO_SUSIE_CHIP);
 			}
 			else if (i == 8)
@@ -899,7 +1114,7 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.0);
-				//audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				// audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->SetAudio(AUDIO_SUSIE_PAPERS);
 			}
 			else if (i == 9)
@@ -907,7 +1122,7 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->set_global_position(Vector3(-4.36, -8.1, -88.352));
 				audio_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.0);
-				//audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				// audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->SetAudio(AUDIO_SUSIE_LINT);
 			}
 			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
@@ -971,16 +1186,15 @@ void CustomScene3501::create_env_objects()
 	// testEnvObj->SetValues(ENV_OBJECT_LOST_AND_FOUND, SHAPE_BOX);
 
 	// Creating stands for the computer terminals
-	EnvObject* chip_stand;
+	EnvObject *chip_stand;
 	create_and_add_as_child(chip_stand, "Chip Terminal Stand", true);
-	EnvObject* papers_stand;
+	EnvObject *papers_stand;
 	create_and_add_as_child(papers_stand, "Papers Terminal Stand", true);
-	EnvObject* lint_stand;
+	EnvObject *lint_stand;
 	create_and_add_as_child(lint_stand, "Lint Terminal Stand", true);
 	environment_objects.append(chip_stand);
 	environment_objects.append(papers_stand);
 	environment_objects.append(lint_stand);
-
 }
 
 void CustomScene3501::setup_env_objects()
@@ -1013,7 +1227,7 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->set_global_position(Vector3(-4.36, -10.33, -88.352));
 				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
 				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
-				//environment_objects[i]->set_global_rotation_degrees(right_angle);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
 			}
 			re_parent<Node, EnvObject>(interact_ref_group, environment_objects[i]);
 		}
