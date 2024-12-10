@@ -1593,6 +1593,11 @@ void CustomScene3501::create_env_objects()
 	environment_objects.append(alien2);
 	environment_objects.append(alien3);
 	environment_objects.append(alien4);
+
+	// Pasta word bin
+	EnvObject* bin;
+	create_and_add_as_child(bin, "Pasta Bin", true);
+	environment_objects.append(bin);
 }
 
 void CustomScene3501::setup_env_objects()
@@ -1690,6 +1695,22 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
 				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
 				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 7) // Pasta bin
+			{
+				environment_objects[i]->set_global_position(Vector3(-29.979, -10.858, -220.183));
+				//environment_objects[i]->set_global_rotation_degrees(Vector3(0.0, -172.7, 0.0));
+				environment_objects[i]->set_scale(Vector3(0.8, 0.8, 0.8));
+				environment_objects[i]->SetValues(ENV_OBJECT_PASTA_WORD_BIN, SHAPE_CYLINDER);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[0], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[1], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[2], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[3], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[4], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[5], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[6], Vector3(1.0, 1.0, 1.0), 5.0);
 				// environment_objects[i]->set_global_rotation_degrees(right_angle);
 			}
 			re_parent<Node, EnvObject>(interact_ref_group, environment_objects[i]);
