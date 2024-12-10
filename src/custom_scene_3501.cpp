@@ -95,7 +95,8 @@ void CustomScene3501::_ready()
 	hmt->set_scale(Vector3(12.5, 12.5, 12.5));
 	hmt->RegisterCameraTrigs(cam_triggs);
 	hmt->SetCameraPosition(cameras[2]->get_global_position());
-	for (int i = 0; i < lights.size(); i++) {
+	for (int i = 0; i < lights.size(); i++)
+	{
 		hmt->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 	}
 
@@ -599,6 +600,48 @@ void CustomScene3501::create_cameras()
 	cam_triggs.append(trigg_122);
 	cam_triggs.append(trigg_123);
 	cam_triggs.append(trigg_124);
+
+	// Masons Cameras
+	PlayerCamera *cam_201;
+	create_and_add_as_child<PlayerCamera>(cam_201, "MEC", true);
+	cam_201->set_global_position(Vector3(-16.413, -7.87713, -63.29481));
+	cam_201->SafelyRotate(Vector3(0, 0, 0));
+	cam_201->SetTrackType(CameraTrackType::panning);
+	CameraTrigger *trigg_201;
+	create_and_add_as_child<CameraTrigger>(trigg_201, "MEC_trigg_1", true);
+	CameraTrigger *trigg_202;
+	create_and_add_as_child<CameraTrigger>(trigg_202, "MEC_trigg_2", true);
+
+	PlayerCamera *cam_202;
+	create_and_add_as_child<PlayerCamera>(cam_202, "MPC", true);
+	cam_202->set_global_position(Vector3(-87.21068, 20.27061, -38.36697));
+	cam_202->SetTrackType(CameraTrackType::tracking);
+	CameraTrigger *trigg_203;
+	create_and_add_as_child<CameraTrigger>(trigg_203, "MPC_trigg_1", true);
+	CameraTrigger *trigg_204;
+	create_and_add_as_child<CameraTrigger>(trigg_204, "MPC_trigg_2", true);
+	CameraTrigger *trigg_205;
+	create_and_add_as_child<CameraTrigger>(trigg_205, "MPC_trigg_3", true);
+
+	PlayerCamera *cam_203;
+	create_and_add_as_child<PlayerCamera>(cam_203, "MOC", true);
+	cam_203->set_global_position(Vector3(-136.6446, 26.96665, -64.44524));
+	cam_203->SafelyRotate(Vector3(-57.95446, -53.95345, 0));
+	cam_203->SetTrackType(CameraTrackType::statics);
+	CameraTrigger *trigg_206;
+	create_and_add_as_child<CameraTrigger>(trigg_206, "MOC_trigg_1", true);
+
+	// WILLIAM!
+	// Basement vector (-128.0827, 18.07261, -60.67204) Right angle
+	cameras.append(cam_201);
+	cameras.append(cam_202);
+	cameras.append(cam_203);
+	cam_triggs.append(trigg_201);
+	cam_triggs.append(trigg_202);
+	cam_triggs.append(trigg_203);
+	cam_triggs.append(trigg_204);
+	cam_triggs.append(trigg_205);
+	cam_triggs.append(trigg_206);
 }
 void CustomScene3501::setup_cameras()
 {
@@ -621,6 +664,7 @@ void CustomScene3501::setup_cameras()
 		}
 		Vector3 right_angle_turn = Vector3(0, 90, 0);
 		Vector3 long_box = Vector3(1.1f, 10.0f, 23.8f);
+		Vector3 slighty_wider_box = Vector3(1.1f, 10, 9.2f);
 		Vector3 medium_box = Vector3(1.1f, 10.0f, 16.0f);
 		Vector3 cube_box = Vector3(19.513f, 10.0f, 16.016f); // Pool trigger shape
 		Vector3 giant_rect = Vector3(2.0, 10.0f, 100);
@@ -649,7 +693,7 @@ void CustomScene3501::setup_cameras()
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[1]);
 			}
-			else if (i == 3) // SBC Trig 1-5
+			else if (i == 3) // SBC Trig 1-4
 			{
 				cam_triggs[i]->set_global_position(Vector3(0.23662, -11.5, -87.31493));
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
@@ -851,27 +895,27 @@ void CustomScene3501::setup_cameras()
 			}
 			else if (i == 37) // Souronding the mic trigg
 			{
-				cam_triggs[i]->set_global_position(Vector3(227.493, -0.1408, -97.466));
+				cam_triggs[i]->set_global_position(Vector3(220.7824, -0.1408, -97.466));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[14]);
 			}
 			else if (i == 38)
 			{
-				cam_triggs[i]->set_global_position(Vector3(227.4926, -0.1408, -117.621));
+				cam_triggs[i]->set_global_position(Vector3(220.782, -0.1408, -117.621));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[14]);
 			}
 			else if (i == 39)
 			{
-				cam_triggs[i]->set_global_position(Vector3(216.10, -0.1408, -107.47));
+				cam_triggs[i]->set_global_position(Vector3(209.3894, -0.1408, -107.47));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[14]);
 			}
 			else if (i == 40)
 			{
-				cam_triggs[i]->set_global_position(Vector3(239.112, -0.1408, -107.4758));
+				cam_triggs[i]->set_global_position(Vector3(232.4014, -0.1408, -107.4758));
 				cam_triggs[i]->setColliderTransformation(long_box);
 				cam_triggs[i]->SetCamera(cameras[14]);
 			}
@@ -926,7 +970,7 @@ void CustomScene3501::setup_cameras()
 			}
 			else if (i == 49) // Stage Trigger
 			{
-				cam_triggs[i]->set_global_position(Vector3(227.4926, -0.1408, -108.0959));
+				cam_triggs[i]->set_global_position(Vector3(220.782, -0.1408, -108.0959));
 				cam_triggs[i]->setColliderTransformation(cube_box);
 				cam_triggs[i]->SetCamera(cameras[17]);
 			}
@@ -962,6 +1006,41 @@ void CustomScene3501::setup_cameras()
 				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
 				cam_triggs[i]->SetCamera(cameras[19]);
 			}
+			else if (i == 55) // MEC Triggers FIRST MASON TRIGGER ---------------------------------------------------------------
+			{
+				cam_triggs[i]->set_global_position(Vector3(-15.584, -8.575745, -69.72598));
+				cam_triggs[i]->SetCamera(cameras[20]);
+			}
+			else if (i == 56)
+			{
+				cam_triggs[i]->set_global_position(Vector3(-66.44812, -8.575745, -69.72598));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->SetCamera(cameras[20]);
+			}
+			else if (i == 57) // MPC Triggers
+			{
+				cam_triggs[i]->set_global_position(Vector3(-76.74562, -8.575745, -69.72598));
+				cam_triggs[i]->setColliderTransformation(giant_rect);
+				cam_triggs[i]->SetCamera(cameras[21]);
+			}
+			else if (i == 58)
+			{
+				cam_triggs[i]->set_global_position(Vector3(-128.0827, 18.07261, -56.764));
+				cam_triggs[i]->setColliderTransformation(slighty_wider_box);
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[21]);
+			}
+			else if (i == 59)
+			{
+				cam_triggs[i]->set_global_position(Vector3(-138.163, -19.614, -45.707));
+				cam_triggs[i]->SetCamera(cameras[21]);
+			}
+			else if (i == 60) // MOC Trigger
+			{
+				cam_triggs[i]->set_global_position(Vector3(-128.0827, 18.07261, -60.67204));
+				cam_triggs[i]->set_rotation_degrees(right_angle_turn);
+				cam_triggs[i]->SetCamera(cameras[22]);
+			}
 		}
 	}
 }
@@ -993,13 +1072,12 @@ void CustomScene3501::create_interactables()
 	create_and_add_as_child(log_10, "log_Susie_lint", true);
 
 	// Amusement audio logs
-	AudioInteractable* log_11;
+	AudioInteractable *log_11;
 	create_and_add_as_child(log_11, "log_harry", true);
-	AudioInteractable* log_12;
+	AudioInteractable *log_12;
 	create_and_add_as_child(log_12, "log_stanza", true);
-	AudioInteractable* log_13;
+	AudioInteractable *log_13;
 	create_and_add_as_child(log_13, "log_penny", true);
-
 
 	audio_interactables.append(log_1);
 	audio_interactables.append(log_2);
@@ -1032,13 +1110,13 @@ void CustomScene3501::create_interactables()
 	lockout_interactables.append(timmy);
 
 	// Item interactables
-	ItemInteractable* bag;
+	ItemInteractable *bag;
 	create_and_add_as_child(bag, "papers_bag", true);
-	ItemInteractable* harry_laptop;
+	ItemInteractable *harry_laptop;
 	create_and_add_as_child(harry_laptop, "harry_laptop", true);
-	ItemInteractable* stanza_laptop;
+	ItemInteractable *stanza_laptop;
 	create_and_add_as_child(stanza_laptop, "stanza_laptop", true);
-	ItemInteractable* penny_laptop;
+	ItemInteractable *penny_laptop;
 	create_and_add_as_child(penny_laptop, "penny_laptop", true);
 
 	item_interactables.append(bag);
@@ -1246,36 +1324,41 @@ void CustomScene3501::setup_interactables()
 		}
 
 		// Item interactables
-		for (int i = 0; i < item_interactables.size(); i++) {
-			if (i == 0) {
+		for (int i = 0; i < item_interactables.size(); i++)
+		{
+			if (i == 0)
+			{
 				item_interactables[i]->set_global_position(Vector3(159.92, -1.19, -7.34));
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -98.1, 0.0));
 				item_interactables[i]->set_scale(Vector3(0.5, 0.5, 0.5));
-				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				item_interactables[i]->SetValues(player, INTER_OBJECT_BEIGE_BAG, SHAPE_BOX, true, 5.0);
 				item_interactables[i]->SetItem(ITEM_PAPERS);
 			}
-			else if (i == 1) {
+			else if (i == 1)
+			{
 				item_interactables[i]->set_global_position(Vector3(146.93, 4.233, -162.32));
 				item_interactables[i]->set_global_rotation_degrees(2.0 * right_angle);
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
-				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
 				item_interactables[i]->SetItem(ITEM_NONE);
 			}
-			else if (i == 2) {
+			else if (i == 2)
+			{
 				item_interactables[i]->set_global_position(Vector3(228.117, -0.572, -109.21));
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, 90.0, 6.6));
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
-				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
 				item_interactables[i]->SetItem(ITEM_NONE);
 			}
-			else if (i == 3) {
+			else if (i == 3)
+			{
 				item_interactables[i]->set_global_position(Vector3(92.07, 0.739, -121.246));
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -160.4, 0));
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
-				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
 				item_interactables[i]->SetItem(ITEM_NONE);
 			}
@@ -1311,12 +1394,24 @@ void CustomScene3501::create_lights()
 	lights.append(Vector3(152.5195, 25.2194, -187.9763));
 	// Lost and Found Light
 	lights.append(Vector3(84.18179, 12.30133, -136.6754));
+	// MASONS LIGHTS -----------------------------------------------
+	// Accounting Pentoptican Lights
+	lights.append(Vector3(-92.35816, 45, -36.99912));
+	lights.append(Vector3(-76.94367, 45, -70.73479));
+	lights.append(Vector3(-93.51013, 45, -106.6544));
+	lights.append(Vector3(-127.9326, 45, -121.6192));
+	lights.append(Vector3(-165.646, 45, -105.1179));
+	lights.append(Vector3(-177.7577, 45, -71.52705));
+	lights.append(Vector3(-163.8752, 45, -35.57727));
+	lights.append(Vector3(-126.5494, 45, -20.66175));
+	// Office Light
+	lights.append(Vector3(-128.4032, 25.90864, -70.66657));
 	// lights.append(Vector3);
 }
 
 void CustomScene3501::setup_lights()
 {
-	// 
+	//
 
 	for (int i = 0; i < lights.size(); i++)
 	{
@@ -1373,7 +1468,8 @@ void CustomScene3501::setup_lights()
 			lockout_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 			lockout_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
-		if (i == 7) { // Middle dome lights
+		if (i == 7)
+		{ // Middle dome lights
 			audio_interactables[10]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[11]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[12]->RegisterCameraTrigs(cam_triggs);
@@ -1390,7 +1486,8 @@ void CustomScene3501::setup_lights()
 			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
-		if (i == 8) { // Gift shop light
+		if (i == 8)
+		{ // Gift shop light
 			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
@@ -1400,7 +1497,8 @@ void CustomScene3501::setup_lights()
 			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
-		if (i == 9) { // Mic stand light
+		if (i == 9)
+		{ // Mic stand light
 			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
@@ -1409,7 +1507,8 @@ void CustomScene3501::setup_lights()
 			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
-		if (i == 10) { // Bull light
+		if (i == 10)
+		{ // Bull light
 			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
@@ -1418,7 +1517,8 @@ void CustomScene3501::setup_lights()
 			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
-		if (i == 11) { // Lost and found light
+		if (i == 11)
+		{ // Lost and found light
 			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
@@ -1426,6 +1526,10 @@ void CustomScene3501::setup_lights()
 			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
+		// 12 <= i <= 20 is the accounting pentopticon lights, nothing added needed
+		if (i == 21)
+		{ // Ofice light, for the item in the office
 		}
 	}
 }
