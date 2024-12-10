@@ -1353,29 +1353,26 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 13) // Masons Logs
 			{
-				audio_interactables[i]->set_global_position(Vector3(-103.823, -32.509, -86.545));
-				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -160.4, 0));
+				audio_interactables[i]->set_global_position(Vector3(-110.988, -5.618, -83.264));
+				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, 50.9, 0));
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 4.0);
-				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 7.0);
 				audio_interactables[i]->SetAudio(AUDIO_BUSY_IZZY);
 			}
 			else if (i == 14)
 			{
 				audio_interactables[i]->set_global_position(Vector3(-98.755, -32.462, -70.45));
-				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -160.4, 0));
-				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 4.0);
 				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
+				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 7.0);
 				audio_interactables[i]->SetAudio(AUDIO_TYLER);
 			}
 			else if (i == 15)
 			{
-				audio_interactables[i]->set_global_position(Vector3(-128.473, -36.085, -51.486));
-				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -160.4, 0));
+				audio_interactables[i]->set_global_position(Vector3(-132.717, -34.272, -42.175));
+				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, 134.1, 0));
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 4.0);
-				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 5.0);
 				audio_interactables[i]->SetAudio(AUDIO_MCNAMRA);
 			}
 			re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
@@ -1481,8 +1478,8 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 6) // Izzy Laptop
 			{
-				item_interactables[i]->set_global_position(Vector3(-103.971, -32.55875, -86.547));
-				item_interactables[i]->set_global_rotation_degrees(-right_angle);
+				item_interactables[i]->set_global_position(Vector3(-110.887, -5.668, -83.166));
+				item_interactables[i]->set_global_rotation_degrees(Vector3(0, 50.9, 0));
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
@@ -1499,8 +1496,8 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 8) // Mcnarma Laptop
 			{
-				item_interactables[i]->set_global_position(Vector3(-128.3272, -36.13234, -51.47236));
-				item_interactables[i]->set_global_rotation_degrees(right_angle);
+				item_interactables[i]->set_global_position(Vector3(-132.669, -34.319, -42.243));
+				item_interactables[i]->set_global_rotation_degrees(Vector3(0, 135, 0));
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
@@ -1508,7 +1505,7 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 9) // Soda Chip
 			{
-				item_interactables[i]->set_global_position(Vector3(-128.2712, 18.72348, -72.78677));
+				item_interactables[i]->set_global_position(Vector3(-128.271, 16.991, -71.685));
 				item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				item_interactables[i]->SetValues(player, INTER_OBJECT_SODA_CHIP, SHAPE_BOX, true, 4.0);
@@ -1685,7 +1682,23 @@ void CustomScene3501::setup_lights()
 			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 		}
-		// 12 <= i <= 19 is the accounting pentopticon lights, nothing added needed
+		if (12 <= i && i <= 19)
+		{
+			item_interactables[6]->RegisterCameraTrigs(cam_triggs);
+			audio_interactables[13]->RegisterCameraTrigs(cam_triggs);
+			item_interactables[6]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[13]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+
+			item_interactables[7]->RegisterCameraTrigs(cam_triggs);
+			audio_interactables[14]->RegisterCameraTrigs(cam_triggs);
+			item_interactables[7]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[14]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+
+			item_interactables[8]->RegisterCameraTrigs(cam_triggs);
+			audio_interactables[15]->RegisterCameraTrigs(cam_triggs);
+			item_interactables[8]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[15]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		}
 		if (i == 20)
 		{ // Ofice light, for the item in the office
 			item_interactables[9]->RegisterCameraTrigs(cam_triggs);
