@@ -166,7 +166,7 @@ void CustomScene3501::_ready()
 	// particle_system->set_global_position(Vector3(-70, 0, 0));
 
 	// Setting up the mascot
-	mascot->SetPosition(Vector3(157.52, 1.75, -11.741));
+	mascot->SetPosition(Vector3(159.58, 1.75, -15.260));
 	mascot->SetRotation(Vector3(0.0, Math_PI / 2.0, 0.0));
 	mascot->RegisterCameraTrigs(cam_triggs);
 	mascot->SetCameraPosition(cameras[2]->get_global_position());
@@ -1252,7 +1252,7 @@ void CustomScene3501::setup_interactables()
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -98.1, 0.0));
 				item_interactables[i]->set_scale(Vector3(0.5, 0.5, 0.5));
 				//item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
-				item_interactables[i]->SetValues(player, INTER_OBJECT_BEIGE_BAG, SHAPE_BOX, true, 3.0);
+				item_interactables[i]->SetValues(player, INTER_OBJECT_BEIGE_BAG, SHAPE_BOX, true, 5.0);
 				item_interactables[i]->SetItem(ITEM_PAPERS);
 			}
 			else if (i == 1) {
