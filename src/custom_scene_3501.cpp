@@ -1554,6 +1554,20 @@ void CustomScene3501::create_env_objects()
 	environment_objects.append(chip_stand);
 	environment_objects.append(papers_stand);
 	environment_objects.append(lint_stand);
+
+	// Creating aliens for the dome
+	EnvObject* alien1;
+	EnvObject* alien2;
+	EnvObject* alien3;
+	EnvObject* alien4;
+	create_and_add_as_child(alien1, "Alien 1", true);
+	create_and_add_as_child(alien2, "Alien 2", true);
+	create_and_add_as_child(alien3, "Alien 3", true);
+	create_and_add_as_child(alien4, "Alien 4", true);
+	environment_objects.append(alien1);
+	environment_objects.append(alien2);
+	environment_objects.append(alien3);
+	environment_objects.append(alien4);
 }
 
 void CustomScene3501::setup_env_objects()
@@ -1595,6 +1609,62 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
 				environment_objects[i]->AddLight(lights[1], Vector3(1.0, 1.0, 1.0), 45.0);
 				environment_objects[i]->AddLight(lights[2], Vector3(1.0, 1.0, 1.0), 45.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 3) // First alien
+			{
+				environment_objects[i]->set_global_position(Vector3(139.009, -1.003, -138.903));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(0.0, -54.3, 0.0));
+				environment_objects[i]->set_scale(Vector3(2.0, 2.0, 2.0));
+				environment_objects[i]->SetValues(ENV_OBJECT_ALIEN, SHAPE_BOX);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 4) // Second alien
+			{
+				environment_objects[i]->set_global_position(Vector3(143.061, -1.45, -142.244));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(-0.1, 170.9, 0.0));
+				environment_objects[i]->set_scale(Vector3(2.0, 2.0, 2.0));
+				environment_objects[i]->SetValues(ENV_OBJECT_ALIEN, SHAPE_BOX);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 5) // Third alien
+			{
+				environment_objects[i]->set_global_position(Vector3(148.413, -2.183, -140.098));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(-27.5, -83.0, -179.4));
+				environment_objects[i]->set_scale(Vector3(2.0, 2.0, 2.0));
+				environment_objects[i]->SetValues(ENV_OBJECT_ALIEN, SHAPE_BOX);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 6) // Fourth alien
+			{
+				environment_objects[i]->set_global_position(Vector3(162.603, 0.819, -11.598));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(0.0, -172.7, 0.0));
+				environment_objects[i]->set_scale(Vector3(2.0, 2.0, 2.0));
+				environment_objects[i]->SetValues(ENV_OBJECT_ALIEN, SHAPE_BOX);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
 				// environment_objects[i]->set_global_rotation_degrees(right_angle);
 			}
 			re_parent<Node, EnvObject>(interact_ref_group, environment_objects[i]);
