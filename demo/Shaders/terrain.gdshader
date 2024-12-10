@@ -43,7 +43,7 @@ void fragment() {
 		
 		// Lighting attenuation calculation
 		float dist = distance(position_interp, light_positions[i]);
-		float attenuation = 1.0 / (1.0 + 0.0075 * dist + 0.0075 * dist * dist);
+		float attenuation = 1.0 / (1.0 + 0.050 * dist + 0.050 * dist * dist);
 		// The two 0.0075 constants are arbitrary since they appeared to create reasonable light attenuation
 		// Replace later with uniforms if needed
 		
@@ -65,8 +65,8 @@ void fragment() {
 	}
 	
 	// Applying the final light colour
-	if (sqrt(final_light.x * final_light.x + final_light.y * final_light.y + final_light.z * final_light.z) < 0.025) {
-		final_light = tex.rgb * 0.025;	// Minimal light level
+	if (sqrt(final_light.x * final_light.x + final_light.y * final_light.y + final_light.z * final_light.z) < 0.050) {
+		final_light = tex.rgb * 0.050;	// Minimal light level
 	}
 	ALBEDO = final_light.xyz;
 	//ALBEDO = vec3(0.0, 1.0, 0.0);

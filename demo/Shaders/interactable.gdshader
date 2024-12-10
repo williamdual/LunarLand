@@ -42,7 +42,7 @@ void fragment() {
 		
 		// Lighting attenuation calculation
 		float dist = distance(position_interp, light_positions[i]);
-		float attenuation = 1.0 / (1.0 + 0.0075 * dist + 0.0075 * dist * dist);
+		float attenuation = 1.0 / (1.0 + 0.050 * dist + 0.050 * dist * dist);
 		// The two 0.0075 constants are arbitrary since they appeared to create reasonable light attenuation
 		// Replace later with uniforms if needed
 		
