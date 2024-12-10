@@ -101,8 +101,8 @@ void CustomScene3501::_ready()
 	}
 
 	// Additional light for starting area
-	hmt->AddLight(player->get_global_position() + Vector3(0.0, 10.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
-	player->AddLight(player->get_global_position() + Vector3(0.0, 10.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
+	//hmt->AddLight(player->get_global_position() + Vector3(0.0, 1.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
+	//player->AddLight(player->get_global_position() + Vector3(0.0, 1.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// hmt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
@@ -168,7 +168,7 @@ void CustomScene3501::_ready()
 
 	// Setting up the mascot
 	mascot->SetPosition(Vector3(159.58, 1.75, -15.260));
-	mascot->SetRotation(Vector3(0.0, Math_PI / 2.0, 0.0));
+	mascot->SetRotation(Vector3(0.0, Math_PI / 2.0 - Math_PI / 4.0, 0.0));
 	mascot->RegisterCameraTrigs(cam_triggs);
 	mascot->SetCameraPosition(cameras[2]->get_global_position());
 	mascot->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 5.0);
