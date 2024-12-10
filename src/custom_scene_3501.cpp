@@ -1425,9 +1425,9 @@ void CustomScene3501::setup_interactables()
 		// Item interactables
 		for (int i = 0; i < item_interactables.size(); i++)
 		{
-			if (i == 0)
+			if (i == 0) // Papers bag
 			{
-				item_interactables[i]->set_global_position(Vector3(159.92, -1.19, -7.34));
+				item_interactables[i]->set_global_position(Vector3(160.06, -1.19, -6.67));
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -98.1, 0.0));
 				item_interactables[i]->set_scale(Vector3(0.5, 0.5, 0.5));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
