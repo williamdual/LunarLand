@@ -53,7 +53,7 @@ void Mascot::_ready(){
 	if(DEBUG) UtilityFunctions::print("Ready - Mascot.");
 
 	// Setting the body and head positions relative to their parents
-    body->set_local_position(Vector3(157.52, 1.75, -11.741));
+    body->set_local_position(Vector3(159.58, 1.75, -15.260));
     body->set_global_transform(body->get_transformation_matrix_without_scaling());
     head->set_local_position(Vector3(0.0f, 1.6f, 0.0f));
 	head->set_global_transform(head->get_transformation_matrix_without_scaling());
