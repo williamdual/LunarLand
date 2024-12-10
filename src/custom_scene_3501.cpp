@@ -101,8 +101,8 @@ void CustomScene3501::_ready()
 	}
 
 	// Additional light for starting area
-	//hmt->AddLight(player->get_global_position() + Vector3(0.0, 1.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
-	//player->AddLight(player->get_global_position() + Vector3(0.0, 1.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
+	// hmt->AddLight(player->get_global_position() + Vector3(0.0, 1.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
+	// player->AddLight(player->get_global_position() + Vector3(0.0, 1.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
 
 	// hmt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
@@ -1118,11 +1118,18 @@ void CustomScene3501::create_interactables()
 	create_and_add_as_child(stanza_laptop, "stanza_laptop", true);
 	ItemInteractable *penny_laptop;
 	create_and_add_as_child(penny_laptop, "penny_laptop", true);
+	// Wills Interactables
+	ItemInteractable *Johnny_Timmy_laptop;
+	create_and_add_as_child(Johnny_Timmy_laptop, "Johnny_Timmy_laptop", true);
+	ItemInteractable *Bobo_timmy_laptop;
+	create_and_add_as_child(Bobo_timmy_laptop, "Bobo_timmy_laptop", true);
 
 	item_interactables.append(bag);
 	item_interactables.append(harry_laptop);
 	item_interactables.append(stanza_laptop);
 	item_interactables.append(penny_laptop);
+	item_interactables.append(Johnny_Timmy_laptop);
+	item_interactables.append(Bobo_timmy_laptop);
 
 	// To be set when more of the environment is ready
 
@@ -1204,10 +1211,10 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 4)
 			{
-				audio_interactables[i]->set_global_position(Vector3(-39.23154, -7.359558, -186.8915));
+				audio_interactables[i]->set_global_position(Vector3(-39.232, -7.295, -186.738));
 				audio_interactables[i]->set_global_rotation_degrees(Vector3(0, 180, 0));
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 6.0);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_BOX, true, 6.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOHNNY_TIMMY);
 			}
 			else if (i == 5)
@@ -1220,13 +1227,13 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 6)
 			{
-				audio_interactables[i]->set_global_position(Vector3(21.46068, -10.4836, -167.2278));
+				audio_interactables[i]->set_global_position(Vector3(21.628, -10.957, -167.228));
 				audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 4.0);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_BOX, true, 4.0);
 				audio_interactables[i]->SetAudio(AUDIO_BOBO_TIMMY);
 			}
-			else if (i == 7)
+			else if (i == 7) // Starting Terminals
 			{
 				audio_interactables[i]->set_global_position(Vector3(-8.71, -8.1, -64.5));
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
@@ -1252,7 +1259,7 @@ void CustomScene3501::setup_interactables()
 				// audio_interactables[i]->set_global_rotation_degrees(-right_angle);
 				audio_interactables[i]->SetAudio(AUDIO_SUSIE_LINT);
 			}
-			else if (i == 10)
+			else if (i == 10) // Jacobs logs
 			{
 				audio_interactables[i]->set_global_position(Vector3(146.93, 4.284, -162.164));
 				audio_interactables[i]->set_global_rotation_degrees(2.0 * right_angle);
@@ -1337,7 +1344,7 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 1)
 			{
-				item_interactables[i]->set_global_position(Vector3(146.93, 4.233, -162.32));
+				item_interactables[i]->set_global_position(Vector3(146.93, 4.233, -162.32)); // audio_interactables[i]->set_global_position(Vector3(146.93, 4.284, -162.164));
 				item_interactables[i]->set_global_rotation_degrees(2.0 * right_angle);
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
@@ -1357,6 +1364,24 @@ void CustomScene3501::setup_interactables()
 			{
 				item_interactables[i]->set_global_position(Vector3(92.07, 0.739, -121.246));
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -160.4, 0));
+				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
+				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
+				item_interactables[i]->SetItem(ITEM_NONE);
+			}
+			else if (i == 4) // Johnny Timmy Laptop
+			{
+				item_interactables[i]->set_global_position(Vector3(-39.23154, -7.359558, -186.8915));
+				item_interactables[i]->set_global_rotation_degrees(Vector3(0, 180, 0));
+				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
+				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
+				item_interactables[i]->SetItem(ITEM_NONE);
+			}
+			else if (i == 5) // Bobo Timmy Laptop
+			{
+				item_interactables[i]->set_global_position(Vector3(21.461, -11.042, -167.228));
+				item_interactables[i]->set_global_rotation_degrees(-right_angle);
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
 				item_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP, SHAPE_BOX, true, 0.0);
