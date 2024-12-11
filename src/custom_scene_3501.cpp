@@ -1746,11 +1746,21 @@ void CustomScene3501::create_env_objects()
 	EnvObject *bin;
 	create_and_add_as_child(bin, "Pasta Bin", true);
 	environment_objects.append(bin);
+
 	// Joe Laws Terminals
 	EnvObject *Joe_Law_generator_terminal;
 	create_and_add_as_child(Joe_Law_generator_terminal, "Joe_Law_generator_terminal", true);
-
 	environment_objects.append(Joe_Law_generator_terminal);
+
+	// Ferris wheel
+	EnvObject* ferris_wheel;
+	create_and_add_as_child(ferris_wheel, "Ferris Wheel", true);
+	environment_objects.append(ferris_wheel);
+
+	// Carousel
+	EnvObject* carousel;
+	create_and_add_as_child(carousel, "Carousel", true);
+	environment_objects.append(carousel);
 }
 
 void CustomScene3501::setup_env_objects()
@@ -1874,6 +1884,34 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
 				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
 				environment_objects[i]->AddLight(lights[6], Vector3(1.0, 1.0, 1.0), 5.0);
+			}
+			else if (i == 9) // Ferris wheel
+			{
+				environment_objects[i]->set_global_position(Vector3(215.317, -5.975, -68.553));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(0.0, 52.9, 0.0));
+				environment_objects[i]->set_scale(Vector3(0.8, 0.8, 0.8));
+				environment_objects[i]->SetValues(ENV_OBJECT_FERRIS_WHEEL, SHAPE_BOX);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 45.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 10) // Carousel
+			{
+				environment_objects[i]->set_global_position(Vector3(170.669, -1.524, -103.596));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(0.0, 0.0, 0.0));
+				environment_objects[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				environment_objects[i]->SetValues(ENV_OBJECT_CAROUSEL, SHAPE_CYLINDER);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
 			}
 			re_parent<Node, EnvObject>(interact_ref_group, environment_objects[i]);
 		}

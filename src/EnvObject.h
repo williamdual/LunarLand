@@ -33,9 +33,11 @@ namespace godot {
 enum EnvObjectType {
     ENV_OBJECT_ALIEN,
     ENV_OBJECT_CAFETERIA_TABLE,
+    ENV_OBJECT_CAROUSEL,
     ENV_OBJECT_COMPUTER_TERMINAL,
     ENV_OBJECT_DART_BOARD,
     ENV_OBJECT_DARTS,
+    ENV_OBJECT_FERRIS_WHEEL,
     ENV_OBJECT_FILE_CABINET,
     ENV_OBJECT_LOST_AND_FOUND,
     ENV_OBJECT_MECHANICAL_BULL,
@@ -74,9 +76,11 @@ private:
     char* model_names[ENV_OBJECT_AMOUNT] = {
         "Alian",
         "CafeteriaTable",
+        "Carousel",
         "ComputerTerminal",
         "DartBoard",
         "DartBoardDarts",
+        "FerrisWheel",
 		"FileCabinet",
         "LostAndFoundBin",
         "MechanicalBull",
@@ -90,9 +94,11 @@ private:
     char* texture_names[ENV_OBJECT_AMOUNT] = {
         "Alian_Texture",
         "CafeteriaTable_Texture",
+        "Microphone_Texture",
         "ComputerTerminal_Texture",
         "DartBoard_Texture",
         "DartBoard_Texture",
+        "Alian_Texture",
 		"FileCabinet_Texture",
         "LostAndFoundBin_Texture",
         "MechanicalBull_Texture",
@@ -106,9 +112,11 @@ private:
     char* texture_formats[ENV_OBJECT_AMOUNT] = {
 		".jpg", // Alien
         ".png", // Caf Table
+        ".jpg", // Carousel
         ".png", // Computer Terminal
         ".png", // Dart Board
         ".png", // Darts
+        ".jpg", // Ferris Wheel
         ".png", // File Cabinet
         ".png", // Lost and Found Bin
         ".png", // Mechanical Bull
@@ -122,9 +130,11 @@ private:
     Vector3 mesh_offsets[ENV_OBJECT_AMOUNT] = {
 		Vector3(0.0, -0.25, 0.2), // Alien
         Vector3(0.0, -1.0, 0.0), // Caf Table
+        Vector3(0.0, 0.0, 0.0),  // Carousel
         Vector3(-6.0, -0.4, 0.0), // Computer Terminal
         Vector3(0.0, 0.0, 0.0), // Dart Board
         Vector3(0.1, 0.0, -0.5), // Darts
+        Vector3(0.0, 0.0, 0.0),  // Ferris Wheel
         Vector3(0.0, -1.5, 0.0), // File Cabinet
         Vector3(0.0, -0.8, 0.0), // Lost and Found Bin
         Vector3(0.0, -2.3, -1.0), // Mechanical Bull
@@ -138,9 +148,11 @@ private:
     float tex_darken_values[ENV_OBJECT_AMOUNT] = {
         0.8, // Alien
         0.7, // Caf Table
+        1.0, // Carousel
         0.7, // Computer Terminal
         0.8, // Dart Board
         0.8, // Darts
+        1.0, // Ferris Wheel
         0.7, // File Cabinet
         0.8, // Lost and Found Bin
         0.8, // Mechanical Bull

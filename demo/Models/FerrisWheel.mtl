@@ -1,0 +1,50 @@
+# Blender MTL File: 'None'
+# Material Count: 4
+
+newmtl FerrisWheel_Body_mat.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump -s 20.000000 20.000000 1.000000 C:\\Users\\ThreadSnake\\Desktop\\Designs\\Textures\\[2K]Metal10\\Metal10_nrm.jpg
+map_Kd -s 20.000000 20.000000 1.000000 C:\\Users\\ThreadSnake\\Desktop\\Designs\\Textures\\[2K]Metal10\\Metal10_col.jpg
+
+newmtl FerrisWheel_GondolaChair_mat.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump -s 5.000000 50.000000 1.000000 C:\\Users\\ThreadSnake\\Desktop\\Designs\\Textures\\[2K]Leather05\\Leather05_nrm.jpg
+map_Kd -s 5.000000 50.000000 1.000000 C:\\Users\\ThreadSnake\\Desktop\\Designs\\Textures\\[2K]Leather05\\Leather05_col.jpg
+
+newmtl FerrisWheel_Gondola_mat.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd -s 5.000000 50.000000 1.000000 C:\\Users\\ThreadSnake\\Desktop\\Designs\\Textures\\[2K]Metal25\\Metal25_col.jpg
+
+newmtl FerrisWheel_Stands_mat.001
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump -s 20.000000 20.000000 1.000000 C:\\Users\\ThreadSnake\\Desktop\\Designs\\Textures\\[2K]Concrete24\\Concrete24_nrm.jpg
+map_Kd -s 20.000000 20.000000 1.000000 C:\\Users\\ThreadSnake\\Desktop\\Designs\\Textures\\[2K]Concrete24\\Concrete24_col.jpg
+map_Ns -s 20.000000 20.000000 1.000000 C:\\Users\\ThreadSnake\\Desktop\\Designs\\Textures\\[2K]Concrete24\\Concrete24_rgh.jpg
