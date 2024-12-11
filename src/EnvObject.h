@@ -94,7 +94,7 @@ private:
     char* texture_names[ENV_OBJECT_AMOUNT] = {
         "Alian_Texture",
         "CafeteriaTable_Texture",
-        "Microphone_Texture",
+        "Carousel",
         "ComputerTerminal_Texture",
         "DartBoard_Texture",
         "DartBoard_Texture",
@@ -112,7 +112,7 @@ private:
     char* texture_formats[ENV_OBJECT_AMOUNT] = {
 		".jpg", // Alien
         ".png", // Caf Table
-        ".jpg", // Carousel
+        ".png", // Carousel
         ".png", // Computer Terminal
         ".png", // Dart Board
         ".png", // Darts
