@@ -108,25 +108,30 @@ void CustomScene3501::_ready()
 	testBuilding->SetCameraPosition(cameras[2]->get_global_position());
 
 	// Setting up the fire particles
-	for (int i = 0; i < particle_systems.size(); i++) {
+	for (int i = 0; i < particle_systems.size(); i++)
+	{
 
 		// Initial particle values
-		GPUParticles3D* particle_system = particle_systems[i];
-		ShaderMaterial* shader_material = dynamic_cast<ShaderMaterial*>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
+		GPUParticles3D *particle_system = particle_systems[i];
+		ShaderMaterial *shader_material = dynamic_cast<ShaderMaterial *>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
 		particle_system->set_amount(20000);
 		shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
 
 		// Customized positions
-		if (i == 0) {
+		if (i == 0)
+		{
 			particle_system->set_global_position(Vector3(41.095, -11.3, -204.897));
-		} else if (i == 1) {
+		}
+		else if (i == 1)
+		{
 			particle_system->set_global_position(Vector3(41.095, -11.3, -201.061));
-		} else if (i == 2) {
+		}
+		else if (i == 2)
+		{
 			particle_system->set_global_position(Vector3(41.095, -11.3, -197.521));
 		}
 		particle_system->set_scale(Vector3(2.0, 2.0, 2.0));
 	}
-
 	// Setting up the mascot
 	mascot->SetPosition(Vector3(159.58, 1.75, -15.260));
 	mascot->SetRotation(Vector3(0.0, Math_PI / 2.0 - Math_PI / 4.0, 0.0));
@@ -1636,13 +1641,6 @@ void CustomScene3501::setup_lights()
 // Member function to create environment objects
 void CustomScene3501::create_env_objects()
 {
-	// To be set when more of environment is ready
-
-	// All test stuff
-	// testEnvObj = memnew(EnvObject);
-	// create_and_add_as_child(testEnvObj, "Test EnvObject", true);
-	// testEnvObj->SetValues(ENV_OBJECT_LOST_AND_FOUND, SHAPE_BOX);
-
 	// Creating stands for the computer terminals
 	EnvObject *chip_stand;
 	create_and_add_as_child(chip_stand, "Chip Terminal Stand", true);
@@ -1673,24 +1671,24 @@ void CustomScene3501::create_env_objects()
 	create_and_add_as_child(bin, "Pasta Bin", true);
 	environment_objects.append(bin);
 
-	// Joe Laws Terminals
+	// Joe Laws Terminal
 	EnvObject *Joe_Law_generator_terminal;
 	create_and_add_as_child(Joe_Law_generator_terminal, "Joe_Law_generator_terminal", true);
 	environment_objects.append(Joe_Law_generator_terminal);
 
 	// Ferris wheel
-	EnvObject* ferris_wheel;
+	EnvObject *ferris_wheel;
 	create_and_add_as_child(ferris_wheel, "Ferris Wheel", true);
 	environment_objects.append(ferris_wheel);
 
 	// Carousel
-	EnvObject* carousel;
+	EnvObject *carousel;
 	create_and_add_as_child(carousel, "Carousel", true);
 	environment_objects.append(carousel);
 
 	// Two chairs for bobo's tent
-	EnvObject* chair_1;
-	EnvObject* chair_2;
+	EnvObject *chair_1;
+	EnvObject *chair_2;
 	create_and_add_as_child(chair_1, "Bobo Chair 1", true);
 	create_and_add_as_child(chair_2, "Bobo Chair 2", true);
 	environment_objects.append(chair_1);
@@ -1706,8 +1704,6 @@ void CustomScene3501::setup_env_objects()
 	{
 		for (int i = 0; i < environment_objects.size(); i++) // Audio Logs
 		{
-			// re_parent<Node, AudioInteractable>(interact_ref_group, audio_interactables[i]);
-			// audio_interactables[i]->_ready();
 			if (i == 0) // Chip terminal stand
 			{
 				environment_objects[i]->set_global_position(Vector3(-8.71, -10.33, -64.5));

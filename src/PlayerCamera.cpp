@@ -21,14 +21,8 @@ void PlayerCamera::_enter_tree()
 
 void PlayerCamera::_ready()
 {
-	// this is the Godot-assisted equivalent of SetView
-	// Setup the initial unit vectors for each
-	// using this setup allows the user to set the position of the camera in the editor.
-
-	// Don't change this
 	forward_ = Vector3(get_global_transform().basis[0][2], get_global_transform().basis[1][2], get_global_transform().basis[2][2]);
 	side_ = Vector3(get_global_transform().basis[0][0], get_global_transform().basis[1][0], get_global_transform().basis[2][0]);
-	// do not save _up as a member -- derive it. You will get a bad grade if you add it as a member variable like these two are.
 	moveSpeed = 16.6f;
 	cam_err = 0.5f;
 }
@@ -100,36 +94,16 @@ Vector3 PlayerCamera::GetForward(void)
 {
 	Vector3 current_forward = (our_quaternion.xform(forward_));
 	return -current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
-
-	/*
-	Vector3 current_forward = Vector3(0, 0, 0);
-	if (track_type == CameraTrackType::tracking)
-		current_forward = (get_quaternion().xform(forward_));
-	else
-		current_forward = (get_quaternion().xform(forward_.rotated(Vector3(0, 1, 0), get_rotation().y)));
-
-	return current_forward.normalized(); // Return -forward since the camera coordinate system points in the opposite direction
-	*/
 }
 
 Vector3 PlayerCamera::GetSide(void)
 {
 	Vector3 current_side = (our_quaternion.xform(side_));
 	return current_side.normalized();
-
-	/*
-	Vector3 current_side = Vector3(0, 0, 0);
-	if (track_type == CameraTrackType::tracking)
-		current_side = (get_quaternion().xform(side_));
-	else
-		current_side = (get_quaternion().xform(side_.rotated(Vector3(0, 1, 0), get_rotation().y)));
-	return current_side;
-	*/
 }
 
 Vector3 PlayerCamera::GetUp(void)
 {
-	// how do you get the up vector?
 	Vector3 current_up = vec3_cross(GetSide(), GetForward());
 	return current_up;
 }
@@ -179,13 +153,3 @@ void godot::PlayerCamera::SafelyRotate(Vector3 rotation)
 	if (rotation.y != 0.0)
 		SafelyRotate(Vector3(0, 1, 0), rotation.y);
 }
-
-// void godot::PlayerCamera::SetType(CameraMoveType mt, CameraTrackType tt)
-// {
-// 	move_type = mt;
-// 	track_type = tt;
-// }
-// CameraMoveType godot::PlayerCamera::GetMoveType()
-// {
-// 	return move_type;
-// }

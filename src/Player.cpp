@@ -7,7 +7,8 @@
 
 using namespace godot;
 
-void Player::_bind_methods() {
+void Player::_bind_methods()
+{
     ClassDB::bind_method(D_METHOD("SetCameraPosition"), &Player::SetCameraPosition);
 }
 
@@ -97,7 +98,8 @@ void Player::_enter_tree()
     inventory->SetupInventory();
 
     // Seeing if the object already has a collision shape
-    if (!find_child("CollisionShape") == NULL) {
+    if (!find_child("CollisionShape") == NULL)
+    {
         return;
     }
 
@@ -105,12 +107,15 @@ void Player::_enter_tree()
     create_and_add_as_child<CollisionShape3D>(hit_shape, "CollisionShape", false);
 
     // Determining widest part of scale
-    CylinderShape3D* cyl_shape = memnew(CylinderShape3D);
+    CylinderShape3D *cyl_shape = memnew(CylinderShape3D);
     Vector3 obj_size = mesh->get_mesh()->get_aabb().size;
     float diameter = 1.0;
-    if (obj_size.x > obj_size.z) {
+    if (obj_size.x > obj_size.z)
+    {
         diameter = obj_size.x;
-    } else {
+    }
+    else
+    {
         diameter = obj_size.z;
     }
 
@@ -134,10 +139,11 @@ void Player::_ready()
 void Player::_process(double delta)
 {
     // Changing camera position if needed
-    if (camera != NULL) {
+    if (camera != NULL)
+    {
         camera_position = camera->get_global_position();
     }
-    
+
     // Sending the necessary values to the shader
     mat->set_shader_parameter("init_light_positions", light_positions);
     mat->set_shader_parameter("light_colours", light_colours);
@@ -169,7 +175,8 @@ void Player::_process(double delta)
                 // Game loop stuff HERE
 
     // Playing initial log on startup
-    if (time_passed == 0.0) {
+    if (time_passed == 0.0)
+    {
         start_log->play();
     }
 
@@ -180,11 +187,15 @@ void Player::_process(double delta)
     if (_input->is_action_just_pressed("pause"))
     {
         paused = !paused;
-        if (paused) {
+        if (paused)
+        {
             start_log->stop();
-        } else {
+        }
+        else
+        {
             float duration = start_log->get_stream()->get_length();
-            if (start_log_pos < duration) {
+            if (start_log_pos < duration)
+            {
                 start_log->play(start_log_pos);
             }
         }
@@ -194,7 +205,9 @@ void Player::_process(double delta)
     if (paused)
     {
         return;
-    } else {
+    }
+    else
+    {
         start_log_pos += delta;
     }
 
@@ -219,28 +232,24 @@ void Player::_process(double delta)
         float new_rot = 0.0;
         if (_input->is_action_pressed("move_forward"))
         {
-            // UtilityFunctions::print("forward");
             theta += WrapDegree(atan2(camera->GetMovementPlaneForward().x, camera->GetMovementPlaneForward().z) - mesh->get_global_rotation().y);
             movmentInputVector += camera->GetMovementPlaneForward();
         }
 
         if (_input->is_action_pressed("move_backward"))
         {
-            // UtilityFunctions::print("backward");
             theta += WrapDegree(atan2(-camera->GetMovementPlaneForward().x, -camera->GetMovementPlaneForward().z) - mesh->get_global_rotation().y);
             movmentInputVector -= camera->GetMovementPlaneForward();
         }
 
         if (_input->is_action_pressed("move_right"))
         {
-            // UtilityFunctions::print("right");
             theta += WrapDegree(atan2(camera->GetMovementPlaneSide().x, camera->GetMovementPlaneSide().z) - mesh->get_global_rotation().y);
             movmentInputVector += camera->GetMovementPlaneSide();
         }
 
         if (_input->is_action_pressed("move_left"))
         {
-            // UtilityFunctions::print("left");
             theta += WrapDegree(atan2(-camera->GetMovementPlaneSide().x, -camera->GetMovementPlaneSide().z) - mesh->get_global_rotation().y);
             movmentInputVector -= camera->GetMovementPlaneSide();
         }
@@ -251,11 +260,16 @@ void Player::_process(double delta)
         listener->set_global_rotation(Vector3(0.0, -new_rot, 0.0));
 
         // Setting the player mesh
-        if (roundf(time_passed) > time_passed && anyMovementKeyWasPressed) {
+        if (roundf(time_passed) > time_passed && anyMovementKeyWasPressed)
+        {
             mesh->set_mesh(first_move);
-        } else if (anyMovementKeyWasPressed) {
+        }
+        else if (anyMovementKeyWasPressed)
+        {
             mesh->set_mesh(second_move);
-        } else {
+        }
+        else
+        {
             mesh->set_mesh(idle);
         }
     }
@@ -277,46 +291,46 @@ void Player::_process(double delta)
     }
 }
 
-float Player::WrapDegree(float value) {
+float Player::WrapDegree(float value)
+{
     return -Math_PI + fmod((fmod(value - -Math_PI, Math_PI - -Math_PI) + Math_PI - -Math_PI), Math_PI - -Math_PI);
 }
 
-float Player::Clamp(float value, float min, float max) {
+float Player::Clamp(float value, float min, float max)
+{
     // Checking if the value is smaller than the lower bound
-    if (value < min) {
+    if (value < min)
+    {
         return min;
 
-    // Checking if value is greater than the upper bound
-    } else if (value > max) {
+        // Checking if value is greater than the upper bound
+    }
+    else if (value > max)
+    {
         return max;
     }
     return value;
 }
 
-float Player::Sign(float value) {
+float Player::Sign(float value)
+{
     // Returning sign of the value
-    if (value < 0.0) {
+    if (value < 0.0)
+    {
         return -1.0;
     }
     return 1.0;
 }
 
-// Member function that registers camera triggers for signal purposes
-// void Player::RegisterCameraTrigs(Vector<CameraTrigger*> cam_trigs) {
-
-//     // Connecting each camera trigger
-//     for (int i = 0; i < cam_trigs.size(); i++) {
-//         cam_trigs[i]->connect("NewCamPos", Callable(this, "SetCameraPosition"));
-//     }
-// }
-
 // Member function that sets a camera position
-void Player::SetCameraPosition(Vector3 camera_pos) {
+void Player::SetCameraPosition(Vector3 camera_pos)
+{
     camera_position = camera_pos;
 }
 
 // Member function that adds a light position and colour to the environment object
-void Player::AddLight(Vector3 light_pos, Vector3 light_col, int spec_power) {
+void Player::AddLight(Vector3 light_pos, Vector3 light_col, int spec_power)
+{
 
     // Adding light position and colour to the necessary arrays
     light_positions[num_lights] = light_pos;
