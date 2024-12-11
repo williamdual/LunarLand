@@ -16,13 +16,13 @@ void PauseScreen::_enter_tree ( ){
 }
 
 void PauseScreen::_ready ( ){
-    if(DEBUG) UtilityFunctions::print("Ready - PauseScreen."); 
+    if(DEBUG) UtilityFunctions::print("Ready - PauseScreen.");
 }
 
 // Member function for setting pause screen
 void PauseScreen::Pause() {
     background->set_global_position(Vector2(-33, -21));
-    margin_container->set_global_position(Vector2(0, -59.5));
+    margin_container->set_global_position(Vector2(0.0, -59.5));
 }
 
 // Member function for unsetting pause screen
@@ -59,11 +59,12 @@ void PauseScreen::SetupScreen() {
 
     // Setting up the box container
     create_and_add_as_child_of_parent<VBoxContainer>(main_container, "MainContainer", margin_container);
-    main_container->add_theme_constant_override("separation", 180);
+    main_container->add_theme_constant_override("separation", 50);
 
     // Setting up the containers for the text
     create_and_add_as_child_of_parent<CenterContainer>(title_container, "TitleContainer", main_container);
     create_and_add_as_child_of_parent<CenterContainer>(pause_container, "PauseContainer", main_container);
+    create_and_add_as_child_of_parent<CenterContainer>(map_container, "MapContainer", main_container);
     create_and_add_as_child_of_parent<CenterContainer>(quote_container, "QuoteContainer", main_container);
 
     // Grabbing font for future use
@@ -90,6 +91,11 @@ void PauseScreen::SetupScreen() {
     pause_text->set_label_settings(pause_style);
     pause_text->set_text("Press 'Esc' again to unpause game");
     pause_text->set_horizontal_alignment(HorizontalAlignment::HORIZONTAL_ALIGNMENT_CENTER);
+
+    // Setting up the map
+    create_and_add_as_child_of_parent<TextureRect>(map, "Map", map_container);
+    Ref<CompressedTexture2D> map_image = ResourceLoader::get_singleton()->load("InventorySprites/map.png", "CompressedTexture2D");
+    map->set_texture(map_image);
 
     // Setting up quote text
     create_and_add_as_child_of_parent<Label>(quote_text, "QuoteText", quote_container);
