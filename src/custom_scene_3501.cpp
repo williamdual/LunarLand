@@ -1697,12 +1697,6 @@ void CustomScene3501::setup_lights()
 // Member function to create environment objects
 void CustomScene3501::create_env_objects()
 {
-	// To be set when more of environment is ready
-
-	// All test stuff
-	// testEnvObj = memnew(EnvObject);
-	// create_and_add_as_child(testEnvObj, "Test EnvObject", true);
-	// testEnvObj->SetValues(ENV_OBJECT_LOST_AND_FOUND, SHAPE_BOX);
 
 	// Creating stands for the computer terminals
 	EnvObject *chip_stand;
@@ -1733,6 +1727,16 @@ void CustomScene3501::create_env_objects()
 	EnvObject *bin;
 	create_and_add_as_child(bin, "Pasta Bin", true);
 	environment_objects.append(bin);
+
+	// Ferris wheel
+	EnvObject* ferris_wheel;
+	create_and_add_as_child(ferris_wheel, "Ferris Wheel", true);
+	environment_objects.append(ferris_wheel);
+
+	// Carousel
+	EnvObject* carousel;
+	create_and_add_as_child(carousel, "Carousel", true);
+	environment_objects.append(carousel);
 }
 
 void CustomScene3501::setup_env_objects()
@@ -1846,6 +1850,34 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->AddLight(lights[4], Vector3(1.0, 1.0, 1.0), 5.0);
 				environment_objects[i]->AddLight(lights[5], Vector3(1.0, 1.0, 1.0), 5.0);
 				environment_objects[i]->AddLight(lights[6], Vector3(1.0, 1.0, 1.0), 5.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 8) // Ferris wheel
+			{
+				environment_objects[i]->set_global_position(Vector3(215.317, -5.975, -68.553));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(0.0, 52.9, 0.0));
+				environment_objects[i]->set_scale(Vector3(0.8, 0.8, 0.8));
+				environment_objects[i]->SetValues(ENV_OBJECT_FERRIS_WHEEL, SHAPE_BOX);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 45.0);
+				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 45.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 9) // Carousel
+			{
+				environment_objects[i]->set_global_position(Vector3(170.669, -1.524, -103.596));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(0.0, 0.0, 0.0));
+				environment_objects[i]->set_scale(Vector3(1.0, 1.0, 1.0));
+				environment_objects[i]->SetValues(ENV_OBJECT_CAROUSEL, SHAPE_CYLINDER);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[7], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[8], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
 				// environment_objects[i]->set_global_rotation_degrees(right_angle);
 			}
 			re_parent<Node, EnvObject>(interact_ref_group, environment_objects[i]);

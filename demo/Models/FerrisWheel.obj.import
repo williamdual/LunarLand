@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bl8ejttdnwlr"
+path="res://.godot/imported/FerrisWheel.obj-1e56c145d58782e2755b923f3aec68dc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/FerrisWheel.obj-1e56c145d58782e2755b923f3aec68dc.mesh"]
+
+source_file="res://Models/FerrisWheel.obj"
+dest_files=["res://.godot/imported/FerrisWheel.obj-1e56c145d58782e2755b923f3aec68dc.mesh", "res://.godot/imported/FerrisWheel.obj-1e56c145d58782e2755b923f3aec68dc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
