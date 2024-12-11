@@ -143,7 +143,7 @@ layout_mode = 2
 
 [node name="SecondLevelText" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel"]
 layout_mode = 2
-theme_override_constants/separation = 225
+theme_override_constants/separation = 210
 
 [node name="Developers" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
 layout_mode = 2
@@ -158,18 +158,18 @@ label_settings = SubResource("LabelSettings_dvp4b")
 
 [node name="Models" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
 layout_mode = 2
-text = "Models
+text = "Models / Model Textures
 - Mason McLeod
-
-
-
+- Perkoules
+- agardiandesinger
+- ponomarev1983
 
 "
 label_settings = SubResource("LabelSettings_gfmib")
 
 [node name="Textures" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
 layout_mode = 2
-text = "Textures and Assets
+text = "Other Textures and Assets
 - Mason Mcleod
 - Freepik
 - Space Spheremaps
