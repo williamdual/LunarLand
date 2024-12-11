@@ -1515,16 +1515,16 @@ void CustomScene3501::setup_lights()
 			audio_interactables[4]->RegisterCameraTrigs(cam_triggs);
 			item_interactables[4]->RegisterCameraTrigs(cam_triggs);
 
-			audio_interactables[4]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[4]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[4]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[4]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 4) // bobos tent light
 		{
 			item_interactables[5]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[6]->RegisterCameraTrigs(cam_triggs);
 
-			audio_interactables[6]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[5]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[6]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[5]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 5) // Joe Law Office light
 		{
@@ -1533,10 +1533,10 @@ void CustomScene3501::setup_lights()
 			audio_interactables[2]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[3]->RegisterCameraTrigs(cam_triggs);
 
-			audio_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 6) // STEALS light
 		{
@@ -1546,7 +1546,7 @@ void CustomScene3501::setup_lights()
 			lockout_interactables[1]->RegisterCameraTrigs(cam_triggs);
 			lockout_interactables[2]->RegisterCameraTrigs(cam_triggs);
 
-			audio_interactables[5]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[5]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 			counter_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 			lockout_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 			lockout_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
@@ -1562,71 +1562,71 @@ void CustomScene3501::setup_lights()
 			item_interactables[2]->RegisterCameraTrigs(cam_triggs);
 			item_interactables[3]->RegisterCameraTrigs(cam_triggs);
 
-			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
-			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 8)
 		{ // Gift shop light
-			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
 			item_interactables[0]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 9)
 		{ // Mic stand light
-			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
-			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 10)
 		{ // Bull light
-			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
-			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 11)
 		{ // Lost and found light
-			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			audio_interactables[10]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[11]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[12]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
-			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[1]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[2]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			item_interactables[3]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (12 <= i && i <= 19)
 		{ // pentopticon lights for the laptops and their screens
 			item_interactables[6]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[13]->RegisterCameraTrigs(cam_triggs);
-			item_interactables[6]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[13]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[6]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[13]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
 			item_interactables[7]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[14]->RegisterCameraTrigs(cam_triggs);
-			item_interactables[7]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[14]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[7]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[14]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
 			item_interactables[8]->RegisterCameraTrigs(cam_triggs);
 			audio_interactables[15]->RegisterCameraTrigs(cam_triggs);
-			item_interactables[8]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
-			audio_interactables[15]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+			item_interactables[8]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
+			audio_interactables[15]->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 		}
 		if (i == 20)
 		{ // Ofice light, for the item in the office
@@ -1811,7 +1811,7 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
 				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
 				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
-				environment_objects[i]->AddLight(lights[6], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[6], Vector3(1.0, 1.0, 1.0), 45.0);
 			}
 			else if (i == 9) // Ferris wheel
 			{
