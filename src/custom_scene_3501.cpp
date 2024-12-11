@@ -457,7 +457,7 @@ void CustomScene3501::create_cameras()
 
 	PlayerCamera *cam_102;
 	create_and_add_as_child<PlayerCamera>(cam_102, "JCC", true);
-	cam_102->set_global_position(Vector3(167.4163, 43.29909, -98.47244));
+	cam_102->set_global_position(Vector3(167.4163, 22.85541, -98.47244));
 	cam_102->SetTrackType(CameraTrackType::tracking);
 	CameraTrigger *trigg_104;
 	create_and_add_as_child<CameraTrigger>(trigg_104, "JCC_trigg_1", true);
@@ -1498,7 +1498,7 @@ void CustomScene3501::setup_lights()
 		player->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
 		testBuilding->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0); // the building needs all of the lights
-		if (1 <= i && i <= 2)											// set up starting area lights
+		if (1 <= i && i <= 2)											 // set up starting area lights
 		{
 			if (i == 1)
 			{
