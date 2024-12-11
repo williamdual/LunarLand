@@ -1687,6 +1687,14 @@ void CustomScene3501::create_env_objects()
 	EnvObject* carousel;
 	create_and_add_as_child(carousel, "Carousel", true);
 	environment_objects.append(carousel);
+
+	// Two chairs for bobo's tent
+	EnvObject* chair_1;
+	EnvObject* chair_2;
+	create_and_add_as_child(chair_1, "Bobo Chair 1", true);
+	create_and_add_as_child(chair_2, "Bobo Chair 2", true);
+	environment_objects.append(chair_1);
+	environment_objects.append(chair_2);
 }
 
 void CustomScene3501::setup_env_objects()
@@ -1837,6 +1845,38 @@ void CustomScene3501::setup_env_objects()
 				environment_objects[i]->AddLight(lights[9], Vector3(1.0, 1.0, 1.0), 5.0);
 				environment_objects[i]->AddLight(lights[10], Vector3(1.0, 1.0, 1.0), 5.0);
 				environment_objects[i]->AddLight(lights[11], Vector3(1.0, 1.0, 1.0), 5.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 11) // Bobo Chair 1
+			{
+				environment_objects[i]->set_global_position(Vector3(14.821, -11.608, -154.752));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(-90.0, -69.0, 0.0));
+				environment_objects[i]->set_scale(Vector3(0.4, 0.4, 0.4));
+				environment_objects[i]->SetValues(ENV_OBJECT_CHAIR, SHAPE_BOX);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[0], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[1], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[2], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[3], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[4], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[5], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[6], Vector3(1.0, 1.0, 1.0), 5.0);
+				// environment_objects[i]->set_global_rotation_degrees(right_angle);
+			}
+			else if (i == 12) // Bobo Chair 2
+			{
+				environment_objects[i]->set_global_position(Vector3(19.115, -11.512, -171.295));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(-90.0, 27.0, 0.0));
+				environment_objects[i]->set_scale(Vector3(0.4, 0.4, 0.4));
+				environment_objects[i]->SetValues(ENV_OBJECT_CHAIR, SHAPE_BOX);
+				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
+				environment_objects[i]->AddLight(lights[0], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[1], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[2], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[3], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[4], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[5], Vector3(1.0, 1.0, 1.0), 5.0);
+				environment_objects[i]->AddLight(lights[6], Vector3(1.0, 1.0, 1.0), 5.0);
 				// environment_objects[i]->set_global_rotation_degrees(right_angle);
 			}
 			re_parent<Node, EnvObject>(interact_ref_group, environment_objects[i]);
