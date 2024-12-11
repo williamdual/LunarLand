@@ -28,7 +28,7 @@ illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd PortableComputerTerminal_Texture.png
+map_Kd Laptop_Texture.png
 Ni 1.00
 newmtl lambert8SG
 illum 4
@@ -42,13 +42,14 @@ illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd ComputerTerminalSceen_Texture.png
+map_Kd LaptopSceen_Texture.png
 Ni 1.00
 newmtl lambert10SG
 illum 4
-Kd 0.50 0.50 0.50
+Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
+map_Kd Person_Texture.jpg
 Ni 1.00
 newmtl lambert11SG
 illum 4
@@ -120,9 +121,38 @@ map_Kd PastaWordBin_Texture.png
 Ni 1.00
 newmtl lambert28SG
 illum 4
-Kd 0.50 0.50 0.50
+Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
+map_Kd LostAndFoundBin_Texture.png
+Ni 1.00
+newmtl lambert29SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd BeigeBag_Texture.png
+Ni 1.00
+newmtl lambert30SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd SodaChip_Texture.png
+Ni 1.00
+newmtl lambert31SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Steals_Texture_Timm.png
+Ni 1.00
+newmtl lambert32SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd StealsCrank_Texture.png
 Ni 1.00
 newmtl pasted__lambert28SG1
 illum 4
