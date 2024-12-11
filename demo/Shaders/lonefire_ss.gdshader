@@ -20,7 +20,7 @@ varying float lifespan;
 // Simulation parameters (constants)
 const vec3 up_vec = vec3(0.0, 1.0, 0.0); // Up direction
 const float accel = 5.0; // An acceleration applied to the particles coming from some attraction force
-const float speed = 1.75; // Control the speed of the motion
+const float speed = 3.0; // Control the speed of the motion
 
 #include "res://shaders/helpers.gdshaderinc"
 

@@ -63,8 +63,10 @@ void CustomScene3501::_enter_tree()
 	// Creating boundaries for starting area
 	create_and_add_as_child(cage, "Cage", true);
 
-	// Testing particle system
-	// create_particle_system("Blazing Fire", "lonefire");
+	// Creating the fire particle systems
+	create_particle_system("Blazing Fire 1", "lonefire");
+	create_particle_system("Blazing Fire 2", "lonefire");
+	create_particle_system("Blazing Fire 3", "lonefire");
 
 	// Creating the mascot
 	create_and_add_as_child(mascot, "Mascot", true);
@@ -100,71 +102,30 @@ void CustomScene3501::_ready()
 		hmt->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 	}
 
-	// Additional light for starting area
-	// hmt->AddLight(player->get_global_position() + Vector3(0.0, 1.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
-	// player->AddLight(player->get_global_position() + Vector3(0.0, 1.0, 0.0), Vector3(1.0, 1.0, 1.0), 5.0);
-
-	// hmt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// hmt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// hmt->AddLight(lights[0], Vector3(1.0, 1.0, 1.0), 5.0);
-
-	// Setting up the test interactable
-	// testInt->set_global_position(Vector3(0.0, -11.0, -35.0f));
-	// testInt->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
-	// testInt->RegisterCameraTrigs(cam_triggs);
-	// testInt->SetCameraPosition(cameras[2]->get_global_position());
-	// testInt->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// testInt->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-
-	// Test item interactable
-	// testItem->set_global_position(Vector3(3.0, -13.5, -15.0f));
-	// testItem->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
-	// testItem->RegisterCameraTrigs(cam_triggs);
-	// testItem->SetCameraPosition(cameras[2]->get_global_position());
-	// testItem->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// testItem->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-
-	// Setting up the test environment object
-	// testEnvObj->set_global_position(Vector3(3.0, -11.5, -10.0f));
-	// testEnvObj->set_global_rotation(Vector3(0.0, 0.785398, 0.0));
-	// testEnvObj->RegisterCameraTrigs(cam_triggs);
-	// testEnvObj->SetCameraPosition(cameras[2]->get_global_position());
-	// testEnvObj->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 40.0);
-	// testEnvObj->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 40.0);
-
-	// Setting up test counter interactable with lockout interactables
-	// testCount->set_global_position(Vector3(6.0, -11.0, -15.0f));
-	// testCount->RegisterCameraTrigs(cam_triggs);
-	// testCount->SetCameraPosition(cameras[2]->get_global_position());
-	// testCount->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// testCount->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-
-	// testLock1->set_global_position(Vector3(-6.0, -11.0, -15.0f));
-	// testLock1->RegisterCameraTrigs(cam_triggs);
-	// testLock1->SetCameraPosition(cameras[2]->get_global_position());
-	// testLock1->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// testLock1->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-
-	// testLock2->set_global_position(Vector3(-6.0, -11.0, -5.0f));
-	// testLock2->RegisterCameraTrigs(cam_triggs);
-	// testLock2->SetCameraPosition(cameras[2]->get_global_position());
-	// testLock2->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-	// testLock2->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
-
-	// Setting up the test building
-	// testBuilding->set_scale(Vector3(1.5, 1.5, 1.5));
+	// Setting up the building
 	testBuilding->set_global_position(Vector3(-0.023, -12.92, -5.635));
 	testBuilding->RegisterCameraTrigs(cam_triggs);
 	testBuilding->SetCameraPosition(cameras[2]->get_global_position());
-	// testBuilding->AddLight(cameras[0]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0); // pos, color, specular compponent power
-	// testBuilding->AddLight(cameras[2]->get_global_position(), Vector3(1.0, 1.0, 1.0), 5.0);
 
-	// Setting up the test particles
-	// GPUParticles3D* particle_system = particle_systems[0];
-	// ShaderMaterial* shader_material = dynamic_cast<ShaderMaterial*>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
-	// particle_system->set_amount(20000);
-	// shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
-	// particle_system->set_global_position(Vector3(-70, 0, 0));
+	// Setting up the fire particles
+	for (int i = 0; i < particle_systems.size(); i++) {
+
+		// Initial particle values
+		GPUParticles3D* particle_system = particle_systems[i];
+		ShaderMaterial* shader_material = dynamic_cast<ShaderMaterial*>(*particle_system->get_draw_pass_mesh(0)->surface_get_material(0));
+		particle_system->set_amount(20000);
+		shader_material->set_shader_parameter("texture_image", ResourceLoader::get_singleton()->load("res://Textures/flame4x4orig.png"));
+
+		// Customized positions
+		if (i == 0) {
+			particle_system->set_global_position(Vector3(41.095, -11.3, -204.897));
+		} else if (i == 1) {
+			particle_system->set_global_position(Vector3(41.095, -11.3, -201.061));
+		} else if (i == 2) {
+			particle_system->set_global_position(Vector3(41.095, -11.3, -197.521));
+		}
+		particle_system->set_scale(Vector3(2.0, 2.0, 2.0));
+	}
 
 	// Setting up the mascot
 	mascot->SetPosition(Vector3(159.58, 1.75, -15.260));
@@ -1195,41 +1156,6 @@ void CustomScene3501::create_interactables()
 	item_interactables.append(Tyler_laptop);
 	item_interactables.append(Mcnamra_laptop);
 	item_interactables.append(Soda_Chip);
-
-	// To be set when more of the environment is ready
-
-	// Audio interactable test stuff
-	// testInt = memnew(AudioInteractable);
-	// create_and_add_as_child(testInt, "Test Interactable", true);
-	// testInt->SetValues(player, INTER_OBJECT_STEALS_TIMMY, SHAPE_BOX, true, 3.0);
-	// testInt->SetAudio(AUDIO_JOHNNY_TIMMY);
-
-	// Test item interactable
-	// testItem = memnew(ItemInteractable);
-	// create_and_add_as_child(testItem, "Test Interactable", true);
-	// testItem->SetValues(player, INTER_OBJECT_BEIGE_BAG, SHAPE_BOX, true, 3.0);
-	// testItem->SetItem(ITEM_PAPERS);
-
-	// Additional test stuff
-
-	// create_and_add_as_child(testCount, "CounterInteractable", true);
-	// testCount->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 5.0);
-	// testCount->SetInit(0, 15);
-	// testCount->SetCounter(0);
-	// testCount->SetTrigger(15);
-
-	// create_and_add_as_child(testLock1, "NoneLockout", true);
-	// testLock1->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 5.0);
-
-	// create_and_add_as_child(testLock2, "ItemLockout", true);
-	// testLock2->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL_SCREEN, SHAPE_BOX, true, 5.0);
-
-	// Vector<LockoutInteractable*> dependents;
-	// dependents.append(testLock1);
-	// dependents.append(testLock2);
-
-	// testLock1->SetLockout(ITEM_NONE, testCount, dependents);
-	// testLock2->SetLockout(ITEM_PAPERS, testCount, dependents);
 }
 
 void CustomScene3501::setup_interactables()
@@ -1353,7 +1279,7 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 13) // Masons Logs
 			{
-				audio_interactables[i]->set_global_position(Vector3(-110.988, -5.618, -83.264));
+				audio_interactables[i]->set_global_position(Vector3(-102.447, -5.715, -51.312));
 				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, 50.9, 0));
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
 				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 7.0);
@@ -1428,7 +1354,7 @@ void CustomScene3501::setup_interactables()
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0.0, -98.1, 0.0));
 				item_interactables[i]->set_scale(Vector3(0.5, 0.5, 0.5));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
-				item_interactables[i]->SetValues(player, INTER_OBJECT_BEIGE_BAG, SHAPE_BOX, true, 5.0);
+				item_interactables[i]->SetValues(player, INTER_OBJECT_BEIGE_BAG, SHAPE_BOX, true, 4.0);
 				item_interactables[i]->SetItem(ITEM_PAPERS);
 			}
 			else if (i == 1)
@@ -1478,7 +1404,7 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 6) // Izzy Laptop
 			{
-				item_interactables[i]->set_global_position(Vector3(-110.887, -5.668, -83.166));
+				item_interactables[i]->set_global_position(Vector3(-102.325, -5.775, -51.214));
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0, 50.9, 0));
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
