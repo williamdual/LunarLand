@@ -34,6 +34,7 @@ enum EnvObjectType {
     ENV_OBJECT_ALIEN,
     ENV_OBJECT_CAFETERIA_TABLE,
     ENV_OBJECT_CAROUSEL,
+    ENV_OBJECT_CHAIR,
     ENV_OBJECT_COMPUTER_TERMINAL,
     ENV_OBJECT_DART_BOARD,
     ENV_OBJECT_DARTS,
@@ -77,6 +78,7 @@ private:
         "Alian",
         "CafeteriaTable",
         "Carousel",
+        "Chair",
         "ComputerTerminal",
         "DartBoard",
         "DartBoardDarts",
@@ -95,6 +97,7 @@ private:
         "Alian_Texture",
         "CafeteriaTable_Texture",
         "Carousel",
+        "Chair_Texture",
         "ComputerTerminal_Texture",
         "DartBoard_Texture",
         "DartBoard_Texture",
@@ -113,6 +116,7 @@ private:
 		".jpg", // Alien
         ".png", // Caf Table
         ".png", // Carousel
+        ".png", // Chair
         ".png", // Computer Terminal
         ".png", // Dart Board
         ".png", // Darts
@@ -131,6 +135,7 @@ private:
 		Vector3(0.0, -0.25, 0.2), // Alien
         Vector3(0.0, -1.0, 0.0), // Caf Table
         Vector3(0.0, 0.0, 0.0),  // Carousel
+        Vector3(0.0, 0.0, 0.0),  // Chair
         Vector3(-6.0, -0.4, 0.0), // Computer Terminal
         Vector3(0.0, 0.0, 0.0), // Dart Board
         Vector3(0.1, 0.0, -0.5), // Darts
@@ -149,6 +154,7 @@ private:
         0.8, // Alien
         0.7, // Caf Table
         1.0, // Carousel
+        0.8, // Chair
         0.7, // Computer Terminal
         0.8, // Dart Board
         0.8, // Darts

@@ -1,0 +1,62 @@
+# Blender MTL File: 'Chair.blend'
+# Material Count: 5
+
+newmtl M_backrest_Low
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.296010 0.039612
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump .
+map_Kd E:\\3D MODELS\\Chair\\Textures\\Wood01_col.jpg
+
+newmtl M_crossbar_back_Low
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.296010 0.039612
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump .
+map_Kd E:\\3D MODELS\\Chair\\Textures\\Wood01_col.jpg
+
+newmtl M_crossbar_front_Low
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.296010 0.039612
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump .
+map_Kd -s 2.000000 2.000000 2.000000 E:\\3D MODELS\\Chair\\Textures\\Wood01_col.jpg
+
+newmtl M_frame_Low
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.296010 0.039612
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump .
+map_Kd -s 3.000000 3.000000 3.000000 E:\\3D MODELS\\Chair\\Textures\\Wood01_col.jpg
+
+newmtl M_seat_Low
+Ns 12.570249
+Ka 1.000000 1.000000 1.000000
+Kd 0.015613 0.022813 0.800000
+Ks 0.163636 0.163636 0.163636
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump .
+map_Kd E:\\3D MODELS\\Chair\\Textures\\Wood01_col.jpg
