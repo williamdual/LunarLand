@@ -1497,9 +1497,7 @@ void CustomScene3501::setup_lights()
 	{
 		player->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
 
-		// Heightmap technically doesn't need all the lights but it looks good
-		// for ambient reasons
-		testBuilding->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0); // the building needs all of the lights
+		testBuilding->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0); // the building needs all of the lights
 		if (1 <= i && i <= 2)											// set up starting area lights
 		{
 			if (i == 1)
