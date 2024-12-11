@@ -18,6 +18,7 @@
 #include <godot_cpp/classes/canvas_layer.hpp>
 
 #include <godot_cpp/classes/color_rect.hpp>
+#include <godot_cpp/classes/texture_rect.hpp>
 #include <godot_cpp/classes/margin_container.hpp>
 #include <godot_cpp/classes/v_box_container.hpp>
 #include <godot_cpp/classes/center_container.hpp>
@@ -44,10 +45,12 @@ private:
     VBoxContainer* main_container;
     CenterContainer* title_container;
     CenterContainer* pause_container;
+    CenterContainer* map_container;
     CenterContainer* quote_container;
     Label* title_text;
     Label* pause_text;
     Label* quote_text;
+    TextureRect* map;
 
 protected:
     static void _bind_methods();
