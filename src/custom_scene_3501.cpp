@@ -1495,7 +1495,7 @@ void CustomScene3501::setup_lights()
 
 	for (int i = 0; i < lights.size(); i++)
 	{
-		player->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 5.0);
+		player->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0);
 
 		testBuilding->AddLight(lights[i], Vector3(1.0, 1.0, 1.0), 45.0); // the building needs all of the lights
 		if (1 <= i && i <= 2)											// set up starting area lights
