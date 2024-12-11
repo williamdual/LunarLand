@@ -61,7 +61,7 @@ void Player::_enter_tree()
     second_move->surface_set_material(0, mat);
 
     // Setting the texture
-    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s", "Textures/", "MechanicalBull_Texture.png"), "CompressedTexture2D");
+    Ref<Texture2D> texture = ResourceLoader::get_singleton()->load(vformat("%s%s", "Textures/", "Person_Texture.jpg"), "CompressedTexture2D");
     mat->set_shader_parameter("sampler", texture);
 
     // Setting the darking value for the texture
