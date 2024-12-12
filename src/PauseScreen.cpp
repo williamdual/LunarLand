@@ -21,14 +21,15 @@ void PauseScreen::_ready ( ){
 
 // Member function for setting pause screen
 void PauseScreen::Pause() {
+    Size2 size = get_viewport()->get_visible_rect().size;
     background->set_global_position(Vector2(-33, -21));
-    margin_container->set_global_position(Vector2(0.0, -59.5));
+    margin_center->set_global_position(Vector2(-100.0, -300.0));
 }
 
 // Member function for unsetting pause screen
 void PauseScreen::Resume() {
     background->set_global_position(Vector2(-10000, -10000));
-    margin_container->set_global_position(Vector2(-10000, -10000));
+    margin_center->set_global_position(Vector2(-10000, -10000));
 }
 
 // Member function that sets up title screen attributes
@@ -42,19 +43,24 @@ void PauseScreen::SetupScreen() {
     create_and_add_as_child_of_parent<ColorRect>(background, "Background", canvas_layer);
     background->set_color(Color(0.2275, 0.2980, 0.4784, 1.0));
     background->set_size(Vector2(24, 27));
-    background->set_scale(Vector2(150, 100));
+    background->set_scale(Vector2(200, 150));
     background->set_global_position(Vector2(-10000, -10000));
     // Transform position: Vector2(-33, -21)
 
+    // Center box for margin container
+    create_and_add_as_child_of_parent<CenterContainer>(margin_center, "CenterMargin", canvas_layer);
+    margin_center->set_anchors_preset(Control::PRESET_FULL_RECT);
+    margin_center->set_global_position(Vector2(-10000, -10000));
+
     // Setting up the margin container
-    create_and_add_as_child_of_parent<MarginContainer>(margin_container, "MarginContainer", canvas_layer);
-    margin_container->set_anchors_preset(Control::PRESET_FULL_RECT);
-    margin_container->set_size(Vector2(1152, 667));
-    margin_container->set_global_position(Vector2(-10000, -10000));
-    margin_container->add_theme_constant_override("margin_left", 120);
-    margin_container->add_theme_constant_override("margin_top", 80);
-    margin_container->add_theme_constant_override("margin_right", 120);
-    margin_container->add_theme_constant_override("margin_bottom", 80);
+    create_and_add_as_child_of_parent<MarginContainer>(margin_container, "MarginContainer", margin_center);
+    //margin_container->set_anchors_preset(Control::PRESET_FULL_RECT);
+    //margin_container->set_size(Vector2(1152, 667));
+    //margin_container->set_global_position(Vector2(-10000, -10000));
+    // margin_container->add_theme_constant_override("margin_left", 120);
+    // margin_container->add_theme_constant_override("margin_top", 80);
+    // margin_container->add_theme_constant_override("margin_right", 120);
+    // margin_container->add_theme_constant_override("margin_bottom", 80);
     // Transform position: Vector2(0, -59.5)
 
     // Setting up the box container
@@ -74,9 +80,9 @@ void PauseScreen::SetupScreen() {
     create_and_add_as_child_of_parent<Label>(title_text, "TitleText", title_container);
     LabelSettings* title_style = memnew(LabelSettings);
     title_style->set_font(font);
-    title_style->set_font_size(40);
+    title_style->set_font_size(100);
     title_style->set_font_color(Color(0.2980, 0.7882, 0.9412, 1.0));
-    title_style->set_outline_size(10);
+    title_style->set_outline_size(15);
     title_style->set_outline_color(Color(1.0, 1.0, 1.0, 1.0));
     title_text->set_label_settings(title_style);
     title_text->set_text("Game Paused");
@@ -86,7 +92,7 @@ void PauseScreen::SetupScreen() {
     create_and_add_as_child_of_parent<Label>(pause_text, "PauseText", pause_container);
     LabelSettings* pause_style = memnew(LabelSettings);
     pause_style->set_font(font);
-    pause_style->set_font_size(20);
+    pause_style->set_font_size(50);
     pause_style->set_font_color(Color(1.0, 1.0, 1.0, 1.0));
     pause_text->set_label_settings(pause_style);
     pause_text->set_text("Press 'Esc' again to unpause game");
@@ -101,10 +107,10 @@ void PauseScreen::SetupScreen() {
     create_and_add_as_child_of_parent<Label>(quote_text, "QuoteText", quote_container);
     LabelSettings* quote_style = memnew(LabelSettings);
     quote_style->set_font(font);
-    quote_style->set_font_size(20);
+    quote_style->set_font_size(50);
     quote_style->set_font_color(Color(1.0, 1.0, 1.0, 1.0));
     quote_text->set_label_settings(quote_style);
-    quote_text->set_text("\"We strive for immersive space themed experiences, accidental deaths and malfunctions are all part of that\"\n-Rob Yublind, former PR representative, serving life imprisonment");
+    quote_text->set_text("\"We strive for immersive space themed experiences,\naccidental deaths and malfunctions are all part of that\"\n-Rob Yublind, former PR representative, serving life imprisonment");
     quote_text->set_horizontal_alignment(HorizontalAlignment::HORIZONTAL_ALIGNMENT_CENTER);
 }
 

@@ -41,6 +41,7 @@ private:
     // Visual members of the pause screen
     CanvasLayer* canvas_layer;
     ColorRect* background;
+    CenterContainer* margin_center;
     MarginContainer* margin_container;
     VBoxContainer* main_container;
     CenterContainer* title_container;
