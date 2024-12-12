@@ -275,8 +275,8 @@ void CustomScene3501::create_cameras()
 	PlayerCamera *cam_3;
 	create_and_add_as_child<PlayerCamera>(cam_3, "SBC", true);
 	cam_3->set_global_position(Vector3(-0.176132, 23.11914, -75.44937));
-	// cam_3->SafelyRotate(Vector3(-90.0, 0, 0));
-	cam_3->SetTrackType(CameraTrackType::tracking);
+	cam_3->SafelyRotate(Vector3(-89.9, 0, 0));
+	cam_3->SetTrackType(CameraTrackType::statics);
 	CameraTrigger *trigg_4;
 	create_and_add_as_child<CameraTrigger>(trigg_4, "SBC_trigg_1", true);
 	CameraTrigger *trigg_5;
@@ -1178,7 +1178,7 @@ void CustomScene3501::setup_interactables()
 			{
 				audio_interactables[i]->set_global_position(Vector3(-22.48615, -7.101642, -254.866));
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 7.0);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 6.5);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_INTRO);
 			}
 			else if (i == 1)
@@ -1186,7 +1186,7 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -250.75));
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 7.0);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.5);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_JOHNNY);
 			}
 			else if (i == 2)
@@ -1194,7 +1194,7 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -241.1618));
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 7.0);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.5);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_BOBO);
 			}
 			else if (i == 3)
@@ -1202,7 +1202,7 @@ void CustomScene3501::setup_interactables()
 				audio_interactables[i]->set_global_position(Vector3(-30.0, -7.409349, -232.7377));
 				audio_interactables[i]->set_global_rotation_degrees(right_angle);
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 7.0);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 4.5);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_TIMMY);
 			}
 			else if (i == 4)
@@ -1215,8 +1215,8 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 5)
 			{
-				audio_interactables[i]->set_global_position(Vector3(-12.75724, -7.863, -283.267));
-				audio_interactables[i]->set_global_rotation_degrees(right_angle);
+				audio_interactables[i]->set_global_position(Vector3(-0.288, -7.863, -279.337));
+				audio_interactables[i]->set_global_rotation_degrees(Vector3(0, 59.1, 0));
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
 				audio_interactables[i]->SetValues(player, INTER_OBJECT_COMPUTER_TERMINAL, SHAPE_BOX, true, 5.0);
 				audio_interactables[i]->SetAudio(AUDIO_JOE_LAW_GENERATOR);
@@ -1284,10 +1284,10 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 13) // Masons Logs
 			{
-				audio_interactables[i]->set_global_position(Vector3(-102.447, -5.715, -51.312));
+				audio_interactables[i]->set_global_position(Vector3(-110.743, -5.638, -82.86));
 				audio_interactables[i]->set_global_rotation_degrees(Vector3(0.0, 50.9, 0));
 				audio_interactables[i]->set_scale(Vector3(1.25, 1.25, 1.25));
-				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 7.0);
+				audio_interactables[i]->SetValues(player, INTER_OBJECT_LAPTOP_SCREEN, SHAPE_NONE, true, 8.5);
 				audio_interactables[i]->SetAudio(AUDIO_BUSY_IZZY);
 			}
 			else if (i == 14)
@@ -1409,7 +1409,7 @@ void CustomScene3501::setup_interactables()
 			}
 			else if (i == 6) // Izzy Laptop
 			{
-				item_interactables[i]->set_global_position(Vector3(-102.325, -5.775, -51.214));
+				item_interactables[i]->set_global_position(Vector3(-110.621, -5.698, -82.762));
 				item_interactables[i]->set_global_rotation_degrees(Vector3(0, 50.9, 0));
 				item_interactables[i]->set_scale(Vector3(1.5, 1.5, 1.5));
 				// item_interactables[i]->set_scale(Vector3(1.0, 1.0, 1.0));
@@ -1806,8 +1806,8 @@ void CustomScene3501::setup_env_objects()
 			}
 			else if (i == 8) // generator terminal
 			{
-				environment_objects[i]->set_global_position(Vector3(-12.745, -9.99, -283.258));
-				environment_objects[i]->set_global_rotation_degrees(right_angle * 2);
+				environment_objects[i]->set_global_position(Vector3(-0.282, -9.99, -279.323));
+				environment_objects[i]->set_global_rotation_degrees(Vector3(0, 149.1, 0));
 				environment_objects[i]->set_scale(Vector3(1.5, 3.0, 1.5));
 				environment_objects[i]->SetPrimValues(PRIM_BOX, ENV_OBJECT_COMPUTER_TERMINAL, SHAPE_NONE);
 				environment_objects[i]->RegisterCameraTrigs(cam_triggs);
