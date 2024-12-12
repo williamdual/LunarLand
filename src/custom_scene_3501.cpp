@@ -1486,7 +1486,7 @@ void CustomScene3501::create_lights()
 	lights.append(Vector3(-126.5494, 45, -20.66175));
 	// Office Light
 	lights.append(Vector3(-128.4032, 25.90864, -70.66657));
-	// lights.append(Vector3);
+	//  lights.append(Vector3);
 }
 
 void CustomScene3501::setup_lights()
