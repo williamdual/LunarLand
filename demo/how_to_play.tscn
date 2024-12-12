@@ -5,22 +5,22 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_nv0o6"]
 font = ExtResource("1_2fml0")
-font_size = 40
+font_size = 100
 font_color = Color(0.298039, 0.788235, 0.941176, 1)
-outline_size = 10
+outline_size = 15
 outline_color = Color(0.933333, 0.933333, 0.933333, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_s557f"]
 font = ExtResource("1_2fml0")
-font_size = 20
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_qluq8"]
 font = ExtResource("1_2fml0")
-font_size = 20
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_rlvae"]
 font = ExtResource("1_2fml0")
-font_size = 20
+font_size = 50
 
 [sub_resource type="Theme" id="Theme_lrg5i"]
 default_font = ExtResource("1_2fml0")
@@ -54,8 +54,10 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -51.5
 offset_top = -50.0
-offset_bottom = -50.0
+offset_right = 51.5
+offset_bottom = 765.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 120
@@ -78,11 +80,7 @@ label_settings = SubResource("LabelSettings_nv0o6")
 [node name="TextAlignment" type="CenterContainer" parent="CanvasLayer/MarginContainer/MainContainer"]
 layout_mode = 2
 
-[node name="MainTextContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MainContainer/TextAlignment"]
-layout_mode = 2
-theme_override_constants/separation = 100
-
-[node name="Description" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/TextAlignment/MainTextContainer"]
+[node name="Description" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/TextAlignment"]
 layout_mode = 2
 text = "LunarLand! The best place to spend your
 money for some mediocre fun! However, due
@@ -97,7 +95,10 @@ and the lunar lint. If you bring them back to
 us, we will compensate you minimally!"
 label_settings = SubResource("LabelSettings_s557f")
 
-[node name="Controls" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/TextAlignment/MainTextContainer"]
+[node name="ControlContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer/MainContainer"]
+layout_mode = 2
+
+[node name="Controls" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/ControlContainer"]
 layout_mode = 2
 text = "Controls:
 - Forward: w

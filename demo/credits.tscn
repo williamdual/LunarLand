@@ -1,46 +1,54 @@
-[gd_scene load_steps=16 format=3 uid="uid://2nb7g0lrb5oq"]
+[gd_scene load_steps=18 format=3 uid="uid://2nb7g0lrb5oq"]
 
 [ext_resource type="Script" path="res://credits.gd" id="1_3swxc"]
 [ext_resource type="FontFile" uid="uid://dv1qw0u3oy8uq" path="res://Fonts/ThaleahFat.ttf" id="1_e0esc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ff3bo"]
 font = ExtResource("1_e0esc")
-font_size = 40
+font_size = 100
 font_color = Color(0.298039, 0.788235, 0.941176, 1)
-outline_size = 10
+outline_size = 15
 outline_color = Color(0.933333, 0.933333, 0.933333, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_i0e3l"]
 font = ExtResource("1_e0esc")
-font_size = 20
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_s2koi"]
 font = ExtResource("1_e0esc")
-font_size = 20
+font_size = 35
 
 [sub_resource type="LabelSettings" id="LabelSettings_mvel0"]
 font = ExtResource("1_e0esc")
-font_size = 20
+font_size = 35
 
-[sub_resource type="LabelSettings" id="LabelSettings_n0pok"]
+[sub_resource type="LabelSettings" id="LabelSettings_b85m0"]
 font = ExtResource("1_e0esc")
-font_size = 20
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_dvp4b"]
 font = ExtResource("1_e0esc")
-font_size = 20
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_3xw0g"]
+font = ExtResource("1_e0esc")
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_gfmib"]
 font = ExtResource("1_e0esc")
-font_size = 20
+font_size = 35
+
+[sub_resource type="LabelSettings" id="LabelSettings_e8pec"]
+font = ExtResource("1_e0esc")
+font_size = 50
 
 [sub_resource type="LabelSettings" id="LabelSettings_dmmml"]
 font = ExtResource("1_e0esc")
-font_size = 20
+font_size = 35
 
 [sub_resource type="LabelSettings" id="LabelSettings_rpsim"]
 font = ExtResource("1_e0esc")
-font_size = 20
+font_size = 50
 
 [sub_resource type="Theme" id="Theme_uq1l2"]
 default_font = ExtResource("1_e0esc")
@@ -75,10 +83,10 @@ metadata/_edit_lock_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -57.0
+offset_left = -98.5
 offset_top = -50.0
-offset_right = 57.0
-offset_bottom = 23.0
+offset_right = 98.5
+offset_bottom = 525.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 120
@@ -111,14 +119,16 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MainContainer/FirstLevel"]
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 70
 
 [node name="Cast1" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/FirstLevel/HBoxContainer"]
 layout_mode = 2
 text = "Susie From Hr: caitlin Wardle
 Joe Law: Brennen Ray
 Bobo The Clown: William Graham
-Timmy Two-Jobs: Jacob Bonner"
+Timmy Two-Jobs: Jacob Bonner
+Busy Izzy: Aurora Tracy
+Tyler: Luke Beausoleil"
 label_settings = SubResource("LabelSettings_s2koi")
 
 [node name="Cast2" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/FirstLevel/HBoxContainer"]
@@ -126,26 +136,30 @@ layout_mode = 2
 text = "Johnny The Hungry: Luke Beausoleil
 Hootenanny Harry: RJ Fromm
 Sebastian Stanza: Cameron Carter
-Penny Pincher: Ella Richmyre"
-label_settings = SubResource("LabelSettings_mvel0")
-
-[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/FirstLevel/HBoxContainer"]
-layout_mode = 2
-text = "Busy Izzy: Aurora Tracy
-Tyler: Luke Beausoleil
+Penny Pincher: Ella Richmyre
 Mr Mcnamra: Benjamin Whitten
 
 "
-label_settings = SubResource("LabelSettings_n0pok")
+label_settings = SubResource("LabelSettings_mvel0")
 
 [node name="SecondLevel" type="CenterContainer" parent="CanvasLayer/MarginContainer/MainContainer"]
 layout_mode = 2
 
 [node name="SecondLevelText" type="HBoxContainer" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel"]
 layout_mode = 2
-theme_override_constants/separation = 210
+theme_override_constants/separation = 80
 
-[node name="Developers" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
+[node name="DevContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
+layout_mode = 2
+
+[node name="DevelopersTitle" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText/DevContainer"]
+layout_mode = 2
+text = "Lead
+Developers"
+label_settings = SubResource("LabelSettings_b85m0")
+horizontal_alignment = 1
+
+[node name="Developers" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText/DevContainer"]
 layout_mode = 2
 text = "Developers
 - William graham
@@ -156,10 +170,19 @@ text = "Developers
 "
 label_settings = SubResource("LabelSettings_dvp4b")
 
-[node name="Models" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
+[node name="ModelsContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
 layout_mode = 2
-text = "Models / Model Textures
-- Mason McLeod
+
+[node name="ModelsTitle" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText/ModelsContainer"]
+layout_mode = 2
+text = "Models and
+Model Textures"
+label_settings = SubResource("LabelSettings_3xw0g")
+horizontal_alignment = 1
+
+[node name="Models" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText/ModelsContainer"]
+layout_mode = 2
+text = "- Mason McLeod
 - Perkoules
 - agardiandesinger
 - ponomarev1983
@@ -167,10 +190,18 @@ text = "Models / Model Textures
 "
 label_settings = SubResource("LabelSettings_gfmib")
 
-[node name="Textures" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
+[node name="TextureContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText"]
 layout_mode = 2
-text = "Other Textures and Assets
-- Mason Mcleod
+
+[node name="TextureTitle" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText/TextureContainer"]
+layout_mode = 2
+text = "Other Textures
+and Assets"
+label_settings = SubResource("LabelSettings_e8pec")
+
+[node name="Textures" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/SecondLevel/SecondLevelText/TextureContainer"]
+layout_mode = 2
+text = "- Mason Mcleod
 - Freepik
 - Space Spheremaps
 - Deep-fold
@@ -182,7 +213,8 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer/MainContainer/QuoteContainer"]
 layout_mode = 2
-text = "\"I admire casino's because they fool the common person into giving them every penny - just like me!\"
+text = "\"I admire casino's because they fool the common
+person into giving them every penny - just like me!\"
 - Locklen Lincan, Founder of LunarLand"
 label_settings = SubResource("LabelSettings_rpsim")
 horizontal_alignment = 1
