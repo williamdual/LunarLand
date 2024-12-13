@@ -30,3 +30,6 @@ Controls:
 Bugs:
 - There are certain areas in the geometry of the map where the player can get stuck. In order to
   prevent this, the player may randomly "hop" to get out of these holes.
+
+
+  <p>Copyright (c) 2024 Samantha Beilman (samanthabeilman@cmail.carleton.ca) (base code)</p>
