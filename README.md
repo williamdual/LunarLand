@@ -8,6 +8,14 @@ How to Build:
 1. Navigate to the LunarLand directory (this should be the main directory)
 2. Command: scons platform=windows
 
+Build to Web:
+1. Have <a href="https://emscripten.org/docs/getting_started/downloads.html">Emscripten</a> installed
+2. Run: cd "drive:\PathtoEmsdk\" (Or when you install Emscripten, run all of its commands with --permenant, and skip to step 5)
+3. Run: .\emsdk_env.bat
+4. Run: cd "drive:path\to\LunarLand"
+5. Run: scons platform=web dlink_enabled=yes target=template_release
+6. Now compile it for HTML in the godot editor
+
 Game Architecture:
 - The game is third person, with cameras strategically placed around the map to view the player. They
   either pan across the screen to follow the player down long corridors, track the player so they
