@@ -14,6 +14,7 @@ config/name="LunarLand"
 run/main_scene="res://start_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://InventorySprites/moon.png"
+config/windows_native_icon="res://InventorySprites/moon.ico"
 
 [filesystem]
 
